@@ -2089,6 +2089,46 @@
         padding-top: 5mm !important;
       }
       /* LEMBAR 3: KHUSUS ARSIP REKAPAN FINANSIAL 5 TAHUN (ORIENTASI KERTAS LANDSCAPE F4) */
+      body.print-mode-rekap-5tahun #modalHorizonRencana,
+      body.print-mode-all #modalHorizonRencana {
+        display: block !important;
+        position: static !important;
+        inset: auto !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-akun-card,
+      body.print-mode-all #modalHorizonRencana .modal-akun-card {
+        display: block !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
+        overflow: visible !important;
+        max-height: none !important;
+      }
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-akun-header,
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-actions-row,
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-horizon-intro,
+      body.print-mode-all #modalHorizonRencana .modal-akun-header,
+      body.print-mode-all #modalHorizonRencana .modal-actions-row,
+      body.print-mode-all #modalHorizonRencana .modal-horizon-intro {
+        display: none !important;
+      }
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-akun-body,
+      body.print-mode-all #modalHorizonRencana .modal-akun-body {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: visible !important;
+      }
       body.print-mode-rekap-5tahun #containerRekap5Tahun,
       body.print-mode-rekap-5tahun .dash-print-page-3 {
         page: pageLandscape !important;
@@ -3549,7 +3589,7 @@
 
   <!-- MODAL LEGALITAS & PERIZINAN RESMI (DISDIKBUD KUTAI KARTANEGARA) -->
   <div id="modalLegalitasSekolah" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalLegalitasSekolah()">
-    <div class="modal-akun-card" style="max-width: 860px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalLegalitasTitle">
+    <div class="modal-akun-card" style="max-width: 960px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalLegalitasTitle">
       <div class="modal-akun-header" style="background: linear-gradient(135deg, #063A20 0%, #0B5B33 100%);">
         <div style="display: flex; align-items: center; gap: 12px;">
           <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.2); font-size: 20px;">📜</div>
@@ -3576,7 +3616,7 @@
         </div>
 
         <!-- GRID DETAIL 4 PILAR LEGALITAS -->
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 14px; margin-bottom: 16px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 14px; margin-bottom: 16px;">
           
           <!-- KARTU 1: SERTIFIKAT NPSN -->
           <div style="background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid #0284c7; border-radius: 8px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
@@ -3584,11 +3624,11 @@
               <span>🌐</span> 1. Sertifikat NPSN (Kemendikbudristek)
             </div>
             <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 130px; color: #64748b;">Nomor NPSN</td><td style="width: 10px;">:</td><td><strong style="color: #0369a1; font-size: 13px;">70058553</strong></td></tr>
-              <tr><td style="color: #64748b;">Dasar Hukum</td><td>:</td><td>SK Balitbang Kemendikbud No. 3574/G4/KL/2009</td></tr>
-              <tr><td style="color: #64748b;">Tanggal Diterbitkan</td><td>:</td><td>12 November 2025</td></tr>
-              <tr><td style="color: #64748b;">Penandatangan</td><td>:</td><td>Yuherman S.Sn, M.Pd (NIP. 196710301996011001)</td></tr>
-              <tr><td style="color: #64748b;">Status Akreditasi</td><td>:</td><td><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Belum Terakreditasi</span> (NSS: -)</td></tr>
+              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor NPSN</td><td style="width: 10px;">:</td><td><strong style="color: #0369a1; font-family: 'Consolas', monospace; font-size: 12.5px; white-space: nowrap; word-break: keep-all; background: #f0f9ff; padding: 2px 8px; border-radius: 4px; border: 1px solid #bae6fd;">70058553</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Dasar Hukum</td><td>:</td><td>SK Balitbang Kemendikbud No. 3574/G4/KL/2009</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal Diterbitkan</td><td>:</td><td>12 November 2025</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Yuherman S.Sn, M.Pd (NIP. 196710301996011001)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Status Akreditasi</td><td>:</td><td><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Belum Terakreditasi</span> (NSS: -)</td></tr>
             </table>
           </div>
 
@@ -3598,12 +3638,12 @@
               <span>🏛️</span> 2. SK Pendirian Satuan Pendidikan
             </div>
             <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 130px; color: #64748b;">Nomor SK Pendirian</td><td style="width: 10px;">:</td><td><strong style="color: #047857;">B-137/KP3-3/SK/400.3.5/07/2025</strong></td></tr>
-              <tr><td style="color: #64748b;">Tanggal SK</td><td>:</td><td>14 Juli 2025 (Tenggarong)</td></tr>
-              <tr><td style="color: #64748b;">Instansi Penerbit</td><td>:</td><td>Kepala Disdikbud Kab. Kutai Kartanegara</td></tr>
-              <tr><td style="color: #64748b;">Pejabat Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Pembina Tk. I, IV/b)</td></tr>
-              <tr><td style="color: #64748b;">Dasar Surat Sekolah</td><td>:</td><td>No. 0106/IV.0/F/2024 (Tgl 26 Agustus 2024)</td></tr>
-              <tr><td style="color: #64748b;">Status Bangunan</td><td>:</td><td><strong>Milik Sendiri (Milik Yayasan / Wakaf)</strong></td></tr>
+              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor SK Pendirian</td><td style="width: 10px;">:</td><td><strong style="color: #047857; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f0fdf4; padding: 2px 7px; border-radius: 4px; border: 1px solid #bbf7d0;">B-137/KP3-3/SK/400.3.5/07/2025</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal SK</td><td>:</td><td>14 Juli 2025 (Tenggarong)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Instansi Penerbit</td><td>:</td><td>Kepala Disdikbud Kab. Kutai Kartanegara</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Pembina Tk. I, IV/b)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Dasar Permohonan</td><td>:</td><td>No. 0106/IV.0/F/2024 (Tgl 26 Agustus 2024)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Status Bangunan</td><td>:</td><td><strong>Milik Sendiri (Milik Yayasan / Wakaf)</strong></td></tr>
             </table>
           </div>
 
@@ -3613,11 +3653,11 @@
               <span>📋</span> 3. SK Izin Operasional Sekolah (3 Tahun)
             </div>
             <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 130px; color: #64748b;">Nomor SK Izin</td><td style="width: 10px;">:</td><td><strong style="color: #b45309;">B-033/DISDIKBUD/SK/400.3.5/08/2025</strong></td></tr>
-              <tr><td style="color: #64748b;">Tanggal Penetapan</td><td>:</td><td>5 Agustus 2025</td></tr>
-              <tr><td style="color: #64748b;">Masa Berlaku Izin</td><td>:</td><td><strong style="color: #15803d;">6 Agustus 2025 s.d. 6 Agustus 2028</strong></td></tr>
-              <tr><td style="color: #64748b;">Ketentuan Perpanjangan</td><td>:</td><td>Wajib diajukan &le; 15 hari sebelum habis (sebelum 22 Juli 2028)</td></tr>
-              <tr><td style="color: #64748b;">Pejabat Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Disdikbud Kukar)</td></tr>
+              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor SK Izin</td><td style="width: 10px;">:</td><td><strong style="color: #b45309; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #fffbeb; padding: 2px 7px; border-radius: 4px; border: 1px solid #fde68a;">B-033/DISDIKBUD/SK/400.3.5/08/2025</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal Penetapan</td><td>:</td><td>5 Agustus 2025</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Masa Berlaku Izin</td><td>:</td><td><strong style="color: #15803d; background: #f0fdf4; padding: 2px 6px; border-radius: 4px; border: 1px solid #bbf7d0;">6 Agustus 2025 s.d. 6 Agustus 2028</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Batas Perpanjangan</td><td>:</td><td>Wajib diajukan &le; 15 hari sebelum habis (<span style="color: #b91c1c; font-weight: 600;">sebelum 22 Juli 2028</span>)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Disdikbud Kukar)</td></tr>
             </table>
           </div>
 
@@ -3627,12 +3667,12 @@
               <span>👤</span> 4. Profil Legalitas Kepala Sekolah
             </div>
             <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 130px; color: #64748b;">Nama Kepala Sekolah</td><td style="width: 10px;">:</td><td><strong style="color: #0f172a; font-size: 13px;">SUSANTO, S.Sos</strong></td></tr>
-              <tr><td style="color: #64748b;">Tempat, Tanggal Lahir</td><td>:</td><td>Trenggalek, 12 Maret 1976</td></tr>
-              <tr><td style="color: #64748b;">Pendidikan Terakhir</td><td>:</td><td>S1 (Sarjana Sosial)</td></tr>
-              <tr><td style="color: #64748b;">SK Pengangkatan KS</td><td>:</td><td><strong style="color: #6d28d9;">080/III.0/KEP/D/2024</strong></td></tr>
-              <tr><td style="color: #64748b;">Penerbit SK KS</td><td>:</td><td>Pimpinan Daerah Muhammadiyah Kutai Kartanegara</td></tr>
-              <tr><td style="color: #64748b;">NBM Warga</td><td>:</td><td><span style="font-family: monospace; font-weight: bold; background: #ede9fe; color: #5b21b6; padding: 1px 6px; border-radius: 4px;">2006 7615 1221959</span></td></tr>
+              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nama Kepala Sekolah</td><td style="width: 10px;">:</td><td><strong style="color: #0f172a; font-size: 13px;">SUSANTO, S.Sos</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Tempat, Tanggal Lahir</td><td>:</td><td>Trenggalek, 12 Maret 1976</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Pendidikan Terakhir</td><td>:</td><td>S1 (Sarjana Sosial)</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">SK Pengangkatan KS</td><td>:</td><td><strong style="color: #6d28d9; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f5f3ff; padding: 2px 7px; border-radius: 4px; border: 1px solid #ddd6fe;">080/III.0/KEP/D/2024</strong></td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">Penerbit SK KS</td><td>:</td><td>Pimpinan Daerah Muhammadiyah Kutai Kartanegara</td></tr>
+              <tr><td style="color: #64748b; white-space: nowrap;">NBM Warga</td><td>:</td><td><span style="font-family: monospace; font-weight: bold; background: #ede9fe; color: #5b21b6; padding: 2px 7px; border-radius: 4px;">2006 7615 1221959</span></td></tr>
             </table>
           </div>
 
@@ -3646,6 +3686,37 @@
           <div>&bull; <strong>Surel Resmi:</strong> <a href="mailto:smpmuhammadiyah1kobdar@gmail.com" style="color: #0284c7; text-decoration: none;">smpmuhammadiyah1kobdar@gmail.com</a></div>
         </div>
 
+        <!-- MEDIA SOSIAL RESMI TERVERIFIKASI -->
+        <div style="margin-top: 12px; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #9f1239;">
+          <div style="font-weight: 700; color: #be123c; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+            <span>📱 Kanal Media Sosial Resmi SMP Muhammadiyah 1:</span>
+            <span style="font-size: 11px; background: #ffe4e6; padding: 2px 8px; border-radius: 999px; font-weight: 600;">Dikelola Humas & Medsos</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px;">
+            <a href="https://www.instagram.com/smpmuhammadiyah1kobdar?exln=ejF3bDk5ZXA1cXFx" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #fbcfe8; text-decoration: none; color: #831843; font-weight: 600;">
+              <span style="font-size: 18px;">📸</span>
+              <div>
+                <div style="font-size: 11px; color: #e11d48;">Instagram Resmi</div>
+                <div style="font-size: 12px; font-family: monospace;">@smpmuhammadiyah1kobdar</div>
+              </div>
+            </a>
+            <a href="https://www.facebook.com/share/19bhK4gQ9u/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #bfdbfe; text-decoration: none; color: #1e3a8a; font-weight: 600;">
+              <span style="font-size: 18px;">👥</span>
+              <div>
+                <div style="font-size: 11px; color: #2563eb;">Halaman Facebook</div>
+                <div style="font-size: 12px; font-family: monospace;">SMPM1 KobDar</div>
+              </div>
+            </a>
+            <a href="https://www.tiktok.com/@smp_muhammadiyah1_kobdar?_r=1&_t=ZS-9BI5aIRBZn5" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; gap: 8px; background: #ffffff; padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; text-decoration: none; color: #0f172a; font-weight: 600;">
+              <span style="font-size: 18px;">🎵</span>
+              <div>
+                <div style="font-size: 11px; color: #0f172a;">TikTok Resmi</div>
+                <div style="font-size: 12px; font-family: monospace;">@smp_muhammadiyah1_kobdar</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
         <!-- FOOTER ACTIONS -->
         <div class="modal-actions-row" style="margin-top: 16px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
           <span style="font-size: 11.5px; color: #64748b;">💡 Dokumen tersimpan dalam Master Database Arsip Yaqin (REG-LEG-01)</span>
@@ -3653,6 +3724,395 @@
             <button type="button" class="btn-modal-cancel" onclick="tutupModalLegalitasSekolah()">Tutup</button>
             <button type="button" class="btn-modal-save" style="background: #047857;" onclick="alert('Data legalitas resmi SMP Muhammadiyah 1 Kota Bangun Darat telah tersimpan pada database sistem!');">
               ✓ Data Tervalidasi Resmi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DOKUMENTASI & DATABASE PELATIHAN GEMINI AI SISWA & GURU -->
+  <div id="modalPelatihanAI" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalPelatihanAI()">
+    <div class="modal-akun-card" style="max-width: 960px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalAITitle">
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #0B5B33 0%, #1D5F82 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.2); font-size: 22px;">🤖</div>
+          <div>
+            <h3 class="modal-akun-title" id="modalAITitle">Ekosistem Pelatihan Gemini AI: Guru & Siswa</h3>
+            <p class="modal-akun-subtitle">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Inovasi Pembelajaran Berkemajuan Era Kecerdasan Buatan</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="tutupModalPelatihanAI()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <div class="modal-akun-body" style="padding: 20px 24px;">
+        
+        <!-- BAGIAN 1: PELATIHAN GURU (GEMINI ACADEMY 2026 - FESTIVAL LOKAL BERDAMPAK) -->
+        <div style="background: #ffffff; border: 1.5px solid #0284c7; border-radius: 10px; padding: 16px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; border-bottom: 1.5px solid #e0f2fe; padding-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">👨‍🏫</span>
+              <div>
+                <h4 style="margin: 0; font-size: 15px; color: #0369a1; font-weight: 800;">1. Pelatihan Guru: Festival Lokal Berdampak (Gemini Academy 2026)</h4>
+                <span style="font-size: 11.5px; color: #64748b;">Kemendikdasmen RI &bull; Disdikbud Kab. Kutai Kartanegara &bull; REFO Indonesia (Google Partner) &bull; MKKS</span>
+              </div>
+            </div>
+            <span style="background: #e0f2fe; color: #0369a1; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px;">
+              📅 Selasa, 3 November 2026
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 14px; align-items: center;">
+            <div style="position: relative; overflow: hidden; border-radius: 8px; background: #000; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+              <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-guru-gemini-academy-2026.jpg" alt="Foto Pelatihan Guru Gemini Academy 2026" style="width: 100%; height: 240px; object-fit: cover; display: block;">
+            </div>
+            <div style="font-size: 12.5px; line-height: 1.6; color: #334155;">
+              <div style="background: #f8fafc; border-left: 3px solid #0284c7; padding: 8px 12px; border-radius: 4px; margin-bottom: 10px;">
+                <strong>Delegasi Resmi Sekolah:</strong> Kepala SMP Muhammadiyah 1 Kota Bangun Darat (<strong>Susanto, S.Sos</strong>) bersama jajaran Pendidik MKKS Wilayah Kota Bangun dan Pengawas Disdikbud Kukar.
+              </div>
+              <div style="font-weight: 700; color: #0f172a; margin-bottom: 4px;">Kompetensi Guru yang Dilatih:</div>
+              <ul style="margin: 0; padding-left: 18px; color: #475569; font-size: 12px;">
+                <li>Penyusunan Modul Ajar berdiferensiasi dan RPP kilat dengan Google Gemini.</li>
+                <li>Pembuatan studi kasus interaktif dan analogi sains lokal Kalimantan Timur.</li>
+                <li>Desain rubrik asesmen formatif adaptif dan analisis kecepatan belajar siswa.</li>
+                <li>Etika AI dan keamanan data siswa di lingkungan sekolah.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- BAGIAN 2: HILIRISASI KE SISWA (PELATIHAN GEMINI AI SISWA - 10 NOVEMBER 2026) -->
+        <div style="background: #ffffff; border: 1.5px solid #059669; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(5, 150, 105, 0.08);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; border-bottom: 1.5px solid #dcfce7; padding-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 20px;">🎓</span>
+              <div>
+                <h4 style="margin: 0; font-size: 15px; color: #065f46; font-weight: 800;">2. Pengimbasan ke Siswa: Workshop Gemini AI & Literasi Digital</h4>
+                <span style="font-size: 11.5px; color: #64748b;">Praktik Mandiri 1 Anak 1 Laptop Acer Chromebook &bull; Aula Masjid Nur Hidayah Kompleks Perguruan</span>
+              </div>
+            </div>
+            <span style="background: #dcfce7; color: #15803d; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 6px;">
+              📅 10 November 2026
+            </span>
+          </div>
+
+          <!-- DOKUMENTASI VISUAL FOTO LAPANGAN SISWA (2 FOTO BERDAMPINGAN) -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 14px; margin-bottom: 14px;">
+            <!-- FOTO 1: FOTO BERSAMA -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px;">
+              <div style="overflow: hidden; border-radius: 6px; background: #000;">
+                <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-foto-bersama.jpg" alt="Foto Bersama Siswa Gemini AI" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+              </div>
+              <div style="padding: 8px 4px 2px 4px; font-size: 11.5px; color: #475569;">
+                <strong>Foto Capaian:</strong> 6 Guru Pendamping berbatik biru Muhammadiyah mendampingi 13 siswa-siswi Pandu HW memegang laptop Chromebook.
+              </div>
+            </div>
+
+            <!-- FOTO 2: PRAKTIK LAPANGAN -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px;">
+              <div style="overflow: hidden; border-radius: 6px; background: #000;">
+                <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-praktik-laptop.jpg" alt="Sesi Praktik Siswa Gemini AI" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+              </div>
+              <div style="padding: 8px 4px 2px 4px; font-size: 11.5px; color: #475569;">
+                <strong>Sesi Praktik:</strong> Siswa duduk bersila di meja panjang, aktif mengetik prompt edukatif di Google Gemini AI dibimbing langsung oleh guru.
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #f0fdf4; border-left: 3px solid #059669; padding: 10px 14px; border-radius: 6px; font-size: 12px; color: #166534; line-height: 1.5;">
+            <strong>Materi Siswa:</strong> Dasar Prompt Engineering, Eksplorasi Sains & Soal Matematika, Pendalaman Sejarah Islam/Kemuhammadiyahan, serta Adab Digital Anti-Plagiarisme & Kritis Halusinasi AI.
+          </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="modal-actions-row" style="margin-top: 14px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11.5px; color: #64748b;">💾 Terdaftar Resmi di Database GTK (REG-TRN-GTK-2026-001) & Kesiswaan (REG-TRN-2026-001)</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-modal-cancel" onclick="tutupModalPelatihanAI()">Tutup</button>
+            <button type="button" class="btn-modal-save" style="background: #0284c7;" onclick="alert('Seluruh ekosistem pelatihan AI Guru & Siswa telah terdaftar resmi dalam pangkalan data terpadu!');">
+              ✓ Database Terintegrasi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PANGGUNG PRESTASI & GALERI PENGHARGAAN SISWA -->
+  <div id="modalPrestasiSekolah" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalPrestasiSekolah()">
+    <div class="modal-akun-card" style="max-width: 980px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalPrestasiTitle">
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.25); font-size: 24px;">🏆</div>
+          <div>
+            <h3 class="modal-akun-title" id="modalPrestasiTitle">Panggung Prestasi & Rekor Kejuaraan Sekolah</h3>
+            <p class="modal-akun-subtitle">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Rekor Juara Umum & 14+ Trofi Prestasi Kesiswaan</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="tutupModalPrestasiSekolah()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <div class="modal-akun-body" style="padding: 20px 24px;">
+        <!-- STATS BADGES REKOR -->
+        <div style="display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap;">
+          <div style="background: #fefce8; border: 1.5px solid #eab308; padding: 7px 12px; border-radius: 8px; font-size: 12.5px; color: #854d0e; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;">
+            <span>👑</span><span>JUARA UMUM KONTINGEN TERBAIK (Perjusami 2025)</span>
+          </div>
+          <div style="background: #f0fdf4; border: 1.5px solid #16a34a; padding: 7px 12px; border-radius: 8px; font-size: 12.5px; color: #15803d; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🥇</span><span>Juara 1 Pionering (Scout Day 2026)</span>
+          </div>
+          <div style="background: #eff6ff; border: 1.5px solid #3b82f6; padding: 7px 12px; border-radius: 8px; font-size: 12.5px; color: #1d4ed8; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🥈</span><span>Juara 2 Dance Semaphore</span>
+          </div>
+          <div style="background: #fdf4ff; border: 1.5px solid #c084fc; padding: 7px 12px; border-radius: 8px; font-size: 12.5px; color: #7e22ce; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>📖</span><span>Juara 3 MTQ Tilawah (Dian M.)</span>
+          </div>
+        </div>
+
+        <!-- GRID 4 EVENT UTAMA BERGAMBAR ASLI -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; margin-bottom: 20px;">
+          
+          <!-- KARTU 1: JUARA UMUM PERJUSAMI -->
+          <div style="background: #ffffff; border: 1px solid #cbd5e1; border-top: 4px solid #eab308; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="overflow: hidden; border-radius: 6px; background: #000; height: 165px;">
+              <img src="assets/prestasi-sekolah/kontingen-juara-umum-perjusami-10-piala.jpg" alt="Juara Umum Perjusami" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 10px 4px 4px 4px;">
+              <strong style="color: #854d0e; font-size: 13px;">🏆 Juara Umum Perjusami 2025</strong>
+              <p style="font-size: 11.5px; color: #475569; margin: 3px 0 0 0; line-height: 1.4;">
+                Memborong 10 piala kejuaraan se-Kecamatan di Pangkalan SMPN 3 Kota Bangun (LCC Qur'an, Memasak, Semaphore, Pionering, Penjelajahan).
+              </p>
+            </div>
+          </div>
+
+          <!-- KARTU 2: SCOUT DAY 2026 -->
+          <div style="background: #ffffff; border: 1px solid #cbd5e1; border-top: 4px solid #16a34a; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="overflow: hidden; border-radius: 6px; background: #000; height: 165px;">
+              <img src="assets/prestasi-sekolah/foto-bersama-kontingen-scout-day-2-trofi.jpg" alt="Scout Day 2026 SMAN 2" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 10px 4px 4px 4px;">
+              <strong style="color: #15803d; font-size: 13px;">🏕️ Scout Day 2026 (SMAN 2)</strong>
+              <p style="font-size: 11.5px; color: #475569; margin: 3px 0 0 0; line-height: 1.4;">
+                Meraih <strong>Juara 1 Pionering</strong> dan <strong>Juara 2 Dance Semaphore</strong> pada peringatan HUT Pramuka ke-65 (10–12 Agustus 2026).
+              </p>
+            </div>
+          </div>
+
+          <!-- KARTU 3: MTQ KE-3 TILAWAH ANAK -->
+          <div style="background: #ffffff; border: 1px solid #cbd5e1; border-top: 4px solid #7e22ce; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="overflow: hidden; border-radius: 6px; background: #000; height: 165px;">
+              <img src="assets/prestasi-sekolah/juara-3-mtq-tilawah-dian-muhimmatuzzahira.jpg" alt="Dian Muhimmatuzzahira Juara 3 MTQ" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 10px 4px 4px 4px;">
+              <strong style="color: #6b21a8; font-size: 13px;">📖 Juara 3 MTQ Ke-3 Tilawah</strong>
+              <p style="font-size: 11.5px; color: #475569; margin: 3px 0 0 0; line-height: 1.4;">
+                Diraih oleh <strong>Dian Muhimmatuzzahira</strong> (Kelas VII) pada ajang MTQ Ke-3 Tingkat Kecamatan di Desa Sari Nadi (29–31 Juli 2026).
+              </p>
+            </div>
+          </div>
+
+          <!-- KARTU 4: SENI TARI TRADISIONAL -->
+          <div style="background: #ffffff; border: 1px solid #cbd5e1; border-top: 4px solid #ea580c; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.05);">
+            <div style="overflow: hidden; border-radius: 6px; background: #000; height: 165px;">
+              <img src="assets/prestasi-sekolah/prestasi-seni-tari-tradisional-siswi.jpg" alt="Tari Tradisional Daerah Kutai" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="padding: 10px 4px 4px 4px;">
+              <strong style="color: #c2410c; font-size: 13px;">🎭 Seni Tari Tradisional Kutai</strong>
+              <p style="font-size: 11.5px; color: #475569; margin: 3px 0 0 0; line-height: 1.4;">
+                Penampilan 6 siswi penari berkostum adat kuning emas dan mahkota kembang goyang didampingi 5 guru pembina sekolah.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TABEL REKAPITULASI 14 PRESTASI RESMI -->
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px;">
+          <div style="font-weight: 700; color: #1e293b; font-size: 13.5px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+            <span>📜</span> Rekapitulasi Lengkap Raihan Prestasi (Tahun 2024 – 2026):
+          </div>
+          <div style="max-height: 220px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 6px; background: #ffffff;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+              <thead style="background: #f1f5f9; position: sticky; top: 0;">
+                <tr style="border-bottom: 2px solid #cbd5e1; color: #334155; text-align: left;">
+                  <th style="padding: 6px 10px; width: 35px; text-align: center;">No</th>
+                  <th style="padding: 6px 10px;">Nama Kejuaraan / Lomba</th>
+                  <th style="padding: 6px 10px; width: 90px; text-align: center;">Tahun</th>
+                  <th style="padding: 6px 10px; width: 140px; text-align: center;">Peringkat</th>
+                  <th style="padding: 6px 10px; width: 110px;">Tingkat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid #f1f5f9; background: #fefce8;"><td style="padding: 6px 10px; text-align: center; font-weight: 700;">1</td><td style="padding: 6px 10px;"><strong>Perkemahan Bersama Perjusami Penggalang</strong></td><td style="text-align: center;">2025</td><td style="text-align: center;"><span style="background: #fef08a; color: #854d0e; font-weight: 800; padding: 2px 6px; border-radius: 4px;">JUARA UMUM</span></td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">2</td><td style="padding: 6px 10px;">Lomba Pionering Putra/Campuran (Scout Day SMAN 2)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">3</td><td style="padding: 6px 10px;">Lomba Dance Semaphore (Scout Day SMAN 2)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">4</td><td style="padding: 6px 10px;">Lomba Tilawah Anak MTQ Ke-3 (Dian Muhimmatuzzahira)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #7e22ce; font-weight: 700;">Juara 3 🥉</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">5</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Qur'an Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">6</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Qur'an Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">7</td><td style="padding: 6px 10px;">Lomba Memasak Kreasi Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">8</td><td style="padding: 6px 10px;">Lomba Memasak Kreasi Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">9</td><td style="padding: 6px 10px;">Lomba Dance Semaphore Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">10</td><td style="padding: 6px 10px;">Lomba Dance Semaphore Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">11</td><td style="padding: 6px 10px;">Lomba Pionering Konstruksi Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">12</td><td style="padding: 6px 10px;">Lomba Penjelajahan Alam Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #b45309; font-weight: 700;">Juara 3 🥉</td><td>Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">13</td><td style="padding: 6px 10px;">Lomba Mewarnai Kaligrafi/Poster (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center;">Juara Harapan 1</td><td>Kecamatan</td></tr>
+                <tr><td style="padding: 6px 10px; text-align: center;">14</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Kesiswaan</td><td style="text-align: center;">2024</td><td style="text-align: center;">Juara Harapan 1</td><td>Kecamatan</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="modal-actions-row" style="margin-top: 14px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11.5px; color: #64748b;">💾 Terdaftar Resmi di Master Database Prestasi Sekolah (REG-ACH-2026-001)</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-modal-cancel" onclick="tutupModalPrestasiSekolah()">Tutup</button>
+            <button type="button" class="btn-modal-save" style="background: #b45309;" onclick="alert('Seluruh rekam jejak prestasi dan 14+ trofi kejuaraan telah tercatat dalam pangkalan data akreditasi!');">
+              ✓ Data Prestasi Sah
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL MEDIA SOSIAL RESMI SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT -->
+  <div id="modalMedsosSekolah" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalMedsosSekolah()">
+    <div class="modal-akun-card" style="max-width: 820px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalMedsosTitle">
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #831843 0%, #be123c 40%, #e11d48 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.25); font-size: 24px;">📱</div>
+          <div>
+            <h3 class="modal-akun-title" id="modalMedsosTitle" style="color: #ffffff; margin: 0; font-size: 18px; font-weight: 700;">Kanal Media Sosial Resmi Sekolah</h3>
+            <p class="modal-akun-subtitle" style="color: rgba(255, 255, 255, 0.9); margin: 2px 0 0; font-size: 12px;">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Syiar Digital, Informasi PPDB & Galeri Prestasi Siswa</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" onclick="tutupModalMedsosSekolah()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <div class="modal-akun-body" style="padding: 22px 24px;">
+        <div style="background: #fdf2f8; border-left: 4px solid #be123c; padding: 12px 16px; border-radius: 6px; margin-bottom: 20px; font-size: 12.5px; color: #831843; line-height: 1.5;">
+          📢 <strong>Saluran Publikasi Resmi:</strong> Seluruh publikasi kegiatan akademik, syiar kepanduan Hizbul Wathan, workshop AI, dan dokumentasi 14+ trofi kejuaraan ditayangkan secara resmi pada tiga kanal di bawah ini di bawah pengawasan Humas & Media Kreatif (Maulana / AGT-03).
+        </div>
+
+        <!-- 3 KARTU MEDIA SOSIAL -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <!-- 1. INSTAGRAM -->
+          <div style="border: 1.5px solid #fbcfe8; background: #ffffff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(190, 18, 60, 0.06); display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); display: flex; align-items: center; justify-content: center; font-size: 26px; box-shadow: 0 4px 12px rgba(220, 39, 67, 0.3);">
+                  📸
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 700; color: #831843;">Instagram Resmi</h4>
+                    <span style="font-size: 10.5px; background: #fce7f3; color: #be123c; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Terverifikasi</span>
+                  </div>
+                  <div style="font-family: monospace; font-size: 13.5px; color: #be123c; font-weight: 700; margin-top: 2px;">
+                    @smpmuhammadiyah1kobdar
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.instagram.com/smpmuhammadiyah1kobdar?exln=ejF3bDk5ZXA1cXFx" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #e11d48 0%, #be123c 100%); color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(225, 29, 72, 0.35); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                <span>Kunjungi Instagram</span>
+                <span>↗</span>
+              </a>
+            </div>
+            <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">
+              Pusat galeri visual foto kegiatan santri harian, pengumuman piala dan trofi kejuaraan, infografis hari besar Islam, rilis resmi kepala sekolah, dan kegiatan persyarikatan PCM/PDM.
+            </p>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 11px; background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; padding: 2px 8px; border-radius: 4px;">#GaleriFotoSiswa</span>
+              <span style="font-size: 11px; background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; padding: 2px 8px; border-radius: 4px;">#PrestasiJuaraUmum</span>
+              <span style="font-size: 11px; background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; padding: 2px 8px; border-radius: 4px;">#SyiarMuhammadiyah</span>
+            </div>
+          </div>
+
+          <!-- 2. FACEBOOK -->
+          <div style="border: 1.5px solid #bfdbfe; background: #ffffff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.06); display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #1877f2; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #ffffff; box-shadow: 0 4px 12px rgba(24, 119, 242, 0.35);">
+                  👥
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 700; color: #1e3a8a;">Halaman Facebook Resmi</h4>
+                    <span style="font-size: 10.5px; background: #dbeafe; color: #1d4ed8; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Komunitas</span>
+                  </div>
+                  <div style="font-family: monospace; font-size: 13.5px; color: #1d4ed8; font-weight: 700; margin-top: 2px;">
+                    SMPM1 KobDar
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.facebook.com/share/19bhK4gQ9u/" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #1877f2; color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(24, 119, 242, 0.35); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                <span>Kunjungi Facebook</span>
+                <span>↗</span>
+              </a>
+            </div>
+            <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">
+              Wadah komunikasi publik, silaturahmi dengan orang tua/wali murid, alumni, simpatisan persyarikatan, serta liputan artikel panjang dan album foto perkemahan akbar.
+            </p>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 11px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 4px;">#KomunitasWaliMurid</span>
+              <span style="font-size: 11px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 4px;">#AlbumFotoKegiatan</span>
+              <span style="font-size: 11px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; padding: 2px 8px; border-radius: 4px;">#SilaturahmiKukar</span>
+            </div>
+          </div>
+
+          <!-- 3. TIKTOK -->
+          <div style="border: 1.5px solid #cbd5e1; background: #ffffff; border-radius: 12px; padding: 16px 18px; box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06); display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
+              <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #000000; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #ffffff; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);">
+                  🎵
+                </div>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <h4 style="margin: 0; font-size: 16px; font-weight: 700; color: #0f172a;">TikTok Resmi</h4>
+                    <span style="font-size: 10.5px; background: #f1f5f9; color: #334155; font-weight: 700; padding: 2px 8px; border-radius: 999px;">Kreatif & Edukatif</span>
+                  </div>
+                  <div style="font-family: monospace; font-size: 13.5px; color: #0f172a; font-weight: 700; margin-top: 2px;">
+                    @smp_muhammadiyah1_kobdar
+                  </div>
+                </div>
+              </div>
+              <a href="https://www.tiktok.com/@smp_muhammadiyah1_kobdar?_r=1&_t=ZS-9BI5aIRBZn5" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px; background: #000000; color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; padding: 8px 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35); transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                <span>Kunjungi TikTok</span>
+                <span>↗</span>
+              </a>
+            </div>
+            <p style="margin: 0; font-size: 12.5px; color: #475569; line-height: 1.5;">
+              Media tayang video pendek kreatif: yel-yel dan atraksi semaphore Hizbul Wathan, keseruan praktik workshop Google Gemini AI & Chromebook, pertunjukan tari daerah, dan promosi PPDB.
+            </p>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+              <span style="font-size: 11px; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px;">#VideoKreatifSiswa</span>
+              <span style="font-size: 11px; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px;">#HizbulWathanKeren</span>
+              <span style="font-size: 11px; background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; padding: 2px 8px; border-radius: 4px;">#EdukasiAI</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- INFORMASI RESMI & HUBUNGI HUMAS -->
+        <div style="margin-top: 18px; padding: 12px 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="font-size: 12px; color: #64748b;">
+            ✉️ <strong>Surel Korespondensi Resmi:</strong> <a href="mailto:smpmuhammadiyah1kobdar@gmail.com" style="color: #0284c7; text-decoration: none; font-weight: 600;">smpmuhammadiyah1kobdar@gmail.com</a>
+          </div>
+          <div style="font-size: 11.5px; color: #94a3b8;">
+            📍 RT. 05 Kota Bangun III, Kutai Kartanegara
+          </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="modal-actions-row" style="margin-top: 16px; padding-top: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 11.5px; color: #64748b;">💾 Terdaftar Resmi di Master Profil Sekolah (REG-LEG-01)</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-modal-cancel" onclick="tutupModalMedsosSekolah()">Tutup</button>
+            <button type="button" class="btn-modal-save" style="background: #be123c;" onclick="alert('Kanal media sosial resmi SMP Muhammadiyah 1 Kota Bangun Darat siap diakses!');">
+              ✓ Kanal Resmi Terhubung
             </button>
           </div>
         </div>
@@ -3760,6 +4220,17 @@
           <div class="motto-id">"Gerakan Islam Berkemajuan"</div>
           <div class="motto-badge">Tahun Anggaran 2026 - 2030</div>
         </div>
+
+        <!-- SIDEBAR MEDIA SOSIAL RESMI -->
+        <div style="margin-top: 10px; padding: 10px 12px; background: rgba(0, 0, 0, 0.22); border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
+          <div style="font-size: 10px; color: rgba(255, 255, 255, 0.7); margin-bottom: 6px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;">Medsos Resmi SMPM 1</div>
+          <div style="display: flex; justify-content: center; gap: 8px; align-items: center;">
+            <a href="https://www.instagram.com/smpmuhammadiyah1kobdar?exln=ejF3bDk5ZXA1cXFx" target="_blank" rel="noopener noreferrer" title="Instagram: @smpmuhammadiyah1kobdar" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); border-radius: 6px; text-decoration: none; font-size: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">📸</a>
+            <a href="https://www.facebook.com/share/19bhK4gQ9u/" target="_blank" rel="noopener noreferrer" title="Facebook: SMPM1 KobDar" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #1877f2; border-radius: 6px; text-decoration: none; font-size: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">👥</a>
+            <a href="https://www.tiktok.com/@smp_muhammadiyah1_kobdar?_r=1&_t=ZS-9BI5aIRBZn5" target="_blank" rel="noopener noreferrer" title="TikTok: @smp_muhammadiyah1_kobdar" style="display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; background: #000000; border: 1px solid rgba(255,255,255,0.25); border-radius: 6px; text-decoration: none; font-size: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.3); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.15)'" onmouseout="this.style.transform='none'">🎵</a>
+            <button onclick="bukaModalMedsosSekolah()" title="Buka Detail Media Sosial Resmi" style="background: rgba(255,255,255,0.15); border: none; color: #ffffff; border-radius: 6px; width: 30px; height: 30px; cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; transition: background 0.2s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">🔍</button>
+          </div>
+        </div>
       </div>
     </aside>
 
@@ -3823,11 +4294,32 @@
               </p>
             </div>
             <div class="hero-stats-chips">
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalPrestasiSekolah()" title="Klik untuk melihat Galeri 14+ Trofi & Prestasi Juara Umum Sekolah" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #d97706;">
+                <span class="chip-icon">🏆</span>
+                <div class="chip-meta">
+                  <span class="chip-label" style="color: #b45309; font-weight: 700;">Prestasi Sekolah</span>
+                  <span class="chip-value" style="color: #b45309; font-weight: 800;">Juara Umum & 14+ Trofi <span style="font-size: 11px;">🔍</span></span>
+                </div>
+              </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalLegalitasSekolah()" title="Klik untuk melihat SK Pendirian, SK Izin Operasional & Sertifikat NPSN Resmi" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #059669;">
                 <span class="chip-icon">📜</span>
                 <div class="chip-meta">
                   <span class="chip-label" style="color: #065f46; font-weight: 700;">Legalitas Resmi</span>
                   <span class="chip-value" style="color: #047857; font-weight: 800;">NPSN 70058553 &bull; Izin 2028 <span style="font-size: 11px;">🔍</span></span>
+                </div>
+              </div>
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalPelatihanAI()" title="Klik untuk melihat Dokumentasi & Kurikulum Pelatihan Google Gemini AI Guru & Siswa" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #2563eb;">
+                <span class="chip-icon">🤖</span>
+                <div class="chip-meta">
+                  <span class="chip-label" style="color: #1e40af; font-weight: 700;">Inovasi AI</span>
+                  <span class="chip-value" style="color: #1d4ed8; font-weight: 800;">Gemini Guru & Siswa <span style="font-size: 11px;">🔍</span></span>
+                </div>
+              </div>
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalMedsosSekolah()" title="Klik untuk membuka Media Sosial Resmi: Instagram, Facebook & TikTok" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #e11d48;">
+                <span class="chip-icon">📱</span>
+                <div class="chip-meta">
+                  <span class="chip-label" style="color: #be123c; font-weight: 700;">Media Sosial</span>
+                  <span class="chip-value" style="color: #e11d48; font-weight: 800;">IG &bull; FB &bull; TikTok <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
               <div class="stat-chip">
@@ -3837,18 +4329,18 @@
                   <span class="chip-value">PCM Kota Bangun</span>
                 </div>
               </div>
-              <div class="stat-chip stat-chip-interactive" onclick="bukaModalDaftarGTK()" title="Klik untuk melihat daftar lengkap Guru & Staf SMP Muhammadiyah 1 Kota Bangun Darat" style="cursor: pointer;">
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalDaftarGTK()" title="Klik untuk melihat daftar lengkap Guru & Staf SMP Muhammadiyah 1 Kota Bangun Darat" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #0d9488;">
                 <span class="chip-icon">👥</span>
                 <div class="chip-meta">
-                  <span class="chip-label">GTK Aktif</span>
-                  <span class="chip-value">10 Pendidik & Staf <span style="font-size: 11px; opacity: 0.85;">🔍</span></span>
+                  <span class="chip-label" style="color: #0f766e; font-weight: 700;">GTK Aktif</span>
+                  <span class="chip-value" style="color: #0d9488; font-weight: 800;">10 Pendidik & Staf <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
-              <div class="stat-chip">
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalHorizonRencana()" title="Klik untuk membuka Arsip Rekapan Finansial Per Tahun & Horizon Rencana 5 Tahun (2026 - 2030)" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #0284c7;">
                 <span class="chip-icon">📈</span>
                 <div class="chip-meta">
-                  <span class="chip-label">Horizon Rencana</span>
-                  <span class="chip-value">5 Tahun (2026-2030)</span>
+                  <span class="chip-label" style="color: #0369a1; font-weight: 700;">Horizon Rencana</span>
+                  <span class="chip-value" style="color: #0284c7; font-weight: 800;">5 Tahun (2026-2030) <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
             </div>
@@ -4035,54 +4527,24 @@
         </div>
       </div>
 
-      <!-- LEMBAR 3: ARSIP REKAPAN FINANSIAL PER TAHUN & DATA KUMULATIF (DIPISAHKAN KE LEMBAR KE-3) -->
-      <div class="table-container dash-print-page dash-print-page-3" id="containerRekap5Tahun" style="margin-top: 24px;">
-        <!-- JUDUL DOKUMEN CETAK ARSIP REKAPAN (PRINT ONLY - LEMBAR 3) -->
-        <div class="print-only" style="text-align: center; margin: 0 0 14px 0; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">
-          <h3 style="font-size: 13pt; font-weight: bold; margin: 0; text-transform: uppercase; color: #0f172a; letter-spacing: 0.5px;">ARSIP REKAPAN FINANSIAL PER TAHUN & DATA KUMULATIF PERKEMBANGAN MANAJEMEN</h3>
-          <p style="font-size: 9.5pt; color: #475569; margin: 2px 0 0 0;">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Lembar 3: Rencana Strategis & Realisasi Arus Kas (2026 - 2030)</p>
-        </div>
-
-        <div class="table-header-action">
+      <!-- SHORTCUT ARSIP REKAPAN FINANSIAL 5 TAHUN (TERINTEGRASI DI DALAM MODAL HORIZON RENCANA) -->
+      <div class="no-print" style="margin-top: 24px; background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border: 1.5px dashed #0284c7; border-radius: 12px; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);">
+            📈
+          </div>
           <div>
-            <div class="table-title">🏛️ Arsip Rekapan Finansial Per Tahun & Data Kumulatif Perkembangan Manajemen (2026 - 2030)</div>
-            <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
-              📊 <em>Rangkuman audit perkembangan arus kas, belanja GTK, surplus/defisit, dan akumulasi cadangan kas 5 tahun rencana & berjalan institusi. Jika suatu tahun belum ada data, kolom tercatat Rp 0 (tanpa menindih data tahun sebelumnya).</em>
+            <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: #0f172a;">Arsip Rekapan Finansial & Horizon Rencana 5 Tahun (2026 - 2030)</h4>
+            <p style="margin: 3px 0 0; font-size: 12.5px; color: #475569;">
+              Data rekapan tahunan, arus kas masuk/keluar, belanja honor GTK, surplus/defisit, dan akumulasi cadangan kas kini tersimpan rapi dalam modal interaktif <strong>Horizon Rencana 5 Tahun</strong>.
             </p>
           </div>
         </div>
-        <div style="overflow-x: auto;">
-          <table id="tabelRekap5Tahun" style="width: 100%;">
-            <thead>
-              <tr>
-                <th style="width: 60px; text-align: center;">Tahun</th>
-                <th style="text-align: right;">Pemasukan (Rp)</th>
-                <th style="text-align: right;">Pengeluaran (Rp)</th>
-                <th style="text-align: right;">Realisasi GTK (Rp)</th>
-                <th style="text-align: right;">Surplus / (Defisit)</th>
-                <th style="text-align: right;">Saldo Akhir (Rp)</th>
-                <th style="text-align: right; background: #f0fdf4;">Pemasukan Kumulatif</th>
-                <th style="text-align: right; background: #eff6ff;">Honor GTK Kumulatif</th>
-                <th style="text-align: center;">Status / Catatan Periode</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyRekap5Tahun">
-              <!-- Baris data 5 tahun dirender lewat JavaScript -->
-            </tbody>
-            <tfoot>
-              <tr style="font-weight: bold; background: #f8fafc; font-size: 13px;">
-                <td style="text-align: center; white-space: nowrap; font-weight: bold;">TOTAL 5 TAHUN:</td>
-                <td style="text-align: right; color: var(--success);" class="cell-nowrap" id="rekap5ThnMasuk">Rp 0</td>
-                <td style="text-align: right; color: var(--danger);" class="cell-nowrap" id="rekap5ThnKeluar">Rp 0</td>
-                <td style="text-align: right; color: var(--primary);" class="cell-nowrap" id="rekap5ThnHonor">Rp 0</td>
-                <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSurplus">Rp 0</td>
-                <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSaldoAkhir">Rp 0</td>
-                <td style="text-align: right; color: #15803d; background: #f0fdf4;" class="cell-nowrap" id="rekap5ThnKumMasuk">Rp 0</td>
-                <td style="text-align: right; color: #1d4ed8; background: #eff6ff;" class="cell-nowrap" id="rekap5ThnKumHonor">Rp 0</td>
-                <td style="font-size: 11.5px; color: #64748b; text-align: center; white-space: nowrap;">Akumulasi Nyata 2026 - 2030</td>
-              </tr>
-            </tfoot>
-          </table>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button type="button" class="btn-primary" onclick="bukaModalHorizonRencana()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border: none; padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: white; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);">
+            <span>Buka Horizon Rencana (2026 - 2030)</span>
+            <span>🔍</span>
+          </button>
         </div>
       </div>
     </section>
@@ -4168,9 +4630,11 @@
           <div style="text-align: center; min-width: 220px;">
             <span>Menyetujui,</span><br>
             <strong>Kepala Sekolah</strong>
-            <div style="height: 55px;"></div>
+            <div style="height: 55px; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/tanda-tangan-pak-susanto.png" style="height: 52px; object-fit: contain;" alt="Tanda Tangan Asli Susanto, S.Sos">
+            </div>
             <strong><u><span id="payrollKSNama" contenteditable="true">SUSANTO, S.Sos</span></u></strong><br>
-            <span style="font-size: 12px; color: #334155;">NBM : <span id="payrollKSNBM" contenteditable="true">2006 7561 1221959</span></span>
+            <span style="font-size: 12px; color: #334155;">NBM : <span id="payrollKSNBM" contenteditable="true">2006 7615 1221959</span></span>
           </div>
 
           <!-- KOLOM KANAN: BENDAHARA SEKOLAH -->
@@ -4317,7 +4781,7 @@
 
         <table style="margin-left: 30px; margin-bottom: 16px; line-height: 1.5;">
           <tr><td style="width: 140px; padding: 3px 0;">Nama</td><td style="width: 15px; padding: 3px 0;">:</td><td style="padding: 3px 0;"><strong id="suratKS" contenteditable="true">Susanto, S.Sos</strong></td></tr>
-          <tr><td style="padding: 3px 0;">NBM</td><td style="padding: 3px 0;">:</td><td style="padding: 3px 0;"><strong id="suratNBM" contenteditable="true">2006 7561 1221959</strong></td></tr>
+          <tr><td style="padding: 3px 0;">NBM</td><td style="padding: 3px 0;">:</td><td style="padding: 3px 0;"><strong id="suratNBM" contenteditable="true">2006 7615 1221959</strong></td></tr>
           <tr><td style="padding: 3px 0;">Unit Kerja</td><td style="padding: 3px 0;">:</td><td style="padding: 3px 0;"><strong id="suratUnitKerja" contenteditable="true">SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT</strong></td></tr>
         </table>
 
@@ -4349,9 +4813,11 @@
           <div class="ttd-col" style="font-size: 14px;">
             <span style="font-size: 14px;">Kota Bangun, <span id="suratTglCetak" contenteditable="true">05 November 2026</span></span><br><br>
             <strong style="font-size: 14px;">Kepala Sekolah</strong>
-            <div class="ttd-space"></div>
+            <div class="ttd-space" style="display: flex; align-items: center; justify-content: center;">
+              <img src="assets/tanda-tangan-pak-susanto.png" style="height: 52px; object-fit: contain;" alt="Tanda Tangan Asli Susanto, S.Sos">
+            </div>
             <strong style="font-size: 14px;"><u><span id="suratKSTtd" contenteditable="true">SUSANTO, S.Sos</span></u></strong><br>
-            <span style="font-size: 14px;">NBM : <span id="suratNBMTtd" contenteditable="true">2006 7561 1221959</span></span>
+            <span style="font-size: 14px;">NBM : <span id="suratNBMTtd" contenteditable="true">2006 7615 1221959</span></span>
           </div>
         </div>
       </div>
@@ -4462,7 +4928,7 @@
               <strong><u><span id="slipKSNama" contenteditable="true">SUSANTO, S.Sos</span></u></strong>
             </div>
             <div style="font-size: 11px; color: #475569; margin-top: 2px;">
-              NBM : <span id="slipKSNBM" contenteditable="true">2006 7561 1221959</span>
+              NBM : <span id="slipKSNBM" contenteditable="true">2006 7615 1221959</span>
             </div>
           </div>
         </div>
@@ -4684,7 +5150,7 @@
             <strong style="display: inline-block; margin-top: 4px;">Kepala Sekolah</strong>
             <div class="ttd-space" style="height: 52px;"></div>
             <strong><u><span id="presensiKSNama" contenteditable="true">SUSANTO, S.Sos</span></u></strong><br>
-            <span style="font-size: 9pt;">NBM. <span id="presensiKSNbm" contenteditable="true">2006 7561 1221959</span></span>
+            <span style="font-size: 9pt;">NBM. <span id="presensiKSNbm" contenteditable="true">2006 7615 1221959</span></span>
           </div>
         </div>
 
@@ -4695,6 +5161,172 @@
   </main>
     </div> <!-- .main-viewport -->
   </div> <!-- .app-shell -->
+
+  <!-- MODAL HORIZON RENCANA 5 TAHUN & ARSIP REKAPAN FINANSIAL (2026 - 2030) -->
+  <div id="modalHorizonRencana" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalHorizonRencana()">
+    <div class="modal-akun-card" style="max-width: 1060px; width: 96%; max-height: 92vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalHorizonTitle">
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #065f46 0%, #0369a1 50%, #1e40af 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.25); font-size: 24px;">📈</div>
+          <div>
+            <h3 class="modal-akun-title" id="modalHorizonTitle" style="color: #ffffff; margin: 0; font-size: 18px; font-weight: 700;">
+              Horizon Rencana 5 Tahun (2026 - 2030)
+            </h3>
+            <p class="modal-akun-subtitle" style="color: rgba(255, 255, 255, 0.9); margin: 2px 0 0; font-size: 12px;">
+              SMP Muhammadiyah 1 Kota Bangun Darat &bull; Arsip Rekapan Finansial Per Tahun & Data Kumulatif Perkembangan Manajemen
+            </p>
+          </div>
+        </div>
+        <button class="modal-close-btn no-print" onclick="tutupModalHorizonRencana()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <div class="modal-akun-body" style="padding: 22px 24px;">
+        
+        <!-- PENGANTAR EKSEKUTIF & ROADMAP STRATEGIS 5 TAHUN (NO-PRINT) -->
+        <div class="modal-horizon-intro no-print" style="margin-bottom: 20px;">
+          <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 12px 16px; border-radius: 6px; font-size: 12.5px; color: #166534; line-height: 1.5; margin-bottom: 14px;">
+            📊 <strong>Horizon Rencana Strategis (2026 - 2030):</strong> Pemetaan rencana keuangan jangka menengah terpadu antara arus kas masuk (SPP, BOSP, Infaq/Bantuan PCM), realisasi honorarium 10 GTK, operasional pendidikan, surplus/defisit tahunan, dan akumulasi cadangan kas institusi.
+          </div>
+
+          <!-- 5 TAHAPAN ROADMAP HORIZON -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px;">
+            <div style="background: #fefce8; border: 1px solid #fde047; border-radius: 8px; padding: 10px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 13px; color: #854d0e;">2026</span>
+                <span style="font-size: 10px; background: #fef08a; color: #713f12; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Berjalan</span>
+              </div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 4px;">Fondasi Operasional</div>
+              <p style="font-size: 11px; color: #64748b; margin: 2px 0 0; line-height: 1.3;">10 GTK, izin definitif Disdikbud, digitalisasi kas & presensi.</p>
+            </div>
+            <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 13px; color: #1e40af;">2027</span>
+                <span style="font-size: 10px; background: #dbeafe; color: #1d4ed8; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Rencana</span>
+              </div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 4px;">Sarpras & Lab AI</div>
+              <p style="font-size: 11px; color: #64748b; margin: 2px 0 0; line-height: 1.3;">Penambahan Chromebook santri, laboratorium AI, dan fasilitas baru.</p>
+            </div>
+            <div style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 10px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 13px; color: #6b21a8;">2028</span>
+                <span style="font-size: 10px; background: #f3e8ff; color: #7e22ce; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Rencana</span>
+              </div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 4px;">Akreditasi Sekolah</div>
+              <p style="font-size: 11px; color: #64748b; margin: 2px 0 0; line-height: 1.3;">Perpanjangan izin operasional & akreditasi BAN-S/M predikat unggul.</p>
+            </div>
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 10px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 13px; color: #15803d;">2029</span>
+                <span style="font-size: 10px; background: #dcfce7; color: #16a34a; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Rencana</span>
+              </div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 4px;">Kemandirian Finansial</div>
+              <p style="font-size: 11px; color: #64748b; margin: 2px 0 0; line-height: 1.3;">Unit usaha sekolah mandiri, beasiswa santri berprestasi.</p>
+            </div>
+            <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 10px 12px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 800; font-size: 13px; color: #9a3412;">2030</span>
+                <span style="font-size: 10px; background: #ffedd5; color: #c2410c; padding: 1px 6px; border-radius: 999px; font-weight: 700;">Rencana</span>
+              </div>
+              <div style="font-size: 11.5px; font-weight: 700; color: #0f172a; margin-top: 4px;">Center of Excellence</div>
+              <p style="font-size: 11px; color: #64748b; margin: 2px 0 0; line-height: 1.3;">Sekolah rujukan digital & kepanduan HW terdepan di Kutai Kartanegara.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTAINER TABEL REKAPAN 5 TAHUN (LEMBAR 3 PRINT LANDSCAPE F4) -->
+        <div class="table-container dash-print-page dash-print-page-3" id="containerRekap5Tahun" style="margin-top: 0; box-shadow: none; border: 1px solid #e2e8f0;">
+          <!-- JUDUL DOKUMEN CETAK ARSIP REKAPAN (PRINT ONLY - LEMBAR 3) -->
+          <div class="print-only" style="text-align: center; margin: 0 0 14px 0; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">
+            <h3 style="font-size: 13pt; font-weight: bold; margin: 0; text-transform: uppercase; color: #0f172a; letter-spacing: 0.5px;">ARSIP REKAPAN FINANSIAL PER TAHUN & DATA KUMULATIF PERKEMBANGAN MANAJEMEN</h3>
+            <p style="font-size: 9.5pt; color: #475569; margin: 2px 0 0 0;">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Lembar 3: Rencana Strategis & Realisasi Arus Kas (2026 - 2030)</p>
+          </div>
+
+          <div class="table-header-action no-print">
+            <div>
+              <div class="table-title">🏛️ Arsip Rekapan Finansial Per Tahun & Data Kumulatif Perkembangan Manajemen (2026 - 2030)</div>
+              <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
+                📊 <em>Rangkuman audit perkembangan arus kas, belanja GTK, surplus/defisit, dan akumulasi cadangan kas 5 tahun rencana & berjalan institusi. Jika suatu tahun belum ada data, kolom tercatat Rp 0 (tanpa menindih data tahun sebelumnya).</em>
+              </p>
+            </div>
+          </div>
+          <div style="overflow-x: auto;">
+            <table id="tabelRekap5Tahun" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th style="width: 60px; text-align: center;">Tahun</th>
+                  <th style="text-align: right;">Pemasukan (Rp)</th>
+                  <th style="text-align: right;">Pengeluaran (Rp)</th>
+                  <th style="text-align: right;">Realisasi GTK (Rp)</th>
+                  <th style="text-align: right;">Surplus / (Defisit)</th>
+                  <th style="text-align: right;">Saldo Akhir (Rp)</th>
+                  <th style="text-align: right; background: #f0fdf4;">Pemasukan Kumulatif</th>
+                  <th style="text-align: right; background: #eff6ff;">Honor GTK Kumulatif</th>
+                  <th style="text-align: center;">Status / Catatan Periode</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyRekap5Tahun">
+                <!-- Baris data 5 tahun dirender lewat JavaScript -->
+              </tbody>
+              <tfoot>
+                <tr style="font-weight: bold; background: #f8fafc; font-size: 13px;">
+                  <td style="text-align: center; white-space: nowrap; font-weight: bold;">TOTAL 5 TAHUN:</td>
+                  <td style="text-align: right; color: var(--success);" class="cell-nowrap" id="rekap5ThnMasuk">Rp 0</td>
+                  <td style="text-align: right; color: var(--danger);" class="cell-nowrap" id="rekap5ThnKeluar">Rp 0</td>
+                  <td style="text-align: right; color: var(--primary);" class="cell-nowrap" id="rekap5ThnHonor">Rp 0</td>
+                  <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSurplus">Rp 0</td>
+                  <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSaldoAkhir">Rp 0</td>
+                  <td style="text-align: right; color: #15803d; background: #f0fdf4;" class="cell-nowrap" id="rekap5ThnKumMasuk">Rp 0</td>
+                  <td style="text-align: right; color: #1d4ed8; background: #eff6ff;" class="cell-nowrap" id="rekap5ThnKumHonor">Rp 0</td>
+                  <td style="font-size: 11.5px; color: #64748b; text-align: center; white-space: nowrap;">Akumulasi Nyata 2026 - 2030</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <!-- TANDA TANGAN PEJABAT RESMI (PRINT ONLY - LEMBAR 3) -->
+          <div class="print-only" style="margin-top: 25px; page-break-inside: avoid; break-inside: avoid;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; padding: 0 40px;">
+              <div style="text-align: center; width: 260px;">
+                <p style="font-size: 11px; margin: 0;">Mengetahui,</p>
+                <p style="font-size: 11px; font-weight: 700; margin: 2px 0 0;">Kepala Sekolah</p>
+                <div style="height: 60px; display: flex; align-items: center; justify-content: center; margin: 4px 0;">
+                  <img src="assets/tanda-tangan-pak-susanto.png" alt="TTD Kepala Sekolah" style="max-height: 55px; max-width: 140px; object-fit: contain;">
+                </div>
+                <p style="font-size: 11.5px; font-weight: 700; text-decoration: underline; margin: 0;" id="rekapKSNama">Susanto, S.Sos</p>
+                <p style="font-size: 10.5px; color: #334155; margin: 2px 0 0;">NBM: <span id="rekapKSNBM">2006 7615 1221959</span></p>
+              </div>
+
+              <div style="text-align: center; width: 260px;">
+                <p style="font-size: 11px; margin: 0;">Kota Bangun Darat, <span id="rekapTglCetak">31 Desember 2026</span></p>
+                <p style="font-size: 11px; font-weight: 700; margin: 2px 0 0;">Bendahara Sekolah</p>
+                <div style="height: 60px; margin: 4px 0;"></div>
+                <p style="font-size: 11.5px; font-weight: 700; text-decoration: underline; margin: 0;" id="rekapBendaharaNama">Arum Susilowati, M.Pd</p>
+                <p style="font-size: 10.5px; color: #334155; margin: 2px 0 0;">NBM: <span id="rekapBendaharaNBM">2006 9821 1397891</span></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="modal-actions-row no-print" style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 12px; color: #64748b;">📅 Rencana Strategis Jangka Menengah (RPJM)</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="btn-modal-cancel" onclick="tutupModalHorizonRencana()">Tutup</button>
+            <button type="button" class="btn-primary" onclick="eksporRekap5TahunExcel()" style="background: #16a34a; border: none; padding: 7px 14px; border-radius: 6px; font-size: 12px; font-weight: 700; color: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              <span>📥 Ekspor Excel (.xls)</span>
+            </button>
+            <button type="button" class="btn-modal-save" style="background: #0284c7;" onclick="tutupModalHorizonRencana(); cetakArsipRekapan();">
+              <span>🖨️ Cetak Lembar Rekap F4</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- SIDEBAR MOBILE BACKDROP OVERLAY -->
   <div class="sidebar-backdrop no-print" id="sidebarBackdrop" onclick="toggleSidebar(false)"></div>
@@ -4735,7 +5367,7 @@
     // Template Master 10 GTK SMP Muhammadiyah 1 Kota Bangun Darat
     function getBaseGTK() {
       return [
-        { id: 1, nbm: "2006 7561 1221959", nama: "Susanto, S.Sos", jabatan: "Kepala Sekolah", klaster: "Pimpinan Sekolah", pokok: 0, tunjangan: 0, status: "Transfer (Bank Kaltimtara)" },
+        { id: 1, nbm: "2006 7615 1221959", nama: "Susanto, S.Sos", jabatan: "Kepala Sekolah", klaster: "Pimpinan Sekolah", pokok: 0, tunjangan: 0, status: "Transfer (Bank Kaltimtara)" },
         { id: 2, nbm: "-", nama: "Asih Kuniati, S.Pd", jabatan: "Guru Ilmu Pengetahuan Alam", klaster: "Guru Inti", pokok: 1250000, tunjangan: 0, status: "Transfer (Bank Kaltimtara)" },
         { id: 3, nbm: "2006 9821 1397891", nama: "Arum Susilowati, M.Pd", jabatan: "Guru PAI / Bendahara", klaster: "Guru Inti + Bendahara", pokok: 1250000, tunjangan: 0, status: "Transfer (Bank Kaltimtara)" },
         { id: 4, nbm: "-", nama: "Alfita Hermiati", jabatan: "Tata Usaha", klaster: "Tenaga Kependidikan", pokok: 1000000, tunjangan: 0, status: "Transfer (Bank Kaltimtara)" },
@@ -5228,7 +5860,7 @@
 
     function getActiveOfficialSigners() {
       let ksNama = 'SUSANTO, S.Sos';
-      let ksNbm = '2006 7561 1221959';
+      let ksNbm = '2006 7615 1221959';
       let benNama = 'Arum Susilowati, M.Pd';
       let benNbm = '2006 9821 1397891';
 
@@ -5685,7 +6317,7 @@
       const lampiran = document.getElementById('suratLampiran')?.innerText || '2 Lembar';
       const perihal = document.getElementById('suratPerihal')?.innerText || 'PERMOHONAN PEMBAYARAN HONOR GURU DAN STAFF';
       const ksNama = document.getElementById('suratKS')?.innerText || 'Susanto, S.Sos';
-      const ksNbm = document.getElementById('suratNBM')?.innerText || '2006 7561 1221959';
+      const ksNbm = document.getElementById('suratNBM')?.innerText || '2006 7615 1221959';
       const unitKerja = document.getElementById('suratUnitKerja')?.innerText || 'SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT';
       const nominal = document.getElementById('suratNominal')?.innerText || 'Rp. 7.500.000,00';
       const terbilang = document.getElementById('suratTerbilang')?.innerText || '(Tujuh Juta Lima Ratus Ribu Rupiah)';
@@ -5792,7 +6424,7 @@
       const benNama = document.getElementById('slipBendaharaNama')?.innerText || 'Arum Susilowati, M.Pd';
       const benNbm = document.getElementById('slipBendaharaNBM')?.innerText || '2006 9821 1397891';
       const ksNama = document.getElementById('slipKSNama')?.innerText || 'SUSANTO, S.Sos';
-      const ksNbm = document.getElementById('slipKSNBM')?.innerText || '2006 7561 1221959';
+      const ksNbm = document.getElementById('slipKSNBM')?.innerText || '2006 7615 1221959';
 
       const htmlContent = `
         <div style="text-align: center; border-bottom: 2.5px solid #000; padding-bottom: 6px; margin-bottom: 16px;">
@@ -6069,6 +6701,65 @@
     function tutupModalLegalitasSekolah() {
       const modal = document.getElementById('modalLegalitasSekolah');
       if (modal) modal.style.display = 'none';
+    }
+
+    // MODAL DOKUMENTASI PELATIHAN GEMINI AI SISWA
+    function bukaModalPelatihanAI() {
+      const modal = document.getElementById('modalPelatihanAI');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function tutupModalPelatihanAI() {
+      const modal = document.getElementById('modalPelatihanAI');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // MODAL PANGGUNG PRESTASI & GALERI PENGHARGAAN SEKOLAH
+    function bukaModalPrestasiSekolah() {
+      const modal = document.getElementById('modalPrestasiSekolah');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function tutupModalPrestasiSekolah() {
+      const modal = document.getElementById('modalPrestasiSekolah');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // MODAL MEDIA SOSIAL RESMI SEKOLAH
+    function bukaModalMedsosSekolah() {
+      const modal = document.getElementById('modalMedsosSekolah');
+      if (modal) modal.style.display = 'flex';
+    }
+
+    function tutupModalMedsosSekolah() {
+      const modal = document.getElementById('modalMedsosSekolah');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // MODAL HORIZON RENCANA 5 TAHUN & ARSIP REKAPAN FINANSIAL (2026 - 2030)
+    function bukaModalHorizonRencana() {
+      const modal = document.getElementById('modalHorizonRencana');
+      if (modal) {
+        modal.style.display = 'flex';
+        renderTabelRekap5Tahun();
+      }
+    }
+
+    function tutupModalHorizonRencana() {
+      const modal = document.getElementById('modalHorizonRencana');
+      if (modal) modal.style.display = 'none';
+    }
+
+    // EKSPOR TABEL REKAPAN 5 TAHUN KE EXCEL (.XLS)
+    function eksporRekap5TahunExcel() {
+      const table = document.getElementById('tabelRekap5Tahun');
+      if (!table) return;
+      const content = `
+        <h3 style="text-align:center;">ARSIP REKAPAN FINANSIAL PER TAHUN & DATA KUMULATIF PERKEMBANGAN MANAJEMEN (2026 - 2030)</h3>
+        <p style="text-align:center;">SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT</p>
+        ${table.outerHTML}
+      `;
+      downloadExcelFile(content, 'Arsip_Rekapan_Finansial_5_Tahun_2026_2030.xls');
     }
 
     // =========================================================================
@@ -8020,7 +8711,7 @@
           id: 1,
           nama: "Susanto, S.Sos.",
           jabatan: "Kepala Sekolah",
-          nbm: "2006 7561 1221959",
+          nbm: "2006 7615 1221959",
           role: "Pimpinan Sekolah",
           days: {
             senin: { in: "07:05", pin: "✓", out: "13:30", pout: "✓", status: "Hadir" },

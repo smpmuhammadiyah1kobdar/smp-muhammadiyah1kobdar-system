@@ -1,0 +1,21 @@
+{
+  "_metadata": {
+    "judul": "Database Program Pelatihan & Pengembangan Kompetensi Siswa",
+    "sekolah": "SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT",
+    "npsn": "70058553",
+    "versi": "1.0.0"
+  },
+  "program_pelatihan": [
+    {
+      "id": "TRN-AI-2026-001",
+      "nama": "Pelatihan Literasi Digital & Praktik Google Gemini AI untuk Siswa",
+      "tanggal": "10 November 2026",
+      "lokasi": "Aula Masjid Nur Hidayah (Kompleks Perguruan Muhammadiyah)",
+      "peserta": "13 Siswa (7 Putra, 6 Putri)",
+      "pendamping": "6 GTK (Batik Resmi Muhammadiyah)",
+      "perangkat": "Laptop Acer Chromebook (1 Siswa 1 Laptop)",
+      "foto_1": "assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-foto-bersama.jpg",
+      "foto_2": "assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-praktik-laptop.jpg"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "_metadata": {
+    "judul": "Database Pelatihan & Sertifikasi Guru (GTK)",
+    "sekolah": "SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT",
+    "npsn": "70058553",
+    "versi": "1.0.0"
+  },
+  "pelatihan_guru": [
+    {
+      "id": "TRN-GTK-2026-001",
+      "program": "Festival Lokal Berdampak: Gemini Academy 2026",
+      "penyelenggara": "Kemendikdasmen RI, Disdikbud Kutai Kartanegara, REFO Indonesia & MKKS",
+      "tanggal": "Selasa, 3 November 2026",
+      "tempat": "Gedung Aula SMP Kota Bangun",
+      "peserta": "Kepala Sekolah (Susanto, S.Sos) & Perwakilan Guru",
+      "fokus": "Modul Ajar Berdiferensiasi, Asesmen Cepat & Integrasi Google Gemini AI untuk Pembelajaran",
+      "foto": "assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-guru-gemini-academy-2026.jpg"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "_metadata": {
+    "judul": "Database Legalitas, Perizinan, dan Profil Kelembagaan SMP Muhammadiyah 1 Kota Bangun Darat",
+    "versi": "1.0.0",
+    "terakhir_diperbarui": "2026-11-10",
+    "sumber_dokumen": "SK Disdikbud Kab. Kutai Kartanegara (B-137/2025, B-033/2025) & Sertifikat NPSN (70058553)",
+    "status_verifikasi": "Resmi & Tervalidasi"
+  },
+  "sekolah": {
+    "nama_resmi": "SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT",
+    "npsn": "70058553",
+    "nss": "-",
+    "status_akreditasi": "Belum Terakreditasi",
+    "status_kepemilikan": "Milik Sendiri (Milik Yayasan / Wakaf)",
+    "alamat": "Jalan KH. Ahmad Dahlan RT. 05 Desa Kota Bangun III Kec. Kota Bangun Darat Kab. Kutai Kartanegara Prov. Kalimantan Timur",
+    "surel": "smpmuhammadiyah1kobdar@gmail.com",
+    "media_sosial": {
+      "instagram": {
+        "nama": "SMPM1 KobDar",
+        "handle": "@smpmuhammadiyah1kobdar",
+        "url": "https://www.instagram.com/smpmuhammadiyah1kobdar?exln=ejF3bDk5ZXA1cXFx"
+      },
+      "facebook": {
+        "nama": "SMPM1 KobDar",
+        "handle": "SMPM1 KobDar",
+        "url": "https://www.facebook.com/share/19bhK4gQ9u/"
+      },
+      "tiktok": {
+        "nama": "SMPM1 KobDar",
+        "handle": "@smp_muhammadiyah1_kobdar",
+        "url": "https://www.tiktok.com/@smp_muhammadiyah1_kobdar?_r=1&_t=ZS-9BI5aIRBZn5"
+      }
+    },
+    "badan_penyelenggara": "Pimpinan Cabang Muhammadiyah Kota Bangun",
+    "majelis_pembina": "Majelis Dikdasmen & PNF PCM Kota Bangun",
+    "kode_indeks_persuratan": "IV.4.AU"
+  },
+  "perizinan": {
+    "sk_pendirian": {
+      "nomor": "B-137/KP3-3/SK/400.3.5/07/2025",
+      "tanggal": "14 Juli 2025",
+      "penerbit": "Kepala Disdikbud Kab. Kutai Kartanegara (Thauhid Afrilian Noor, SP., M.Si)"
+    },
+    "sk_izin_operasional": {
+      "nomor": "B-033/DISDIKBUD/SK/400.3.5/08/2025",
+      "tanggal_penetapan": "5 Agustus 2025",
+      "mulai_berlaku": "6 Agustus 2025",
+      "berlaku_sampai": "6 Agustus 2028",
+      "status_masa_berlaku": "Aktif (Berlaku s/d 6 Agustus 2028)",
+      "jadwal_perpanjangan": "Paling lambat diajukan 15 hari sebelum masa berlaku habis (sebelum 22 Juli 2028)",
+      "penerbit": "Kepala Disdikbud Kab. Kutai Kartanegara (Thauhid Afrilian Noor, SP., M.Si)"
+    },
+    "sertifikat_npsn": {
+      "nomor": "70058553",
+      "tanggal_terbit": "12 November 2025",
+      "dasar_hukum": "SK Ka. Balitbang Kemendikbud No. 3574/G4/KL/2009",
+      "penandatangan": "Kasub / Kasi Disdikbud Kab. Kutai Kartanegara (Yuherman S.Sn, M.Pd - NIP. 196710301996011001)"
+    }
+  },
+  "kepala_sekolah": {
+    "nama": "Susanto, S.Sos",
+    "ttl": "Trenggalek, 12 Maret 1976",
+    "pendidikan": "S1 (Sarjana Sosial)",
+    "nbm": "2006 7615 1221959",
+    "sk_pengangkatan": "080/III.0/KEP/D/2024",
+    "penerbit_sk": "Pimpinan Daerah Muhammadiyah Kutai Kartanegara"
+  }
+}

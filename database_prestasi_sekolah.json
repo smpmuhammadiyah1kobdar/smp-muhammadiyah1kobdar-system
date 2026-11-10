@@ -1,0 +1,34 @@
+{
+  "_metadata": {
+    "judul": "Database Prestasi & Kejuaraan Sekolah",
+    "sekolah": "SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT",
+    "npsn": "70058553",
+    "versi": "1.0.0"
+  },
+  "prestasi_utama": [
+    {
+      "tahun": 2026,
+      "nama": "Scout Day Competition 2026 (SMAN 2 Kota Bangun)",
+      "raihan": "Juara 1 Lomba Pionering & Juara 2 Dance Semaphore",
+      "tanggal": "10-12 Agustus 2026"
+    },
+    {
+      "tahun": 2026,
+      "nama": "MTQ Ke-3 Tingkat Kecamatan Kota Bangun Darat (Desa Sari Nadi)",
+      "raihan": "Juara 3 Lomba Tilawah Anak Putri (Dian Muhimmatuzzahira - Kelas VII)",
+      "tanggal": "29-31 Juli 2026"
+    },
+    {
+      "tahun": 2025,
+      "nama": "Perkemahan Bersama Perjusami Penggalang Se-Kecamatan Kota Bangun Darat",
+      "raihan": "JUARA UMUM KONTINGEN TERBAIK SE-KECAMATAN (10 Trofi Juara)",
+      "tempat": "SMPN 3 Kota Bangun"
+    },
+    {
+      "tahun": 2025,
+      "nama": "Festival Tari Tradisional Daerah Kutai / Melayu",
+      "raihan": "Delegasi Seni Tari Terbaik (6 Siswi Kostum Adat Kuning Emas)",
+      "tempat": "Kompleks Sekolah"
+    }
+  ]
+}
