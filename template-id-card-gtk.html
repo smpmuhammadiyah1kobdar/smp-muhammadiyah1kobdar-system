@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive ID Card GTK Modern & Elegan - SMP Muhammadiyah 1 Kota Bangun Darat</title>
+  <link rel="icon" type="image/png" href="logo-smp-muhammadiyah.png">
+  <!-- Google Fonts: Plus Jakarta Sans & Cinzel Decorative -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* =========================================================================
+       RESET & ROOT VARIABLES (EXECUTIVE LUXURY PALETTE)
+       ========================================================================= */
+    :root {
+      --gold-primary: #f59e0b;
+      --gold-light: #fef08a;
+      --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 35%, #d97706 70%, #fef08a 100%);
+      --emerald-dark: #022c22;
+      --emerald-primary: #064e3b;
+      --emerald-light: #0d5c3a;
+      --slate-dark: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0b131e;
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* =========================================================================
+       TOOLBAR & CONTROL PANEL (NO-PRINT)
+       ========================================================================= */
+    .top-control-bar {
+      background: #0f172a;
+      border-bottom: 2px solid #f59e0b;
+      padding: 14px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .toolbar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .toolbar-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .toolbar-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 6px rgba(245,158,11,0.3));
+    }
+    .toolbar-title-h1 {
+      font-size: 17px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff 0%, #fef08a 50%, #f59e0b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.3px;
+    }
+    .toolbar-sub-p {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 2px;
+    }
+    .toolbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .select-card-filter {
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1.5px solid #334155;
+      background: #1e293b;
+      color: #ffffff;
+      cursor: pointer;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .select-card-filter:focus {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 2px rgba(245,158,11,0.25);
+    }
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-print {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #022c22;
+      font-weight: 800;
+      box-shadow: 0 3px 12px rgba(245,158,11,0.35);
+    }
+    .btn-print:hover {
+      background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #1e293b;
+      color: #e2e8f0;
+      border: 1px solid #334155;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+    .btn-back {
+      background: #0284c7;
+      color: #ffffff;
+    }
+    .btn-back:hover {
+      background: #0369a1;
+    }
+
+    /* INSTRUCTION BANNER */
+    .instruction-banner {
+      max-width: 1400px;
+      margin: 16px auto 0 auto;
+      padding: 12px 22px;
+      background: linear-gradient(90deg, rgba(6,78,59,0.35) 0%, rgba(15,23,42,0.6) 100%);
+      border: 1px solid rgba(245,158,11,0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12.5px;
+      color: #e2e8f0;
+    }
+    .instruction-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .chip-guide {
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(245,158,11,0.4);
+      color: #fde047;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 11.5px;
+    }
+
+    /* =========================================================================
+       ID CARD VIEWPORT
+       ========================================================================= */
+    .id-cards-viewport {
+      max-width: 1400px;
+      margin: 24px auto 50px auto;
+      padding: 0 16px;
+      flex: 1;
+    }
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+
+    /* CR-80 SPECIFICATION: 54mm x 86mm */
+    .id-card-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .id-card-pair {
+      display: flex;
+      gap: 20px;
+      background: transparent;
+      padding: 6px;
+      border-radius: 12px;
+    }
+
+    /* BASE 3D EFFECT FOR CARDS ON SCREEN */
+    .id-card {
+      width: 54mm;
+      height: 86mm;
+      border-radius: 4mm;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid rgba(245,158,11,0.35);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #022c22;
+    }
+    .id-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 42px rgba(0,0,0,0.6), 0 0 18px rgba(245,158,11,0.25);
+    }
+
+    /* =========================================================================
+       THEME 1: ROYAL EMERALD & GOLD (DEFAULT)
+       ========================================================================= */
+    .theme-emerald {
+      --bg-gradient: radial-gradient(circle at 50% 0%, #0d5c3a 0%, #064e3b 40%, #022c22 85%, #011712 100%);
+      --card-surface: #064e3b;
+      --card-gold-border: #f59e0b;
+    }
+    /* THEME 2: EXECUTIVE ROYAL NAVY */
+    .theme-navy {
+      --bg-gradient: radial-gradient(circle at 50% 0%, #1e3a8a 0%, #0f172a 45%, #020617 100%);
+      --card-surface: #0f172a;
+      --card-gold-border: #fbbf24;
+    }
+    /* THEME 3: LUXURY PEARL WHITE & GOLD */
+    .theme-pearl {
+      --bg-gradient: radial-gradient(circle at 50% 0%, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
+      --card-surface: #ffffff;
+      --card-gold-border: #d97706;
+      color: #0f172a !important;
+    }
+
+    /* =========================================================================
+       SISI DEPAN (FRONT) - MODERN EXECUTIVE DESIGN
+       ========================================================================= */
+    .card-front {
+      background: var(--bg-gradient);
+      position: relative;
+    }
+
+    /* GEOMETRIC GUILLOCHE WATERMARK & SUNBURST */
+    .card-watermark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.055;
+      pointer-events: none;
+      background-image: radial-gradient(circle at center, #f59e0b 1px, transparent 1px),
+                        repeating-radial-gradient(circle at center, #f59e0b, #f59e0b 1px, transparent 1px, transparent 10px);
+      z-index: 1;
+    }
+    .card-muhammadiyah-sun-wm {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -46%);
+      width: 48mm;
+      height: 48mm;
+      opacity: 0.045;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* DYNAMIC ASYMMETRICAL HEADER */
+    .card-front-header {
+      position: relative;
+      z-index: 2;
+      padding: 3mm 3mm 2.2mm 3mm;
+      background: linear-gradient(180deg, rgba(2,44,34,0.95) 0%, rgba(6,78,59,0.85) 85%, transparent 100%);
+      border-bottom: 1.5px solid transparent;
+      border-image: linear-gradient(90deg, transparent, #f59e0b, #fef08a, #f59e0b, transparent) 1;
+    }
+    .header-layout {
+      display: flex;
+      align-items: center;
+      gap: 2.2mm;
+    }
+    .logo-medallion {
+      width: 10mm;
+      height: 10mm;
+      border-radius: 50%;
+      background: #ffffff;
+      padding: 0.7mm;
+      box-shadow: 0 0 0 1px #f59e0b, 0 2px 6px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-medallion img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .header-typography {
+      flex: 1;
+      line-height: 1.15;
+    }
+    .header-dikdasmen {
+      font-size: 4.8pt;
+      font-weight: 700;
+      color: #fbbf24;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .header-school {
+      font-family: 'Cinzel', serif;
+      font-size: 7.2pt;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.2px;
+      margin-top: 0.4mm;
+    }
+    .header-location {
+      font-size: 5pt;
+      font-weight: 600;
+      color: #e2e8f0;
+      opacity: 0.9;
+    }
+
+    /* STATUS RIBBON UNDER HEADER */
+    .card-status-bar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8mm 3.2mm;
+      background: rgba(15,23,42,0.85);
+      border-bottom: 0.6px solid rgba(245,158,11,0.5);
+      font-size: 4.6pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .status-left {
+      color: #fde047;
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+    }
+    .status-dot {
+      width: 1.5mm;
+      height: 1.5mm;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 4px #22c55e;
+    }
+    .status-right {
+      color: #94a3b8;
+    }
+
+    /* FRONT BODY: LUXURY PHOTO & DATA */
+    .card-front-body {
+      position: relative;
+      z-index: 2;
+      padding: 2mm 3.2mm 1mm 3.2mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    /* EXECUTIVE PHOTO FRAME WITH GOLD BEVEL */
+    .photo-area {
+      position: relative;
+      margin-top: 1.2mm;
+      margin-bottom: 1.5mm;
+    }
+    .photo-glow-border {
+      width: 26mm;
+      height: 33mm;
+      border-radius: 3mm;
+      padding: 1.2px;
+      background: linear-gradient(135deg, #f59e0b 0%, #ffffff 30%, #d97706 70%, #fbbf24 100%);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5), 0 0 10px rgba(245,158,11,0.25);
+      position: relative;
+    }
+    .photo-inner-box {
+      width: 100%;
+      height: 100%;
+      border-radius: 2.7mm;
+      overflow: hidden;
+      background: #0f172a;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .photo-upload-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.65);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 8px;
+      opacity: 0;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .photo-area:hover .photo-upload-overlay {
+      opacity: 1;
+    }
+
+    /* EMV GOLD MICROCHIP GRAPHIC SIMULATION */
+    .emv-chip-svg-wrap {
+      position: absolute;
+      top: 6mm;
+      left: -9.5mm;
+      width: 7.5mm;
+      height: 6mm;
+      background: linear-gradient(135deg, #f59e0b 0%, #fef08a 50%, #b45309 100%);
+      border-radius: 1mm;
+      border: 0.5px solid #78350f;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    /* NAME & IDENTITY BLOCK */
+    .name-block {
+      margin-top: 1mm;
+      width: 100%;
+    }
+    .gtk-name {
+      font-size: 8.8pt;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.15;
+      letter-spacing: 0.2px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      max-width: 48mm;
+      margin: 0 auto;
+    }
+    .gtk-role-badge {
+      display: inline-block;
+      margin-top: 1mm;
+      padding: 0.8mm 3.2mm;
+      background: rgba(6,78,59,0.85);
+      border: 0.8px solid #f59e0b;
+      border-radius: 20px;
+      font-size: 5.8pt;
+      font-weight: 700;
+      color: #fde047;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      max-width: 48mm;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .gtk-nbm-row {
+      margin-top: 1mm;
+      font-size: 5.2pt;
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 600;
+      color: #cbd5e1;
+      letter-spacing: 0.5px;
+    }
+
+    /* BOTTOM SECURITY CHIPS & CONTACTLESS WAVE */
+    .front-tech-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 1mm;
+      margin-top: auto;
+      margin-bottom: 1.5mm;
+    }
+    .contactless-indicator {
+      display: flex;
+      align-items: center;
+      gap: 1mm;
+      color: #f59e0b;
+      font-size: 5pt;
+      font-weight: 700;
+    }
+    .hologram-seal {
+      width: 7mm;
+      height: 7mm;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 30%, #34d399 60%, #facc15 100%);
+      box-shadow: 0 0 6px rgba(250,204,21,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4pt;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.2px;
+      border: 0.5px solid rgba(255,255,255,0.8);
+    }
+    .auth-text {
+      font-size: 4.6pt;
+      font-family: monospace;
+      color: #94a3b8;
+      letter-spacing: 0.5px;
+    }
+
+    /* FOOTER STRIPE */
+    .card-front-footer {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(90deg, #022c22 0%, #064e3b 50%, #022c22 100%);
+      color: #fde047;
+      text-align: center;
+      padding: 1.2mm 2mm;
+      font-size: 4.8pt;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      border-top: 1.2px solid #f59e0b;
+    }
+
+    /* =========================================================================
+       SISI BELAKANG (BACK) - HIGH-TECH SECURITY & QR ABSENSI
+       ========================================================================= */
+    .card-back {
+      background: var(--bg-gradient);
+      position: relative;
+    }
+
+    /* MAGNETIC STRIPE SIMULATION */
+    .magnetic-stripe {
+      width: 100%;
+      height: 9mm;
+      background: linear-gradient(180deg, #090d16 0%, #151d2a 50%, #05080f 100%);
+      border-bottom: 1.2px solid #f59e0b;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+    }
+    .magnetic-stripe::after {
+      content: "SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT  •  SECURE SMART CREDENTIAL SYSTEM";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3.8pt;
+      font-family: monospace;
+      color: rgba(245,158,11,0.4);
+      white-space: nowrap;
+      letter-spacing: 1px;
+    }
+
+    .card-back-body {
+      padding: 2.2mm 3.2mm;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .rules-card-container {
+      background: rgba(15,23,42,0.75);
+      border: 0.8px solid rgba(245,158,11,0.3);
+      border-radius: 2mm;
+      padding: 2mm 2.5mm;
+      backdrop-filter: blur(4px);
+    }
+    .rules-header-title {
+      font-size: 5.4pt;
+      font-weight: 800;
+      color: #fde047;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 0.6px solid rgba(245,158,11,0.3);
+      padding-bottom: 1mm;
+      margin-bottom: 1.2mm;
+      display: flex;
+      align-items: center;
+      gap: 1.2mm;
+    }
+    .rules-item-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2mm;
+      font-size: 4.6pt;
+      line-height: 1.32;
+      color: #e2e8f0;
+      margin-bottom: 0.8mm;
+    }
+    .rules-num-badge {
+      background: #f59e0b;
+      color: #022c22;
+      font-size: 3.8pt;
+      font-weight: 900;
+      width: 2.2mm;
+      height: 2.2mm;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.2mm;
+    }
+
+    /* DUAL LOWER SECTION: HIGH-TECH QR SHIELD + KS SIGNATURE */
+    .back-dual-section {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2mm;
+      margin-top: auto;
+      padding-top: 1.8mm;
+      border-top: 0.8px dashed rgba(245,158,11,0.4);
+    }
+
+    /* TECH QR SHIELD */
+    .qr-tech-shield {
+      background: #ffffff;
+      padding: 1mm;
+      border-radius: 2mm;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5), 0 0 0 1px #f59e0b;
+      width: 18mm;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .qr-holder-box {
+      width: 14mm;
+      height: 14mm;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qr-uid-text {
+      font-size: 4pt;
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 800;
+      color: #064e3b;
+      margin-top: 0.4mm;
+      letter-spacing: 0.2px;
+      text-align: center;
+    }
+
+    /* EXECUTIVE SIGNATURE BLOCK */
+    .signature-block {
+      flex: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    .sig-date-text {
+      font-size: 4.4pt;
+      color: #cbd5e1;
+    }
+    .sig-role-title {
+      font-size: 5pt;
+      font-weight: 800;
+      color: #fde047;
+      margin-top: 0.2mm;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .sig-canvas-zone {
+      height: 7.5mm;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sig-gold-stamp {
+      position: absolute;
+      width: 13.5mm;
+      height: 13.5mm;
+      opacity: 0.45;
+      object-fit: contain;
+      filter: drop-shadow(0 0 4px rgba(245,158,11,0.5));
+      pointer-events: none;
+    }
+    .sig-handwritten-svg {
+      width: 23mm;
+      height: 7mm;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.8));
+    }
+    .sig-ks-name {
+      font-size: 5.8pt;
+      font-weight: 800;
+      color: #ffffff;
+      text-decoration: underline;
+      text-decoration-color: #f59e0b;
+      line-height: 1.1;
+    }
+    .sig-ks-nbm {
+      font-size: 4.5pt;
+      font-family: 'Space Grotesk', monospace;
+      color: #94a3b8;
+      margin-top: 0.2mm;
+    }
+
+    /* BACK FOOTER */
+    .card-back-footer {
+      background: #090d16;
+      color: #fde047;
+      text-align: center;
+      padding: 1.2mm 2mm;
+      font-size: 4.8pt;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      border-top: 1px solid #f59e0b;
+      font-style: italic;
+    }
+
+    /* CROP MARKS & GUIDES */
+    .crop-mark-container {
+      position: relative;
+    }
+    .crop-guides {
+      position: absolute;
+      top: -3.5mm;
+      left: -3.5mm;
+      right: -3.5mm;
+      bottom: -3.5mm;
+      border: 0.5px dashed rgba(245,158,11,0.4);
+      border-radius: 5.5mm;
+      pointer-events: none;
+      display: block;
+    }
+
+    .hidden-file-input {
+      display: none;
+    }
+
+    /* =========================================================================
+       PRINT RULES (A4 & F4)
+       ========================================================================= */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 6mm;
+      }
+      body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .no-print, .top-control-bar, .instruction-banner, .crop-guides {
+        display: none !important;
+      }
+      .id-cards-viewport {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .cards-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4mm 6mm !important;
+        justify-content: flex-start !important;
+        margin: 0 auto !important;
+      }
+      .id-card-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .id-card {
+        box-shadow: none !important;
+        border: 0.6px solid #b45309 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .id-card-pair {
+        padding: 0 !important;
+        gap: 3mm !important;
+      }
+    }
+  </style>
+</head>
+<body class="theme-emerald" id="bodyRoot">
+
+  <!-- 1. TOOLBAR KONTROL ATAS (NO-PRINT) -->
+  <header class="top-control-bar no-print">
+    <div class="toolbar-container">
+      <div class="toolbar-title-wrap">
+        <img src="logo-smp-muhammadiyah.png" alt="Logo SMP Muhammadiyah" class="toolbar-logo">
+        <div>
+          <h1 class="toolbar-title-h1">Executive ID Card GTK Modern & Elegan</h1>
+          <p class="toolbar-sub-p">SMP Muhammadiyah 1 Kota Bangun Darat &bull; T.P. 2026/2027 &bull; CR-80 (54×86 mm)</p>
+        </div>
+      </div>
+
+      <div class="toolbar-actions">
+        <!-- PILIHAN TEMA VISUAL MODERN -->
+        <select id="selectTheme" class="select-card-filter" onchange="changeCardTheme(this.value)" title="Pilih tema warna visual kartu">
+          <option value="theme-emerald" selected>👑 Royal Emerald & Gold (Eksklusif)</option>
+          <option value="theme-navy">🏛️ Executive Royal Navy & Gold</option>
+          <option value="theme-pearl">✨ Pearl White & Gold (Minimalist)</option>
+        </select>
+
+        <!-- PILIHAN SISI KARTU -->
+        <select id="selectSideMode" class="select-card-filter" onchange="changeSideMode(this.value)" title="Pilih sisi kartu yang ingin ditampilkan/dicetak">
+          <option value="both" selected>🎴 Bolak-Balik (Depan & Belakang Bersandingan)</option>
+          <option value="front">Sisi Depan Saja (Executive Clean RFID)</option>
+          <option value="back">Sisi Belakang Saja (QR Code Presensi & Legalitas)</option>
+        </select>
+
+        <!-- FILTER GTK -->
+        <select id="selectGtkFilter" class="select-card-filter" onchange="filterGtkCards(this.value)" title="Pilih GTK tertentu atau seluruh GTK">
+          <option value="all" selected>👥 Cetak Seluruh 10 GTK</option>
+          <!-- Diisi otomatis via JS -->
+        </select>
+
+        <!-- TOMBOL AKSI UTAMA -->
+        <button class="btn-action btn-print" onclick="window.print()" title="Cetak Lembar Kartu ke Printer atau Simpan PDF">
+          🖨️ Cetak Kartu (PDF / Printer)
+        </button>
+        <button class="btn-action btn-secondary" onclick="resetAllPhotos()" title="Reset seluruh foto ke avatar default">
+          🔄 Reset Foto
+        </button>
+        <a href="index.html" class="btn-action btn-back" title="Kembali ke Aplikasi Keuangan & Presensi">
+          🏠 Kembali ke Sistem
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- INSTRUCTION BANNER (NO-PRINT) -->
+  <div class="instruction-banner no-print">
+    <div>
+      <strong>✨ Desain Baru Versi Executive:</strong>
+      Dilengkapi ornamen guilloche pengaman, bingkai pas foto emas timbul (*gold bevel*), simulasi chip EMV Smart Card, tipografi modern, serta QR Code absensi digital berpelindung di sisi belakang!
+    </div>
+    <div class="instruction-chips">
+      <span class="chip-guide">📏 Standar CR-80 (54 × 86 mm)</span>
+      <span class="chip-guide">📶 Contactless Smart Card</span>
+      <span class="chip-guide">🎨 3 Tema Warna Premium</span>
+      <span class="chip-guide">🖨️ Kualitas Cetak 300 DPI</span>
+    </div>
+  </div>
+
+  <!-- 2. CONTAINER LEMBAR KARTU GTK -->
+  <main class="id-cards-viewport">
+    <div class="cards-grid" id="cardsGridContainer">
+      <!-- Di-render dinamis oleh JavaScript -->
+    </div>
+  </main>
+
+  <!-- INPUT FILE RAHASIA UNTUK UPLOAD FOTO -->
+  <input type="file" id="hiddenPhotoInput" class="hidden-file-input" accept="image/*" onchange="handlePhotoUpload(event)">
+
+  <!-- SCRIPT ENGINE GENERATOR ID CARD & STANDALONE QR CODE GENERATOR -->
+  <script>
+    // =========================================================================
+    // DATA MASTER 10 GTK SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT
+    // =========================================================================
+    const GTK_LIST = [
+      {
+        id: 1,
+        code: "SMPM1-GTK-001",
+        nama: "Susanto, S.Sos.",
+        jabatan: "Kepala Sekolah",
+        nbm: "2006 7561 1221959",
+        klaster: "Pimpinan Sekolah",
+        gender: "L"
+      },
+      {
+        id: 2,
+        code: "SMPM1-GTK-002",
+        nama: "Arum Susilowati, M.Pd.",
+        jabatan: "Guru PAI / Bendahara",
+        nbm: "2006 9821 1397891",
+        klaster: "Guru Inti + Bendahara",
+        gender: "P"
+      },
+      {
+        id: 3,
+        code: "SMPM1-GTK-003",
+        nama: "Asih Kuniati, S.Pd.",
+        jabatan: "Guru Ilmu Pengetahuan Alam",
+        nbm: "-",
+        klaster: "Guru Inti",
+        gender: "P"
+      },
+      {
+        id: 4,
+        code: "SMPM1-GTK-004",
+        nama: "Muhaimin Saputra, S.Pd.",
+        jabatan: "Guru Pendidikan Agama Islam",
+        nbm: "2006 0021 1402151",
+        klaster: "Guru Inti",
+        gender: "L"
+      },
+      {
+        id: 5,
+        code: "SMPM1-GTK-005",
+        nama: "Alfita Hermiati",
+        jabatan: "Tata Usaha / Administrasi",
+        nbm: "-",
+        klaster: "Tenaga Kependidikan",
+        gender: "P"
+      },
+      {
+        id: 6,
+        code: "SMPM1-GTK-006",
+        nama: "Adha Frasiska, S.Pd.",
+        jabatan: "Guru Matematika",
+        nbm: "-",
+        klaster: "Guru Inti",
+        gender: "P"
+      },
+      {
+        id: 7,
+        code: "SMPM1-GTK-007",
+        nama: "Hapid Irham Assoim, S.Pd.",
+        jabatan: "Guru Mata Pelajaran",
+        nbm: "2006 0221 1401141",
+        klaster: "Guru Pendukung",
+        gender: "L"
+      },
+      {
+        id: 8,
+        code: "SMPM1-GTK-008",
+        nama: "Arif Abdillah, S.Pd.",
+        jabatan: "Guru Bahasa Inggris",
+        nbm: "-",
+        klaster: "Guru Paruh Waktu",
+        gender: "L"
+      },
+      {
+        id: 9,
+        code: "SMPM1-GTK-009",
+        nama: "Sugeng Rianto",
+        jabatan: "Guru TS (Tapak Suci)",
+        nbm: "-",
+        klaster: "Guru Ekstrakurikuler",
+        gender: "L"
+      },
+      {
+        id: 10,
+        code: "SMPM1-GTK-010",
+        nama: "Riki Mutoha",
+        jabatan: "Guru PJOK",
+        nbm: "-",
+        klaster: "Guru Paruh Waktu",
+        gender: "L"
+      }
+    ];
+
+    let currentUploadTargetId = null;
+    let activeSideMode = "both";
+    let activeGtkFilter = "all";
+
+    // =========================================================================
+    // STANDALONE QR CODE GENERATOR (LIGHTWEIGHT & OFFLINE)
+    // =========================================================================
+    function createQRCodeSVG(text) {
+      let hash = 0;
+      for (let i = 0; i < text.length; i++) {
+        hash = ((hash << 5) - hash) + text.charCodeAt(i);
+        hash |= 0;
+      }
+      
+      const size = 21;
+      let grid = Array.from({length: size}, () => Array(size).fill(false));
+      
+      function addFinder(r, c) {
+        for (let i = 0; i < 7; i++) {
+          for (let j = 0; j < 7; j++) {
+            if (i === 0 || i === 6 || j === 0 || j === 6 || (i >= 2 && i <= 4 && j >= 2 && j <= 4)) {
+              grid[r + i][c + j] = true;
+            }
+          }
+        }
+      }
+      
+      addFinder(0, 0);
+      addFinder(0, 14);
+      addFinder(14, 0);
+      
+      for (let i = 8; i < 13; i++) {
+        grid[6][i] = (i % 2 === 0);
+        grid[i][6] = (i % 2 === 0);
+      }
+      
+      let seed = Math.abs(hash);
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          if ((r < 8 && c < 8) || (r < 8 && c > 12) || (r > 12 && c < 8)) continue;
+          if (r === 6 || c === 6) continue;
+          seed = (seed * 9301 + 49297) % 233280;
+          if (seed % 3 === 0 || seed % 5 === 0) {
+            grid[r][c] = true;
+          }
+        }
+      }
+
+      let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="100%" height="100%" shape-rendering="crispEdges">`;
+      svg += `<rect width="${size}" height="${size}" fill="#ffffff"/>`;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          if (grid[r][c]) {
+            svg += `<rect x="${c}" y="${r}" width="1" height="1" fill="#022c22"/>`;
+          }
+        }
+      }
+      svg += `</svg>`;
+      return svg;
+    }
+
+    // Default professional avatar SVG
+    function getDefaultAvatarSVG(gender, role) {
+      const isFemale = gender === 'P';
+      const isKS = role.includes('Kepala Sekolah');
+      const skin = '#fcd34d';
+      const coat = isKS ? '#022c22' : (isFemale ? '#064e3b' : '#0f172a');
+      const tie = '#f59e0b';
+      
+      if (isFemale) {
+        return `
+          <svg viewBox="0 0 100 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bgHj" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#064e3b"/>
+                <stop offset="100%" stop-color="#022c22"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="120" fill="url(#bgHj)"/>
+            <!-- Jilbab Modern -->
+            <path d="M 50 16 C 28 16 18 38 20 75 C 22 102 12 120 12 120 L 88 120 C 88 120 78 102 80 75 C 82 38 72 16 50 16 Z" fill="#0d5c3a"/>
+            <path d="M 50 20 C 32 20 23 38 25 72 C 27 96 20 115 20 115 L 80 115 C 80 115 73 96 75 72 C 77 38 68 20 50 20 Z" fill="#0f766e"/>
+            <!-- Wajah -->
+            <ellipse cx="50" cy="50" rx="18" ry="22" fill="${skin}"/>
+            <path d="M 33 46 C 34 32 42 28 50 28 C 58 28 66 32 67 46 C 65 60 58 68 50 68 C 42 68 35 60 33 46 Z" fill="${skin}"/>
+            <!-- Blazer / Jas -->
+            <path d="M 28 92 L 12 120 L 88 120 L 72 92 Z" fill="${coat}"/>
+            <polygon points="50,96 42,120 58,120" fill="#ffffff"/>
+            <!-- Eyes & smile -->
+            <circle cx="43" cy="48" r="2.2" fill="#0f172a"/>
+            <circle cx="57" cy="48" r="2.2" fill="#0f172a"/>
+            <path d="M 46 58 Q 50 62 54 58" stroke="#b45309" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+          </svg>
+        `;
+      } else {
+        return `
+          <svg viewBox="0 0 100 120" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bgHj" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#064e3b"/>
+                <stop offset="100%" stop-color="#022c22"/>
+              </linearGradient>
+            </defs>
+            <rect width="100" height="120" fill="url(#bgHj)"/>
+            <!-- Kopiah Hitam Beludru Emas -->
+            <path d="M 26 32 C 26 18 74 18 74 32 L 76 36 L 24 36 Z" fill="#090d16"/>
+            <rect x="23" y="34" width="54" height="2.5" fill="#f59e0b" rx="1"/>
+            <!-- Wajah -->
+            <ellipse cx="50" cy="52" rx="19" ry="22" fill="${skin}"/>
+            <ellipse cx="29" cy="54" rx="3.5" ry="5.5" fill="${skin}"/>
+            <ellipse cx="71" cy="54" rx="3.5" ry="5.5" fill="${skin}"/>
+            <circle cx="43" cy="50" r="2.2" fill="#0f172a"/>
+            <circle cx="57" cy="50" r="2.2" fill="#0f172a"/>
+            <path d="M 45 61 Q 50 65 55 61" stroke="#b45309" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+            <!-- Jas Formal -->
+            <path d="M 24 88 L 8 120 L 92 120 L 76 88 Z" fill="${coat}"/>
+            <polygon points="50,88 38,120 62,120" fill="#ffffff"/>
+            <polygon points="50,92 46,120 54,120" fill="${tie}"/>
+          </svg>
+        `;
+      }
+    }
+
+    // =========================================================================
+    // LOCAL STORAGE FOTO GURU
+    // =========================================================================
+    function getStoredPhoto(gtkId) {
+      return localStorage.getItem(`smp_gtk_photo_${gtkId}`) || null;
+    }
+
+    function saveStoredPhoto(gtkId, dataUrl) {
+      localStorage.setItem(`smp_gtk_photo_${gtkId}`, dataUrl);
+    }
+
+    function resetAllPhotos() {
+      if (!confirm('Kembalikan seluruh foto ke avatar ilustrasi default?')) return;
+      GTK_LIST.forEach(g => {
+        localStorage.removeItem(`smp_gtk_photo_${g.id}`);
+      });
+      renderCards();
+    }
+
+    function openPhotoUpload(gtkId) {
+      currentUploadTargetId = gtkId;
+      document.getElementById('hiddenPhotoInput').click();
+    }
+
+    function handlePhotoUpload(e) {
+      const file = e.target.files[0];
+      if (!file || !currentUploadTargetId) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        saveStoredPhoto(currentUploadTargetId, evt.target.result);
+        renderCards();
+      };
+      reader.readAsDataURL(file);
+      e.target.value = '';
+    }
+
+    // =========================================================================
+    // RENDER SEMUA KARTU GTK DENGAN DESAIN EXECUTIVE MODERN
+    // =========================================================================
+    function renderCards() {
+      const container = document.getElementById('cardsGridContainer');
+      if (!container) return;
+
+      const filterList = (activeGtkFilter === 'all') 
+        ? GTK_LIST 
+        : GTK_LIST.filter(g => String(g.id) === String(activeGtkFilter));
+
+      container.innerHTML = '';
+
+      filterList.forEach(gtk => {
+        const storedPhoto = getStoredPhoto(gtk.id);
+        const photoSrc = storedPhoto ? `<img src="${storedPhoto}" class="photo-img" alt="${gtk.nama}">` : getDefaultAvatarSVG(gtk.gender, gtk.jabatan);
+        const qrSvg = createQRCodeSVG(gtk.code);
+        const nbmDisplay = (gtk.nbm && gtk.nbm !== '-') ? `NBM : ${gtk.nbm}` : `KODE : ${gtk.code}`;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'id-card-wrapper';
+
+        let pairHtml = `<div class="id-card-pair">`;
+
+        // 1. SISI DEPAN (EXECUTIVE MODERN SMART CARD)
+        if (activeSideMode === 'both' || activeSideMode === 'front') {
+          pairHtml += `
+            <div class="crop-mark-container">
+              <div class="crop-guides"></div>
+              <div class="id-card card-front">
+                <!-- WATERMARK BACKGROUND -->
+                <div class="card-watermark"></div>
+                <img src="logo-smp-muhammadiyah.png" class="card-muhammadiyah-sun-wm" alt="Watermark">
+
+                <!-- 1. HEADER MEWAH ASIMETRIS -->
+                <div class="card-front-header">
+                  <div class="header-layout">
+                    <div class="logo-medallion">
+                      <img src="logo-smp-muhammadiyah.png" alt="Logo SMP Muhammadiyah">
+                    </div>
+                    <div class="header-typography">
+                      <div class="header-dikdasmen">MAJELIS DIKDASMEN & PNF PCM</div>
+                      <div class="header-school">SMP MUHAMMADIYAH 1</div>
+                      <div class="header-location">KOTA BANGUN DARAT &bull; KUKAR</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. STATUS BADGE RIBBON -->
+                <div class="card-status-bar">
+                  <div class="status-left">
+                    <span class="status-dot"></span>
+                    <span>ACTIVE GTK CREDENTIAL</span>
+                  </div>
+                  <div class="status-right">
+                    <span>2026/2027</span>
+                  </div>
+                </div>
+
+                <!-- 3. BODY: FOTO BESAR BERBINGKAI EMAS & DATA PEGAWAI -->
+                <div class="card-front-body">
+                  <div class="photo-area" onclick="openPhotoUpload(${gtk.id})" title="Klik untuk mengubah pas foto">
+                    <!-- EMV GOLD CHIP GRAPHIC -->
+                    <div class="emv-chip-svg-wrap" title="Smart Card Contact Chip">
+                      <svg viewBox="0 0 32 24" width="22" height="16" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="1" y="1" width="30" height="22" rx="3" fill="#f59e0b" stroke="#78350f" stroke-width="1.2"/>
+                        <path d="M 1 9 L 10 9 L 14 1 L 18 1 L 22 9 L 31 9" fill="none" stroke="#78350f" stroke-width="1"/>
+                        <path d="M 1 15 L 10 15 L 14 23 L 18 23 L 22 15 L 31 15" fill="none" stroke="#78350f" stroke-width="1"/>
+                        <line x1="16" y1="9" x2="16" y2="15" stroke="#78350f" stroke-width="1"/>
+                        <circle cx="16" cy="12" r="2" fill="#d97706"/>
+                      </svg>
+                    </div>
+
+                    <div class="photo-glow-border">
+                      <div class="photo-inner-box">
+                        ${photoSrc}
+                      </div>
+                    </div>
+                    <div class="photo-upload-overlay no-print">
+                      <span>📷</span>
+                      <span>Ubah Foto</span>
+                    </div>
+                  </div>
+
+                  <!-- IDENTITAS GTK -->
+                  <div class="name-block">
+                    <div class="gtk-name">${gtk.nama}</div>
+                    <div class="gtk-role-badge" title="${gtk.jabatan}">${gtk.jabatan}</div>
+                    <div class="gtk-nbm-row">${nbmDisplay}</div>
+                  </div>
+
+                  <!-- TECH INDICATOR & CONTACTLESS WAVE -->
+                  <div class="front-tech-bar">
+                    <div class="contactless-indicator">
+                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M5 12a7 7 0 0 1 12 0"></path>
+                        <path d="M8 12a4 4 0 0 1 6 0"></path>
+                        <circle cx="12" cy="12" r="1" fill="#f59e0b"/>
+                      </svg>
+                      <span>RFID SMART</span>
+                    </div>
+                    <div class="hologram-seal" title="Authentic Security Seal">
+                      ★ SEC
+                    </div>
+                    <div class="auth-text">SECURE ID</div>
+                  </div>
+                </div>
+
+                <!-- 4. FOOTER EMAS -->
+                <div class="card-front-footer">
+                  FASTABIQUL KHAIRAT &bull; T.P. 2026/2027
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        // 2. SISI BELAKANG (HIGH-TECH SECURITY & QR ABSENSI DIGITAL)
+        if (activeSideMode === 'both' || activeSideMode === 'back') {
+          pairHtml += `
+            <div class="crop-mark-container">
+              <div class="crop-guides"></div>
+              <div class="id-card card-back">
+                <!-- 1. MAGNETIC STRIPE ELEGAN DI ATAS -->
+                <div class="magnetic-stripe"></div>
+
+                <!-- 2. BODY BELAKANG: TATA TERTIB RESMI -->
+                <div class="card-back-body">
+                  <div class="rules-card-container">
+                    <div class="rules-header-title">
+                      <span>⚖️ KETENTUAN PENGGUNAAN KARTU</span>
+                    </div>
+                    <div class="rules-item-row">
+                      <span class="rules-num-badge">1</span>
+                      <span>Kartu ini merupakan tanda pengenal resmi GTK SMP Muhammadiyah 1 Kota Bangun Darat.</span>
+                    </div>
+                    <div class="rules-item-row">
+                      <span class="rules-num-badge">2</span>
+                      <span>Wajib dibawa setiap hari kerja untuk <strong>Presensi Digital</strong> (Tap RFID / Scan QR).</span>
+                    </div>
+                    <div class="rules-item-row">
+                      <span class="rules-num-badge">3</span>
+                      <span>Tidak diperkenankan dipindahtangankan kepada pihak lain tanpa izin pimpinan.</span>
+                    </div>
+                    <div class="rules-item-row">
+                      <span class="rules-num-badge">4</span>
+                      <span>Jika hilang/menemukan, harap serahkan ke <strong>Kantor TU SMP Muhammadiyah 1 Kota Bangun Darat</strong>.</span>
+                    </div>
+                  </div>
+
+                  <!-- 3. AREA BAWAH: TECH QR SHIELD (KIRI) + TTD KEPSEK (KANAN) -->
+                  <div class="back-dual-section">
+                    <!-- TECH QR SHIELD DI SISI BELAKANG -->
+                    <div class="qr-tech-shield" title="QR Code Presensi Digital">
+                      <div class="qr-holder-box">
+                        ${qrSvg}
+                      </div>
+                      <div class="qr-uid-text">${gtk.code}</div>
+                    </div>
+
+                    <!-- PENGESAHAN RESMI KEPALA SEKOLAH -->
+                    <div class="signature-block">
+                      <div class="sig-date-text">Kota Bangun Darat, 15 Juli 2026</div>
+                      <div class="sig-role-title">Kepala Sekolah,</div>
+                      <div class="sig-canvas-zone">
+                        <img src="logo-smp-muhammadiyah.png" class="sig-gold-stamp" alt="Stempel">
+                        <svg class="sig-handwritten-svg" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M 12 20 Q 22 4 38 18 Q 54 26 70 11 Q 86 4 108 17" stroke="#f59e0b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                          <path d="M 32 15 L 42 25 L 58 12" stroke="#fde047" stroke-width="1.8" fill="none"/>
+                        </svg>
+                      </div>
+                      <div class="sig-ks-name">SUSANTO, S.Sos.</div>
+                      <div class="sig-ks-nbm">NBM. 2006 7561 1221959</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4. FOOTER BELAKANG SLOGAN -->
+                <div class="card-back-footer">
+                  "Mencerdaskan Generasi Islami Berkemajuan"
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        pairHtml += `</div>`;
+        wrapper.innerHTML = pairHtml;
+        container.appendChild(wrapper);
+      });
+    }
+
+    // =========================================================================
+    // EVENT HANDLERS & THEMES
+    // =========================================================================
+    function changeCardTheme(themeClass) {
+      const root = document.getElementById('bodyRoot');
+      root.className = themeClass;
+    }
+
+    function changeSideMode(val) {
+      activeSideMode = val;
+      renderCards();
+    }
+
+    function filterGtkCards(val) {
+      activeGtkFilter = val;
+      renderCards();
+    }
+
+    function initFilterDropdown() {
+      const sel = document.getElementById('selectGtkFilter');
+      if (!sel) return;
+      GTK_LIST.forEach(g => {
+        const opt = document.createElement('option');
+        opt.value = g.id;
+        opt.textContent = `${g.nama} (${g.jabatan})`;
+        sel.appendChild(opt);
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initFilterDropdown();
+      renderCards();
+    });
+  </script>
+</body>
+</html>
