@@ -6,53 +6,68 @@
   <title>Sistem Informasi Tata Kelola Keuangan & Honorarium Terpadu - SMP Muhammadiyah 1 Kota Bangun Darat</title>
   <!-- Chart.js CDN for interactive charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Google Fonts: El Messiri (Brand Identity Muhammadiyah) & Plus Jakarta Sans (Modern UI) -->
+  <!-- Google Fonts: El Messiri, Amiri, Aref Ruqaa, Reem Kufi (Kaligrafi Arab), Space Grotesk & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=El+Messiri:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Reem+Kufi:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* Brand Guideline Muhammadiyah Official Colors (C: 83 M: 7 Y: 100 K: 0 & C: 100 M: 95 Y: 7 K: 0) */
-      --muh-green-primary: #04A54F;   /* Hijau Utama Muhammadiyah (R: 4, G: 165, B: 79) */
-      --muh-green-dark: #03803D;      /* Hijau Tua Muhammadiyah */
-      --muh-green-deep: #053A20;      /* Hijau Hutan Gelap */
-      --muh-green-light: #ecfdf5;     /* Hijau Tint Halus */
-      --muh-green-surface: #f0fdf4;   /* Hijau Surface */
+      /* Brand Guideline Muhammadiyah Official Colors + Futuristic Neo-Islamic Luminance */
+      --muh-green-primary: #04A54F;
+      --muh-green-glow: #34D399;
+      --muh-green-dark: #10B981;
+      --muh-green-deep: #064E3B;
+      --muh-green-light: rgba(4, 165, 79, 0.16);
+      --muh-green-surface: rgba(4, 165, 79, 0.14);
       
-      --muh-blue-primary: #2C368B;    /* Biru Tua Muhammadiyah (R: 44, G: 54, B: 139) */
-      --muh-blue-dark: #1A2155;       /* Biru Gelap Muhammadiyah */
-      --muh-blue-cyan: #1D5F82;       /* Biru Cyan Muhammadiyah */
-      --muh-blue-light: #eff6ff;      /* Biru Tint Halus */
+      --muh-blue-primary: #2C368B;
+      --muh-blue-dark: #1A2155;
+      --muh-blue-cyan: #38BDF8;
+      --muh-blue-light: rgba(56, 189, 248, 0.15);
       
-      --muh-gradient-primary: linear-gradient(135deg, #2C368B 0%, #0e6756 50%, #04A54F 100%);
+      --muh-gradient-primary: linear-gradient(135deg, rgba(44, 54, 139, 0.85) 0%, rgba(14, 103, 86, 0.85) 50%, rgba(4, 165, 79, 0.9) 100%);
       --muh-gradient-capsule: linear-gradient(90deg, #2C368B 0%, #0d6e5d 50%, #04A54F 100%);
       
-      --muh-tosca: #10816F;           /* Tosca Muhammadiyah */
-      --muh-lime: #7CB947;            /* Hijau Pupus / Lime Muhammadiyah */
+      --muh-tosca: #10816F;
+      --muh-lime: #7CB947;
       
-      --muh-gold: #F4CE2A;            /* Kuning Emas Pendar 12 Matahari */
-      --muh-gold-warm: #F1B12D;       /* Kuning Emas Hangat */
+      --muh-gold: #FDE047;
+      --muh-gold-warm: #FBBF24;
       
-      --muh-red: #E8242A;             /* Merah Aksen Muhammadiyah */
+      --muh-red: #F87171;
       
-      /* Semantic Variables */
-      --primary: var(--muh-green-primary);
-      --primary-dark: #03803D;
-      --primary-light: var(--muh-green-light);
+      /* True See-Through Liquid Crystal Glass Variables (Matching Landing Page 4.0) */
+      --bg-space: #020611;
+      --glass-blur: blur(18px) saturate(200%);
+      --glass-blur-deep: blur(28px) saturate(220%);
+      --glass-bg-card: linear-gradient(135deg, rgba(255, 255, 255, 0.085) 0%, rgba(255, 255, 255, 0.02) 55%, rgba(52, 211, 153, 0.04) 100%);
+      --glass-bg-elevated: linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.035) 50%, rgba(56, 189, 248, 0.06) 100%);
+      --glass-border-top: rgba(255, 255, 255, 0.42);
+      --glass-border-left: rgba(255, 255, 255, 0.26);
+      --glass-border-right: rgba(56, 189, 248, 0.18);
+      --glass-border-bottom: rgba(251, 191, 36, 0.16);
+      --glass-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.65), inset 0 1px 1px rgba(255, 255, 255, 0.35), inset 0 0 22px rgba(52, 211, 153, 0.04);
+
+      /* Semantic Variables Adapted for Crystal Glass Dark Mode */
+      --primary: #34D399;
+      --primary-dark: #6EE7B7;
+      --primary-light: rgba(52, 211, 153, 0.15);
       --accent: var(--muh-gold);
-      --secondary: var(--muh-blue-primary);
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --border: #e2e8f0;
-      --danger: #dc2626;
-      --warning: #f59e0b;
-      --success: #16a34a;
+      --secondary: #60A5FA;
+      --bg: #020611;
+      --surface: rgba(15, 23, 42, 0.25);
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --border: rgba(255, 255, 255, 0.14);
+      --danger: #F87171;
+      --warning: #FBBF24;
+      --success: #34D399;
 
       /* Typography */
       --font-brand: 'El Messiri', 'Plus Jakarta Sans', serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      --font-calligraphy: 'Aref Ruqaa', 'Amiri', 'Reem Kufi', serif;
+      --font-mono-hud: 'Space Grotesk', monospace;
     }
 
     * {
@@ -63,49 +78,225 @@
     }
 
     body {
-      background-color: var(--bg);
+      background-color: var(--bg-space);
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% -15%, rgba(4, 165, 79, 0.24), transparent),
+        radial-gradient(ellipse 60% 50% at 95% 25%, rgba(44, 54, 139, 0.28), transparent),
+        radial-gradient(ellipse 70% 50% at 5% 75%, rgba(245, 158, 11, 0.14), transparent);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ==========================================================================
+       AMBIENT DYNAMIC MESH, CYBER GRID & ISLAMIC CALLIGRAPHY LAYER (MATCHING LANDING PAGE)
+       ========================================================================== */
+    .ambient-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.65;
+      mix-blend-mode: screen;
+      animation: floatOrb 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .orb-green {
+      top: -10%;
+      left: -5%;
+      width: 680px;
+      height: 680px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.5) 0%, rgba(4, 165, 79, 0.12) 60%, transparent 100%);
+      animation-duration: 22s;
+    }
+    .orb-blue {
+      top: 30%;
+      right: -10%;
+      width: 760px;
+      height: 760px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.42) 0%, rgba(44, 54, 139, 0.22) 60%, transparent 100%);
+      animation-duration: 26s;
+      animation-delay: -5s;
+    }
+    .orb-gold {
+      bottom: -5%;
+      left: 15%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.38) 0%, rgba(245, 158, 11, 0.08) 65%, transparent 100%);
+      animation-duration: 20s;
+      animation-delay: -8s;
+    }
+    .orb-cyan {
+      top: 60%;
+      right: 25%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.35) 0%, rgba(6, 182, 212, 0.06) 65%, transparent 100%);
+      animation-duration: 24s;
+      animation-delay: -12s;
+    }
+    @keyframes floatOrb {
+      0% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(55px, 40px) scale(1.08); }
+      100% { transform: translate(-35px, 65px) scale(0.95); }
+    }
+    .ambient-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, rgba(253, 224, 71, 0.04) 1px, transparent 1px);
+      background-size: 56px 56px, 56px 56px, 28px 28px;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .calligraphy-bg-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+      transition: opacity 0.4s ease;
+    }
+    .sacred-mandala {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.22;
+      filter: drop-shadow(0 0 25px rgba(251, 191, 36, 0.35));
+      animation: rotateMandala 90s linear infinite;
+    }
+    .mandala-top-right {
+      top: -120px;
+      right: -120px;
+      width: 640px;
+      height: 640px;
+    }
+    .mandala-bottom-left {
+      bottom: -160px;
+      left: -120px;
+      width: 600px;
+      height: 600px;
+      animation-direction: reverse;
+      animation-duration: 110s;
+      opacity: 0.18;
+    }
+    @keyframes rotateMandala {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .bg-calligraphy-art {
+      position: absolute;
+      font-family: var(--font-calligraphy);
+      direction: rtl;
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+      line-height: 1.2;
+      background: linear-gradient(135deg, rgba(253, 224, 71, 0.26) 0%, rgba(52, 211, 153, 0.22) 50%, rgba(56, 189, 248, 0.18) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.16));
+    }
+    .cali-1 {
+      top: 10%;
+      right: 4%;
+      font-size: clamp(3.8rem, 7vw, 7.2rem);
+      transform: rotate(-3deg);
+    }
+    .cali-2 {
+      top: 48%;
+      left: 18%;
+      font-size: clamp(4.2rem, 8vw, 8.5rem);
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.22) 0%, rgba(253, 224, 71, 0.24) 60%, rgba(56, 189, 248, 0.2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .cali-3 {
+      bottom: 8%;
+      right: 8%;
+      font-size: clamp(3.5rem, 6.5vw, 6.8rem);
+    }
+    #cursorSpotlight {
+      position: fixed;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.15) 0%, rgba(56, 189, 248, 0.08) 40%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 3;
+      filter: blur(25px);
+      mix-blend-mode: screen;
+    }
+    .ayat-glass-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.4rem 1.15rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.14) 0%, rgba(4, 165, 79, 0.14) 100%);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(253, 224, 71, 0.38);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+    .ayat-glass-pill .arabic-calligraphy {
+      font-family: var(--font-calligraphy);
+      font-size: 1.25rem;
+      color: #FDE047;
+      text-shadow: 0 0 14px rgba(253, 224, 71, 0.45);
+      line-height: 1.2;
+      direction: rtl;
     }
 
     h1, h2, h3, .brand-font, .sidebar-school-name, .hero-title, .table-title, .breadcrumb-active {
       font-family: var(--font-brand);
     }
 
-    /* APP SHELL: SIDEBAR + MAIN VIEWPORT */
+    /* APP SHELL: SIDEBAR + MAIN VIEWPORT (TRANSPARENT FOR SEE-THROUGH GLASS) */
     .app-shell {
       display: flex;
       min-height: 100vh;
       width: 100%;
-      background-color: var(--bg);
+      background: transparent;
+      position: relative;
+      z-index: 10;
     }
 
-    /* LEFT SIDEBAR (GLASS DYNAMIC MUHAMMADIYAH EXECUTIVE) */
+    /* LEFT SIDEBAR (TRUE SEE-THROUGH LIQUID CRYSTAL GLASS) */
     .app-sidebar {
       width: 280px;
       min-width: 280px;
       background: linear-gradient(180deg, 
-        rgba(26, 33, 85, 0.94) 0%, 
-        rgba(21, 56, 79, 0.91) 35%, 
-        rgba(8, 67, 43, 0.93) 75%, 
-        rgba(5, 47, 30, 0.96) 100%
+        rgba(15, 23, 42, 0.38) 0%, 
+        rgba(14, 56, 79, 0.25) 45%, 
+        rgba(4, 67, 43, 0.28) 80%, 
+        rgba(2, 6, 17, 0.48) 100%
       );
-      backdrop-filter: blur(24px) saturate(190%);
-      -webkit-backdrop-filter: blur(24px) saturate(190%);
+      backdrop-filter: var(--glass-blur-deep);
+      -webkit-backdrop-filter: var(--glass-blur-deep);
       color: #ffffff;
       display: flex;
       flex-direction: column;
       position: sticky;
       top: 0;
       height: 100vh;
-      box-shadow: 10px 0 35px -5px rgba(10, 18, 50, 0.4),
-                  inset -1px 0 0 rgba(255, 255, 255, 0.12),
-                  inset 1px 0 1px rgba(255, 255, 255, 0.15);
+      box-shadow: 10px 0 40px -5px rgba(0, 0, 0, 0.6),
+                  inset -1px 0 0 rgba(255, 255, 255, 0.22),
+                  inset 1px 0 1px rgba(255, 255, 255, 0.25);
       z-index: 100;
       overflow-y: auto;
       overflow-x: hidden;
-      border-right: 1px solid rgba(244, 206, 42, 0.3);
+      border-right: 1px solid rgba(255, 255, 255, 0.22);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -413,21 +604,24 @@
       opacity: 0.9;
     }
 
-    /* MAIN VIEWPORT */
+    /* MAIN VIEWPORT (TRANSPARENT FOR SEE-THROUGH CRYSTAL GLASS) */
     .main-viewport {
       flex: 1;
       display: flex;
       flex-direction: column;
       min-width: 0;
-      background-color: var(--bg);
+      background: transparent;
+      position: relative;
+      z-index: 5;
     }
 
-    /* STICKY MODERN TOPBAR */
+    /* STICKY MODERN TOPBAR (WHITE FROSTED GLASS) */
     .app-topbar {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
       padding: 14px 28px;
       display: flex;
       justify-content: space-between;
@@ -435,7 +629,6 @@
       position: sticky;
       top: 0;
       z-index: 90;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
     }
     .topbar-left {
       display: flex;
@@ -444,7 +637,7 @@
     }
     .sidebar-toggle-btn {
       display: none;
-      background: #f1f5f9;
+      background: rgba(0, 0, 0, 0.05);
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       width: 38px;
@@ -469,19 +662,21 @@
       font-size: 13px;
     }
     .breadcrumb-root {
-      color: var(--text-muted);
-      font-weight: 500;
+      color: #334155;
+      font-weight: 700;
     }
     .breadcrumb-sep {
-      color: #cbd5e1;
+      color: #64748b;
+      font-weight: 700;
     }
     .breadcrumb-active {
-      font-weight: 700;
-      color: var(--muh-green-deep);
+      font-weight: 800;
+      color: #064e3b;
       font-size: 15.5px;
       display: flex;
       align-items: center;
       gap: 6px;
+      text-shadow: none;
     }
     .topbar-right {
       display: flex;
@@ -493,19 +688,20 @@
       align-items: center;
       gap: 7px;
       padding: 6px 14px;
-      background: var(--muh-green-surface);
-      border: 1px solid #bbf7d0;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
       border-radius: 20px;
       font-size: 11.5px;
-      font-weight: 600;
-      color: var(--muh-green-dark);
+      font-weight: 700;
+      color: #15803d;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
     }
     .pulse-circle {
       width: 8px;
       height: 8px;
-      background: var(--muh-green-primary);
+      background: #34D399;
       border-radius: 50%;
-      box-shadow: 0 0 0 0 rgba(4, 165, 79, 0.7);
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
       animation: pulseGreen 2s infinite;
     }
     @keyframes pulseGreen {
@@ -518,33 +714,35 @@
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #2C368B 0%, #04A54F 100%);
+      background: linear-gradient(135deg, rgba(44, 54, 139, 0.85) 0%, rgba(4, 165, 79, 0.85) 100%);
+      backdrop-filter: blur(12px);
       color: #ffffff;
       font-size: 12.5px;
       font-weight: 600;
       border-radius: 8px;
-      border: none;
+      border: 1px solid rgba(255, 255, 255, 0.28);
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 2px 6px rgba(44, 54, 139, 0.25);
+      box-shadow: 0 4px 14px rgba(4, 165, 79, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.35);
       white-space: nowrap;
     }
     .btn-topbar-print:hover {
-      filter: brightness(1.08);
+      filter: brightness(1.12);
       transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(4, 165, 79, 0.35);
+      box-shadow: 0 6px 18px rgba(52, 211, 153, 0.45);
     }
     .btn-topbar-excel {
       display: inline-flex;
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #0d5c3a 0%, #16a34a 100%);
+      background: linear-gradient(135deg, rgba(13, 92, 58, 0.85) 0%, rgba(22, 163, 74, 0.85) 100%);
+      backdrop-filter: blur(12px);
       color: #ffffff;
       font-size: 12.5px;
       font-weight: 600;
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 2px 6px rgba(22, 163, 74, 0.28);
@@ -560,12 +758,13 @@
       align-items: center;
       gap: 6px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.85) 0%, rgba(37, 99, 235, 0.85) 100%);
+      backdrop-filter: blur(12px);
       color: #ffffff;
       font-size: 12.5px;
       font-weight: 600;
       border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       cursor: pointer;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28);
@@ -596,29 +795,30 @@
       transform: scale(0.97);
     }
     .btn-print {
-      background-color: white;
-      color: var(--primary-dark);
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.22);
     }
     .btn-print:hover {
-      background-color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.16);
     }
     .btn-add {
-      background: linear-gradient(135deg, var(--muh-green-primary) 0%, var(--muh-green-dark) 100%);
+      background: linear-gradient(135deg, #04A54F 0%, #059669 100%);
       color: white;
       padding: 7px 14px;
       font-size: 12.5px;
-      box-shadow: 0 2px 6px rgba(4, 165, 79, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 2px 10px rgba(4, 165, 79, 0.35);
     }
     .btn-add:hover {
       background: var(--muh-green-deep);
       transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(4, 165, 79, 0.35);
+      box-shadow: 0 4px 14px rgba(52, 211, 153, 0.45);
     }
     .btn-delete {
-      background: #fee2e2;
-      color: #dc2626;
-      border: 1px solid #fecaca;
+      background: rgba(239, 68, 68, 0.16);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.4);
       padding: 4px 8px;
       border-radius: 6px;
       cursor: pointer;
@@ -653,14 +853,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* EXECUTIVE HERO BANNER ON DASHBOARD (GLASS DYNAMIC) */
+    /* EXECUTIVE HERO BANNER ON DASHBOARD (TRUE SEE-THROUGH CRYSTAL GLASS) */
     .dash-hero-banner {
-      background: radial-gradient(circle at 88% 22%, rgba(244, 206, 42, 0.28) 0%, transparent 45%),
-                  radial-gradient(circle at 12% 80%, rgba(4, 165, 79, 0.35) 0%, transparent 50%),
-                  linear-gradient(135deg, rgba(44, 54, 139, 0.94) 0%, rgba(14, 103, 86, 0.91) 50%, rgba(4, 165, 79, 0.94) 100%);
-      backdrop-filter: blur(24px) saturate(190%);
-      -webkit-backdrop-filter: blur(24px) saturate(190%);
-      border-radius: 16px;
+      background: radial-gradient(circle at 88% 22%, rgba(244, 206, 42, 0.18) 0%, transparent 45%),
+                  radial-gradient(circle at 12% 80%, rgba(4, 165, 79, 0.24) 0%, transparent 50%),
+                  linear-gradient(135deg, rgba(44, 54, 139, 0.28) 0%, rgba(14, 103, 86, 0.22) 50%, rgba(4, 165, 79, 0.25) 100%);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      border-radius: 20px;
       padding: 26px 30px;
       margin-bottom: 24px;
       color: #ffffff;
@@ -671,11 +871,12 @@
       gap: 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 40px -8px rgba(26, 33, 85, 0.42),
-                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.45),
-                  inset 0 -1px 2px 0 rgba(0, 0, 0, 0.25);
+      box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.5),
+                  inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+                  inset 0 -1px 1px 0 rgba(52, 211, 153, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      border-top: 1px solid rgba(255, 255, 255, 0.55);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.52);
+      border-left: 1.5px solid rgba(255, 255, 255, 0.35);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
     /* Dynamic Glass Light Sheen Sweep */
@@ -707,16 +908,16 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 16px;
+      border-radius: 20px;
       background: radial-gradient(550px circle at var(--mouse-x, 85%) var(--mouse-y, 30%), rgba(255, 255, 255, 0.12), transparent 50%);
       pointer-events: none;
       z-index: 1;
       transition: background 0.15s ease;
     }
     .dash-hero-banner:hover {
-      box-shadow: 0 20px 48px -8px rgba(26, 33, 85, 0.52),
-                  0 0 24px rgba(4, 165, 79, 0.35),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 24px 56px -8px rgba(0, 0, 0, 0.6),
+                  0 0 28px rgba(52, 211, 153, 0.25),
+                  inset 0 1.5px 2px rgba(255, 255, 255, 0.6);
       transform: translateY(-2px);
     }
     .hero-content {
@@ -727,16 +928,16 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background: rgba(244, 206, 42, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(244, 206, 42, 0.5);
+      background: rgba(244, 206, 42, 0.16);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(244, 206, 42, 0.55);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.35);
       padding: 5px 14px;
       border-radius: 20px;
       font-size: 11px;
       font-weight: 700;
-      color: var(--muh-gold);
+      color: #FDE047;
       margin-bottom: 10px;
       letter-spacing: 0.4px;
       text-transform: uppercase;
@@ -748,17 +949,18 @@
       transform: scale(1.02);
     }
     .hero-title {
+      font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
       font-size: 24px;
       font-weight: 700;
       line-height: 1.25;
       color: #ffffff;
       margin-bottom: 8px;
       letter-spacing: 0.2px;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.28);
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
     }
     .hero-subtitle {
       font-size: 13.5px;
-      color: #e6fffa;
+      color: #e2e8f0;
       opacity: 0.95;
       max-width: 680px;
       line-height: 1.55;
@@ -773,11 +975,7 @@
       z-index: 2;
     }
     .stat-chip {
-      background: rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-top: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 12px;
       padding: 10px 16px;
       display: flex;
@@ -785,36 +983,18 @@
       gap: 12px;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15),
-                  inset 0 1px 1px rgba(255, 255, 255, 0.25);
+                  0 1px 3px rgba(0, 0, 0, 0.08);
       position: relative;
       overflow: hidden;
     }
-    .stat-chip::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: skewX(-20deg);
-      transition: left 0.5s ease;
-      pointer-events: none;
-    }
-    .stat-chip:hover::after {
-      left: 150%;
-    }
     .stat-chip:hover {
-      background: rgba(255, 255, 255, 0.22);
-      border-color: rgba(244, 206, 42, 0.65);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25),
-                  0 0 16px rgba(244, 206, 42, 0.35),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.45);
+      background: #ffffff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
     }
     .chip-icon {
       font-size: 22px;
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
     }
     .chip-meta {
       display: flex;
@@ -822,23 +1002,23 @@
     }
     .chip-label {
       font-size: 10px;
-      color: #cbd5e1;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      font-weight: 600;
+      font-weight: 700;
     }
     .chip-value {
       font-size: 13.5px;
-      font-weight: 700;
-      color: #ffffff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      font-weight: 800;
     }
 
-    /* PERIOD SELECTOR TOOLBAR */
+    /* PERIOD SELECTOR TOOLBAR (WHITE FROSTED GLASS) */
     .period-toolbar {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-top: 1.5px solid rgba(255, 255, 255, 1);
+      border-radius: 14px;
       padding: 14px 20px;
       margin-bottom: 22px;
       display: flex;
@@ -846,7 +1026,10 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06), 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+    }
+    .period-toolbar span {
+      color: #0f172a !important;
     }
     .period-select {
       padding: 8px 14px;
@@ -854,19 +1037,24 @@
       font-weight: 600;
       border: 1px solid #cbd5e1;
       border-radius: 8px;
-      background: #f8fafc;
-      color: var(--muh-green-deep);
+      background: #ffffff;
+      color: #0f172a;
       cursor: pointer;
       outline: none;
       transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .period-select option {
+      background: #ffffff;
+      color: #0f172a;
     }
     .period-select:focus {
-      border-color: var(--muh-green-primary);
-      box-shadow: 0 0 0 3px rgba(4, 165, 79, 0.15);
-      background: white;
+      border-color: #059669;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+      background: #ffffff;
     }
 
-    /* METRIC CARDS WITH MODERN HOVER LIFT & GREEN-GOLD GRADIENT */
+    /* METRIC CARDS WITH WHITE FROSTED GLASS & CRISP CONTRAST */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -874,11 +1062,14 @@
       margin-bottom: 24px;
     }
     .card {
-      background: var(--surface);
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border-radius: 16px;
       padding: 20px 22px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      border: 1px solid var(--border);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-top: 2px solid rgba(255, 255, 255, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -893,18 +1084,19 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #2C368B 0%, #0d6e5d 50%, #04A54F 100%);
-      opacity: 0.9;
+      height: 3.5px;
+      background: linear-gradient(90deg, #0284c7 0%, #10b981 50%, #f59e0b 100%);
+      opacity: 0.95;
       transition: height 0.2s ease, opacity 0.2s ease;
     }
     .card:hover {
+      background: rgba(255, 255, 255, 0.98);
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px -6px rgba(4, 165, 79, 0.16);
-      border-color: rgba(4, 165, 79, 0.35);
+      box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(16, 185, 129, 0.12);
+      border-color: #cbd5e1;
     }
     .card:hover::before {
-      height: 5px;
+      height: 4.5px;
       opacity: 1;
     }
     .card-header-row {
@@ -917,28 +1109,31 @@
     .card-title {
       font-size: 11.5px;
       font-weight: 700;
-      color: var(--text-muted);
+      color: #475569;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       line-height: 1.35;
     }
     .card-value {
+      font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
       font-size: 25px;
       font-weight: 800;
-      color: var(--text);
+      color: #0f172a;
       letter-spacing: -0.5px;
       white-space: nowrap;
       margin: 2px 0 6px 0;
+      text-shadow: none;
+      transition: color 0.2s ease;
     }
     .card-desc {
       font-size: 12px;
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--text-muted);
+      color: #64748b;
     }
 
-    /* TREND BADGES (KENAIKAN HIJAU, PENURUNAN MERAH, NETRAL ABU) */
+    /* TREND BADGES (HIGH CONTRAST ON WHITE GLASS) */
     .trend-badge {
       display: inline-flex;
       align-items: center;
@@ -946,7 +1141,7 @@
       font-size: 11px;
       font-weight: 700;
       padding: 3px 8px;
-      border-radius: 5px;
+      border-radius: 6px;
       white-space: nowrap;
       letter-spacing: 0.2px;
     }
@@ -957,24 +1152,24 @@
     }
     .trend-down {
       background: #fee2e2;
-      color: #b91c1c;
+      color: #dc2626;
       border: 1px solid #fca5a5;
     }
     .trend-neutral {
       background: #f1f5f9;
-      color: #64748b;
+      color: #475569;
       border: 1px solid #cbd5e1;
     }
 
     .trend-detail-box {
       margin-top: 10px;
       padding-top: 8px;
-      border-top: 1px dashed #e2e8f0;
+      border-top: 1px dashed #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 11px;
-      color: #64748b;
+      color: #475569;
       flex-wrap: wrap;
       gap: 6px;
     }
@@ -984,12 +1179,12 @@
       gap: 5px;
     }
 
-    .text-success { color: var(--success); }
-    .text-danger { color: var(--danger); }
-    .text-warning { color: var(--warning); }
+    .text-success { color: #15803d; }
+    .text-danger { color: #dc2626; }
+    .text-warning { color: #b45309; }
     .text-info { color: #0284c7; }
 
-    /* CHARTS GRID */
+    /* CHARTS GRID (WHITE FROSTED GLASS) */
     .charts-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -1002,25 +1197,29 @@
       }
     }
     .chart-card {
-      background: var(--surface);
-      border-radius: 14px;
-      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(18px) saturate(180%);
+      -webkit-backdrop-filter: blur(18px) saturate(180%);
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-top: 2px solid rgba(255, 255, 255, 1);
       padding: 22px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
       transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .chart-card:hover {
+      background: rgba(255, 255, 255, 0.98);
       transform: translateY(-3px);
-      box-shadow: 0 10px 22px -4px rgba(0,0,0,0.08);
+      box-shadow: 0 16px 32px -6px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(16, 185, 129, 0.12);
     }
     .chart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
-      border-bottom: 1px solid #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
       padding-bottom: 10px;
       gap: 8px;
       flex-wrap: wrap;
@@ -1028,7 +1227,7 @@
     .chart-title {
       font-size: 14.5px;
       font-weight: 700;
-      color: var(--text);
+      color: #0f172a;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -1046,13 +1245,16 @@
       width: 100%;
     }
 
-    /* TABLES LEGA & RAPI */
+    /* TABLES LEGA & RAPI (TRUE SEE-THROUGH CRYSTAL GLASS) */
     .table-container {
-      background: var(--surface);
-      border-radius: 12px;
-      border: 1px solid var(--border);
+      background: var(--glass-bg-card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.42);
       overflow-x: auto;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      box-shadow: var(--glass-shadow);
       margin-bottom: 24px;
     }
 
@@ -1061,8 +1263,8 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(2px);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
       z-index: 95;
     }
     .sidebar-backdrop.active {
@@ -1076,6 +1278,7 @@
         top: 0;
         bottom: 0;
         transform: translateX(-100%);
+        background: rgba(6, 13, 30, 0.85);
       }
       .app-sidebar.open {
         transform: translateX(0);
@@ -1105,16 +1308,18 @@
     }
     .toast-item {
       pointer-events: auto;
-      background: #063A20;
+      background: rgba(6, 58, 32, 0.85);
+      backdrop-filter: blur(16px);
       color: #ffffff;
       padding: 12px 18px;
-      border-radius: 10px;
+      border-radius: 12px;
       font-size: 13px;
       font-weight: 500;
       display: flex;
       align-items: center;
       gap: 10px;
-      box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-left: 4px solid var(--muh-gold);
       animation: toastSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       max-width: 380px;
@@ -1135,15 +1340,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border);
-      background: #fafafa;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(15, 23, 42, 0.32);
       flex-wrap: wrap;
       gap: 12px;
     }
     .table-title {
       font-size: 15px;
       font-weight: 700;
-      color: var(--text);
+      color: #ffffff;
     }
     table {
       width: 100%;
@@ -1152,11 +1357,11 @@
       font-size: 13px;
     }
     th {
-      background-color: #f8fafc;
-      color: #475569;
+      background: rgba(15, 23, 42, 0.48);
+      color: #cbd5e1;
       font-weight: 700;
       padding: 10px 10px;
-      border-bottom: 2px solid var(--border);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.16);
       white-space: nowrap;
       font-size: 11.5px;
       text-transform: uppercase;
@@ -1164,20 +1369,45 @@
     }
     td {
       padding: 9px 10px;
-      border-bottom: 1px solid var(--border);
-      color: #334155;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e2e8f0;
       vertical-align: middle;
       font-size: 12.5px;
     }
+    #tabelRekap5Tahun {
+      background: #ffffff;
+      color: #0f172a;
+    }
     #tabelRekap5Tahun th {
-      padding: 8px 6px;
-      font-size: 11px;
-      line-height: 1.25;
+      background: #f1f5f9 !important;
+      color: #1e293b !important;
+      border: 1px solid #cbd5e1 !important;
+      padding: 9px 8px;
+      font-size: 11.5px;
+      line-height: 1.3;
       white-space: normal;
+      font-weight: 700;
     }
     #tabelRekap5Tahun td {
-      padding: 8px 6px;
-      font-size: 11.5px;
+      background: #ffffff;
+      color: #0f172a !important;
+      border: 1px solid #e2e8f0 !important;
+      padding: 8px 8px;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    #tabelRekap5Tahun tr:hover td {
+      background: #f8fafc;
+    }
+    #tabelRekap5Tahun tfoot tr {
+      background: #f8fafc;
+      border-top: 2px solid #0f172a;
+    }
+    #tabelRekap5Tahun tfoot td {
+      background: #f8fafc !important;
+      color: #0f172a !important;
+      border: 1px solid #cbd5e1 !important;
+      font-weight: 700;
     }
     #tabelPayroll th {
       padding: 8px 6px;
@@ -1195,7 +1425,148 @@
       border-bottom: none;
     }
     tr:hover {
-      background-color: #f8fafc;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    /* Keep official paper tables clean on white */
+    .paper tr:hover, .tabel-presensi-dinas tr:hover {
+      background-color: transparent;
+    }
+    .paper td, .paper th {
+      color: #111111;
+      border-color: transparent;
+    }
+
+    /* =========================================================================
+       HALAMAN KERJA PUTIH UNTUK TAB DAFTAR HONOR GTK & TAB BUKU KAS UMUM
+       (Sesuai instruksi: halaman kerja tetap berwarna putih agar mempermudah user mengisi)
+       ========================================================================= */
+    #tab-payroll .table-container,
+    #tab-buku-kas .table-container {
+      background: #ffffff !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 14px !important;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35), 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+      color: #0f172a !important;
+    }
+
+    #tab-payroll .table-header-action,
+    #tab-buku-kas .table-header-action {
+      background: #f8fafc !important;
+      border-bottom: 1.5px solid #e2e8f0 !important;
+      color: #0f172a !important;
+    }
+
+    #tab-payroll .table-title,
+    #tab-buku-kas .table-title {
+      color: #0f172a !important;
+      font-weight: 800 !important;
+    }
+
+    #tab-payroll .period-select,
+    #tab-buku-kas .period-select {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border: 1.5px solid #cbd5e1 !important;
+    }
+    #tab-payroll .period-select option,
+    #tab-buku-kas .period-select option {
+      background: #ffffff !important;
+      color: #0f172a !important;
+    }
+
+    #tab-payroll table th,
+    #tab-buku-kas table th {
+      background: #f1f5f9 !important;
+      color: #334155 !important;
+      font-weight: 700 !important;
+      border-bottom: 2px solid #cbd5e1 !important;
+      border-right: 1px solid #e2e8f0 !important;
+    }
+
+    #tab-payroll table td,
+    #tab-buku-kas table td {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-bottom: 1px solid #e2e8f0 !important;
+      border-right: 1px solid #f8fafc !important;
+    }
+
+    #tab-payroll table tr:hover td,
+    #tab-buku-kas table tr:hover td {
+      background-color: #f8fafc !important;
+    }
+
+    #tab-payroll .editable-cell,
+    #tab-buku-kas .editable-cell {
+      color: #0f172a !important;
+      background: transparent;
+    }
+
+    #tab-payroll .editable-cell:hover,
+    #tab-buku-kas .editable-cell:hover {
+      background-color: #ecfdf5 !important;
+      color: #065f46 !important;
+      cursor: text;
+    }
+
+    #tab-payroll .editable-cell:focus,
+    #tab-buku-kas .editable-cell:focus {
+      background-color: #ffffff !important;
+      color: #0f172a !important;
+      box-shadow: 0 0 0 2.5px #04A54F !important;
+      outline: none;
+    }
+
+    #tab-payroll tfoot tr,
+    #tab-payroll tfoot td {
+      background: #f0fdf4 !important;
+      color: #04A54F !important;
+      border-top: 2px solid #86efac !important;
+    }
+
+    #tab-buku-kas tfoot tr,
+    #tab-buku-kas tfoot td {
+      background: #f8fafc !important;
+      color: #0f172a !important;
+      border-top: 2px solid #cbd5e1 !important;
+    }
+
+    #tab-payroll .payroll-signatures {
+      background: #ffffff !important;
+      color: #0f172a !important;
+      border-top: 1px dashed #cbd5e1 !important;
+    }
+
+    #tab-payroll .payroll-signatures span,
+    #tab-payroll .payroll-signatures strong,
+    #tab-payroll .payroll-signatures u {
+      color: #0f172a !important;
+    }
+
+    #tab-payroll .payroll-signatures img {
+      filter: none !important;
+    }
+
+    /* Badges Status di Halaman Kerja Putih */
+    #tab-payroll .status-tunai,
+    #tab-buku-kas .status-tunai {
+      background: #dcfce7 !important;
+      color: #15803d !important;
+      border: 1px solid #86efac !important;
+    }
+
+    #tab-payroll .status-transfer,
+    #tab-buku-kas .status-transfer {
+      background: #eff6ff !important;
+      color: #1d4ed8 !important;
+      border: 1px solid #bfdbfe !important;
+    }
+
+    #tab-payroll .status-none,
+    #tab-buku-kas .status-none {
+      background: #f1f5f9 !important;
+      color: #64748b !important;
+      border: 1px solid #cbd5e1 !important;
     }
     .cell-nowrap {
       white-space: nowrap;
@@ -1208,12 +1579,13 @@
       transition: background 0.15s ease;
     }
     .editable-cell:hover {
-      background-color: #f0fdf4;
+      background-color: rgba(52, 211, 153, 0.15);
       cursor: text;
     }
     .editable-cell:focus {
-      background-color: #ffffff;
-      box-shadow: 0 0 0 2px var(--primary);
+      background-color: rgba(15, 23, 42, 0.85);
+      color: #ffffff;
+      box-shadow: 0 0 0 2px #34D399;
     }
 
 
@@ -1247,22 +1619,31 @@
     }
     .badge-status:hover {
       transform: translateY(-1px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     .status-tunai {
-      background: #f0fdf4;
-      color: #04A54F;
-      border: 1px solid #bbf7d0;
+      background: #dcfce7 !important;
+      color: #15803d !important;
+      border: 1px solid #86efac !important;
+      font-weight: 700 !important;
     }
     .status-transfer {
-      background: #eff6ff;
-      color: #2C368B;
-      border: 1px solid #bfdbfe;
+      background: #eff6ff !important;
+      color: #1d4ed8 !important;
+      border: 1px solid #bfdbfe !important;
+      font-weight: 700 !important;
     }
     .status-none {
-      background: #f8fafc;
-      color: #64748b;
-      border: 1px solid #cbd5e1;
+      background: #f1f5f9 !important;
+      color: #475569 !important;
+      border: 1px solid #cbd5e1 !important;
+      font-weight: 600 !important;
+    }
+    #dashPeriodBadge {
+      font-weight: 700 !important;
+      font-size: 12.5px !important;
+      letter-spacing: 0.2px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
 
     /* SURAT RESMI PREVIEW (FORMAT KERTAS F4: 215mm x 330mm, MARGIN: 2.5cm) */
@@ -1374,14 +1755,16 @@
       height: 60px;
     }
 
-    /* SLIP PREVIEW */
+    /* SLIP PREVIEW (KEEP LIGHT PAPER FOR OFFICIAL RECEIPT PRINTING) */
     .slip-container {
       background: white;
+      color: #0f172a;
       max-width: 620px;
       margin: 0 auto;
       padding: 32px;
       border: 2px dashed #94a3b8;
       border-radius: 8px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     }
     .slip-header {
       text-align: center;
@@ -1414,12 +1797,15 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      border: 1px solid rgba(226, 232, 240, 0.95);
+      border-top: 1.5px solid rgba(255, 255, 255, 1);
       padding: 12px 16px;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-bottom: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);
     }
     .presensi-controls-left {
       display: flex;
@@ -1442,7 +1828,7 @@
     .presensi-view-toggle {
       display: flex;
       background: #f1f5f9;
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 3px;
       border: 1px solid #cbd5e1;
     }
@@ -1452,22 +1838,26 @@
       padding: 6px 12px;
       font-size: 12.5px;
       font-weight: 600;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
       color: #475569;
       transition: all 0.2s ease;
     }
     .btn-toggle.active {
       background: #ffffff;
-      color: var(--primary-dark);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      color: #047857;
+      border: 1px solid #10b981;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
     }
     .presensi-kiosk-panel {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      background: var(--glass-bg-card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
       padding: 18px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      box-shadow: var(--glass-shadow);
     }
     .kiosk-header-card {
       display: flex;
@@ -1475,10 +1865,12 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 16px;
-      background: linear-gradient(135deg, #0f766e 0%, #065f46 100%);
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.45) 0%, rgba(6, 95, 70, 0.45) 100%);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(52, 211, 153, 0.4);
       color: #ffffff;
       padding: 16px 20px;
-      border-radius: 8px;
+      border-radius: 12px;
       margin-bottom: 18px;
     }
     .live-clock-time {
@@ -1509,16 +1901,18 @@
       transition: all 0.15s;
     }
     .day-pill.active {
-      background: #ffffff;
-      color: #065f46;
+      background: #F4CE2A;
+      color: #020611;
+      border-color: #FDE047;
       font-weight: 700;
     }
     .kiosk-stats-summary {
       display: flex;
       gap: 16px;
-      background: rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.3);
       padding: 8px 16px;
-      border-radius: 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
     }
     .kiosk-stat-item {
       text-align: center;
@@ -1539,18 +1933,20 @@
       gap: 12px;
     }
     .kiosk-card {
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 10px;
       padding: 12px 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
     .kiosk-card:hover {
-      border-color: #0f766e;
-      background: #f0fdfa;
+      border-color: rgba(52, 211, 153, 0.55);
+      background: rgba(15, 23, 42, 0.65);
+      transform: translateY(-2px);
     }
     .kiosk-card-header {
       display: flex;
@@ -1561,11 +1957,11 @@
     .kiosk-name {
       font-weight: 700;
       font-size: 13.5px;
-      color: #0f172a;
+      color: #ffffff;
     }
     .kiosk-role {
       font-size: 11.5px;
-      color: #64748b;
+      color: #94a3b8;
     }
     .kiosk-badge-status {
       font-size: 11px;
@@ -1574,30 +1970,31 @@
       border-radius: 12px;
     }
     .kiosk-badge-tepat {
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #86efac;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(52, 211, 153, 0.45);
     }
     .kiosk-badge-telat {
-      background: #fef3c7;
-      color: #92400e;
-      border: 1px solid #fde68a;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fcd34d;
+      border: 1px solid rgba(251, 191, 36, 0.45);
     }
     .kiosk-badge-izin {
-      background: #e0f2fe;
-      color: #075985;
-      border: 1px solid #bae6fd;
+      background: rgba(14, 165, 233, 0.2);
+      color: #7dd3fc;
+      border: 1px solid rgba(56, 189, 248, 0.45);
     }
     .kiosk-badge-belum {
-      background: #f1f5f9;
-      color: #64748b;
-      border: 1px solid #cbd5e1;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .kiosk-time-display {
       display: flex;
       justify-content: space-between;
-      background: #ffffff;
-      border: 1px solid #e2e8f0;
+      background: rgba(2, 6, 17, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #e2e8f0;
       border-radius: 6px;
       padding: 6px 10px;
       margin-bottom: 10px;
@@ -1638,9 +2035,9 @@
       background: #0369a1;
     }
     .btn-kiosk-opt {
-      background: #e2e8f0;
-      color: #334155;
-      border: none;
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       padding: 6px 8px;
       border-radius: 5px;
       font-size: 11.5px;
@@ -1648,13 +2045,14 @@
       font-weight: 600;
     }
     .btn-kiosk-opt:hover {
-      background: #cbd5e1;
+      background: rgba(255, 255, 255, 0.22);
     }
     .presensi-paper-container {
       background: #ffffff;
-      border-radius: 8px;
+      color: #0f172a;
+      border-radius: 10px;
       padding: 24px 20px;
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.45);
     }
     .tabel-presensi-dinas {
       width: 100%;
@@ -2747,7 +3145,7 @@
     }
 
     /* =========================================================================
-       SISTEM AUTENTIKASI & LOGIN GATE
+       SISTEM AUTENTIKASI & LOGIN GATE (TRUE SEE-THROUGH CRYSTAL GLASS 4.0)
        ========================================================================= */
     body.auth-locked .app-shell,
     body.auth-locked .toast-container,
@@ -2759,9 +3157,11 @@
       position: fixed;
       inset: 0;
       z-index: 999999;
-      background: radial-gradient(circle at 50% 15%, rgba(4, 165, 79, 0.28) 0%, transparent 55%),
-                  radial-gradient(circle at 85% 85%, rgba(44, 54, 139, 0.4) 0%, transparent 60%),
-                  linear-gradient(135deg, #070c1e 0%, #0d1a38 50%, #052617 100%);
+      background: radial-gradient(circle at 50% 18%, rgba(4, 165, 79, 0.16) 0%, transparent 55%),
+                  radial-gradient(circle at 85% 85%, rgba(44, 54, 139, 0.22) 0%, transparent 60%),
+                  rgba(2, 6, 17, 0.35);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2776,16 +3176,35 @@
     }
 
     .login-card {
-      background: rgba(255, 255, 255, 0.98);
-      border-radius: 18px;
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.65),
-                  0 0 0 1.5px rgba(244, 206, 42, 0.4),
-                  0 0 45px rgba(4, 165, 79, 0.2);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.11) 0%, rgba(15, 23, 42, 0.32) 55%, rgba(4, 165, 79, 0.09) 100%);
+      backdrop-filter: blur(22px) saturate(210%);
+      -webkit-backdrop-filter: blur(22px) saturate(210%);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.55);
+      border-left: 1.5px solid rgba(255, 255, 255, 0.38);
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.72),
+                  0 0 0 1px rgba(244, 206, 42, 0.28),
+                  0 0 50px rgba(4, 165, 79, 0.22),
+                  inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.45),
+                  inset 0 -1px 1px 0 rgba(52, 211, 153, 0.22);
       width: 100%;
-      max-width: 440px;
+      max-width: 455px;
       overflow: hidden;
       position: relative;
       animation: loginCardPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 90%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.08) 45%, rgba(244, 206, 42, 0.12) 50%, transparent 70%);
+      transform: skewX(-25deg);
+      animation: heroGlassSheen 9s ease-in-out infinite;
+      pointer-events: none;
     }
     @keyframes loginCardPop {
       from { opacity: 0; transform: scale(0.92) translateY(18px); }
@@ -2801,31 +3220,33 @@
     }
 
     .login-card-top-bar {
-      height: 6px;
-      background: linear-gradient(90deg, #2C368B 0%, #0e6756 50%, #04A54F 100%);
+      height: 4px;
+      background: linear-gradient(90deg, #38BDF8 0%, #34D399 50%, #F4CE2A 100%);
+      box-shadow: 0 0 16px rgba(52, 211, 153, 0.6);
     }
 
     .login-header {
-      padding: 26px 24px 16px;
+      padding: 24px 24px 16px;
       text-align: center;
-      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(15, 23, 42, 0.12) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      position: relative;
     }
     .login-logo-halo {
-      width: 74px;
-      height: 74px;
+      width: 76px;
+      height: 76px;
       margin: 0 auto 12px;
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.94);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 18px rgba(0,0,0,0.12), 0 0 0 3px rgba(244, 206, 42, 0.85);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(244, 206, 42, 0.85), 0 0 25px rgba(52, 211, 153, 0.45);
       position: relative;
       transition: transform 0.3s ease;
     }
     .login-logo-halo:hover {
-      transform: scale(1.05) rotate(5deg);
+      transform: scale(1.06) rotate(5deg);
     }
     .login-logo-img {
       width: 60px;
@@ -2833,28 +3254,33 @@
       object-fit: contain;
     }
     .login-title-school {
-      font-size: 16.5px;
+      font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
       font-weight: 800;
-      color: #0f172a;
-      letter-spacing: 0.3px;
+      color: #ffffff;
+      letter-spacing: 0.5px;
       line-height: 1.25;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
     }
     .login-title-sub {
-      font-size: 13px;
-      font-weight: 700;
-      color: #04A54F;
-      letter-spacing: 0.4px;
-      margin-bottom: 4px;
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #34D399;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      text-shadow: 0 0 14px rgba(52, 211, 153, 0.4);
     }
     .login-title-desc {
       font-size: 11.5px;
-      color: #64748b;
+      color: #cbd5e1;
       font-weight: 500;
     }
 
     .login-body {
-      padding: 22px 26px 26px;
+      padding: 22px 26px 24px;
+      position: relative;
+      z-index: 2;
     }
 
     .login-form-group {
@@ -2864,10 +3290,10 @@
       display: block;
       font-size: 11.5px;
       font-weight: 700;
-      color: #334155;
+      color: #e2e8f0;
       margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.4px;
+      letter-spacing: 0.5px;
     }
     .login-input-wrap {
       position: relative;
@@ -2878,25 +3304,31 @@
       position: absolute;
       left: 12px;
       font-size: 15px;
-      color: #64748b;
+      color: #94a3b8;
       pointer-events: none;
     }
     .login-input {
       width: 100%;
       padding: 11px 40px 11px 38px;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-top: 1px solid rgba(255, 255, 255, 0.42);
+      border-radius: 12px;
       font-size: 13.5px;
-      color: #0f172a;
-      background: #f8fafc;
+      color: #ffffff;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(12px);
       transition: all 0.2s ease;
       font-family: inherit;
       outline: none;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.25);
+    }
+    .login-input::placeholder {
+      color: rgba(203, 213, 225, 0.55);
     }
     .login-input:focus {
-      background: #ffffff;
-      border-color: #04A54F;
-      box-shadow: 0 0 0 3.5px rgba(4, 165, 79, 0.16);
+      background: rgba(15, 23, 42, 0.68);
+      border-color: #34D399;
+      box-shadow: 0 0 0 3.5px rgba(52, 211, 153, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.2);
     }
     .login-pw-toggle {
       position: absolute;
@@ -2905,12 +3337,12 @@
       border: none;
       cursor: pointer;
       font-size: 15px;
-      color: #64748b;
+      color: #cbd5e1;
       padding: 4px;
       border-radius: 4px;
     }
     .login-pw-toggle:hover {
-      color: #0f172a;
+      color: #ffffff;
     }
 
     .login-remember-row {
@@ -2919,7 +3351,7 @@
       justify-content: space-between;
       margin-bottom: 18px;
       font-size: 12.5px;
-      color: #475569;
+      color: #cbd5e1;
     }
     .login-checkbox-label {
       display: flex;
@@ -2932,10 +3364,11 @@
     .login-alert-box {
       display: none;
       padding: 10px 14px;
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      border-radius: 8px;
-      color: #b91c1c;
+      background: rgba(239, 68, 68, 0.22);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(248, 113, 113, 0.55);
+      border-radius: 10px;
+      color: #fecaca;
       font-size: 12px;
       font-weight: 600;
       margin-bottom: 16px;
@@ -2951,15 +3384,16 @@
     .btn-login-submit {
       width: 100%;
       padding: 12px 18px;
-      background: linear-gradient(135deg, #2C368B 0%, #0e6756 50%, #04A54F 100%);
+      background: linear-gradient(135deg, #04A54F 0%, #059669 50%, #2C368B 100%);
       color: #ffffff;
       font-size: 14px;
       font-weight: 700;
-      border: none;
-      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.65);
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 4px 15px rgba(44, 54, 139, 0.35);
+      box-shadow: 0 8px 24px rgba(4, 165, 79, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.35);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2967,23 +3401,48 @@
     }
     .btn-login-submit:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 22px rgba(4, 165, 79, 0.4);
-      filter: brightness(1.06);
+      box-shadow: 0 12px 28px rgba(52, 211, 153, 0.5), 0 0 20px rgba(244, 206, 42, 0.25);
+      filter: brightness(1.08);
     }
     .btn-login-submit:active {
       transform: translateY(0);
+    }
+
+    .btn-login-back-home {
+      margin-top: 10px;
+      width: 100%;
+      padding: 9px 14px;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 10px;
+      color: #cbd5e1;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-login-back-home:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      border-color: rgba(52, 211, 153, 0.45);
+      transform: translateY(-1px);
     }
 
     /* QUICK CREDENTIAL CHIPS */
     .login-quick-creds {
       margin-top: 18px;
       padding-top: 16px;
-      border-top: 1px dashed #e2e8f0;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
     }
     .quick-creds-title {
       font-size: 11px;
       font-weight: 700;
-      color: #64748b;
+      color: #94a3b8;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       margin-bottom: 8px;
@@ -2999,46 +3458,48 @@
       align-items: center;
       justify-content: space-between;
       padding: 7px 11px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      background: rgba(15, 23, 42, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       border-radius: 8px;
       font-size: 11.5px;
-      color: #334155;
+      color: #cbd5e1;
       cursor: pointer;
       transition: all 0.18s ease;
       text-align: left;
     }
     .cred-chip-btn:hover {
-      background: #f0fdf4;
-      border-color: #86efac;
-      color: #04A54F;
+      background: rgba(4, 165, 79, 0.18);
+      border-color: rgba(52, 211, 153, 0.5);
+      color: #6ee7b7;
       transform: translateX(2px);
     }
     .cred-chip-btn strong {
-      color: #0f172a;
+      color: #ffffff;
     }
     .cred-chip-badge {
       font-size: 10px;
       font-weight: 700;
       padding: 2px 7px;
       border-radius: 6px;
-      background: #e2e8f0;
-      color: #475569;
+      background: rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
     }
     .cred-chip-btn:hover .cred-chip-badge {
-      background: #bbf7d0;
-      color: #166534;
+      background: rgba(52, 211, 153, 0.25);
+      color: #ffffff;
     }
 
-    /* TOPBAR USER PILL */
+    /* TOPBAR USER PILL (WHITE FROSTED GLASS) */
     .topbar-user-badge {
       display: flex;
       align-items: center;
       gap: 9px;
       padding: 4px 10px 4px 6px;
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
+      background: #ffffff;
+      backdrop-filter: blur(14px);
+      border: 1px solid #cbd5e1;
       border-radius: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
     .topbar-user-avatar {
       width: 28px;
@@ -3060,7 +3521,7 @@
     .topbar-user-name {
       font-size: 12px;
       font-weight: 700;
-      color: #1e293b;
+      color: #0f172a;
     }
     .topbar-user-role {
       font-size: 10px;
@@ -3073,7 +3534,7 @@
       font-size: 14px;
       padding: 4px;
       border-radius: 4px;
-      color: #dc2626;
+      color: #f87171;
       transition: transform 0.15s ease;
       display: flex;
       align-items: center;
@@ -3082,7 +3543,7 @@
     }
     .btn-logout-icon:hover {
       transform: scale(1.15);
-      background: #fee2e2;
+      background: rgba(239, 68, 68, 0.2);
     }
 
     /* SIDEBAR USER CARD (GLASS DYNAMIC) */
@@ -3173,12 +3634,13 @@
       box-shadow: 0 3px 10px rgba(220, 38, 38, 0.4);
     }
 
-    /* MODAL PENGATURAN AKUN */
+    /* MODAL PENGATURAN AKUN & POPUP DETAIL (BERSIH & TERBACA) */
     .modal-overlay-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(15, 23, 42, 0.65);
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       z-index: 999998;
       display: none;
       align-items: center;
@@ -3195,13 +3657,30 @@
     }
     .modal-akun-card {
       background: #ffffff;
+      color: #0f172a;
       border-radius: 16px;
+      border: 1px solid #cbd5e1;
       width: 100%;
       max-width: 480px;
       box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.4),
                   0 0 0 1px rgba(244, 206, 42, 0.35);
       overflow: hidden;
       animation: modalPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    /* ENFORCE CRISP, HIGH-CONTRAST READABILITY INSIDE ALL MODALS */
+    .modal-akun-card table td {
+      color: #0f172a !important;
+    }
+    .modal-akun-card table th {
+      background: #f1f5f9 !important;
+      color: #1e293b !important;
+      border-bottom: 2px solid #cbd5e1 !important;
+      font-weight: 700 !important;
+    }
+    .modal-akun-card .table-container {
+      background: #ffffff !important;
+      border: 1px solid #e2e8f0 !important;
+      box-shadow: none !important;
     }
     @keyframes modalPop {
       from { opacity: 0; transform: scale(0.94) translateY(12px); }
@@ -3254,6 +3733,7 @@
     }
     .modal-akun-body {
       padding: 22px 24px;
+      color: #0f172a;
     }
     .modal-form-group {
       margin-bottom: 14px;
@@ -3279,6 +3759,10 @@
       transition: all 0.2s ease;
       font-family: inherit;
       box-sizing: border-box;
+    }
+    .modal-input option {
+      background: #ffffff;
+      color: #0f172a;
     }
     .modal-input:focus {
       background: #ffffff;
@@ -3347,6 +3831,9 @@
       font-weight: 600;
       cursor: pointer;
     }
+    .btn-modal-cancel:hover {
+      background: #e2e8f0;
+    }
     .btn-modal-reset {
       background: none;
       border: none;
@@ -3358,7 +3845,7 @@
       padding: 4px;
     }
     .btn-modal-reset:hover {
-      color: #991b1b;
+      color: #b91c1c;
     }
     .btn-user-settings-icon {
       background: none;
@@ -3367,7 +3854,7 @@
       font-size: 14px;
       padding: 4px;
       border-radius: 4px;
-      color: #04A54F;
+      color: #34D399;
       transition: transform 0.15s ease;
       display: flex;
       align-items: center;
@@ -3375,7 +3862,7 @@
     }
     .btn-user-settings-icon:hover {
       transform: rotate(45deg);
-      background: #ecfdf5;
+      background: rgba(52, 211, 153, 0.15);
     }
     .btn-sidebar-settings {
       background: rgba(255, 255, 255, 0.12);
@@ -3399,18 +3886,75 @@
 </head>
 <body class="auth-locked">
 
-  <!-- LOGIN OVERLAY GATE -->
+  <!-- =========================================================================
+       FUTURISTIC NEO-ISLAMIC AMBIENT AURORA, CYBER GRID & CALLIGRAPHY LAYER
+       (SHINES THROUGH BOTH LOGIN CRYSTAL CARD & PORTAL GTK DASHBOARD)
+       ========================================================================= -->
+  <div class="ambient-canvas no-print" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="ambient-orb orb-4"></div>
+  </div>
+  <div class="ambient-grid no-print" aria-hidden="true"></div>
+  <div id="cursorSpotlight" class="no-print" aria-hidden="true"></div>
+
+  <div class="calligraphy-bg-layer no-print" aria-hidden="true">
+    <!-- 12-Ray Surya Muhammadiyah Sacred Geometry Mandala Right -->
+    <svg class="sacred-mandala mandala-hero-right" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="suryaGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#FDE047" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#34D399" stop-opacity="0.8"/>
+          <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.7"/>
+        </linearGradient>
+      </defs>
+      <circle cx="100" cy="100" r="92" stroke="url(#suryaGrad1)" stroke-width="0.6" stroke-dasharray="3 3"/>
+      <circle cx="100" cy="100" r="76" stroke="url(#suryaGrad1)" stroke-width="0.8"/>
+      <circle cx="100" cy="100" r="54" stroke="url(#suryaGrad1)" stroke-width="0.6" stroke-dasharray="6 4"/>
+      <g stroke="url(#suryaGrad1)" stroke-width="0.9">
+        <rect x="46" y="46" width="108" height="108" transform="rotate(0 100 100)"/>
+        <rect x="46" y="46" width="108" height="108" transform="rotate(30 100 100)"/>
+        <rect x="46" y="46" width="108" height="108" transform="rotate(60 100 100)"/>
+      </g>
+      <circle cx="100" cy="100" r="32" stroke="url(#suryaGrad1)" stroke-width="1.2"/>
+    </svg>
+
+    <!-- 12-Ray Surya Muhammadiyah Sacred Geometry Mandala Left -->
+    <svg class="sacred-mandala mandala-mid-left" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="90" stroke="url(#suryaGrad1)" stroke-width="0.7" stroke-dasharray="4 4"/>
+      <g stroke="url(#suryaGrad1)" stroke-width="0.8">
+        <rect x="44" y="44" width="112" height="112" transform="rotate(15 100 100)"/>
+        <rect x="44" y="44" width="112" height="112" transform="rotate(45 100 100)"/>
+        <rect x="44" y="44" width="112" height="112" transform="rotate(75 100 100)"/>
+      </g>
+      <circle cx="100" cy="100" r="42" stroke="url(#suryaGrad1)" stroke-width="1"/>
+    </svg>
+
+    <!-- Luminous Arabic Calligraphy Watermarks (Shining Behind See-Through Crystal Glass) -->
+    <div class="bg-calligraphy-art cal-top">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="bg-calligraphy-art cal-mid">ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ</div>
+    <div class="bg-calligraphy-art cal-bot">نَصْرٌ مِّنَ اللَّهِ وَفَتْحٌ قَرِيبٌ</div>
+  </div>
+
+  <!-- LOGIN OVERLAY GATE (SEE-THROUGH LIQUID CRYSTAL) -->
   <div id="loginScreen" class="login-overlay">
     <div class="login-card" id="loginCard">
       <div class="login-card-top-bar"></div>
       
       <div class="login-header">
+        <div style="margin-bottom: 10px;">
+          <span class="ayat-glass-pill" style="padding: 4px 14px; font-size: 11px;">
+            <span class="arabic" style="font-size: 15px;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+            <span>&bull; Portal Terpadu</span>
+          </span>
+        </div>
         <div class="login-logo-halo">
           <img src="logo-smp-muhammadiyah.png" alt="Logo SMP Muhammadiyah" class="login-logo-img">
         </div>
         <div class="login-title-school">SMP MUHAMMADIYAH 1</div>
         <div class="login-title-sub">KOTA BANGUN DARAT</div>
-        <div class="login-title-desc">Sistem Manajemen Operasional & Penggajian (Payroll)</div>
+        <div class="login-title-desc">Sistem Manajemen Operasional, Presensi &amp; Penggajian (Payroll)</div>
       </div>
 
       <div class="login-body">
@@ -3444,18 +3988,23 @@
               <input type="checkbox" id="loginRemember" checked>
               <span>Ingat saya di perangkat ini</span>
             </label>
-            <span style="color: #64748b; font-size: 11px;">PCM Kota Bangun</span>
+            <span style="color: #6ee7b7; font-size: 11px; font-weight: 600;">☀️ PCM Kota Bangun</span>
           </div>
 
           <button type="submit" class="btn-login-submit" id="btnLoginSubmit">
             <span>🔐</span>
-            <span>Masuk ke Sistem</span>
+            <span>Masuk ke Portal GTK &amp; Keuangan</span>
           </button>
+
+          <a href="landing-page.html" class="btn-login-back-home">
+            <span>←</span>
+            <span>Kembali ke Landing Page Utama</span>
+          </a>
         </form>
 
-        <div class="login-footer-secure" style="margin-top: 18px; padding-top: 14px; border-top: 1px solid #f1f5f9; text-align: center; color: #94a3b8; font-size: 11.5px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+        <div class="login-footer-secure" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.14); text-align: center; color: #cbd5e1; font-size: 11px; display: flex; align-items: center; justify-content: center; gap: 6px;">
           <span>🔒</span>
-          <span>Sistem Informasi Tata Kelola SMP Muhammadiyah 1</span>
+          <span>Enkripsi Terlindungi &bull; SMP Muhammadiyah 1 Kota Bangun Darat</span>
         </div>
       </div>
     </div>
@@ -3623,12 +4172,12 @@
             <div style="font-weight: 700; color: #0369a1; font-size: 13.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
               <span>🌐</span> 1. Sertifikat NPSN (Kemendikbudristek)
             </div>
-            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor NPSN</td><td style="width: 10px;">:</td><td><strong style="color: #0369a1; font-family: 'Consolas', monospace; font-size: 12.5px; white-space: nowrap; word-break: keep-all; background: #f0f9ff; padding: 2px 8px; border-radius: 4px; border: 1px solid #bae6fd;">70058553</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Dasar Hukum</td><td>:</td><td>SK Balitbang Kemendikbud No. 3574/G4/KL/2009</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal Diterbitkan</td><td>:</td><td>12 November 2025</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Yuherman S.Sn, M.Pd (NIP. 196710301996011001)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Status Akreditasi</td><td>:</td><td><span style="background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Belum Terakreditasi</span> (NSS: -)</td></tr>
+            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse; color: #0f172a;">
+              <tr><td style="width: 125px; color: #475569; font-weight: 600; white-space: nowrap;">Nomor NPSN</td><td style="width: 10px; color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #0369a1; font-family: 'Consolas', monospace; font-size: 12.5px; white-space: nowrap; word-break: keep-all; background: #f0f9ff; padding: 2px 8px; border-radius: 4px; border: 1px solid #bae6fd;">70058553</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Dasar Hukum</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">SK Balitbang Kemendikbud No. 3574/G4/KL/2009</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Tanggal Diterbitkan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">12 November 2025</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Penandatangan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Yuherman S.Sn, M.Pd (NIP. 196710301996011001)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Status Akreditasi</td><td style="color: #64748b;">:</td><td style="color: #0f172a;"><span style="background: #f1f5f9; color: #475569; padding: 2px 6px; border-radius: 4px; font-weight: 600;">Belum Terakreditasi</span> (NSS: -)</td></tr>
             </table>
           </div>
 
@@ -3637,13 +4186,13 @@
             <div style="font-weight: 700; color: #047857; font-size: 13.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
               <span>🏛️</span> 2. SK Pendirian Satuan Pendidikan
             </div>
-            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor SK Pendirian</td><td style="width: 10px;">:</td><td><strong style="color: #047857; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f0fdf4; padding: 2px 7px; border-radius: 4px; border: 1px solid #bbf7d0;">B-137/KP3-3/SK/400.3.5/07/2025</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal SK</td><td>:</td><td>14 Juli 2025 (Tenggarong)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Instansi Penerbit</td><td>:</td><td>Kepala Disdikbud Kab. Kutai Kartanegara</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Pembina Tk. I, IV/b)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Dasar Permohonan</td><td>:</td><td>No. 0106/IV.0/F/2024 (Tgl 26 Agustus 2024)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Status Bangunan</td><td>:</td><td><strong>Milik Sendiri (Milik Yayasan / Wakaf)</strong></td></tr>
+            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse; color: #0f172a;">
+              <tr><td style="width: 125px; color: #475569; font-weight: 600; white-space: nowrap;">Nomor SK Pendirian</td><td style="width: 10px; color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #047857; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f0fdf4; padding: 2px 7px; border-radius: 4px; border: 1px solid #bbf7d0;">B-137/KP3-3/SK/400.3.5/07/2025</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Tanggal SK</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">14 Juli 2025 (Tenggarong)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Instansi Penerbit</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Kepala Disdikbud Kab. Kutai Kartanegara</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Penandatangan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Thauhid Afrilian Noor, SP., M.Si (Pembina Tk. I, IV/b)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Dasar Permohonan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">No. 0106/IV.0/F/2024 (Tgl 26 Agustus 2024)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Status Bangunan</td><td style="color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #0f172a;">Milik Sendiri (Milik Yayasan / Wakaf)</strong></td></tr>
             </table>
           </div>
 
@@ -3652,12 +4201,12 @@
             <div style="font-weight: 700; color: #b45309; font-size: 13.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
               <span>📋</span> 3. SK Izin Operasional Sekolah (3 Tahun)
             </div>
-            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nomor SK Izin</td><td style="width: 10px;">:</td><td><strong style="color: #b45309; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #fffbeb; padding: 2px 7px; border-radius: 4px; border: 1px solid #fde68a;">B-033/DISDIKBUD/SK/400.3.5/08/2025</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Tanggal Penetapan</td><td>:</td><td>5 Agustus 2025</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Masa Berlaku Izin</td><td>:</td><td><strong style="color: #15803d; background: #f0fdf4; padding: 2px 6px; border-radius: 4px; border: 1px solid #bbf7d0;">6 Agustus 2025 s.d. 6 Agustus 2028</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Batas Perpanjangan</td><td>:</td><td>Wajib diajukan &le; 15 hari sebelum habis (<span style="color: #b91c1c; font-weight: 600;">sebelum 22 Juli 2028</span>)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Penandatangan</td><td>:</td><td>Thauhid Afrilian Noor, SP., M.Si (Disdikbud Kukar)</td></tr>
+            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse; color: #0f172a;">
+              <tr><td style="width: 125px; color: #475569; font-weight: 600; white-space: nowrap;">Nomor SK Izin</td><td style="width: 10px; color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #b45309; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #fffbeb; padding: 2px 7px; border-radius: 4px; border: 1px solid #fde68a;">B-033/DISDIKBUD/SK/400.3.5/08/2025</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Tanggal Penetapan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">5 Agustus 2025</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Masa Berlaku Izin</td><td style="color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #15803d; background: #f0fdf4; padding: 2px 6px; border-radius: 4px; border: 1px solid #bbf7d0;">6 Agustus 2025 s.d. 6 Agustus 2028</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Batas Perpanjangan</td><td style="color: #64748b;">:</td><td style="color: #0f172a;">Wajib diajukan &le; 15 hari sebelum habis (<span style="color: #b91c1c; font-weight: 700;">sebelum 22 Juli 2028</span>)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Penandatangan</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Thauhid Afrilian Noor, SP., M.Si (Disdikbud Kukar)</td></tr>
             </table>
           </div>
 
@@ -3666,13 +4215,13 @@
             <div style="font-weight: 700; color: #6d28d9; font-size: 13.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
               <span>👤</span> 4. Profil Legalitas Kepala Sekolah
             </div>
-            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse;">
-              <tr><td style="width: 125px; color: #64748b; white-space: nowrap;">Nama Kepala Sekolah</td><td style="width: 10px;">:</td><td><strong style="color: #0f172a; font-size: 13px;">SUSANTO, S.Sos</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Tempat, Tanggal Lahir</td><td>:</td><td>Trenggalek, 12 Maret 1976</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Pendidikan Terakhir</td><td>:</td><td>S1 (Sarjana Sosial)</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">SK Pengangkatan KS</td><td>:</td><td><strong style="color: #6d28d9; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f5f3ff; padding: 2px 7px; border-radius: 4px; border: 1px solid #ddd6fe;">080/III.0/KEP/D/2024</strong></td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">Penerbit SK KS</td><td>:</td><td>Pimpinan Daerah Muhammadiyah Kutai Kartanegara</td></tr>
-              <tr><td style="color: #64748b; white-space: nowrap;">NBM Warga</td><td>:</td><td><span style="font-family: monospace; font-weight: bold; background: #ede9fe; color: #5b21b6; padding: 2px 7px; border-radius: 4px;">2006 7615 1221959</span></td></tr>
+            <table style="width: 100%; font-size: 12px; line-height: 1.6; border-collapse: collapse; color: #0f172a;">
+              <tr><td style="width: 125px; color: #475569; font-weight: 600; white-space: nowrap;">Nama Kepala Sekolah</td><td style="width: 10px; color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #0f172a; font-size: 13px;">SUSANTO, S.Sos</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Tempat, Tanggal Lahir</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Trenggalek, 12 Maret 1976</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Pendidikan Terakhir</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">S1 (Sarjana Sosial)</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">SK Pengangkatan KS</td><td style="color: #64748b;">:</td><td style="color: #0f172a;"><strong style="color: #6d28d9; font-family: 'Consolas', monospace; font-size: 11.5px; white-space: nowrap; word-break: keep-all; background: #f5f3ff; padding: 2px 7px; border-radius: 4px; border: 1px solid #ddd6fe;">080/III.0/KEP/D/2024</strong></td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">Penerbit SK KS</td><td style="color: #64748b;">:</td><td style="color: #0f172a; font-weight: 500;">Pimpinan Daerah Muhammadiyah Kutai Kartanegara</td></tr>
+              <tr><td style="color: #475569; font-weight: 600; white-space: nowrap;">NBM Warga</td><td style="color: #64748b;">:</td><td style="color: #0f172a;"><span style="font-family: monospace; font-weight: bold; background: #ede9fe; color: #5b21b6; padding: 2px 7px; border-radius: 4px;">2006 7615 1221959</span></td></tr>
             </table>
           </div>
 
@@ -3932,31 +4481,31 @@
             <span>📜</span> Rekapitulasi Lengkap Raihan Prestasi (Tahun 2024 – 2026):
           </div>
           <div style="max-height: 220px; overflow-y: auto; border: 1px solid #cbd5e1; border-radius: 6px; background: #ffffff;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #0f172a;">
               <thead style="background: #f1f5f9; position: sticky; top: 0;">
-                <tr style="border-bottom: 2px solid #cbd5e1; color: #334155; text-align: left;">
-                  <th style="padding: 6px 10px; width: 35px; text-align: center;">No</th>
-                  <th style="padding: 6px 10px;">Nama Kejuaraan / Lomba</th>
-                  <th style="padding: 6px 10px; width: 90px; text-align: center;">Tahun</th>
-                  <th style="padding: 6px 10px; width: 140px; text-align: center;">Peringkat</th>
-                  <th style="padding: 6px 10px; width: 110px;">Tingkat</th>
+                <tr style="border-bottom: 2px solid #cbd5e1; color: #1e293b; text-align: left;">
+                  <th style="padding: 8px 10px; width: 35px; text-align: center; color: #1e293b; background: #f1f5f9; font-weight: 700;">No</th>
+                  <th style="padding: 8px 10px; color: #1e293b; background: #f1f5f9; font-weight: 700;">Nama Kejuaraan / Lomba</th>
+                  <th style="padding: 8px 10px; width: 90px; text-align: center; color: #1e293b; background: #f1f5f9; font-weight: 700;">Tahun</th>
+                  <th style="padding: 8px 10px; width: 140px; text-align: center; color: #1e293b; background: #f1f5f9; font-weight: 700;">Peringkat</th>
+                  <th style="padding: 8px 10px; width: 110px; color: #1e293b; background: #f1f5f9; font-weight: 700;">Tingkat</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr style="border-bottom: 1px solid #f1f5f9; background: #fefce8;"><td style="padding: 6px 10px; text-align: center; font-weight: 700;">1</td><td style="padding: 6px 10px;"><strong>Perkemahan Bersama Perjusami Penggalang</strong></td><td style="text-align: center;">2025</td><td style="text-align: center;"><span style="background: #fef08a; color: #854d0e; font-weight: 800; padding: 2px 6px; border-radius: 4px;">JUARA UMUM</span></td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">2</td><td style="padding: 6px 10px;">Lomba Pionering Putra/Campuran (Scout Day SMAN 2)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">3</td><td style="padding: 6px 10px;">Lomba Dance Semaphore (Scout Day SMAN 2)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">4</td><td style="padding: 6px 10px;">Lomba Tilawah Anak MTQ Ke-3 (Dian Muhimmatuzzahira)</td><td style="text-align: center;">2026</td><td style="text-align: center; color: #7e22ce; font-weight: 700;">Juara 3 🥉</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">5</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Qur'an Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">6</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Qur'an Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">7</td><td style="padding: 6px 10px;">Lomba Memasak Kreasi Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">8</td><td style="padding: 6px 10px;">Lomba Memasak Kreasi Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">9</td><td style="padding: 6px 10px;">Lomba Dance Semaphore Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #15803d; font-weight: 700;">Juara 1 🥇</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">10</td><td style="padding: 6px 10px;">Lomba Dance Semaphore Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">11</td><td style="padding: 6px 10px;">Lomba Pionering Konstruksi Putri (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 700;">Juara 2 🥈</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">12</td><td style="padding: 6px 10px;">Lomba Penjelajahan Alam Putra (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center; color: #b45309; font-weight: 700;">Juara 3 🥉</td><td>Kecamatan</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 6px 10px; text-align: center;">13</td><td style="padding: 6px 10px;">Lomba Mewarnai Kaligrafi/Poster (Perjusami)</td><td style="text-align: center;">2025</td><td style="text-align: center;">Juara Harapan 1</td><td>Kecamatan</td></tr>
-                <tr><td style="padding: 6px 10px; text-align: center;">14</td><td style="padding: 6px 10px;">Lomba Cerdas Cermat Kesiswaan</td><td style="text-align: center;">2024</td><td style="text-align: center;">Juara Harapan 1</td><td>Kecamatan</td></tr>
+              <tbody style="color: #0f172a;">
+                <tr style="border-bottom: 1px solid #e2e8f0; background: #fefce8;"><td style="padding: 7px 10px; text-align: center; font-weight: 800; color: #854d0e;">1</td><td style="padding: 7px 10px; color: #0f172a;"><strong style="color: #0f172a;">Perkemahan Bersama Perjusami Penggalang</strong></td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center;"><span style="background: #fef08a; color: #854d0e; font-weight: 800; padding: 2px 7px; border-radius: 4px; border: 1px solid #facc15;">JUARA UMUM</span></td><td style="color: #334155; font-weight: 600;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">2</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Pionering Putra/Campuran (Scout Day SMAN 2)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2026</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">3</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Dance Semaphore (Scout Day SMAN 2)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2026</td><td style="text-align: center; color: #1d4ed8; font-weight: 800;">Juara 2 🥈</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">4</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Tilawah Anak MTQ Ke-3 (Dian Muhimmatuzzahira)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2026</td><td style="text-align: center; color: #7e22ce; font-weight: 800;">Juara 3 🥉</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">5</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Cerdas Cermat Qur'an Putra (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">6</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Cerdas Cermat Qur'an Putri (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">7</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Memasak Kreasi Putra (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">8</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Memasak Kreasi Putri (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">9</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Dance Semaphore Putri (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #15803d; font-weight: 800;">Juara 1 🥇</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">10</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Dance Semaphore Putra (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 800;">Juara 2 🥈</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">11</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Pionering Konstruksi Putri (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #1d4ed8; font-weight: 800;">Juara 2 🥈</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">12</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Penjelajahan Alam Putra (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #b45309; font-weight: 800;">Juara 3 🥉</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr style="border-bottom: 1px solid #e2e8f0;"><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">13</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Mewarnai Kaligrafi/Poster (Perjusami)</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2025</td><td style="text-align: center; color: #0284c7; font-weight: 700;">Juara Harapan 1</td><td style="color: #334155;">Kecamatan</td></tr>
+                <tr><td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">14</td><td style="padding: 7px 10px; color: #0f172a; font-weight: 600;">Lomba Cerdas Cermat Kesiswaan</td><td style="text-align: center; color: #0f172a; font-weight: 600;">2024</td><td style="text-align: center; color: #0284c7; font-weight: 700;">Juara Harapan 1</td><td style="color: #334155;">Kecamatan</td></tr>
               </tbody>
             </table>
           </div>
@@ -4292,11 +4841,17 @@
         <!-- 1. DASHBOARD OVERVIEW & GRAFIK (5 TAHUN: 2026 - 2030) -->
         <section id="tab-dashboard" class="tab-content active">
 
-          <!-- EXECUTIVE HERO BANNER -->
+          <!-- EXECUTIVE HERO BANNER (SEE-THROUGH CRYSTAL GLASS) -->
           <div class="dash-hero-banner no-print">
             <div class="hero-content">
-              <div class="hero-badge-tag">☀️ Keputusan Pimpinan Pusat Muhammadiyah No. 33/2024</div>
-              <h2 class="hero-title">Sistem Informasi Tata Kelola Keuangan & Honorarium Terpadu</h2>
+              <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 10px;">
+                <div class="ayat-glass-pill">
+                  <span class="arabic">ن ۚ وَالْقَلَمِ وَمَا يَسْطُرُونَ</span>
+                  <span>&bull; QS. Al-Qalam: 1</span>
+                </div>
+                <div class="hero-badge-tag" style="margin-bottom: 0;">☀️ Keputusan Pimpinan Pusat Muhammadiyah No. 33/2024</div>
+              </div>
+              <h2 class="hero-title">Sistem Informasi Tata Kelola Keuangan &amp; Honorarium Terpadu</h2>
               <p class="hero-subtitle">
                 Transparansi pembukuan kas umum, standarisasi belanja honorarium GTK, dan arsip perkembangan 5 tahun (2026–2030) SMP Muhammadiyah 1 Kota Bangun Darat.
               </p>
@@ -4306,7 +4861,7 @@
                 <span class="chip-icon">🏆</span>
                 <div class="chip-meta">
                   <span class="chip-label" style="color: #b45309; font-weight: 700;">Prestasi Sekolah</span>
-                  <span class="chip-value" style="color: #b45309; font-weight: 800;">Juara Umum & 14+ Trofi <span style="font-size: 11px;">🔍</span></span>
+                  <span class="chip-value" style="color: #b45309; font-weight: 800;">Juara Umum &amp; 14+ Trofi <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalLegalitasSekolah()" title="Klik untuk melihat SK Pendirian, SK Izin Operasional & Sertifikat NPSN Resmi" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #059669;">
@@ -4320,7 +4875,7 @@
                 <span class="chip-icon">🤖</span>
                 <div class="chip-meta">
                   <span class="chip-label" style="color: #1e40af; font-weight: 700;">Inovasi AI</span>
-                  <span class="chip-value" style="color: #1d4ed8; font-weight: 800;">Gemini Guru & Siswa <span style="font-size: 11px;">🔍</span></span>
+                  <span class="chip-value" style="color: #1d4ed8; font-weight: 800;">Gemini Guru &amp; Siswa <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalMedsosSekolah()" title="Klik untuk membuka Media Sosial Resmi: Instagram, Facebook & TikTok" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #e11d48;">
@@ -4330,18 +4885,18 @@
                   <span class="chip-value" style="color: #e11d48; font-weight: 800;">IG &bull; FB &bull; TikTok <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
-              <div class="stat-chip">
+              <div class="stat-chip" style="background: rgba(255, 255, 255, 0.95); border: 1.5px solid #64748b;">
                 <span class="chip-icon">🏛️</span>
                 <div class="chip-meta">
-                  <span class="chip-label">Penyelenggara</span>
-                  <span class="chip-value">PCM Kota Bangun</span>
+                  <span class="chip-label" style="color: #475569; font-weight: 700;">Penyelenggara</span>
+                  <span class="chip-value" style="color: #1e293b; font-weight: 800;">PCM Kota Bangun</span>
                 </div>
               </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalDaftarGTK()" title="Klik untuk melihat daftar lengkap Guru & Staf SMP Muhammadiyah 1 Kota Bangun Darat" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #0d9488;">
                 <span class="chip-icon">👥</span>
                 <div class="chip-meta">
                   <span class="chip-label" style="color: #0f766e; font-weight: 700;">GTK Aktif</span>
-                  <span class="chip-value" style="color: #0d9488; font-weight: 800;">10 Pendidik & Staf <span style="font-size: 11px;">🔍</span></span>
+                  <span class="chip-value" style="color: #0d9488; font-weight: 800;">10 Pendidik &amp; Staf <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalHorizonRencana()" title="Klik untuk membuka Arsip Rekapan Finansial Per Tahun & Horizon Rencana 5 Tahun (2026 - 2030)" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #0284c7;">
@@ -4357,7 +4912,7 @@
       <!-- TOOLBAR PERIODE 5 TAHUN (2026 - 2030) -->
       <div class="period-toolbar no-print">
         <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-          <span style="font-weight: 700; font-size: 13.5px; color: var(--primary-dark);">📅 Periode:</span>
+          <span style="font-weight: 700; font-size: 13.5px; color: #34D399;">📅 Periode:</span>
           <select id="dashScopeSelect" onchange="changeDashScope(this.value)" class="period-select" style="font-weight: 600;">
             <option value="kumulatif_5th" selected>🌟 Perkembangan Kumulatif 5 Tahun (2026 - 2030)</option>
             <option value="tahunan_2026">📅 Rekapan Tahunan 2026 (Tahun Berjalan)</option>
@@ -4536,20 +5091,20 @@
       </div>
 
       <!-- SHORTCUT ARSIP REKAPAN FINANSIAL 5 TAHUN (TERINTEGRASI DI DALAM MODAL HORIZON RENCANA) -->
-      <div class="no-print" style="margin-top: 24px; background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%); border: 1.5px dashed #0284c7; border-radius: 12px; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div class="no-print" style="margin-top: 24px; background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1.5px dashed #0284c7; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);">
         <div style="display: flex; align-items: center; gap: 14px;">
           <div style="width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);">
             📈
           </div>
           <div>
-            <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: #0f172a;">Arsip Rekapan Finansial & Horizon Rencana 5 Tahun (2026 - 2030)</h4>
+            <h4 style="margin: 0; font-size: 15px; font-weight: 700; color: #0f172a;">Arsip Rekapan Finansial &amp; Horizon Rencana 5 Tahun (2026 - 2030)</h4>
             <p style="margin: 3px 0 0; font-size: 12.5px; color: #475569;">
               Data rekapan tahunan, arus kas masuk/keluar, belanja honor GTK, surplus/defisit, dan akumulasi cadangan kas kini tersimpan rapi dalam modal interaktif <strong>Horizon Rencana 5 Tahun</strong>.
             </p>
           </div>
         </div>
         <div style="display: flex; gap: 10px; align-items: center;">
-          <button type="button" class="btn-primary" onclick="bukaModalHorizonRencana()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border: none; padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: white; box-shadow: 0 2px 6px rgba(2, 132, 199, 0.3);">
+          <button type="button" class="btn-primary" onclick="bukaModalHorizonRencana()" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); border: 1px solid rgba(255, 255, 255, 0.3); padding: 9px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; color: white; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);">
             <span>Buka Horizon Rencana (2026 - 2030)</span>
             <span>🔍</span>
           </button>
@@ -4622,8 +5177,8 @@
             </tbody>
             <tfoot>
               <tr style="font-weight: bold; background: #f0fdf4; font-size: 14px;">
-                <td colspan="4" style="text-align: right; color: var(--primary);">TOTAL ANGGARAN HONOR BULANAN:</td>
-                <td style="text-align: right; color: var(--primary);" class="cell-nowrap" id="totalHonorCell">Rp 7.500.000</td>
+                <td colspan="4" style="text-align: right; color: #15803d;">TOTAL ANGGARAN HONOR BULANAN:</td>
+                <td style="text-align: right; color: #15803d;" class="cell-nowrap" id="totalHonorCell">Rp 7.500.000</td>
                 <td style="color: #15803d; font-size: 12px; text-align: center;" id="payrollStatusMatch">✅ Sesuai Pengajuan PCM</td>
                 <td style="font-size: 12px; color: #64748b; text-align: center;">Bukti Terima GTK</td>
                 <td class="no-print"></td>
@@ -4633,7 +5188,7 @@
         </div>
 
         <!-- TANDA TANGAN RESMI DAFTAR HONOR GTK -->
-        <div class="payroll-signatures" style="display: flex; justify-content: space-between; margin-top: 32px; padding: 0 40px; font-size: 13px;">
+        <div class="payroll-signatures" style="display: flex; justify-content: space-between; margin-top: 32px; padding: 24px 40px; font-size: 13px; color: #0f172a; background: #ffffff;">
           <!-- KOLOM KIRI: KEPALA SEKOLAH -->
           <div style="text-align: center; min-width: 220px;">
             <span>Menyetujui,</span><br>
@@ -4722,10 +5277,10 @@
             </tbody>
             <tfoot>
               <tr style="font-weight: bold; background: #f8fafc; font-size: 14px;">
-                <td colspan="4" style="text-align: right;">TOTAL MUTASI & SALDO AKHIR KAS:</td>
-                <td style="text-align: right; color: var(--success);" class="cell-nowrap" id="kasTotalMasuk">Rp 8.725.000</td>
-                <td style="text-align: right; color: var(--danger);" class="cell-nowrap" id="kasTotalKeluar">Rp 9.668.000</td>
-                <td style="text-align: right; color: var(--primary);" class="cell-nowrap" id="kasTotalSaldo">Rp 4.822.500</td>
+                <td colspan="4" style="text-align: right; color: #0f172a;">TOTAL MUTASI &amp; SALDO AKHIR KAS:</td>
+                <td style="text-align: right; color: #15803d;" class="cell-nowrap" id="kasTotalMasuk">Rp 8.725.000</td>
+                <td style="text-align: right; color: #b91c1c;" class="cell-nowrap" id="kasTotalKeluar">Rp 9.668.000</td>
+                <td style="text-align: right; color: #1e3a8a;" class="cell-nowrap" id="kasTotalSaldo">Rp 4.822.500</td>
                 <td class="no-print"></td>
               </tr>
             </tfoot>
@@ -5251,41 +5806,41 @@
 
           <div class="table-header-action no-print">
             <div>
-              <div class="table-title">🏛️ Arsip Rekapan Finansial Per Tahun & Data Kumulatif Perkembangan Manajemen (2026 - 2030)</div>
-              <p style="font-size: 12.5px; color: var(--text-muted); margin-top: 3px;">
+              <div class="table-title" style="color: #0f172a; font-weight: 800;">🏛️ Arsip Rekapan Finansial Per Tahun & Data Kumulatif Perkembangan Manajemen (2026 - 2030)</div>
+              <p style="font-size: 12.5px; color: #475569; font-weight: 500; margin-top: 4px; line-height: 1.45;">
                 📊 <em>Rangkuman audit perkembangan arus kas, belanja GTK, surplus/defisit, dan akumulasi cadangan kas 5 tahun rencana & berjalan institusi. Jika suatu tahun belum ada data, kolom tercatat Rp 0 (tanpa menindih data tahun sebelumnya).</em>
               </p>
             </div>
           </div>
           <div style="overflow-x: auto;">
-            <table id="tabelRekap5Tahun" style="width: 100%;">
+            <table id="tabelRekap5Tahun" style="width: 100%; border-collapse: collapse; color: #0f172a; background: #ffffff;">
               <thead>
-                <tr>
-                  <th style="width: 60px; text-align: center;">Tahun</th>
-                  <th style="text-align: right;">Pemasukan (Rp)</th>
-                  <th style="text-align: right;">Pengeluaran (Rp)</th>
-                  <th style="text-align: right;">Realisasi GTK (Rp)</th>
-                  <th style="text-align: right;">Surplus / (Defisit)</th>
-                  <th style="text-align: right;">Saldo Akhir (Rp)</th>
-                  <th style="text-align: right; background: #f0fdf4;">Pemasukan Kumulatif</th>
-                  <th style="text-align: right; background: #eff6ff;">Honor GTK Kumulatif</th>
-                  <th style="text-align: center;">Status / Catatan Periode</th>
+                <tr style="border-bottom: 2px solid #cbd5e1;">
+                  <th style="width: 60px; text-align: center; background: #f1f5f9; color: #1e293b; font-weight: 700;">Tahun</th>
+                  <th style="text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700;">Pemasukan (Rp)</th>
+                  <th style="text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700;">Pengeluaran (Rp)</th>
+                  <th style="text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700;">Realisasi GTK (Rp)</th>
+                  <th style="text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700;">Surplus / (Defisit)</th>
+                  <th style="text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700;">Saldo Akhir (Rp)</th>
+                  <th style="text-align: right; background: #dcfce7; color: #15803d; font-weight: 800;">Pemasukan Kumulatif</th>
+                  <th style="text-align: right; background: #eff6ff; color: #1d4ed8; font-weight: 800;">Honor GTK Kumulatif</th>
+                  <th style="text-align: center; background: #f1f5f9; color: #1e293b; font-weight: 700;">Status / Catatan Periode</th>
                 </tr>
               </thead>
-              <tbody id="tbodyRekap5Tahun">
+              <tbody id="tbodyRekap5Tahun" style="color: #0f172a;">
                 <!-- Baris data 5 tahun dirender lewat JavaScript -->
               </tbody>
               <tfoot>
-                <tr style="font-weight: bold; background: #f8fafc; font-size: 13px;">
-                  <td style="text-align: center; white-space: nowrap; font-weight: bold;">TOTAL 5 TAHUN:</td>
-                  <td style="text-align: right; color: var(--success);" class="cell-nowrap" id="rekap5ThnMasuk">Rp 0</td>
-                  <td style="text-align: right; color: var(--danger);" class="cell-nowrap" id="rekap5ThnKeluar">Rp 0</td>
-                  <td style="text-align: right; color: var(--primary);" class="cell-nowrap" id="rekap5ThnHonor">Rp 0</td>
-                  <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSurplus">Rp 0</td>
-                  <td style="text-align: right;" class="cell-nowrap" id="rekap5ThnSaldoAkhir">Rp 0</td>
-                  <td style="text-align: right; color: #15803d; background: #f0fdf4;" class="cell-nowrap" id="rekap5ThnKumMasuk">Rp 0</td>
-                  <td style="text-align: right; color: #1d4ed8; background: #eff6ff;" class="cell-nowrap" id="rekap5ThnKumHonor">Rp 0</td>
-                  <td style="font-size: 11.5px; color: #64748b; text-align: center; white-space: nowrap;">Akumulasi Nyata 2026 - 2030</td>
+                <tr style="font-weight: bold; background: #f8fafc; font-size: 13px; border-top: 2px solid #cbd5e1;">
+                  <td style="text-align: center; white-space: nowrap; font-weight: 800; color: #0f172a;">TOTAL 5 TAHUN:</td>
+                  <td style="text-align: right; color: #15803d; font-weight: 800;" class="cell-nowrap" id="rekap5ThnMasuk">Rp 0</td>
+                  <td style="text-align: right; color: #dc2626; font-weight: 800;" class="cell-nowrap" id="rekap5ThnKeluar">Rp 0</td>
+                  <td style="text-align: right; color: #1d4ed8; font-weight: 800;" class="cell-nowrap" id="rekap5ThnHonor">Rp 0</td>
+                  <td style="text-align: right; font-weight: 800; color: #0f172a;" class="cell-nowrap" id="rekap5ThnSurplus">Rp 0</td>
+                  <td style="text-align: right; font-weight: 800; color: #0f172a;" class="cell-nowrap" id="rekap5ThnSaldoAkhir">Rp 0</td>
+                  <td style="text-align: right; color: #15803d; background: #dcfce7; font-weight: 800;" class="cell-nowrap" id="rekap5ThnKumMasuk">Rp 0</td>
+                  <td style="text-align: right; color: #1d4ed8; background: #eff6ff; font-weight: 800;" class="cell-nowrap" id="rekap5ThnKumHonor">Rp 0</td>
+                  <td style="font-size: 11.5px; color: #475569; text-align: center; white-space: nowrap; font-weight: 600;">Akumulasi Nyata 2026 - 2030</td>
                 </tr>
               </tfoot>
             </table>
@@ -6801,19 +7356,20 @@
       showToast(`Menampilkan Rincian Bulan ${NAMA_BULAN[m]} ${yr}`, 'info');
     }
 
-    // Helper pewarnaan angka nominal metrik persis mengikuti warna label tren:
-    // Label Hijau -> Angka Hijau, Label Merah -> Angka Merah, Label Lainnya/Netral/'-' -> Angka Hitam
+    // Helper pewarnaan angka nominal metrik:
+    // Warna angka nominal data akan berubah mengikuti label kenaikan (hijau) dan Penurunan (merah), dan stabil (hitam).
     function applyCardValueColor(elemId, trend) {
       const el = document.getElementById(elemId);
       if (!el) return;
       el.classList.remove('text-success', 'text-danger');
       if (trend && trend.colorClass === 'trend-up') {
-        el.style.color = '#16a34a'; // Hijau
+        el.style.color = '#15803d'; // Hijau Kenaikan / Surplus
       } else if (trend && trend.colorClass === 'trend-down') {
-        el.style.color = '#dc2626'; // Merah
+        el.style.color = '#dc2626'; // Merah Penurunan / Defisit
       } else {
-        el.style.color = '#0f172a'; // Hitam (netral / '-' / data awal / nihil)
+        el.style.color = '#0f172a'; // Hitam Stabil / Netral / Akumulasi
       }
+      el.style.textShadow = 'none';
     }
 
     // Update elemen kartu metrik dan tren badges
@@ -7139,12 +7695,13 @@
         if (row.hasData) lastSaldo = row.saldoAkhir;
 
         const isSurplus = row.surplus >= 0;
-        const surplusColor = row.hasData ? (isSurplus ? 'var(--success)' : 'var(--danger)') : 'var(--text-muted)';
+        const surplusColor = row.hasData ? (isSurplus ? '#15803d' : '#dc2626') : '#64748b';
         const surplusText = row.hasData 
           ? (isSurplus ? `+Rp ${row.surplus.toLocaleString('id-ID')}` : `-Rp ${Math.abs(row.surplus).toLocaleString('id-ID')}`)
           : 'Rp 0';
 
         const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #e2e8f0';
         if (yr === 2026) tr.style.background = '#fefce8'; // Highlight tahun berjalan
 
         let statusText = '';
@@ -7153,23 +7710,23 @@
         } else if (row.hasData) {
           statusText = '<span class="badge-status status-transfer">Tercatat Transaksi</span>';
         } else {
-          statusText = '<span style="color: #94a3b8; font-size: 11.5px;">(Belum ada data)</span>';
+          statusText = '<span style="color: #64748b; font-size: 11.5px; font-weight: 600;">(Belum ada data)</span>';
         }
 
-        const saldoColor = row.hasData ? (row.saldoAkhir >= 0 ? 'var(--primary-dark)' : 'var(--danger)') : 'var(--text-muted)';
+        const saldoColor = row.hasData ? (row.saldoAkhir >= 0 ? '#1e40af' : '#dc2626') : '#64748b';
         const saldoText = row.hasData 
           ? (row.saldoAkhir < 0 ? `-Rp ${Math.abs(row.saldoAkhir).toLocaleString('id-ID')}` : `Rp ${row.saldoAkhir.toLocaleString('id-ID')}`)
           : 'Rp 0';
 
         tr.innerHTML = `
-          <td style="text-align: center; font-weight: bold; font-size: 13px; white-space: nowrap;">${yr}</td>
-          <td style="text-align: right; color: ${row.masuk > 0 ? 'var(--success)' : 'var(--text-muted)'}; font-weight: 600;" class="cell-nowrap">Rp ${row.masuk.toLocaleString('id-ID')}</td>
-          <td style="text-align: right; color: ${row.keluar > 0 ? 'var(--danger)' : 'var(--text-muted)'}; font-weight: 600;" class="cell-nowrap">Rp ${row.keluar.toLocaleString('id-ID')}</td>
-          <td style="text-align: right; color: ${row.honor > 0 ? 'var(--primary)' : 'var(--text-muted)'}; font-weight: 600;" class="cell-nowrap">Rp ${row.honor.toLocaleString('id-ID')}</td>
-          <td style="text-align: right; font-weight: bold; color: ${surplusColor};" class="cell-nowrap">${surplusText}</td>
-          <td style="text-align: right; font-weight: bold; color: ${saldoColor};" class="cell-nowrap">${saldoText}</td>
-          <td style="text-align: right; font-weight: bold; color: #15803d; background: #f0fdf4;" class="cell-nowrap">Rp ${kumMasuk.toLocaleString('id-ID')}</td>
-          <td style="text-align: right; font-weight: bold; color: #1d4ed8; background: #eff6ff;" class="cell-nowrap">Rp ${kumHonor.toLocaleString('id-ID')}</td>
+          <td style="text-align: center; font-weight: 800; font-size: 13px; color: #0f172a; white-space: nowrap;">${yr}</td>
+          <td style="text-align: right; color: ${row.masuk > 0 ? '#15803d' : '#64748b'}; font-weight: 700;" class="cell-nowrap">Rp ${row.masuk.toLocaleString('id-ID')}</td>
+          <td style="text-align: right; color: ${row.keluar > 0 ? '#dc2626' : '#64748b'}; font-weight: 700;" class="cell-nowrap">Rp ${row.keluar.toLocaleString('id-ID')}</td>
+          <td style="text-align: right; color: ${row.honor > 0 ? '#1d4ed8' : '#64748b'}; font-weight: 700;" class="cell-nowrap">Rp ${row.honor.toLocaleString('id-ID')}</td>
+          <td style="text-align: right; font-weight: 800; color: ${surplusColor};" class="cell-nowrap">${surplusText}</td>
+          <td style="text-align: right; font-weight: 800; color: ${saldoColor};" class="cell-nowrap">${saldoText}</td>
+          <td style="text-align: right; font-weight: 800; color: #15803d; background: #dcfce7;" class="cell-nowrap">Rp ${kumMasuk.toLocaleString('id-ID')}</td>
+          <td style="text-align: right; font-weight: 800; color: #1d4ed8; background: #eff6ff;" class="cell-nowrap">Rp ${kumHonor.toLocaleString('id-ID')}</td>
           <td style="text-align: center; white-space: nowrap;">${statusText}</td>
         `;
         tbody.appendChild(tr);
@@ -7179,10 +7736,10 @@
       document.getElementById('rekap5ThnKeluar').textContent = 'Rp ' + totKeluar.toLocaleString('id-ID');
       document.getElementById('rekap5ThnHonor').textContent = 'Rp ' + totHonor.toLocaleString('id-ID');
       document.getElementById('rekap5ThnSurplus').textContent = (totSurplus >= 0 ? '+Rp ' : '-Rp ') + Math.abs(totSurplus).toLocaleString('id-ID');
-      document.getElementById('rekap5ThnSurplus').style.color = totSurplus >= 0 ? 'var(--success)' : 'var(--danger)';
+      document.getElementById('rekap5ThnSurplus').style.color = totSurplus >= 0 ? '#15803d' : '#dc2626';
       const lastSaldoEl = document.getElementById('rekap5ThnSaldoAkhir');
       lastSaldoEl.textContent = (lastSaldo < 0 ? '-Rp ' : 'Rp ') + Math.abs(lastSaldo).toLocaleString('id-ID');
-      lastSaldoEl.style.color = lastSaldo >= 0 ? 'var(--primary-dark)' : 'var(--danger)';
+      lastSaldoEl.style.color = lastSaldo >= 0 ? '#1e40af' : '#dc2626';
       document.getElementById('rekap5ThnKumMasuk').textContent = 'Rp ' + kumMasuk.toLocaleString('id-ID');
       document.getElementById('rekap5ThnKumHonor').textContent = 'Rp ' + kumHonor.toLocaleString('id-ID');
     }
@@ -7231,8 +7788,23 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } },
-            scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + (v/1000000).toFixed(0) + ' Jt' } } }
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, color: '#0f172a', font: { size: 12, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            },
+            scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '700', size: 12 } },
+                grid: { display: false }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 }, callback: v => 'Rp ' + (v/1000000).toFixed(0) + ' Jt' },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
+              }
+            }
           }
         });
       }
@@ -7253,8 +7825,23 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } },
-            scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + (v/1000000).toFixed(0) + ' Jt' } } }
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, color: '#0f172a', font: { size: 12, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            },
+            scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '700', size: 12 } },
+                grid: { display: false }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 }, callback: v => 'Rp ' + (v/1000000).toFixed(0) + ' Jt' },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
+              }
+            }
           }
         });
       }
@@ -7282,7 +7869,16 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
-            scales: { y: { ticks: { callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' } } }
+            scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '700', size: 12 } },
+                grid: { display: false }
+              },
+              y: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 }, callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
+              }
+            }
           }
         });
       }
@@ -7308,7 +7904,12 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { boxWidth: 12, color: '#0f172a', font: { size: 12, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            },
             cutout: '60%'
           }
         });
@@ -7347,7 +7948,17 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true, ticks: { callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' } } }
+            scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 } },
+                grid: { display: false }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 }, callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
+              }
+            }
           }
         });
       }
@@ -7369,7 +7980,12 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { color: '#0f172a', boxWidth: 12, font: { size: 11.5, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            },
             cutout: '60%'
           }
         });
@@ -7398,7 +8014,16 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
-            scales: { y: { ticks: { callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' } } }
+            scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 } },
+                grid: { display: false }
+              },
+              y: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 }, callback: v => 'Rp ' + (v/1000000).toFixed(1) + ' Jt' },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
+              }
+            }
           }
         });
       }
@@ -7420,7 +8045,12 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } }
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { color: '#0f172a', boxWidth: 12, font: { size: 11.5, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            }
           }
         });
       }
@@ -7461,11 +8091,18 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 } },
+                grid: { display: false }
+              },
               y: {
                 beginAtZero: true,
                 ticks: {
+                  color: '#0f172a',
+                  font: { weight: '600', size: 11 },
                   callback: v => 'Rp ' + (v >= 1000000 ? (v/1000000).toFixed(1) + ' Jt' : v.toLocaleString('id-ID'))
-                }
+                },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
               }
             }
           }
@@ -7515,7 +8152,12 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5, family: 'Plus Jakarta Sans' } } } },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { color: '#0f172a', boxWidth: 12, font: { size: 11.5, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            },
             cutout: '60%'
           }
         });
@@ -7562,10 +8204,17 @@
             maintainAspectRatio: false,
             plugins: { legend: { display: false } },
             scales: {
+              x: {
+                ticks: { color: '#0f172a', font: { weight: '600', size: 11 } },
+                grid: { display: false }
+              },
               y: {
                 ticks: {
+                  color: '#0f172a',
+                  font: { weight: '600', size: 11 },
                   callback: v => 'Rp ' + (v >= 1000000 ? (v/1000000).toFixed(1) + ' Jt' : v.toLocaleString('id-ID'))
-                }
+                },
+                grid: { color: 'rgba(0, 0, 0, 0.06)' }
               }
             }
           }
@@ -7614,7 +8263,12 @@
           options: {
             responsive: true,
             maintainAspectRatio: false,
-            plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11.5 } } } }
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: { color: '#0f172a', boxWidth: 12, font: { size: 11.5, weight: '600', family: 'Plus Jakarta Sans' } }
+              }
+            }
           }
         });
       }
@@ -7655,9 +8309,9 @@
       if (list.length === 0) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td colspan="8" style="text-align: center; padding: 45px 20px; color: #64748b; background: #f8fafc;">
+          <td colspan="8" style="text-align: center; padding: 45px 20px; color: #cbd5e1; background: rgba(15, 23, 42, 0.35);">
             <div style="font-size: 32px; margin-bottom: 8px;">📭</div>
-            <strong style="color: #334155; font-size: 15px;">Tidak Ada Data Honor GTK untuk Periode ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}</strong>
+            <strong style="color: #ffffff; font-size: 15px;">Tidak Ada Data Honor GTK untuk Periode ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}</strong>
             <p style="font-size: 12.5px; color: #94a3b8; margin-top: 6px;">
               Data honorarium pada periode ini masih kosong. Klik tombol <strong>➕ Tambah Pegawai Baru</strong> untuk menginput, atau salin susunan guru:
             </p>
@@ -7672,7 +8326,7 @@
         const matchEl = document.getElementById('payrollStatusMatch');
         if (matchEl) {
           matchEl.textContent = '⚠️ Data Periode Ini Kosong';
-          matchEl.style.color = '#b45309';
+          matchEl.style.color = '#fbbf24';
         }
 
         document.getElementById('suratNominal').textContent = 'Rp. 0,00';
@@ -7685,7 +8339,7 @@
       const matchEl = document.getElementById('payrollStatusMatch');
       if (matchEl) {
         matchEl.textContent = '✅ Sesuai Pengajuan PCM';
-        matchEl.style.color = '#15803d';
+        matchEl.style.color = '#6ee7b7';
       }
 
       list.forEach((row, idx) => {
@@ -7717,7 +8371,7 @@
           <td class="editable-cell" contenteditable="true" onblur="updateGTK(${row.id}, 'nama', this.innerText)"><strong>${row.nama}</strong></td>
           <td class="editable-cell" contenteditable="true" onblur="updateGTK(${row.id}, 'jabatan', this.innerText)">${row.jabatan}</td>
           <td style="text-align: center;">${getKlasterBadge(row.klaster, row.id)}</td>
-          <td style="text-align: right; font-weight: bold; color: var(--primary);" class="cell-nowrap editable-cell" contenteditable="true" onblur="updateGTKAngka(${row.id}, 'pokok', this.innerText)">${row.pokok > 0 ? 'Rp ' + Number(row.pokok).toLocaleString('id-ID') : '-'}</td>
+          <td style="text-align: right; font-weight: bold; color: #34D399;" class="cell-nowrap editable-cell" contenteditable="true" onblur="updateGTKAngka(${row.id}, 'pokok', this.innerText)">${row.pokok > 0 ? 'Rp ' + Number(row.pokok).toLocaleString('id-ID') : '-'}</td>
           <td style="text-align: center;">
             <span class="badge-status ${badgeClass}" onclick="pilihStatusBayarGTK(${row.id})" title="Klik untuk mengatur Status Pembayaran: 1. Tunai | 2. Transfer (Bank) | 3. - (None)">
               ${displayStatus}
@@ -7725,7 +8379,7 @@
           </td>
           <td style="padding: 5px 8px; min-width: 115px;" class="cell-nowrap">
             <div style="display: flex; justify-content: ${isLeft ? 'flex-start' : 'flex-end'}; align-items: flex-end; height: 26px;">
-              <span style="font-size: 11.5px; color: #334155; font-weight: 500; font-family: monospace;" contenteditable="true" title="Kolom tanda tangan bukti terima honor">${idx + 1}. ....................</span>
+              <span style="font-size: 11.5px; color: #cbd5e1; font-weight: 500; font-family: monospace;" contenteditable="true" title="Kolom tanda tangan bukti terima honor">${idx + 1}. ....................</span>
             </div>
           </td>
           <td style="text-align: center;" class="no-print">
@@ -7903,9 +8557,9 @@
       if (list.length === 0) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td colspan="8" style="text-align: center; padding: 45px 20px; color: #64748b; background: #f8fafc;">
+          <td colspan="8" style="text-align: center; padding: 45px 20px; color: #cbd5e1; background: rgba(15, 23, 42, 0.35);">
             <div style="font-size: 32px; margin-bottom: 8px;">📭</div>
-            <strong style="color: #334155; font-size: 15px;">Tidak Ada Catatan Transaksi Kas untuk Periode ${NAMA_BULAN[activeKasMonth]} ${activeKasYear}</strong>
+            <strong style="color: #ffffff; font-size: 15px;">Tidak Ada Catatan Transaksi Kas untuk Periode ${NAMA_BULAN[activeKasMonth]} ${activeKasYear}</strong>
             <p style="font-size: 12.5px; color: #94a3b8; margin-top: 6px;">
               Buku kas pada periode ini masih kosong. Silakan mulai mencatat transaksi atau menetapkan saldo awal:
             </p>
@@ -7941,16 +8595,16 @@
         }
 
         const tr = document.createElement('tr');
-        if (row.keluar >= 7500000) tr.style.background = '#fef2f2';
+        if (row.keluar >= 7500000) tr.style.background = 'rgba(239, 68, 68, 0.14)';
 
         tr.innerHTML = `
           <td style="text-align: center;">${idx + 1}</td>
           <td style="text-align: center;" class="cell-nowrap editable-cell" contenteditable="true" onblur="updateKas(${row.id}, 'tgl', this.innerText)">${row.tgl}</td>
           <td>${getPosAnggaranBadge(row.pos, row.id)}</td>
           <td class="editable-cell" contenteditable="true" onblur="updateKas(${row.id}, 'uraian', this.innerText)"><strong>${row.uraian}</strong></td>
-          <td style="text-align: right; color: var(--success);" class="cell-nowrap editable-cell" contenteditable="true" oninput="recalcKasLive()" onblur="updateKasAngka(${row.id}, 'masuk', this.innerText)">${row.masuk > 0 ? Number(row.masuk).toLocaleString('id-ID') : '-'}</td>
-          <td style="text-align: right; color: var(--danger);" class="cell-nowrap editable-cell" contenteditable="true" oninput="recalcKasLive()" onblur="updateKasAngka(${row.id}, 'keluar', this.innerText)">${row.keluar > 0 ? Number(row.keluar).toLocaleString('id-ID') : '-'}</td>
-          <td style="text-align: right; font-weight: bold; color: var(--primary);" class="cell-nowrap kas-saldo-col ${idx === 0 ? 'editable-cell' : ''}" ${idx === 0 ? 'contenteditable="true" oninput="recalcKasLive()" onblur="updateKasSaldoAwal(' + row.id + ', this.innerText)" title="Klik untuk ubah Saldo Awal Pokok"' : ''}>Rp ${runningSaldo.toLocaleString('id-ID')}</td>
+          <td style="text-align: right; color: #34D399;" class="cell-nowrap editable-cell" contenteditable="true" oninput="recalcKasLive()" onblur="updateKasAngka(${row.id}, 'masuk', this.innerText)">${row.masuk > 0 ? Number(row.masuk).toLocaleString('id-ID') : '-'}</td>
+          <td style="text-align: right; color: #F87171;" class="cell-nowrap editable-cell" contenteditable="true" oninput="recalcKasLive()" onblur="updateKasAngka(${row.id}, 'keluar', this.innerText)">${row.keluar > 0 ? Number(row.keluar).toLocaleString('id-ID') : '-'}</td>
+          <td style="text-align: right; font-weight: bold; color: #FDE047;" class="cell-nowrap kas-saldo-col ${idx === 0 ? 'editable-cell' : ''}" ${idx === 0 ? 'contenteditable="true" oninput="recalcKasLive()" onblur="updateKasSaldoAwal(' + row.id + ', this.innerText)" title="Klik untuk ubah Saldo Awal Pokok"' : ''}>Rp ${runningSaldo.toLocaleString('id-ID')}</td>
           <td style="text-align: center;" class="no-print">
             ${idx > 0 ? `<button class="btn-delete" onclick="hapusBarisKas(${row.id})">🗑️</button>` : ''}
           </td>
@@ -9447,6 +10101,16 @@
 
 
     window.addEventListener('DOMContentLoaded', () => {
+      // Set Chart.js Crisp White Glass Theme Defaults
+      if (typeof Chart !== 'undefined') {
+        Chart.defaults.color = '#0f172a';
+        Chart.defaults.borderColor = 'rgba(0, 0, 0, 0.08)';
+        if (Chart.defaults.plugins && Chart.defaults.plugins.legend && Chart.defaults.plugins.legend.labels) {
+          Chart.defaults.plugins.legend.labels.color = '#0f172a';
+          Chart.defaults.plugins.legend.labels.font = { weight: '600' };
+        }
+      }
+
       initAuth();
       initStores();
       renderTabelPayroll();
@@ -9456,17 +10120,22 @@
       renderPresensi();
       setInterval(updateKioskClock, 1000);
 
-      // Dynamic Glass Spotlight on Hero Banner
+      // Dynamic Glass Spotlight on Hero Banner & Global Cursor Spotlight
       const heroBanner = document.querySelector('.dash-hero-banner');
-      if (heroBanner) {
-        heroBanner.addEventListener('mousemove', (e) => {
+      const cursorSpotlight = document.getElementById('cursorSpotlight');
+      window.addEventListener('mousemove', (e) => {
+        if (cursorSpotlight) {
+          cursorSpotlight.style.left = `${e.clientX}px`;
+          cursorSpotlight.style.top = `${e.clientY}px`;
+        }
+        if (heroBanner) {
           const rect = heroBanner.getBoundingClientRect();
           const x = e.clientX - rect.left;
           const y = e.clientY - rect.top;
           heroBanner.style.setProperty('--mouse-x', `${x}px`);
           heroBanner.style.setProperty('--mouse-y', `${y}px`);
-        });
-      }
+        }
+      }, { passive: true });
 
       // Pastikan tab awal memiliki print-active & inisialisasi tombol aksi topbar
       const initialTab = document.querySelector('.tab-content.active');
