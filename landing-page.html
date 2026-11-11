@@ -1,0 +1,3036 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMP Muhammadiyah 1 Kota Bangun Darat | Sekolah Berkarakter Islami & Berdaya Saing AI</title>
+  <meta name="description" content="Landing page resmi SMP Muhammadiyah 1 Kota Bangun Darat, Kutai Kartanegara. Pendidikan akhlak mulia Ismuba, kepanduan Hizbul Wathan, dan penguasaan teknologi digital masa depan Google Gemini AI.">
+  <link rel="icon" type="image/png" href="logo-smp-muhammadiyah.png">
+
+  <!-- Google Fonts: El Messiri (Identitas Berkemajuan) & Plus Jakarta Sans (Modern UI) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       GLASIFY DESIGN SYSTEM & THEME TOKENS
+       SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT
+       ========================================================================== */
+    :root {
+      /* Brand Identity Colors */
+      --muh-green: #04A54F;
+      --muh-green-glow: #10B981;
+      --muh-green-deep: #064E3B;
+      --muh-blue: #2C368B;
+      --muh-blue-glow: #3B82F6;
+      --muh-blue-dark: #0F172A;
+      --muh-gold: #F59E0B;
+      --muh-gold-glow: #FBBF24;
+      --muh-cyan: #06B6D4;
+      --muh-cyan-glow: #22D3EE;
+
+      /* Glassmorphism Surface Tokens */
+      --glass-bg-ultra-light: rgba(255, 255, 255, 0.04);
+      --glass-bg: rgba(255, 255, 255, 0.07);
+      --glass-bg-elevated: rgba(255, 255, 255, 0.11);
+      --glass-bg-hover: rgba(255, 255, 255, 0.14);
+      --glass-bg-dark: rgba(10, 20, 38, 0.65);
+      --glass-bg-card: rgba(15, 28, 52, 0.55);
+      
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-light: rgba(255, 255, 255, 0.22);
+      --glass-border-glow: rgba(16, 185, 129, 0.4);
+      --glass-border-gold: rgba(245, 158, 11, 0.4);
+
+      --glass-blur: blur(20px);
+      --glass-blur-deep: blur(32px);
+      
+      --glass-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      --glass-shadow-hover: 0 24px 50px -10px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      --glass-shadow-glow-green: 0 12px 35px -5px rgba(4, 165, 79, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      --glass-shadow-glow-gold: 0 12px 35px -5px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+
+      /* Typography */
+      --font-heading: 'El Messiri', serif, system-ui;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+      /* Text Colors */
+      --text-main: #FFFFFF;
+      --text-silver: #E2E8F0;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+    }
+
+    /* Base Reset & Smooth Scroll */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: #050B14;
+      color: var(--text-silver);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient Dynamic Mesh Background (The Secret to Stunning Glassmorphism) */
+    .ambient-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.55;
+      animation: floatOrb 18s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    .orb-green {
+      top: -10%;
+      left: -5%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, rgba(4, 165, 79, 0.45) 0%, rgba(4, 165, 79, 0.05) 70%, transparent 100%);
+      animation-duration: 22s;
+    }
+
+    .orb-blue {
+      top: 35%;
+      right: -10%;
+      width: 750px;
+      height: 750px;
+      background: radial-gradient(circle, rgba(44, 54, 139, 0.5) 0%, rgba(15, 23, 42, 0.1) 70%, transparent 100%);
+      animation-duration: 26s;
+      animation-delay: -5s;
+    }
+
+    .orb-gold {
+      bottom: 5%;
+      left: 15%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.35) 0%, rgba(245, 158, 11, 0.03) 70%, transparent 100%);
+      animation-duration: 20s;
+      animation-delay: -8s;
+    }
+
+    .orb-cyan {
+      top: 70%;
+      right: 25%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0.02) 70%, transparent 100%);
+      animation-duration: 24s;
+      animation-delay: -12s;
+    }
+
+    /* Ambient Subtle Grid Pattern Overlay */
+    .ambient-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatOrb {
+      0% {
+        transform: translate(0px, 0px) scale(1);
+      }
+      50% {
+        transform: translate(60px, 45px) scale(1.08);
+      }
+      100% {
+        transform: translate(-40px, 70px) scale(0.95);
+      }
+    }
+
+    /* Interactive Spotlight Cursor Follower */
+    #cursorSpotlight {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 2;
+      transition: opacity 0.3s ease;
+      filter: blur(30px);
+    }
+
+    /* Content Wrapper */
+    .page-wrapper {
+      position: relative;
+      z-index: 5;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Typography Classes */
+    h1, h2, h3, h4, .brand-font {
+      font-family: var(--font-heading);
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .gradient-text-green {
+      background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #6EE7B7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text-gold {
+      background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #FDE68A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text-blue {
+      background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #93C5FD 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-text-hybrid {
+      background: linear-gradient(135deg, #34D399 0%, #FBBF24 50%, #60A5FA 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Reusable Glasify Elements */
+    .glass-panel {
+      background: var(--glass-bg-card);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: var(--glass-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .glass-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 200%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      transform: skewX(-25deg);
+      pointer-events: none;
+      transition: 0.75s ease;
+    }
+
+    .glass-panel:hover::before {
+      left: 100%;
+    }
+
+    .glass-panel:hover {
+      border-color: var(--glass-border-light);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    /* 3D Tilt Card Class */
+    .tilt-card {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    /* Glass Pill Badges */
+    .glass-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #F8FAFC;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .glass-badge .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--muh-green-glow);
+      box-shadow: 0 0 10px var(--muh-green-glow);
+      animation: pulseGlow 2s infinite;
+    }
+
+    .glass-badge.gold .pulse-dot {
+      background-color: var(--muh-gold-glow);
+      box-shadow: 0 0 10px var(--muh-gold-glow);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.4;
+      }
+    }
+
+    /* Glass Buttons */
+    .btn-glass-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(4, 165, 79, 0.85) 0%, rgba(16, 185, 129, 0.75) 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--glass-shadow-glow-green);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn-glass-primary:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(135deg, rgba(4, 165, 79, 1) 0%, rgba(16, 185, 129, 0.95) 100%);
+      box-shadow: 0 16px 40px -5px rgba(4, 165, 79, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-glass-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--glass-shadow);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-glass-secondary:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+      color: #FFFFFF;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-glass-gold {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.85) 0%, rgba(217, 119, 6, 0.8) 100%);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--glass-shadow-glow-gold);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .btn-glass-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px -5px rgba(245, 158, 11, 0.6);
+    }
+
+    /* Top Announcement Bar */
+    .announcement-bar {
+      background: linear-gradient(90deg, rgba(4, 165, 79, 0.45) 0%, rgba(44, 54, 139, 0.55) 50%, rgba(245, 158, 11, 0.45) 100%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.65rem 3rem 0.65rem 1.5rem;
+      font-size: 0.84rem;
+      color: #F1F5F9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 50;
+      line-height: 1.4;
+    }
+
+    .announcement-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .announcement-bar a {
+      color: #FDE68A;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      margin-left: 0.25rem;
+      white-space: nowrap;
+    }
+
+    .announcement-close {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .announcement-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Glass Sticky Navigation Bar */
+    .nav-wrapper {
+      position: sticky;
+      top: 0.75rem;
+      z-index: 100;
+      padding: 0 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .glass-nav {
+      max-width: 1240px;
+      margin: 0 auto;
+      min-height: 58px;
+      background: rgba(10, 22, 44, 0.72);
+      backdrop-filter: var(--glass-blur-deep);
+      -webkit-backdrop-filter: var(--glass-blur-deep);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 16px;
+      padding: 0.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      box-shadow: 0 18px 45px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+      transition: all 0.3s ease;
+    }
+
+    .glass-nav.scrolled {
+      background: rgba(6, 14, 28, 0.9);
+      border-color: rgba(255, 255, 255, 0.24);
+      padding: 0.4rem 1.25rem;
+      box-shadow: 0 22px 50px -10px rgba(0, 0, 0, 0.85);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-glow {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 18px rgba(16, 185, 129, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .brand-logo-glow img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .nav-brand:hover .brand-logo-glow {
+      transform: rotate(6deg) scale(1.08);
+    }
+
+    .brand-text h1 {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0;
+      background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      white-space: nowrap;
+    }
+
+    .brand-text span {
+      font-size: 0.65rem;
+      color: #94A3B8;
+      display: block;
+      font-family: var(--font-body);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(0.5rem, 1.1vw, 1.25rem);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-link {
+      color: #CBD5E1;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+      position: relative;
+      padding: 0.35rem 0.2rem;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #10B981, #FBBF24);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    /* Sleek Navbar Specific Buttons */
+    .glass-nav .btn-glass-primary,
+    .glass-nav .btn-glass-secondary {
+      height: 38px;
+      padding: 0 1.05rem;
+      font-size: 0.84rem;
+      border-radius: 10px;
+      white-space: nowrap;
+      gap: 0.45rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 0.5rem;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 82%;
+      max-width: 380px;
+      height: 100vh;
+      background: rgba(9, 18, 36, 0.95);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      z-index: 1000;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -15px 0 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .mobile-drawer.open {
+      right: 0;
+    }
+
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 3.5rem 0 5rem;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-heading {
+      font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+      line-height: 1.18;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: #94A3B8;
+      line-height: 1.7;
+      max-width: 95%;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* 3D Glass Hero Showcase Card */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-main-card {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+      background: rgba(15, 27, 49, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(24px);
+    }
+
+    .hero-main-card img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .hero-main-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-card-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6, 13, 26, 0.1) 0%, rgba(6, 13, 26, 0.88) 100%);
+      pointer-events: none;
+    }
+
+    .hero-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.75rem;
+      z-index: 2;
+    }
+
+    /* Floating Micro Glass Cards */
+    .floating-glass-pill {
+      position: absolute;
+      background: rgba(14, 25, 48, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 18px;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      animation: floatBadge 6s ease-in-out infinite alternate;
+      z-index: 10;
+    }
+
+    .pill-top-right {
+      top: -24px;
+      right: -20px;
+      animation-delay: -2s;
+    }
+
+    .pill-bottom-left {
+      bottom: -28px;
+      left: -24px;
+      animation-delay: -4s;
+    }
+
+    @keyframes floatBadge {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-12px) rotate(1.5deg);
+      }
+    }
+
+    .icon-glass-box {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .icon-box-green {
+      background: rgba(4, 165, 79, 0.25);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #34D399;
+    }
+
+    .icon-box-gold {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: rgba(251, 191, 36, 0.4);
+      color: #FBBF24;
+    }
+
+    .icon-box-blue {
+      background: rgba(44, 54, 139, 0.35);
+      border-color: rgba(59, 130, 246, 0.4);
+      color: #60A5FA;
+    }
+
+    /* Stats Metric Ribbon */
+    .stats-ribbon {
+      padding: 1.5rem 0 4rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .stat-card {
+      padding: 1.75rem 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .stat-number {
+      font-size: 2.3rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.4rem;
+      font-family: var(--font-heading);
+    }
+
+    .stat-label {
+      font-size: 0.88rem;
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    /* Principal Welcome Section */
+    .section-spacing {
+      padding: 4.5rem 0;
+    }
+
+    .principal-card {
+      padding: 2.75rem 3rem;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(16, 30, 54, 0.75) 0%, rgba(9, 18, 35, 0.65) 100%);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      position: relative;
+    }
+
+    .principal-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .principal-avatar-wrap {
+      position: relative;
+      text-align: center;
+    }
+
+    .principal-avatar {
+      width: 220px;
+      height: 220px;
+      border-radius: 24px;
+      margin: 0 auto;
+      object-fit: cover;
+      border: 2px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(245, 158, 11, 0.2);
+    }
+
+    .signature-img {
+      max-width: 170px;
+      height: auto;
+      margin-top: 1rem;
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.5));
+    }
+
+    .principal-quote {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #E2E8F0;
+      line-height: 1.8;
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .principal-quote::before {
+      content: '“';
+      font-size: 4rem;
+      line-height: 1;
+      color: rgba(245, 158, 11, 0.35);
+      font-family: serif;
+      position: absolute;
+      top: -1.75rem;
+      left: -2rem;
+    }
+
+    /* Section Header */
+    .section-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--muh-green-glow);
+      margin-bottom: 0.65rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      font-size: 1rem;
+      color: #94A3B8;
+      line-height: 1.65;
+    }
+
+    /* Pillars Grid */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .pillar-card {
+      padding: 2.25rem 1.85rem;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      position: relative;
+      background: rgba(14, 25, 47, 0.5);
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      transform: translateY(-6px);
+    }
+
+    .pillar-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .pillar-title {
+      font-size: 1.25rem;
+      line-height: 1.35;
+    }
+
+    .pillar-desc {
+      font-size: 0.92rem;
+      color: #94A3B8;
+      line-height: 1.65;
+    }
+
+    /* Gallery & Documentation */
+    .gallery-filter-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.6rem 1.35rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #CBD5E1;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: linear-gradient(135deg, rgba(4, 165, 79, 0.8) 0%, rgba(16, 185, 129, 0.6) 100%);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 8px 25px -4px rgba(4, 165, 79, 0.4);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .gallery-item {
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      height: 270px;
+      background: rgba(15, 25, 45, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(5, 11, 20, 0.95) 100%);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 0.3rem;
+      pointer-events: none;
+    }
+
+    .gallery-item-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #34D399;
+    }
+
+    .gallery-item-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.35;
+    }
+
+    /* Legal & Accreditation Showcase */
+    .legal-card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .legal-item {
+      padding: 2rem 1.75rem;
+      border-radius: 22px;
+      background: rgba(14, 25, 48, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .legal-number {
+      font-family: monospace;
+      font-size: 1.05rem;
+      color: #FBBF24;
+      background: rgba(245, 158, 11, 0.1);
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      display: inline-block;
+      width: fit-content;
+    }
+
+    /* Curriculum & Extracurricular Glass Tabs */
+    .program-tabs-header {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .tab-nav-btn {
+      padding: 0.85rem 2rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #CBD5E1;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tab-nav-btn.active {
+      background: linear-gradient(135deg, rgba(44, 54, 139, 0.8) 0%, rgba(16, 185, 129, 0.6) 100%);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.35);
+      box-shadow: 0 10px 30px rgba(44, 54, 139, 0.4);
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Calculator & Tuition Simulation */
+    .calc-card {
+      padding: 2.75rem;
+      border-radius: 28px;
+      background: rgba(14, 26, 50, 0.7);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .calc-option-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .calc-option-item:hover, .calc-option-item.selected {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .calc-result-box {
+      background: rgba(6, 15, 30, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Registration Form */
+    .form-wrapper {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 3rem;
+      border-radius: 30px;
+      background: rgba(13, 24, 46, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #E2E8F0;
+    }
+
+    .glass-input, .glass-select, .glass-textarea {
+      width: 100%;
+      padding: 0.85rem 1.15rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .glass-input::placeholder, .glass-textarea::placeholder {
+      color: #64748B;
+    }
+
+    .glass-input:focus, .glass-select:focus, .glass-textarea:focus {
+      border-color: var(--muh-green-glow);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
+    }
+
+    .glass-select option {
+      background: #0B172B;
+      color: #FFFFFF;
+    }
+
+    /* FAQ Glass Accordion */
+    .faq-container {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .faq-item {
+      border-radius: 18px;
+      background: rgba(14, 25, 47, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+    }
+
+    .faq-header {
+      padding: 1.35rem 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #FFFFFF;
+      user-select: none;
+    }
+
+    .faq-icon-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-icon-toggle {
+      transform: rotate(180deg);
+      background: rgba(16, 185, 129, 0.25);
+      color: #34D399;
+    }
+
+    .faq-body {
+      padding: 0 1.75rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+      font-size: 0.95rem;
+      color: #94A3B8;
+      line-height: 1.7;
+    }
+
+    .faq-item.active .faq-body {
+      padding: 0 1.75rem 1.5rem;
+      max-height: 300px;
+    }
+
+    /* Location & Contact Grid */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .contact-info-card {
+      padding: 2.5rem;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #34D399;
+    }
+
+    .social-pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .social-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.15rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    .social-pill:hover {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Glass Footer */
+    .glass-footer {
+      margin-top: 5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(6, 13, 26, 0.85);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      padding: 4rem 0 2rem;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links a {
+      color: #94A3B8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: #34D399;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: #64748B;
+    }
+
+    /* Floating WhatsApp Button */
+    .floating-wa-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 99;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 9999px;
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.9) 0%, rgba(18, 140, 126, 0.9) 100%);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 12px 35px rgba(37, 211, 102, 0.45);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-wa-btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 18px 45px rgba(37, 211, 102, 0.6);
+    }
+
+    /* Back To Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      z-index: 99;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-4px);
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-card {
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      background: rgba(15, 28, 52, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.2s ease;
+    }
+
+    .lightbox-close:hover {
+      transform: scale(1.1);
+    }
+
+    .lightbox-img-wrap {
+      width: 100%;
+      height: 480px;
+      background: #000;
+    }
+
+    .lightbox-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .lightbox-caption {
+      padding: 1.5rem 2rem;
+      background: rgba(10, 20, 38, 0.95);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      top: 5rem;
+      right: 2rem;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      background: rgba(15, 28, 52, 0.95);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #FFFFFF;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      animation: slideInRight 0.35s ease;
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 1160px) {
+      .glass-nav .btn-glass-secondary {
+        display: none; /* Hide Portal GTK in navbar on medium screens; tetap ada di drawer mobile */
+      }
+      .nav-links {
+        gap: 0.75rem;
+      }
+      .nav-link {
+        font-size: 0.82rem;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .pillars-grid, .gallery-grid, .legal-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .principal-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .principal-quote::before {
+        display: none;
+      }
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .nav-links, .nav-actions .btn-glass-secondary, .nav-actions .btn-glass-primary {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .pillars-grid, .gallery-grid, .legal-card-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-wrapper {
+        padding: 2rem 1.5rem;
+      }
+      .calc-card {
+        padding: 1.75rem 1.25rem;
+      }
+      .principal-card {
+        padding: 2rem 1.5rem;
+      }
+      .floating-wa-btn span {
+        display: none;
+      }
+      .floating-wa-btn {
+        padding: 0.85rem;
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+      .back-to-top {
+        bottom: 1.5rem;
+        left: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Dynamic Mesh Background (Glasify Lighting Canvas) -->
+  <div class="ambient-canvas">
+    <div class="ambient-orb orb-green"></div>
+    <div class="ambient-orb orb-blue"></div>
+    <div class="ambient-orb orb-gold"></div>
+    <div class="ambient-orb orb-cyan"></div>
+  </div>
+  <div class="ambient-grid"></div>
+  <div id="cursorSpotlight"></div>
+
+  <div class="page-wrapper">
+
+    <!-- Top Announcement Bar (Glass Tint) -->
+    <aside class="announcement-bar" id="announcementBar">
+      <div class="announcement-content">
+        <span>✨ <strong>PPDB 2026/2027 DIBUKA!</strong> Kuota Terbatas untuk Program Unggulan Berbasis AI & Karakter Qur'ani (NPSN: 70058553).</span>
+        <a href="#ppdb">Daftar Sekarang &rarr;</a>
+      </div>
+      <button class="announcement-close" onclick="document.getElementById('announcementBar').style.display='none'" aria-label="Tutup Pengumuman" title="Tutup Pengumuman">✕</button>
+    </aside>
+
+    <!-- Glass Floating Navigation -->
+    <header class="nav-wrapper">
+      <nav class="glass-nav" id="mainNav">
+        <a href="#" class="nav-brand">
+          <div class="brand-logo-glow">
+            <img src="logo-smp-muhammadiyah.png" alt="Logo SMP Muhammadiyah 1 Kota Bangun Darat">
+          </div>
+          <div class="brand-text">
+            <h1>SMP MUHAMMADIYAH 1</h1>
+            <span>KOTA BANGUN DARAT</span>
+          </div>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#beranda" class="nav-link">Beranda</a></li>
+          <li><a href="#profil" class="nav-link">Profil</a></li>
+          <li><a href="#keunggulan" class="nav-link">Keunggulan AI</a></li>
+          <li><a href="#prestasi" class="nav-link">Prestasi</a></li>
+          <li><a href="#galeri" class="nav-link">Galeri</a></li>
+          <li><a href="#program" class="nav-link">Kurikulum</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="portal-keuangan.html" class="btn-glass-secondary" title="Buka Portal Tata Kelola Keuangan & GTK">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>Portal GTK</span>
+          </a>
+          <a href="#ppdb" class="btn-glass-primary">
+            <span>Daftar PPDB</span>
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Buka Menu Navigasi">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+        <div class="brand-text">
+          <h2 style="font-size: 1.1rem; color: #FFF;">SMP MUHAMMADIYAH 1</h2>
+          <span style="font-size: 0.75rem; color: #94A3B8;">Kota Bangun Darat</span>
+        </div>
+        <button id="closeDrawerBtn" style="background:none; border:none; color:#FFF; cursor:pointer;">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+        <li><a href="#beranda" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Beranda</a></li>
+        <li><a href="#profil" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Profil & Sambutan</a></li>
+        <li><a href="#keunggulan" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Keunggulan & AI</a></li>
+        <li><a href="#prestasi" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Prestasi Kejuaraan</a></li>
+        <li><a href="#galeri" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Galeri Kegiatan</a></li>
+        <li><a href="#program" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Kurikulum & HW</a></li>
+        <li><a href="#biaya" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Simulasi Biaya</a></li>
+        <li><a href="#kontak" class="nav-link mobile-link" style="font-size: 1.1rem; display: block;">Lokasi & Kontak</a></li>
+      </ul>
+
+      <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.75rem;">
+        <a href="#ppdb" class="btn-glass-primary mobile-link" style="width: 100%;">Formulir PPDB Online</a>
+        <a href="portal-keuangan.html" class="btn-glass-secondary" style="width: 100%;">Masuk Portal GTK</a>
+      </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <main>
+    <section id="beranda" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+              <span class="glass-badge">
+                <span class="pulse-dot"></span>
+                <span>NPSN Resmi: <strong>70058553</strong></span>
+              </span>
+              <span class="glass-badge gold">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <span>Juara Umum Perjusami Se-Kecamatan</span>
+              </span>
+            </div>
+
+            <h1 class="hero-heading">
+              Membentuk Generasi <span class="gradient-text-green">Qur'ani Berakhlak</span> & Menguasai <span class="gradient-text-hybrid">Teknologi AI</span>
+            </h1>
+
+            <p class="hero-desc">
+              Selamat datang di <strong>SMP Muhammadiyah 1 Kota Bangun Darat</strong>, wadah pendidikan modern di Kutai Kartanegara yang memadukan kedalaman nilai Ismuba (Al-Islam & Kemuhammadiyahan), ketangguhan kepanduan Hizbul Wathan, serta kecakapan digital masa depan dengan fasilitas <em>1 Siswa 1 Chromebook</em> dan integrasi kurikulum <em>Google Gemini AI</em>.
+            </p>
+
+            <div class="hero-btn-group">
+              <a href="#ppdb" class="btn-glass-primary">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <span>Daftar PPDB 2026/2027</span>
+              </a>
+
+              <a href="#galeri" class="btn-glass-secondary">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Lihat Prestasi & Dokumentasi</span>
+              </a>
+
+              <a href="https://wa.me/6281257567179?text=Halo%20Admin%20SMP%20Muhammadiyah%201%20Kota%20Bangun%20Darat,%20saya%20ingin%20konsultasi%20mengenai%20pendaftaran%20siswa%20baru." target="_blank" rel="noopener noreferrer" class="btn-glass-gold">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
+                <span>Konsultasi Cepat WA</span>
+              </a>
+            </div>
+
+            <!-- Mini Trust Indicators -->
+            <div style="display: flex; align-items: center; gap: 1.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08);">
+              <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #CBD5E1;">
+                <svg width="18" height="18" color="#34D399" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>Izin Operasional Resmi Disdikbud Kukar</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: #CBD5E1;">
+                <svg width="18" height="18" color="#FBBF24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <span>1 Siswa 1 Laptop Chromebook</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual with Frosted Glassmorphism Layering -->
+          <div class="hero-visual">
+            <!-- Top Right Floating Glass Badge -->
+            <div class="floating-glass-pill pill-top-right">
+              <div class="icon-glass-box icon-box-green">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+              </div>
+              <div>
+                <strong style="color: #FFF; font-size: 0.9rem; display: block;">Pelatihan Gemini AI</strong>
+                <span style="color: #94A3B8; font-size: 0.75rem;">Siswa & Guru Terampil Teknologi</span>
+              </div>
+            </div>
+
+            <!-- Main Featured Glass Showcase -->
+            <div class="hero-main-card tilt-card" id="heroTiltCard">
+              <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-praktik-laptop.jpg" alt="Siswa SMP Muhammadiyah 1 KobDar Praktik Laptop Google Gemini AI">
+              <div class="hero-card-gradient"></div>
+              <div class="hero-card-content">
+                <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <span class="glass-badge" style="background: rgba(4,165,79,0.3); border-color: rgba(52,211,153,0.4); font-size: 0.75rem;">
+                    Aula Masjid Nur Hidayah
+                  </span>
+                  <span class="glass-badge" style="background: rgba(44,54,139,0.3); border-color: rgba(96,165,250,0.4); font-size: 0.75rem;">
+                    Literasi Digital 2026
+                  </span>
+                </div>
+                <h3 style="font-size: 1.25rem; color: #FFF; margin-bottom: 0.25rem;">Generasi Emas Cakap Berpikir Kritis & Ber-AI</h3>
+                <p style="font-size: 0.85rem; color: #CBD5E1; margin: 0;">Didampingi 6 Guru Tersertifikasi Batik Resmi Muhammadiyah</p>
+              </div>
+            </div>
+
+            <!-- Bottom Left Floating Glass Badge -->
+            <div class="floating-glass-pill pill-bottom-left">
+              <div class="icon-glass-box icon-box-gold">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+              </div>
+              <div>
+                <strong style="color: #FBBF24; font-size: 0.9rem; display: block;">Juara 1 Pionering & Juara 2 Semaphore</strong>
+                <span style="color: #CBD5E1; font-size: 0.75rem;">Scout Day Competition SMAN 2 KobDar</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY STATS METRIC RIBBON (GLASS TILES) -->
+    <section class="stats-ribbon">
+      <div class="container">
+        <div class="stats-grid">
+          
+          <div class="glass-panel stat-card">
+            <div class="stat-number gradient-text-gold">10+</div>
+            <div class="stat-label">Piala & Trofi Kejuaraan (Juara Umum Perjusami Se-Kecamatan)</div>
+          </div>
+
+          <div class="glass-panel stat-card">
+            <div class="stat-number gradient-text-green">100%</div>
+            <div class="stat-label">Fasilitas Praktik 1 Siswa 1 Laptop Chromebook Mandiri</div>
+          </div>
+
+          <div class="glass-panel stat-card">
+            <div class="stat-number gradient-text-blue">70058553</div>
+            <div class="stat-label">NPSN Resmi Terdaftar di Kemendikdasmen & Disdikbud Kukar</div>
+          </div>
+
+          <div class="glass-panel stat-card">
+            <div class="stat-number gradient-text-hybrid">12 Ray</div>
+            <div class="stat-label">Pilar Karakter Islami Berkemajuan K.H. Ahmad Dahlan</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SAMBUTAN KEPALA SEKOLAH -->
+    <section id="profil" class="section-spacing">
+      <div class="container">
+        <div class="glass-panel principal-card">
+          <div class="principal-grid">
+            
+            <div class="principal-avatar-wrap">
+              <div style="position: relative; display: inline-block;">
+                <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-guru-gemini-academy-2026.jpg" alt="Kepala Sekolah SMP Muhammadiyah 1 Kota Bangun Darat" class="principal-avatar">
+                <span class="glass-badge gold" style="position: absolute; bottom: -12px; left: 50%; transform: translateX(-50%); white-space: nowrap;">
+                  Kepala Sekolah
+                </span>
+              </div>
+
+              <div style="margin-top: 1.5rem;">
+                <h3 style="font-size: 1.35rem; color: #FFF; margin-bottom: 0.2rem;">Susanto, S.Sos</h3>
+                <p style="font-size: 0.825rem; color: #94A3B8; margin-bottom: 0.5rem;">NBM: 2006 7615 1221959</p>
+                <img src="tanda-tangan-pak-susanto-gold.png" alt="Tanda Tangan Resmi Kepala Sekolah Susanto, S.Sos" class="signature-img">
+              </div>
+            </div>
+
+            <div class="principal-text-wrap">
+              <div class="glass-badge" style="margin-bottom: 1rem;">
+                <span class="pulse-dot"></span>
+                <span>Amanat & Visi Kelembagaan</span>
+              </div>
+              
+              <h2 style="font-size: 2rem; line-height: 1.25; margin-bottom: 1.2rem;">
+                "Menyiapkan Generasi yang Tidak Hanya Pintar, Tapi Memiliki Jiwa Qur'ani dan Tanggap Masa Depan"
+              </h2>
+
+              <p class="principal-quote">
+                Assalamu'alaikum Warahmatullahi Wabarakatuh.<br>
+                Di era transformasi digital yang bergerak sangat pesat, anak-anak kita di Kota Bangun Darat berhak mendapatkan pendidikan terbaik yang berimbang. Mereka harus teguh dalam akidah Islam, berakhlak mulia melalui pembiasaan ibadah harian, mandiri melalui kepanduan Hizbul Wathan, sekaligus percaya diri memegang kendali teknologi mutakhir seperti kecerdasan buatan (AI). Kami menyambut para orang tua dan calon siswa untuk tumbuh bersama keluarga besar SMP Muhammadiyah 1 Kota Bangun Darat.
+              </p>
+
+              <div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+                <div style="padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                  <span style="font-size: 0.75rem; color: #94A3B8; display: block;">SK Pengangkatan:</span>
+                  <strong style="color: #FBBF24; font-size: 0.88rem;">080/III.0/KEP/D/2024 (PDM Kukar)</strong>
+                </div>
+                <div style="padding: 0.75rem 1.25rem; border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                  <span style="font-size: 0.75rem; color: #94A3B8; display: block;">Penyelenggara:</span>
+                  <strong style="color: #34D399; font-size: 0.88rem;">Majelis Dikdasmen & PNF PCM Kota Bangun</strong>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILAR KEUNGGULAN SEKOLAH -->
+    <section id="keunggulan" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Mengapa Memilih Kami?</p>
+          <h2 class="section-title">6 Pilar Keunggulan Berkarakter & Berkemajuan</h2>
+          <p class="section-desc">
+            Pendekatan komprehensif yang memadukan keagamaan, kecakapan masa depan, dan kearifan lokal untuk masa depan buah hati Anda.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          
+          <!-- Pillar 1: AI & Tech -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-green">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="pillar-title">1 Siswa 1 Laptop & Pembelajaran Google Gemini AI</h3>
+            <p class="pillar-desc">
+              Bukan sekadar teori. Siswa kami belajar dengan laptop Chromebook interaktif dan dibimbing menggunakan kecerdasan buatan (Google Gemini) secara bijak, etis, dan produktif untuk riset serta literasi digital.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #34D399; font-weight: 600;">
+              ✓ Pelatihan Terstruktur Kemendikdasmen & REFO
+            </div>
+          </div>
+
+          <!-- Pillar 2: Ismuba & Tahfidz -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-gold">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3 class="pillar-title">Karakter Ismuba & Pembiasaan Sholat Berjamaah</h3>
+            <p class="pillar-desc">
+              Kurikulum khas Al-Islam, Kemuhammadiyahan, dan Bahasa Arab. Setiap hari diawali Sholat Dhuha, tadarus Al-Qur'an, hafalan Juz 30/29, dan Sholat Dzuhur berjamaah di Kompleks Masjid Nur Hidayah.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #FBBF24; font-weight: 600;">
+              ✓ Terbukti Juara 3 MTQ Tilawah Anak Putri
+            </div>
+          </div>
+
+          <!-- Pillar 3: Hizbul Wathan -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-blue">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="pillar-title">Kepanduan Hizbul Wathan (HW) Juara Umum</h3>
+            <p class="pillar-desc">
+              Mendidik kedisiplinan, ketangkasan, dan cinta tanah air. Kontingen HW kami menyabet Juara Umum Perjusami Se-Kecamatan dengan 10 piala, serta Juara 1 Pionering dan Juara 2 Dance Semaphore.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #60A5FA; font-weight: 600;">
+              ✓ Jiwa Pandu Panglima Besar Jenderal Soedirman
+            </div>
+          </div>
+
+          <!-- Pillar 4: Budaya & Seni Kutai -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-gold">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="pillar-title">Pelestarian Budaya Lokal Kutai Kartanegara</h3>
+            <p class="pillar-desc">
+              Menghargai warisan bumi Kutai. Siswi-siswi kami aktif dalam Sanggar Tari Tradisional Melayu/Kutai adat kuning emas, tampil berprestasi dalam festival seni dan upacara kebesaran daerah.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #FBBF24; font-weight: 600;">
+              ✓ Delegasi Tari Tradisional Terbaik
+            </div>
+          </div>
+
+          <!-- Pillar 5: Makan Bergizi Gratis (MBG) -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-green">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h18v18H3V3z"/><path d="M8 7v10M12 7v10M16 7v10"/></svg>
+            </div>
+            <h3 class="pillar-title">Program Makan Bergizi Gratis (MBG)</h3>
+            <p class="pillar-desc">
+              Dukungan gizi sehat bagi tumbuh kembang optimal anak. Sekolah secara aktif mendukung dan menyalurkan program pemenuhan nutrisi agar siswa belajar dengan penuh energi dan fokus.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #34D399; font-weight: 600;">
+              ✓ Pengawasan Menu Sehat & Bersih
+            </div>
+          </div>
+
+          <!-- Pillar 6: Beasiswa Kader & Inklusi -->
+          <div class="glass-panel pillar-card">
+            <div class="pillar-icon icon-box-blue">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="pillar-title">Biaya Terjangkau & Beasiswa Kader Berprestasi</h3>
+            <p class="pillar-desc">
+              Misi sosial Muhammadiyah mengedepankan hak pendidikan bagi setiap anak. Tersedia beasiswa prestasi akademik/tahfidz serta subsidi bagi keluarga yang membutuhkan melalui infaq gotong-royong.
+            </p>
+            <div style="margin-top: auto; font-size: 0.825rem; color: #60A5FA; font-weight: 600;">
+              ✓ Tidak Ada Anak Putus Sekolah
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERI PRESTASI & DOKUMENTASI NYATA -->
+    <section id="galeri" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Bukti Nyata Karya & Rekam Jejak</p>
+          <h2 class="section-title">Galeri Prestasi & Dokumentasi Sekolah</h2>
+          <p class="section-desc">
+            Klik foto untuk melihat dokumentasi resolusi penuh dan rincian kejuaraan nyata santri-santri SMP Muhammadiyah 1 Kota Bangun Darat.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="gallery-filter-tabs">
+          <button class="filter-btn active" data-filter="all">Semua Dokumentasi</button>
+          <button class="filter-btn" data-filter="prestasi">Prestasi & Kejuaraan</button>
+          <button class="filter-btn" data-filter="ai">Teknologi & AI</button>
+          <button class="filter-btn" data-filter="seni">Kepanduan & Seni Budaya</button>
+        </div>
+
+        <!-- Gallery Grid -->
+        <div class="gallery-grid" id="galleryContainer">
+
+          <!-- Item 1: Scout Day Juara 1 Pionering -->
+          <div class="gallery-item" data-category="prestasi" onclick="openLightbox('assets/prestasi-sekolah/scout-day-2026-juara-1-pionering-juara-2-semaphore.jpg', 'Juara 1 Lomba Pionering & Juara 2 Dance Semaphore', 'Kontingen SMP Muhammadiyah 1 KobDar meraih 2 trofi kejuaraan pada Scout Day Competition 2026 di SMAN 2 Kota Bangun.')">
+            <img src="assets/prestasi-sekolah/scout-day-2026-juara-1-pionering-juara-2-semaphore.jpg" alt="Juara 1 Pionering & Juara 2 Semaphore Scout Day 2026">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Prestasi Kepanduan • 2026</span>
+              <h4 class="gallery-item-title">Juara 1 Pionering & Juara 2 Semaphore</h4>
+            </div>
+          </div>
+
+          <!-- Item 2: Siswa Praktik Chromebook AI -->
+          <div class="gallery-item" data-category="ai" onclick="openLightbox('assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-praktik-laptop.jpg', 'Praktik Google Gemini AI dengan 1 Siswa 1 Laptop', 'Siswa SMP Muhammadiyah 1 KobDar belajar eksplorasi pembelajaran kecerdasan buatan interaktif di Aula Masjid Nur Hidayah.')">
+            <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-praktik-laptop.jpg" alt="Praktik Google Gemini AI Siswa">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Teknologi AI • 10 Nov 2026</span>
+              <h4 class="gallery-item-title">Praktik Google Gemini AI Siswa</h4>
+            </div>
+          </div>
+
+          <!-- Item 3: Juara Umum Perjusami 10 Piala -->
+          <div class="gallery-item" data-category="prestasi" onclick="openLightbox('assets/prestasi-sekolah/kontingen-juara-umum-perjusami-10-piala.jpg', 'Juara Umum Perjusami Se-Kecamatan (10 Trofi)', 'Raihan spektakuler kontingen Hizbul Wathan SMP Muhammadiyah 1 KobDar memboyong 10 piala kejuaraan se-Kecamatan di SMPN 3 Kota Bangun.')">
+            <img src="assets/prestasi-sekolah/kontingen-juara-umum-perjusami-10-piala.jpg" alt="Juara Umum Perjusami 10 Piala">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Juara Umum • Perjusami</span>
+              <h4 class="gallery-item-title">Juara Umum Perjusami (10 Trofi)</h4>
+            </div>
+          </div>
+
+          <!-- Item 4: Juara 3 MTQ Tilawah Putri -->
+          <div class="gallery-item" data-category="prestasi" onclick="openLightbox('assets/prestasi-sekolah/juara-3-mtq-tilawah-dian-muhimmatuzzahira.jpg', 'Juara 3 MTQ Tilawah Anak Putri Tingkat Kecamatan', 'Prestasi ananda Dian Muhimmatuzzahira (Kelas VII) pada ajang MTQ Ke-3 Tingkat Kecamatan Kota Bangun Darat di Desa Sari Nadi.')">
+            <img src="assets/prestasi-sekolah/juara-3-mtq-tilawah-dian-muhimmatuzzahira.jpg" alt="Juara 3 MTQ Tilawah Dian Muhimmatuzzahira">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Keagamaan • MTQ Ke-3</span>
+              <h4 class="gallery-item-title">Juara 3 MTQ Tilawah Putri</h4>
+            </div>
+          </div>
+
+          <!-- Item 5: Seni Tari Tradisional Kutai -->
+          <div class="gallery-item" data-category="seni" onclick="openLightbox('assets/prestasi-sekolah/prestasi-seni-tari-tradisional-siswi.jpg', 'Seni Tari Tradisional Kutai Melayu', '6 Siswi SMP Muhammadiyah 1 KobDar dalam balutan kostum adat kuning emas melestarikan kesenian tari daerah Kalimantan Timur.')">
+            <img src="assets/prestasi-sekolah/prestasi-seni-tari-tradisional-siswi.jpg" alt="Seni Tari Tradisional Kutai">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Seni Budaya • Kutai</span>
+              <h4 class="gallery-item-title">Delegasi Tari Adat Kutai Melayu</h4>
+            </div>
+          </div>
+
+          <!-- Item 6: Foto Bersama Siswa & GTK AI -->
+          <div class="gallery-item" data-category="ai" onclick="openLightbox('assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-foto-bersama.jpg', 'Foto Bersama Pelatihan Digital AI Siswa & GTK', '13 Siswa (7 putra, 6 putri) bersama 6 Pendidik & Tenaga Kependidikan berseragam batik resmi Muhammadiyah.')">
+            <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-siswa-foto-bersama.jpg" alt="Foto Bersama Pelatihan AI">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Keluarga Besar • AI Batch 1</span>
+              <h4 class="gallery-item-title">Sinergi Siswa & GTK Berkemajuan</h4>
+            </div>
+          </div>
+
+          <!-- Item 7: Penyerahan Trofi Scout Day -->
+          <div class="gallery-item" data-category="prestasi" onclick="openLightbox('assets/prestasi-sekolah/penyerahan-trofi-juara-scout-day-2026.jpg', 'Momen Penyerahan Trofi Scout Day 2026', 'Penyerahan trofi kemenangan oleh panitia di panggung utama perkemahan kepanduan.')">
+            <img src="assets/prestasi-sekolah/penyerahan-trofi-juara-scout-day-2026.jpg" alt="Penyerahan Trofi Scout Day">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Momen Juara • Scout Day</span>
+              <h4 class="gallery-item-title">Panggung Kemenangan HW KobDar</h4>
+            </div>
+          </div>
+
+          <!-- Item 8: Guru di Gemini Academy 2026 -->
+          <div class="gallery-item" data-category="ai" onclick="openLightbox('assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-guru-gemini-academy-2026.jpg', 'Festival Lokal Berdampak: Gemini Academy 2026', 'Kepala Sekolah (Susanto, S.Sos) dan perwakilan guru mengikuti sertifikasi pembelajaran AI yang diselenggarakan Kemendikdasmen RI & Disdikbud Kukar.')">
+            <img src="assets/dokumentasi-pelatihan-ai/pelatihan-gemini-ai-guru-gemini-academy-2026.jpg" alt="Guru di Gemini Academy 2026">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Sertifikasi GTK • Nov 2026</span>
+              <h4 class="gallery-item-title">Gemini Academy Guru Berdampak</h4>
+            </div>
+          </div>
+
+          <!-- Item 9: Apel Akbar Perjusami Se-Kecamatan -->
+          <div class="gallery-item" data-category="seni" onclick="openLightbox('assets/prestasi-sekolah/apel-akbar-perjusami-se-kecamatan-2025.jpg', 'Apel Akbar Perjusami Penggalang Se-Kecamatan', 'Suasana khidmat apel akbar perkemahan Jumat-Sabtu-Minggu di hadapan seluruh kontingen sekolah Kota Bangun Darat.')">
+            <img src="assets/prestasi-sekolah/apel-akbar-perjusami-se-kecamatan-2025.jpg" alt="Apel Akbar Perjusami">
+            <div class="gallery-item-overlay">
+              <span class="gallery-item-tag">Kepanduan HW • Upacara</span>
+              <h4 class="gallery-item-title">Apel Akbar Perjusami Penggalang</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LEGALITAS & AKREDITASI RESMI -->
+    <section id="prestasi" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Legalitas & Kelembagaan Resmi</p>
+          <h2 class="section-title">Terdaftar & Tervalidasi Negara</h2>
+          <p class="section-desc">
+            SMP Muhammadiyah 1 Kota Bangun Darat menyelenggarakan pendidikan dengan perizinan resmi pemerintah Kabupaten Kutai Kartanegara.
+          </p>
+        </div>
+
+        <div class="legal-card-grid">
+          
+          <div class="glass-panel legal-item">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="glass-badge" style="background: rgba(4,165,79,0.25);">Kemendikdasmen RI</span>
+              <svg width="24" height="24" color="#34D399" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #FFF;">Sertifikat NPSN</h3>
+            <span class="legal-number">70058553</span>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin: 0;">
+              Ditetapkan berdasarkan SK Ka. Balitbang Kemendikbud No. 3574/G4/KL/2009. Terdaftar resmi di Pusat Data & Teknologi Informasi (Pusdatin).
+            </p>
+          </div>
+
+          <div class="glass-panel legal-item">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="glass-badge gold" style="background: rgba(245,158,11,0.25);">Disdikbud Kukar</span>
+              <svg width="24" height="24" color="#FBBF24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #FFF;">SK Izin Operasional</h3>
+            <span class="legal-number">B-033/DISDIKBUD/SK/400.3.5/08/2025</span>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin: 0;">
+              Berlaku aktif s/d <strong>6 Agustus 2028</strong>. Diterbitkan oleh Kepala Dinas Pendidikan & Kebudayaan Kabupaten Kutai Kartanegara.
+            </p>
+          </div>
+
+          <div class="glass-panel legal-item">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="glass-badge" style="background: rgba(44,54,139,0.35);">Disdikbud Kukar</span>
+              <svg width="24" height="24" color="#60A5FA" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            </div>
+            <h3 style="font-size: 1.15rem; color: #FFF;">SK Pendirian Sekolah</h3>
+            <span class="legal-number">B-137/KP3-3/SK/400.3.5/07/2025</span>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin: 0;">
+              Ditetapkan tanggal 14 Juli 2025. Status kepemilikan tanah & gedung: Milik Sendiri (Milik Yayasan Muhammadiyah / Wakaf Umat).
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- KURIKULUM & EKSTRAKURIKULER INTERAKTIF -->
+    <section id="program" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Struktur Pembelajaran</p>
+          <h2 class="section-title">Kurikulum Merdeka Plus & Pengembangan Bakat</h2>
+          <p class="section-desc">
+            Dirancang seimbang antara kemampuan akademik, nilai religius, fisik yang sehat, dan penguasaan sains teknologi.
+          </p>
+        </div>
+
+        <div class="program-tabs-header">
+          <button class="tab-nav-btn active" onclick="switchTab('kurikulumTab', this)">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span>Struktur Kurikulum Merdeka + Ismuba</span>
+          </button>
+          <button class="tab-nav-btn" onclick="switchTab('ekskulTab', this)">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span>Ekstrakurikuler & Pembinaan Bakat</span>
+          </button>
+        </div>
+
+        <!-- Tab 1: Kurikulum -->
+        <div id="kurikulumTab" class="tab-pane active">
+          <div class="pillars-grid">
+            
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #FBBF24; font-weight: 700; margin-bottom: 0.75rem;">1. Mata Pelajaran Ismuba</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.9rem;">
+                <li>• Al-Islam (Aqidah, Akhlak, Fiqih Ibadah Praktis)</li>
+                <li>• Kemuhammadiyahan (Sejarah Perjuangan & Tokoh)</li>
+                <li>• Bahasa Arab Komunikatif</li>
+                <li>• Tahsin & Tahfidz Al-Qur'an (Juz 30 & Pilihan)</li>
+              </ul>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #34D399; font-weight: 700; margin-bottom: 0.75rem;">2. Kurikulum Nasional Merdeka</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.9rem;">
+                <li>• Bahasa Indonesia & Literasi Membaca Kritis</li>
+                <li>• Matematika Berpikir Komputasional</li>
+                <li>• Ilmu Pengetahuan Alam (IPA Terapan & Sains)</li>
+                <li>• Ilmu Pengetahuan Sosial (IPS & Wawasan Kebangsaan)</li>
+                <li>• Bahasa Inggris Percakapan Dasar</li>
+              </ul>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.75rem;">3. Muatan Lokal & Future Skills</div>
+              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem; color: #CBD5E1; font-size: 0.9rem;">
+                <li>• Literasi Google Gemini AI & Tools Digital</li>
+                <li>• Praktikum Komputer & Chromebook OS</li>
+                <li>• Muatan Budaya Daerah Kutai Kartanegara</li>
+                <li>• Pendidikan Lingkungan Hidup Pesisir Mahakam</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Tab 2: Ekskul -->
+        <div id="ekskulTab" class="tab-pane">
+          <div class="pillars-grid">
+            
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #34D399; font-weight: 700; margin-bottom: 0.5rem;">Gerakan Kepanduan HW</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Ekskul wajib yang mencetak kemandirian, pionering, tali-temali, sandi, semaphore, dan survival ceria di alam terbuka.</p>
+              <span class="glass-badge" style="font-size: 0.75rem;">Peraih 10 Trofi Juara</span>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #FBBF24; font-weight: 700; margin-bottom: 0.5rem;">Tapak Suci Putera Muhammadiyah</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Seni bela diri asli warisan bangsa dengan moto "Dengan Iman dan Akhlak Saya Menjadi Kuat, Tanpa Iman dan Akhlak Saya Menjadi Lemah".</p>
+              <span class="glass-badge gold" style="font-size: 0.75rem;">Bela Diri & Karakter</span>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.5rem;">Sanggar Tari Tradisional Kutai</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Wadah kreativitas seni gerak siswi dalam membawakan tari adat Kutai dan Melayu pada event akbar daerah dan kejuaraan.</p>
+              <span class="glass-badge" style="font-size: 0.75rem;">Kostum Kuning Emas</span>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #34D399; font-weight: 700; margin-bottom: 0.5rem;">Tilawah & Tahfidz Club</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Bimbingan intensif tajwid, irama tilawah, dan muraja'ah hafalan bagi calon qari/qari'ah yang siap diterjunkan dalam MTQ.</p>
+              <span class="glass-badge" style="font-size: 0.75rem;">Juara 3 MTQ Kecamatan</span>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #FBBF24; font-weight: 700; margin-bottom: 0.5rem;">AI & Digital Creativity Club</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Eksplorasi desain grafis Canva, editing video kreatif, coding sederhana, dan prompt engineering Gemini AI bagi siswa berbakat.</p>
+              <span class="glass-badge gold" style="font-size: 0.75rem;">Chromebook Ready</span>
+            </div>
+
+            <div class="glass-panel" style="padding: 2rem;">
+              <div style="font-size: 1.1rem; color: #60A5FA; font-weight: 700; margin-bottom: 0.5rem;">IPM (Ikatan Pelajar Muhammadiyah)</div>
+              <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 0.85rem;">Organisasi intra sekolah setingkat OSIS yang melatih kepemimpinan, musyawarah, manajemen kepanitiaan, dan literasi siswa.</p>
+              <span class="glass-badge" style="font-size: 0.75rem;">Pelajar Teladan</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- KALKULATOR BIAYA & SIMULASI BEASISWA INTERAKTIF -->
+    <section id="biaya" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Transparansi Finansial</p>
+          <h2 class="section-title">Simulasi Biaya & Skema Beasiswa</h2>
+          <p class="section-desc">
+            Pendidikan bermutu tidak harus memberatkan. Cek simulasi rincian investasi pendidikan dan kemudahan beasiswa untuk putra-putri Anda.
+          </p>
+        </div>
+
+        <div class="glass-panel calc-card">
+          <div class="calc-grid">
+            
+            <div>
+              <h3 style="font-size: 1.2rem; color: #FFF; margin-bottom: 1rem;">Pilih Kategori Pendaftar:</h3>
+
+              <div class="calc-option-item selected" onclick="selectFeePlan('reguler', this)">
+                <div>
+                  <strong style="color: #FFF; display: block;">Jalur Reguler Umum</strong>
+                  <span style="font-size: 0.8rem; color: #94A3B8;">Biaya standar inklusif buku, seragam lengkap, & operasional</span>
+                </div>
+                <div style="text-align: right;">
+                  <strong style="color: #34D399;">Standar</strong>
+                </div>
+              </div>
+
+              <div class="calc-option-item" onclick="selectFeePlan('prestasi', this)">
+                <div>
+                  <strong style="color: #FFF; display: block;">Jalur Prestasi (Juara MTQ / Pramuka / Sains)</strong>
+                  <span style="font-size: 0.8rem; color: #94A3B8;">Potongan 50% Infaq Awal Masuk</span>
+                </div>
+                <div style="text-align: right;">
+                  <strong style="color: #FBBF24;">Diskon 50%</strong>
+                </div>
+              </div>
+
+              <div class="calc-option-item" onclick="selectFeePlan('tahfidz', this)">
+                <div>
+                  <strong style="color: #FFF; display: block;">Jalur Tahfidz Al-Qur'an (Min. 1 Juz Lancar)</strong>
+                  <span style="font-size: 0.8rem; color: #94A3B8;">Bebas SPP Bulanan Semester 1</span>
+                </div>
+                <div style="text-align: right;">
+                  <strong style="color: #60A5FA;">Bebas SPP</strong>
+                </div>
+              </div>
+
+              <div class="calc-option-item" onclick="selectFeePlan('dhuafa', this)">
+                <div>
+                  <strong style="color: #FFF; display: block;">Jalur Kader Persyarikatan / Dhuafa</strong>
+                  <span style="font-size: 0.8rem; color: #94A3B8;">Beasiswa Penuh Lazismu & Gotong Royong Infaq</span>
+                </div>
+                <div style="text-align: right;">
+                  <strong style="color: #F87171;">Beasiswa 100%</strong>
+                </div>
+              </div>
+
+              <p style="font-size: 0.8rem; color: #94A3B8; margin-top: 1rem;">
+                * Seluruh biaya dikelola transparan dalam Sistem Informasi Tata Kelola Keuangan Sekolah terintegrasi.
+              </p>
+            </div>
+
+            <!-- Result Box -->
+            <div class="calc-result-box">
+              <span class="glass-badge" style="margin-bottom: 0.75rem;">Estimasi Investasi Masuk</span>
+              <div id="feeDisplayAmount" style="font-size: 2.5rem; font-weight: 800; color: #34D399; font-family: var(--font-heading); margin: 0.5rem 0;">
+                Rp 450.000*
+              </div>
+              <p id="feeDisplayNote" style="font-size: 0.85rem; color: #CBD5E1; line-height: 1.5; margin-bottom: 1.5rem;">
+                Sudah mencakup atribut seragam, MOS/Fortasi, administrasi, dan peminjaman fasilitas Chromebook praktikum.
+              </p>
+
+              <a href="#ppdb" class="btn-glass-primary" style="width: 100%;">
+                <span>Ajukan Beasiswa / Formulir</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMULIR PRA-PPDB ONLINE 2026/2027 -->
+    <section id="ppdb" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Penerimaan Peserta Didik Baru</p>
+          <h2 class="section-title">Formulir Pra-Pendaftaran Online 2026/2027</h2>
+          <p class="section-desc">
+            Isi formulir ringkas ini untuk mengamankan kuota dan menghubungkan berkas ananda langsung dengan Panitia PPDB via WhatsApp resmi sekolah.
+          </p>
+        </div>
+
+        <div class="glass-panel form-wrapper">
+          <form id="ppdbForm" onsubmit="handlePPDBSubmit(event)">
+            <div class="form-grid">
+              
+              <div class="form-group">
+                <label for="namaSiswa" class="form-label">Nama Lengkap Calon Siswa *</label>
+                <input type="text" id="namaSiswa" required placeholder="Contoh: Muhammad Farhan" class="glass-input">
+              </div>
+
+              <div class="form-group">
+                <label for="jenisKelamin" class="form-label">Jenis Kelamin *</label>
+                <select id="jenisKelamin" required class="glass-select">
+                  <option value="">Pilih Jenis Kelamin</option>
+                  <option value="Laki-laki">Laki-laki (Putra)</option>
+                  <option value="Perempuan">Perempuan (Putri)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="asalSekolah" class="form-label">Asal SD / MI *</label>
+                <input type="text" id="asalSekolah" required placeholder="Contoh: SDN 001 Kota Bangun Darat" class="glass-input">
+              </div>
+
+              <div class="form-group">
+                <label for="nisn" class="form-label">NISN (Nomor Induk Siswa Nasional)</label>
+                <input type="text" id="nisn" placeholder="10 digit nomor NISN (opsional)" class="glass-input">
+              </div>
+
+              <div class="form-group">
+                <label for="namaWali" class="form-label">Nama Orang Tua / Wali *</label>
+                <input type="text" id="namaWali" required placeholder="Nama Ayah / Ibu / Wali" class="glass-input">
+              </div>
+
+              <div class="form-group">
+                <label for="noWhatsapp" class="form-label">Nomor WhatsApp Aktif *</label>
+                <input type="tel" id="noWhatsapp" required placeholder="Contoh: 081234567890" class="glass-input">
+              </div>
+
+              <div class="form-group">
+                <label for="jalurDaftar" class="form-label">Jalur Pendaftaran *</label>
+                <select id="jalurDaftar" required class="glass-select">
+                  <option value="Reguler">Jalur Reguler</option>
+                  <option value="Prestasi">Jalur Prestasi (Akademik / Kepanduan / MTQ)</option>
+                  <option value="Tahfidz">Jalur Tahfidz Al-Qur'an</option>
+                  <option value="Beasiswa Kader">Jalur Beasiswa Kader / Dhuafa</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="minatBakat" class="form-label">Minat / Ekstrakurikuler Pilihan</label>
+                <select id="minatBakat" class="glass-select">
+                  <option value="Hizbul Wathan (Pramuka)">Kepanduan Hizbul Wathan (HW)</option>
+                  <option value="Tapak Suci">Seni Bela Diri Tapak Suci</option>
+                  <option value="AI & Komputer">Teknologi Google AI & Chromebook</option>
+                  <option value="Seni Tari Tradisional">Seni Tari Tradisional Kutai</option>
+                  <option value="Tilawah & Tahfidz">Tilawah & Tahfidz Qur'an</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="catatan" class="form-label">Alamat Rumah & Catatan Tambahan</label>
+                <textarea id="catatan" rows="3" placeholder="Tuliskan alamat domisili atau pertanyaan khusus untuk panitia..." class="glass-textarea"></textarea>
+              </div>
+
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+              <button type="submit" class="btn-glass-primary" style="width: 100%; max-width: 420px; font-size: 1.05rem; padding: 1rem;">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
+                <span>Kirim Formulir via WhatsApp Panitia</span>
+              </button>
+              <p style="font-size: 0.8rem; color: #94A3B8; text-align: center;">
+                🔒 Data pribadi Anda dijamin kerahasiaannya dan hanya digunakan untuk keperluan penerimaan siswa baru SMP Muhammadiyah 1 Kota Bangun Darat.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (PERTANYAAN SERING DIAJUKAN) -->
+    <section class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Bantuan & Informasi</p>
+          <h2 class="section-title">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+          <p class="section-desc">
+            Temukan jawaban cepat seputar legalitas, fasilitas Chromebook, pembelajaran AI, dan kegiatan sekolah.
+          </p>
+        </div>
+
+        <div class="faq-container">
+          
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span>Apakah SMP Muhammadiyah 1 Kota Bangun Darat berstatus resmi pemerintah?</span>
+              <div class="faq-icon-toggle">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Ya, 100% resmi dan terdaftar. Sekolah memiliki Sertifikat NPSN (70058553) terdaftar di Kemendikdasmen RI, serta SK Izin Operasional resmi dari Disdikbud Kabupaten Kutai Kartanegara Nomor B-033/DISDIKBUD/SK/400.3.5/08/2025 yang berlaku aktif hingga 2028. Lulusan memperoleh ijazah resmi yang sah untuk melanjutkan ke SMA/SMK/MA negeri maupun swasta di seluruh Indonesia.
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span>Bagaimana penerapan pembelajaran Google Gemini AI dan Laptop Chromebook?</span>
+              <div class="faq-icon-toggle">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Sekolah menyediakan fasilitas laptop Acer Chromebook dengan rasio 1 Siswa 1 Laptop saat sesi laboratorium & praktikum. Guru-guru telah dibekali pelatihan Gemini Academy 2026 (bekerjasama dengan Kemendikdasmen & REFO). Siswa dibimbing memanfaatkan AI untuk bernalar kritis, belajar mandiri, dan membuat karya digital tanpa melupakan etika akademik.
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span>Apakah ada program beasiswa bagi keluarga kurang mampu?</span>
+              <div class="faq-icon-toggle">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Ya, ada. Sesuai amanat persyarikatan Muhammadiyah, kami memiliki skema beasiswa kader dan santri dhuafa yang didukung oleh donasi infaq gotong royong dan Lazismu. Anak-anak yang memiliki semangat belajar tidak boleh terhambat oleh keterbatasan ekonomi.
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span>Apa perbedaan Pramuka biasa dengan Kepanduan Hizbul Wathan (HW)?</span>
+              <div class="faq-icon-toggle">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Gerakan Kepanduan Hizbul Wathan (HW) adalah kepanduan khas Muhammadiyah yang berdiri sejak 1918 dan telah melahirkan tokoh besar bangsa seperti Jenderal Soedirman. HW mengajarkan seluruh ketangkasan kepanduan (tali-temali, pionering, semaphore, sandi, baris berbaris) yang diperkaya nilai-nilai ibadah, kepemimpinan islami, dan akhlak kesatria. Kontingen HW kami terbukti menjadi Juara Umum Perjusami Se-Kecamatan.
+            </div>
+          </div>
+
+          <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-header">
+              <span>Apakah siswa mendapatkan makan siang bergizi gratis?</span>
+              <div class="faq-icon-toggle">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Ya, sekolah kami secara proaktif mengintegrasikan Program Makan Bergizi Gratis (MBG) untuk memastikan seluruh siswa mendapatkan pemenuhan nutrisi dan energi harian yang seimbang selama berada di lingkungan sekolah.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LOKASI & KONTAK RESMI -->
+    <section id="kontak" class="section-spacing">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-subtitle">Kunjungi Sekolah Kami</p>
+          <h2 class="section-title">Lokasi Kampus & Kontak Layanan</h2>
+          <p class="section-desc">
+            Pintu kami senantiasa terbuka untuk silaturahmi bapak/ibu orang tua calon siswa dan masyarakat Kota Bangun Darat.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <div class="glass-panel contact-info-card">
+            <h3 style="font-size: 1.4rem; color: #FFF; margin-bottom: 0.5rem;">Informasi Sekretariat PPDB</h3>
+            <p style="font-size: 0.92rem; color: #94A3B8;">
+              Hubungi layanan informasi kami pada jam operasional sekolah (Senin - Sabtu, 07.30 - 14.30 WITA).
+            </p>
+
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div>
+                <strong style="color: #FFF; font-size: 0.95rem; display: block;">Alamat Sekolah</strong>
+                <span style="font-size: 0.88rem; color: #CBD5E1;">
+                  Jalan KH. Ahmad Dahlan RT. 05, Desa Kota Bangun III, Kecamatan Kota Bangun Darat, Kabupaten Kutai Kartanegara, Provinsi Kalimantan Timur (Kode Pos 75561).
+                </span>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+              </div>
+              <div>
+                <strong style="color: #FFF; font-size: 0.95rem; display: block;">Email Resmi</strong>
+                <a href="mailto:smpmuhammadiyah1kobdar@gmail.com" style="font-size: 0.88rem; color: #34D399; text-decoration: none;">
+                  smpmuhammadiyah1kobdar@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-row">
+              <div class="contact-icon">
+                <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              </div>
+              <div>
+                <strong style="color: #FFF; font-size: 0.95rem; display: block;">Hotline WhatsApp / Telepon</strong>
+                <span style="font-size: 0.88rem; color: #CBD5E1;">+62 812-5756-7179 (Admin PPDB)</span>
+              </div>
+            </div>
+
+            <!-- Social Media Handles -->
+            <div>
+              <span style="font-size: 0.825rem; color: #94A3B8; display: block; margin-bottom: 0.5rem;">Kanal Media Sosial Resmi:</span>
+              <div class="social-pills-wrap">
+                <a href="https://www.instagram.com/smpmuhammadiyah1kobdar?exln=ejF3bDk5ZXA1cXFx" target="_blank" rel="noopener noreferrer" class="social-pill">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                  <span>@smpmuhammadiyah1kobdar</span>
+                </a>
+
+                <a href="https://www.facebook.com/share/19bhK4gQ9u/" target="_blank" rel="noopener noreferrer" class="social-pill">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  <span>Facebook SMPM1 KobDar</span>
+                </a>
+
+                <a href="https://www.tiktok.com/@smp_muhammadiyah1_kobdar?_r=1&_t=ZS-9BI5aIRBZn5" target="_blank" rel="noopener noreferrer" class="social-pill">
+                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                  <span>@smp_muhammadiyah1_kobdar</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Visual Campus Map Card -->
+          <div class="glass-panel" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="border-radius: 18px; overflow: hidden; height: 320px; position: relative; border: 1px solid rgba(255,255,255,0.15);">
+              <!-- Styled Glass Map Simulation -->
+              <div style="width: 100%; height: 100%; background: radial-gradient(circle at 60% 40%, #0d274c 0%, #061124 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem;">
+                <div style="width: 60px; height: 60px; border-radius: 50%; background: rgba(4,165,79,0.3); border: 2px solid #34D399; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; box-shadow: 0 0 30px rgba(52,211,153,0.5); animation: pulseGlow 2.5s infinite;">
+                  <svg width="28" height="28" color="#FFF" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <h4 style="color: #FFF; font-size: 1.1rem; margin-bottom: 0.35rem;">Kompleks Perguruan Muhammadiyah</h4>
+                <p style="font-size: 0.825rem; color: #94A3B8; max-width: 320px; margin-bottom: 1rem;">
+                  Jl. KH. Ahmad Dahlan RT. 05, Desa Kota Bangun III (Area Masjid Nur Hidayah).
+                </p>
+                <span class="glass-badge gold" style="font-size: 0.75rem;">Kec. Kota Bangun Darat • Kukar</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1.25rem;">
+              <a href="https://maps.google.com/?q=Kota+Bangun+III,+Kutai+Kartanegara" target="_blank" rel="noopener noreferrer" class="btn-glass-secondary" style="flex: 1; text-align: center;">
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                <span>Petunjuk Arah Google Maps</span>
+              </a>
+              <a href="https://wa.me/6281257567179" target="_blank" rel="noopener noreferrer" class="btn-glass-primary" style="flex: 1;">
+                <span>Jadwalkan Kunjungan</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <!-- GLASS FOOTER -->
+    <footer class="glass-footer">
+      <div class="container">
+        <div class="footer-grid">
+          
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+              <div class="brand-logo-glow" style="width: 38px; height: 38px;">
+                <img src="logo-smp-muhammadiyah.png" alt="Logo SMP Muhammadiyah">
+              </div>
+              <strong style="color: #FFF; font-size: 1.05rem;">SMP MUHAMMADIYAH 1</strong>
+            </div>
+            <p style="font-size: 0.88rem; color: #94A3B8; line-height: 1.6; margin-bottom: 1.25rem;">
+              Lembaga pendidikan Islam modern di bawah naungan Pimpinan Cabang Muhammadiyah Kota Bangun. Berkomitmen melahirkan tunas bangsa berkarakter Qur'ani, berdikari, dan unggul dalam teknologi AI masa depan.
+            </p>
+            <div style="font-size: 0.8rem; color: #CBD5E1;">
+              <strong>NPSN:</strong> 70058553 • <strong>Izin:</strong> B-033/DISDIKBUD/SK/400.3.5/08/2025
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Jelajahi Profil</h4>
+            <ul class="footer-links">
+              <li><a href="#beranda">Beranda & Sambutan</a></li>
+              <li><a href="#keunggulan">6 Pilar Keunggulan</a></li>
+              <li><a href="#prestasi">Prestasi & Kejuaraan HW</a></li>
+              <li><a href="#galeri">Galeri Foto Asli</a></li>
+              <li><a href="#program">Kurikulum Ismuba & Merdeka</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Layanan Siswa</h4>
+            <ul class="footer-links">
+              <li><a href="#ppdb">Pendaftaran PPDB 2026/2027</a></li>
+              <li><a href="#biaya">Simulasi Biaya & Beasiswa</a></li>
+              <li><a href="#keunggulan">Fasilitas Google AI & Chromebook</a></li>
+              <li><a href="portal-keuangan.html">Portal Keuangan & Honorarium GTK</a></li>
+              <li><a href="template-id-card-gtk.html">Generator Kartu ID GTK</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Kantor & Sekolah</h4>
+            <p style="font-size: 0.85rem; color: #94A3B8; line-height: 1.6; margin-bottom: 0.75rem;">
+              Jl. KH. Ahmad Dahlan RT. 05 Desa Kota Bangun III, Kec. Kota Bangun Darat, Kab. Kutai Kartanegara, Kaltim.
+            </p>
+            <div style="margin-top: 1rem;">
+              <span class="glass-badge" style="background: rgba(4,165,79,0.2); font-size: 0.78rem;">
+                Majelis Dikdasmen & PNF PCM Kota Bangun
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="footer-bottom">
+          <div>
+            &copy; 2026 SMP Muhammadiyah 1 Kota Bangun Darat. Seluruh Hak Cipta Dilindungi Undang-Undang.
+          </div>
+          <div style="display: flex; gap: 1.5rem;">
+            <span>Website Resmi Perguruan Muhammadiyah</span>
+            <span>Style: Glasify / Web Glass 3.0</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- FLOATING ACTIONS -->
+    <!-- Direct WhatsApp Float -->
+    <a href="https://wa.me/6281257567179?text=Assalamu'alaikum%20Admin%20SMP%20Muhammadiyah%201%20Kota%20Bangun%20Darat,%20saya%20ingin%20menanyakan%20informasi%20pendaftaran%20siswa%20baru." target="_blank" rel="noopener noreferrer" class="floating-wa-btn" title="Hubungi WhatsApp Panitia">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2z"/></svg>
+      <span>Tanya Panitia PPDB</span>
+    </a>
+
+    <!-- Back to Top Float -->
+    <button class="back-to-top" id="backToTopBtn" aria-label="Kembali ke Atas" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 15l7-7 7 7"/></svg>
+    </button>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
+      <div class="lightbox-card" onclick="event.stopPropagation()">
+        <button class="lightbox-close" onclick="closeLightboxDirect()">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+        <div class="lightbox-img-wrap">
+          <img id="lightboxImg" src="" alt="Dokumentasi Penuh">
+        </div>
+        <div class="lightbox-caption">
+          <h3 id="lightboxTitle" style="color: #FFF; font-size: 1.25rem; margin-bottom: 0.35rem;"></h3>
+          <p id="lightboxDesc" style="color: #94A3B8; font-size: 0.9rem; margin: 0;"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+  </div>
+
+  <!-- INTERACTIVE CLIENT-SIDE JAVASCRIPT -->
+  <script>
+    // 1. Interactive Spotlight Cursor Follower
+    const cursor = document.getElementById('cursorSpotlight');
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+      });
+    } else {
+      cursor.style.display = 'none';
+    }
+
+    // 2. Sticky Glass Navigation Scroll Effect
+    const mainNav = document.getElementById('mainNav');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        mainNav.classList.add('scrolled');
+      } else {
+        mainNav.classList.remove('scrolled');
+      }
+
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    // 3. Mobile Navigation Drawer
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function openDrawer() {
+      mobileDrawer.classList.add('open');
+      drawerOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      mobileDrawer.classList.remove('open');
+      drawerOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    mobileMenuBtn.addEventListener('click', openDrawer);
+    closeDrawerBtn.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+    mobileLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+    // 4. 3D Card Tilt Interaction
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -7;
+        const rotateY = ((x - centerX) / centerX) * 7;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+      });
+    });
+
+    // 5. Gallery Filter Tabs
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter');
+
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+            setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'scale(1)'; }, 20);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.95)';
+            setTimeout(() => { item.style.display = 'none'; }, 300);
+          }
+        });
+      });
+    });
+
+    // 6. Lightbox Modal
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDesc = document.getElementById('lightboxDesc');
+
+    function openLightbox(src, title, desc) {
+      lightboxImg.src = src;
+      lightboxTitle.textContent = title;
+      lightboxDesc.textContent = desc;
+      lightboxModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightboxDirect() {
+      lightboxModal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeLightbox(e) {
+      if (e.target === lightboxModal) {
+        closeLightboxDirect();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightboxModal.classList.contains('open')) {
+        closeLightboxDirect();
+      }
+    });
+
+    // 7. Curriculum & Program Tabs
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // 8. Tuition Fee Calculator Simulation
+    const feePlans = {
+      reguler: {
+        amount: 'Rp 450.000*',
+        note: 'Biaya perlengkapan seragam lengkap, atribut, MOS/Fortasi, dan peminjaman fasilitas Chromebook laboratorium.'
+      },
+      prestasi: {
+        amount: 'Rp 225.000*',
+        note: 'Diberikan potongan 50% bagi siswa berprestasi Juara MTQ, Kepanduan HW/Pramuka, Olahraga, atau OSN/Sains.'
+      },
+      tahfidz: {
+        amount: 'Rp 250.000*',
+        note: 'Bebas SPP Semester 1 dan bonus bimbingan karantina Tahfidz Juz 30/29 Al-Qur\'an.'
+      },
+      dhuafa: {
+        amount: 'Rp 0 (BEASISWA)',
+        note: 'Beasiswa penuh Lazismu & subsidi silang infaq gotong royong bagi kader persyarikatan atau keluarga prasejahtera.'
+      }
+    };
+
+    function selectFeePlan(planKey, el) {
+      document.querySelectorAll('.calc-option-item').forEach(item => item.classList.remove('selected'));
+      el.classList.add('selected');
+      const data = feePlans[planKey];
+      document.getElementById('feeDisplayAmount').textContent = data.amount;
+      document.getElementById('feeDisplayNote').textContent = data.note;
+    }
+
+    // 9. FAQ Accordion Toggle
+    function toggleFaq(el) {
+      const isActive = el.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+      if (!isActive) {
+        el.classList.add('active');
+      }
+    }
+
+    // 10. PPDB Form Submission & Direct WhatsApp Generator
+    function handlePPDBSubmit(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById('namaSiswa').value.trim();
+      const jk = document.getElementById('jenisKelamin').value;
+      const asal = document.getElementById('asalSekolah').value.trim();
+      const nisn = document.getElementById('nisn').value.trim() || '-';
+      const wali = document.getElementById('namaWali').value.trim();
+      const wa = document.getElementById('noWhatsapp').value.trim();
+      const jalur = document.getElementById('jalurDaftar').value;
+      const minat = document.getElementById('minatBakat').value;
+      const catatan = document.getElementById('catatan').value.trim() || '-';
+
+      // Simpan riwayat formulir di browser (localStorage)
+      const pendaftaran = {
+        id: 'PPDB-' + Date.now().toString().slice(-6),
+        tanggal: new Date().toLocaleDateString('id-ID'),
+        nama, jk, asal, nisn, wali, wa, jalur, minat, catatan
+      };
+
+      try {
+        const existing = JSON.parse(localStorage.getItem('smpm1_ppdb_submissions') || '[]');
+        existing.unshift(pendaftaran);
+        localStorage.setItem('smpm1_ppdb_submissions', JSON.stringify(existing));
+      } catch (err) {
+        console.warn('LocalStorage error:', err);
+      }
+
+      showToast(`Alhamdulillah! Formulir ${nama} berhasil disiapkan. Menghubungkan ke WhatsApp Panitia...`);
+
+      // Format Pesan WhatsApp Resmi
+      const waMessage = 
+`*FORMULIR PENDAFTARAN PRA-PPDB 2026/2027*
+*SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT*
+---------------------------------------------
+*ID Pendaftaran:* ${pendaftaran.id}
+*Nama Calon Siswa:* ${nama}
+*Jenis Kelamin:* ${jk}
+*Asal Sekolah (SD/MI):* ${asal}
+*NISN:* ${nisn}
+*Nama Orang Tua / Wali:* ${wali}
+*Nomor WhatsApp:* ${wa}
+*Jalur Pilihan:* ${jalur}
+*Minat Ekstrakurikuler:* ${minat}
+*Alamat & Catatan:* ${catatan}
+---------------------------------------------
+Mohon konfirmasi syarat berkas dan jadwal tes pemetaan awal. Terima kasih.
+_Wassalamu'alaikum Warahmatullahi Wabarakatuh._`;
+
+      const encodedMsg = encodeURIComponent(waMessage);
+      const waTargetNumber = '6281257567179'; // Nomor WhatsApp Admin PPDB
+      const waUrl = `https://wa.me/${waTargetNumber}?text=${encodedMsg}`;
+
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 1200);
+    }
+
+    // 11. Toast Notification Helper
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <svg width="22" height="22" color="#34D399" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <span style="font-size: 0.9rem; font-weight: 500;">${message}</span>
+      `;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateX(100%)';
+        toast.style.transition = 'all 0.35s ease';
+        setTimeout(() => toast.remove(), 350);
+      }, 4000);
+    }
+  </script>
+</body>
+</html>
