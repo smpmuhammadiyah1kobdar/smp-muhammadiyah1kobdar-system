@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Presensi & Absensi Siswa QR Code — SMP Muhammadiyah 1 Kota Bangun Darat</title>
+  <meta name="description" content="Sistem Presensi Siswa Digital Berbasis Barcode QR Code terintegrasi Dapodik 2026/2027 SMP Muhammadiyah 1 Kota Bangun Darat">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Amiri:wght@700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- HTML5 QR Code Library CDN -->
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --bg-surface: #0f172a;
+      --bg-card: rgba(30, 41, 59, 0.7);
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --muh-blue: #1E2B7A;
+      --muh-gold: #F59E0B;
+      --muh-green: #04A54F;
+      --accent-cyan: #38BDF8;
+      --text-white: #FFFFFF;
+      --text-muted: #94A3B8;
+      --font-main: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(30, 43, 122, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(4, 165, 79, 0.25) 0%, transparent 35%),
+        radial-gradient(circle at 50% 85%, rgba(245, 158, 11, 0.15) 0%, transparent 45%);
+      background-attachment: fixed;
+      color: #E2E8F0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP BAR / NAV */
+    .top-navbar {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo-badge {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #1E2B7A, #04A54F);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(4, 165, 79, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .brand-text h1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-nav {
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-glass);
+      background: rgba(255, 255, 255, 0.07);
+      color: #E2E8F0;
+    }
+
+    .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .btn-nav.btn-primary {
+      background: linear-gradient(135deg, #04A54F, #059669);
+      color: #FFFFFF;
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 4px 12px rgba(4, 165, 79, 0.3);
+    }
+
+    .btn-nav.btn-primary:hover {
+      background: linear-gradient(135deg, #059669, #10B981);
+    }
+
+    /* DIGITAL CLOCK BADGE */
+    .clock-badge {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 14px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .clock-time {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #38BDF8;
+      letter-spacing: 0.05em;
+    }
+
+    .clock-date {
+      font-size: 0.72rem;
+      color: #94A3B8;
+      line-height: 1.2;
+      text-align: right;
+    }
+
+    /* MAIN CONTAINER */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 20px 40px;
+      width: 100%;
+      flex: 1;
+    }
+
+    /* BANNER INFO SESI */
+    .session-banner {
+      background: linear-gradient(90deg, rgba(30, 43, 122, 0.8), rgba(4, 165, 79, 0.7));
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .session-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .session-mode-badge {
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-masuk {
+      background: #10B981;
+      color: #064E3B;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+    }
+
+    .mode-pulang {
+      background: #3B82F6;
+      color: #1E3A8A;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+    }
+
+    .mode-kegiatan {
+      background: #F59E0B;
+      color: #78350F;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.5);
+    }
+
+    .session-toggle-group {
+      display: flex;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 4px;
+    }
+
+    .btn-mode-toggle {
+      background: transparent;
+      border: none;
+      color: #94A3B8;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-mode-toggle.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* GRID LAYOUT: SCANNER & DASHBOARD */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* CARD STYLING */
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-glass);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      padding: 14px 18px;
+      background: rgba(30, 41, 59, 0.6);
+      border-bottom: 1px solid var(--border-glass);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-body {
+      padding: 18px;
+    }
+
+    /* SCANNER VIEWPORT */
+    .scanner-viewport-box {
+      width: 100%;
+      height: 280px;
+      background: #020617;
+      border-radius: 12px;
+      border: 2px dashed rgba(56, 189, 248, 0.4);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #reader {
+      width: 100% !important;
+      height: 100% !important;
+      border: none !important;
+    }
+
+    #reader video {
+      object-fit: cover !important;
+      border-radius: 10px !important;
+    }
+
+    .scan-laser-line {
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #38BDF8, #10B981, transparent);
+      box-shadow: 0 0 12px #38BDF8;
+      animation: scanLaser 2s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes scanLaser {
+      0% { top: 10%; opacity: 0.8; }
+      50% { top: 90%; opacity: 1; }
+      100% { top: 10%; opacity: 0.8; }
+    }
+
+    /* SCANNER CONTROLS */
+    .scanner-controls-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .btn-scanner-action {
+      flex: 1;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-start-camera {
+      background: #0284C7;
+      color: #FFFFFF;
+    }
+
+    .btn-start-camera:hover {
+      background: #0369A1;
+    }
+
+    .btn-stop-camera {
+      background: #DC2626;
+      color: #FFFFFF;
+    }
+
+    /* HARDWARE BARCODE INPUT */
+    .hardware-input-box {
+      margin-top: 14px;
+      background: rgba(30, 41, 59, 0.5);
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hardware-input-box label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #94A3B8;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .hardware-input-box .badge-hw {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+    }
+
+    .hardware-input-box input {
+      width: 100%;
+      background: #020617;
+      border: 1.5px solid #334155;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #F8FAFC;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .hardware-input-box input:focus {
+      border-color: #38BDF8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    /* SIMULATOR QUICK ACTIONS */
+    .simulator-box {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px dashed rgba(245, 158, 11, 0.35);
+      border-radius: 10px;
+    }
+
+    .simulator-title {
+      font-size: 0.72rem;
+      color: #FBBF24;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .sim-select-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .sim-select-row select {
+      flex: 1;
+      background: #0F172A;
+      color: #FFFFFF;
+      border: 1px solid #475569;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      outline: none;
+    }
+
+    .sim-select-row button {
+      background: #F59E0B;
+      color: #78350F;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* LIVE SCAN RESULT HERO CARD */
+    .scan-result-card {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 16px;
+      display: none;
+      animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .scan-result-card.show {
+      display: block;
+    }
+
+    .scan-student-hero {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .student-avatar {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1E2B7A, #04A54F);
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      flex-shrink: 0;
+    }
+
+    .student-details h4 {
+      font-size: 1.05rem;
+      color: #FFFFFF;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .student-badges {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .badge-rombel-7 { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+    .badge-rombel-8 { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+    .badge-rombel-9 { background: #FEFCE8; color: #854D0E; border: 1px solid #FEF08A; }
+
+    .scan-status-alert {
+      margin-top: 12px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .status-alert-success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34D399;
+    }
+
+    .status-alert-warning {
+      background: rgba(245, 158, 11, 0.2);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #FBBF24;
+    }
+
+    /* RIGHT COLUMN: STATS KPI CARDS */
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-stat-card {
+      background: rgba(30, 41, 59, 0.55);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .kpi-stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .kpi-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      color: #94A3B8;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .kpi-green { color: #10B981; }
+    .kpi-blue { color: #38BDF8; }
+    .kpi-amber { color: #F59E0B; }
+    .kpi-purple { color: #A855F7; }
+    .kpi-gray { color: #94A3B8; }
+
+    /* ATTENDANCE PROGRESS BAR */
+    .progress-bar-container {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 18px;
+    }
+
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #CBD5E1;
+      margin-bottom: 6px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 10px;
+      background: #1E293B;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #04A54F, #10B981, #38BDF8);
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 8px;
+    }
+
+    /* TABLE SECTION */
+    .table-control-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .filter-pills-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .btn-tab-filter {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border-glass);
+      background: rgba(30, 41, 59, 0.6);
+      color: #CBD5E1;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-tab-filter:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-tab-filter.active {
+      background: #0284C7;
+      color: #FFFFFF;
+      border-color: #38BDF8;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.35);
+    }
+
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .table-search-input {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid #334155;
+      padding: 6px 12px;
+      border-radius: 6px;
+      color: #FFFFFF;
+      font-size: 0.8rem;
+      width: 200px;
+      outline: none;
+    }
+
+    .table-search-input:focus {
+      border-color: #38BDF8;
+    }
+
+    .table-container {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-radius: 12px;
+      border: 1px solid #CBD5E1;
+      overflow-x: auto;
+      max-height: 520px;
+      overflow-y: auto;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .presensi-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      text-align: left;
+    }
+
+    .presensi-table thead {
+      position: sticky;
+      top: 0;
+      background: #F1F5F9;
+      z-index: 5;
+    }
+
+    .presensi-table th {
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #1E293B;
+      border-bottom: 2px solid #CBD5E1;
+      white-space: nowrap;
+    }
+
+    .presensi-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #E2E8F0;
+      vertical-align: middle;
+      color: #1E293B;
+    }
+
+    .presensi-table tr:hover td {
+      background: #F8FAFC;
+    }
+
+    .status-badge {
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .st-hadir { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+    .st-terlambat { background: #FFFBEB; color: #D97706; border: 1px solid #FDE68A; }
+    .st-izin { background: #EFF6FF; color: #2563EB; border: 1px solid #BFDBFE; }
+    .st-sakit { background: #F5F3FF; color: #7C3AED; border: 1px solid #DDD6FE; }
+    .st-alpa { background: #FEF2F2; color: #DC2626; border: 1px solid #FECACA; }
+    .st-belum { background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; }
+
+    .action-btn-group {
+      display: flex;
+      gap: 4px;
+    }
+
+    .btn-act {
+      border: none;
+      padding: 4px 7px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+
+    .btn-act:hover {
+      opacity: 0.85;
+    }
+
+    .btn-act-h { background: #10B981; color: #FFFFFF; }
+    .btn-act-i { background: #3B82F6; color: #FFFFFF; }
+    .btn-act-s { background: #8B5CF6; color: #FFFFFF; }
+    .btn-act-a { background: #EF4444; color: #FFFFFF; }
+
+    .btn-wa-notify {
+      background: #25D366;
+      color: #FFFFFF;
+      border: none;
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+    }
+
+    .btn-wa-notify:hover {
+      background: #1EBE5D;
+    }
+
+    /* FOOTER BAR */
+    .app-footer {
+      background: rgba(15, 23, 42, 0.95);
+      border-top: 1px solid var(--border-glass);
+      padding: 16px 24px;
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.76rem;
+      color: #94A3B8;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* PRINT SHEET FORMAT DINAS (F4 / LANDSCAPE) */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .top-navbar, .session-banner, .dashboard-grid, .table-control-bar, .app-footer, .no-print {
+        display: none !important;
+      }
+      .main-content {
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .print-official-header {
+        display: block !important;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .table-container {
+        border: 1px solid #000000 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+      }
+      .presensi-table th {
+        background: #F1F5F9 !important;
+        color: #000000 !important;
+        border: 1px solid #000000 !important;
+      }
+      .presensi-table td {
+        border: 1px solid #000000 !important;
+        color: #000000 !important;
+      }
+      .action-btn-group, .btn-wa-notify {
+        display: none !important;
+      }
+      .print-signatures-row {
+        display: flex !important;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding: 0 40px;
+      }
+    }
+
+    .print-official-header, .print-signatures-row {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar no-print">
+    <div class="brand-group">
+      <div class="brand-logo-badge">
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="50" r="46" fill="#04A54F"/>
+          <path d="M50 8L55 24H45L50 8Z" fill="#FBBF24"/>
+          <path d="M50 92L45 76H55L50 92Z" fill="#FBBF24"/>
+          <path d="M8 50L24 45V55L8 50Z" fill="#FBBF24"/>
+          <path d="M92 50L76 55V45L92 50Z" fill="#FBBF24"/>
+          <circle cx="50" cy="50" r="22" fill="#1E2B7A" stroke="#FBBF24" stroke-width="2"/>
+          <circle cx="50" cy="50" r="14" fill="#FFFFFF"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <h1>SISTEM PRESENSI SISWA QR CODE</h1>
+        <p>SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT &bull; T.A. 2026/2027</p>
+      </div>
+    </div>
+
+    <!-- DIGITAL CLOCK & HIJRIYAH -->
+    <div class="clock-badge">
+      <div class="clock-time" id="digitalClock">07:00:00</div>
+      <div class="clock-date">
+        <strong id="masehiDate" style="color: #F8FAFC; display: block;">Kamis, 12 Nov 2026</strong>
+        <span id="hijriahDate" style="color: #FBBF24;">2 Jumadil Awal 1448 H</span>
+      </div>
+    </div>
+
+    <div class="nav-actions">
+      <button type="button" class="btn-nav" id="btnAbsensiCloudSync" onclick="syncAbsensiKeGoogleSheets()" title="Sinkronkan Data Presensi Hari Ini ke Google Sheets Cloud" style="border-color: #10b981; color: #34d399;">
+        ☁️ Sync Cloud
+      </button>
+      <button type="button" class="btn-nav" onclick="bukaRekapCetak()" title="Cetak Rekap Presensi F4 Landscape">
+        🖨️ Cetak Rekap
+      </button>
+      <button type="button" class="btn-nav" onclick="unduhPresensiCSV()" title="Unduh CSV untuk Dapodik & Rekap TU">
+        📥 Unduh CSV
+      </button>
+      <a href="template-id-card-siswa.html" target="_blank" class="btn-nav btn-primary" title="Buka Kartu ID Pelajar Digital">
+        🪪 Cetak Kartu Siswa (30)
+      </a>
+      <a href="index.html" class="btn-nav" title="Kembali ke Beranda Sekolah">
+        🏠 Beranda
+      </a>
+      <a href="portal-keuangan.html" class="btn-nav" title="Buka Portal Keuangan & GTK">
+        💼 Portal GTK
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN WRAPPER -->
+  <main class="main-content">
+
+    <!-- OFFICIAL PRINT HEADER (ONLY VISIBLE ON PRINT) -->
+    <div class="print-official-header">
+      <div style="font-size: 13pt; font-weight: 800; text-transform: uppercase;">MAJELIS PENDIDIKAN DASAR, MENENGAH DAN PENDIDIKAN NONFORMAL</div>
+      <div style="font-size: 14pt; font-weight: 800; text-transform: uppercase;">PIMPINAN CABANG MUHAMMADIYAH KOTA BANGUN</div>
+      <div style="font-size: 16pt; font-weight: 900; color: #1E2B7A; text-transform: uppercase;">SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT</div>
+      <div style="font-size: 9pt; color: #333333; margin-top: 2px;">
+        NPSN: 70058553 &bull; NSS: 202160303053 &bull; SK Izin: B-033/DISDIKBUD/SK/400.3.5/08/2025 &bull; Akreditasi Terdaftar
+      </div>
+      <div style="font-size: 9pt; color: #333333;">
+        Alamat: Jl. KH. Ahmad Dahlan RT. 05 Desa Kota Bangun III, Kec. Kota Bangun Darat, Kab. Kutai Kartanegara, Kaltim 75561
+      </div>
+      <hr style="border: none; border-top: 3px double #000; margin: 10px 0 15px 0;">
+      <h3 style="font-size: 12pt; font-weight: 800; text-transform: uppercase; margin: 0;">DAFTAR HADIR & REKAPITULASI PRESENSI HARIAN PESERTA DIDIK</h3>
+      <p style="font-size: 10pt; margin: 3px 0 0 0;" id="printSubtitle">Hari/Tanggal: Kamis, 12 November 2026 &bull; Sesi: Masuk Sekolah</p>
+    </div>
+
+    <!-- BANNER SESI & MODE PRESENSI -->
+    <div class="session-banner no-print">
+      <div class="session-info">
+        <span class="session-mode-badge mode-masuk" id="activeModeBadge">🟢 PRESENSI MASUK</span>
+        <div style="font-size: 0.85rem;">
+          <strong style="color: #FFFFFF; display: block;" id="modeHeaderTitle">Sesi Masuk Pagi (Target: Sebelum 07:15 WIB)</strong>
+          <span style="color: rgba(255,255,255,0.8); font-size: 0.74rem;">Pindai kartu siswa via kamera scanner atau barcode gun USB</span>
+        </div>
+      </div>
+
+      <div class="session-toggle-group">
+        <button type="button" class="btn-mode-toggle active" onclick="setPresensiMode('masuk', this)">Presensi Masuk</button>
+        <button type="button" class="btn-mode-toggle" onclick="setPresensiMode('pulang', this)">Presensi Pulang</button>
+        <button type="button" class="btn-mode-toggle" onclick="setPresensiMode('kegiatan', this)">Sholat / Hizbul Wathan</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD GRID: SCANNER KIOS & STATS -->
+    <div class="dashboard-grid no-print">
+      
+      <!-- SCANNER PANEL -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="20" height="20" fill="none" stroke="#38BDF8" stroke-width="2" viewBox="0 0 24 24"><path d="M4 7V4h3M17 4h3v3M4 17v3h3M20 17v3h-3M9 9h6v6H9z"/></svg>
+            <span>Pemindai QR & Barcode</span>
+          </div>
+          <span id="cameraStatusPill" style="font-size: 0.7rem; font-weight: 700; color: #F59E0B; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 2px 7px; border-radius: 4px;">
+            Siap Scan
+          </span>
+        </div>
+
+        <div class="card-body">
+          <!-- Live Camera Viewport -->
+          <div class="scanner-viewport-box">
+            <div id="reader"></div>
+            <div class="scan-laser-line" id="scanLaserLine"></div>
+          </div>
+
+          <div class="scanner-controls-row">
+            <button type="button" id="btnToggleCamera" class="btn-scanner-action btn-start-camera" onclick="toggleCameraScanner()">
+              📷 Aktifkan Kamera Pemindai
+            </button>
+          </div>
+
+          <!-- HARDWARE SCANNER / MANUAL NISN INPUT -->
+          <div class="hardware-input-box">
+            <label>
+              <span>Scan Barcode Gun / Input NISN</span>
+              <span class="badge-hw">Auto-Detect USB/BT</span>
+            </label>
+            <input type="text" id="hardwareBarcodeInput" placeholder="Arahkan barcode scanner / ketik NISN..." autocomplete="off">
+          </div>
+
+          <!-- SIMULATOR QUICK ACTIONS (UNTUK PENGUJIAN CEPAT) -->
+          <div class="simulator-box">
+            <div class="simulator-title">
+              ⚡ Simulasi Scan Cepat (Uji Sistem)
+            </div>
+            <div class="sim-select-row">
+              <select id="simStudentSelect">
+                <!-- Diisi opsi 30 siswa -->
+              </select>
+              <button type="button" onclick="simulasikanScan()">Scan Hadir</button>
+            </div>
+          </div>
+
+          <!-- RESULT HERO POPUP -->
+          <div class="scan-result-card" id="scanResultCard">
+            <div class="scan-student-hero">
+              <div class="student-avatar" id="resAvatar">AH</div>
+              <div class="student-details">
+                <h4 id="resNama">Nama Peserta Didik</h4>
+                <div class="student-badges">
+                  <span class="badge-pill badge-rombel-7" id="resRombel">Kelas 7</span>
+                  <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #94A3B8;" id="resNisn">NISN: 0000000000</span>
+                </div>
+                <div style="font-size: 0.72rem; color: #CBD5E1;" id="resWaktu">Pukul 07:05:22 WIB</div>
+              </div>
+            </div>
+            <div class="scan-status-alert status-alert-success" id="resStatusAlert">
+              <span id="resStatusText">✅ Presensi Masuk Berhasil (Tepat Waktu)</span>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem;" id="resStatusStamp">07:05</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DASHBOARD KPI & REKAP KELAS -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title">
+            <svg width="20" height="20" fill="none" stroke="#10B981" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span>Statistik Kehadiran Hari Ini</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <input type="date" id="datePickerPresensi" onchange="gantiTanggalPresensi(this.value)" style="background: rgba(15, 23, 42, 0.9); border: 1px solid #334155; color: #FFFFFF; padding: 4px 8px; border-radius: 6px; font-size: 0.78rem; outline: none;">
+            <button type="button" onclick="resetPresensiHariIni()" style="background: rgba(239, 68, 68, 0.2); border: 1px solid rgba(239, 68, 68, 0.4); color: #F87171; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border-radius: 6px; cursor: pointer;">
+              Reset Data
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- KPI ROW -->
+          <div class="kpi-row">
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-blue">30</div>
+              <div class="kpi-label">Total Siswa</div>
+            </div>
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-green" id="kpiHadir">0</div>
+              <div class="kpi-label">Hadir Total</div>
+            </div>
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-green" id="kpiTepat">0</div>
+              <div class="kpi-label">Tepat Waktu</div>
+            </div>
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-amber" id="kpiTerlambat">0</div>
+              <div class="kpi-label">Terlambat</div>
+            </div>
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-purple" id="kpiIzin">0</div>
+              <div class="kpi-label">Izin / Sakit</div>
+            </div>
+            <div class="kpi-stat-card">
+              <div class="kpi-value kpi-gray" id="kpiBelum">30</div>
+              <div class="kpi-label">Belum Presensi</div>
+            </div>
+          </div>
+
+          <!-- ATTENDANCE PROGRESS -->
+          <div class="progress-bar-container">
+            <div class="progress-labels">
+              <span>Tingkat Kehadiran Sekolah</span>
+              <span id="progressText">0% (0 / 30 Siswa)</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progressBarFill"></div>
+            </div>
+          </div>
+
+          <!-- BREAKDOWN PER ROMBEL KELAS -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px;">
+            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px; padding: 10px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #34D399; font-weight: 700;">KELAS 7 (13 Siswa)</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; margin: 3px 0;" id="rekapKls7">0 / 13 Hadir</div>
+              <div style="font-size: 0.68rem; color: #A7F3D0;" id="persenKls7">0%</div>
+            </div>
+            <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; padding: 10px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #60A5FA; font-weight: 700;">KELAS 8 (3 Siswa)</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; margin: 3px 0;" id="rekapKls8">0 / 3 Hadir</div>
+              <div style="font-size: 0.68rem; color: #BFDBFE;" id="persenKls8">0%</div>
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 10px; padding: 10px; text-align: center;">
+              <div style="font-size: 0.72rem; color: #FBBF24; font-weight: 700;">KELAS 9 (14 Siswa)</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: #FFFFFF; margin: 3px 0;" id="rekapKls9">0 / 14 Hadir</div>
+              <div style="font-size: 0.68rem; color: #FDE68A;" id="persenKls9">0%</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TABLE CONTROLS & LIVE SEARCH -->
+    <div class="table-control-bar no-print">
+      <div class="filter-pills-row">
+        <button type="button" class="btn-tab-filter active" onclick="setTabelFilter('all', this)">Semua (30)</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('Kelas 7', this)">Kelas 7 (13)</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('Kelas 8', this)">Kelas 8 (3)</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('Kelas 9', this)">Kelas 9 (14)</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('hadir', this)">Sudah Hadir</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('belum', this)">Belum Hadir</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('terlambat', this)">Terlambat</button>
+        <button type="button" class="btn-tab-filter" onclick="setTabelFilter('izin', this)">Izin/Sakit/Alpa</button>
+      </div>
+
+      <div class="search-input-wrap">
+        <input type="text" id="inputCariTabel" class="table-search-input" placeholder="🔍 Cari nama / NISN..." oninput="renderTabelPresensi()">
+        <button type="button" class="btn-nav" onclick="tandaiSemuaHadir()" title="Tandai semua siswa hadir">
+          ⚡ Tandai Semua Hadir
+        </button>
+      </div>
+    </div>
+
+    <!-- TABEL UTAMA PRESENSI SISWA -->
+    <div class="table-container">
+      <table class="presensi-table">
+        <thead>
+          <tr>
+            <th style="width: 35px; text-align: center;">No</th>
+            <th>Nama Peserta Didik</th>
+            <th style="width: 45px; text-align: center;">JK</th>
+            <th style="width: 80px; text-align: center;">Rombel</th>
+            <th style="width: 105px;">NISN</th>
+            <th style="width: 90px; text-align: center;">Jam Masuk</th>
+            <th style="width: 90px; text-align: center;">Jam Pulang</th>
+            <th style="width: 130px; text-align: center;">Status Presensi</th>
+            <th class="no-print" style="width: 130px; text-align: center;">Ubah Status</th>
+            <th class="no-print" style="width: 120px; text-align: center;">Notifikasi WA</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyPresensi">
+          <!-- Diisi via JavaScript -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PRINT SIGNATURES SECTION (ONLY PRINT) -->
+    <div class="print-signatures-row">
+      <div style="text-align: center; width: 250px;">
+        <div>Mengetahui,</div>
+        <div style="font-weight: 700; margin-bottom: 70px;">Kepala SMP Muhammadiyah 1</div>
+        <div style="font-weight: 800; text-decoration: underline;">ROHMATUL UMMAH, S.Pd</div>
+        <div style="font-size: 9pt;">NIP/NBM. 1387654</div>
+      </div>
+      <div style="text-align: center; width: 250px;">
+        <div>Kota Bangun Darat, <span id="printTanggalTtd">12 November 2026</span></div>
+        <div style="font-weight: 700; margin-bottom: 70px;">Guru Piket / Pembina Kesiswaan</div>
+        <div style="font-weight: 800; text-decoration: underline;">ABDUL GHOFUR, S.Pd</div>
+        <div style="font-size: 9pt;">NBM. 1428901</div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- APP FOOTER -->
+  <footer class="app-footer no-print">
+    <div>
+      &copy; 2026 SMP Muhammadiyah 1 Kota Bangun Darat &bull; Sistem Presensi Terpadu Berbasis QR Code
+    </div>
+    <div style="display: flex; gap: 14px;">
+      <span>NPSN: <strong>70058553</strong></span>
+      <span>Integrasi 30 Siswa Dapodik</span>
+      <span style="color: #34D399;">✦ 1 Kartu Terpadu (Presensi, Perpustakaan, Admin)</span>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. DATABASE 30 SISWA DAPODIK
+    const MASTER_SISWA = [{"no":1,"nama":"Abdullah Hanafi","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3135608929","tempat_lahir":"Bontang","tanggal_lahir":"2013-11-27","nik":"6402082711130003","agama":"Islam","alamat":"kota bangun III","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"082241351840","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"wiji handayani","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082606880001"},"ibu":{"nama":"Nisaul Afifah","tahun_lahir":"1994","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6474016307940003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0189128","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"2","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402082608130005","berat_badan_kg":"67","tinggi_badan_cm":"150","lingkar_kepala_cm":"53","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":2,"nama":"Abidzar Rasyiqul Hafizh","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0149561077","tempat_lahir":"Kota Bangun","tanggal_lahir":"2014-04-24","nik":"6402082404140001","agama":"Islam","alamat":"Kota Bangun II","rt":"6","rw":"0","dusun":"Bangun Sari","kelurahan":"Kota Bangun Ii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082256257760","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"M. Sulis Wanto","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"< Rp1.000.000","nik":"6402081203860003"},"ibu":{"nama":"Agustina","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Wirausaha","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402085308860001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402-LU-11062014-0066","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 017 KOTA BANGUN","anak_ke":"1","lintang":"-0.379454699872","bujur":"116.55438423157","no_kk":"6402081306110010","berat_badan_kg":"52","tinggi_badan_cm":"127","lingkar_kepala_cm":"35","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":3,"nama":"Ahmad Nafis","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3129222837","tempat_lahir":"Samarinda","tanggal_lahir":"2012-05-16","nik":"6472061605120002","agama":"Islam","alamat":"JL.Poros","rt":"15","rw":"0","dusun":"Bukit Makmur","kelurahan":"Kota Bangun.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081350445600","email":"","skhun":"","penerima_kps":"Ya","no_kps":"","ayah":{"nama":"Muhtar","tahun_lahir":"1970","pendidikan":"S1","pekerjaan":"Pedagang Kecil","penghasilan":"< Rp1.000.000","nik":"6472060708700011"},"ibu":{"nama":"Sulistiani","tahun_lahir":"1976","pendidikan":"S1","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6472064708760007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Pemegang PKH/KPS/KKS","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"4","lintang":"0","bujur":"0","no_kk":"6402080605190001","berat_badan_kg":"31","tinggi_badan_cm":"155","lingkar_kepala_cm":"53","jml_saudara_kandung":"5","jarak_sekolah_km":"1"},{"no":4,"nama":"ATHIFAH FARIHAN WARDA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137755437","tempat_lahir":"TENGGARONG","tanggal_lahir":"2013-09-03","nik":"6402084309130001","agama":"Islam","alamat":"JL.A.YANI","rt":"11","rw":"0","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082152153329","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"MISBAHUDIN","tahun_lahir":"1981","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402082808810001"},"ibu":{"nama":"CUCUN CUNAYAH","tahun_lahir":"1984","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086410840002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402LU031020130037","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402080610090004","berat_badan_kg":"38","tinggi_badan_cm":"140","lingkar_kepala_cm":"0","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":5,"nama":"David Maliki","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0129930343","tempat_lahir":"Tenggarong","tanggal_lahir":"2012-08-21","nik":"6402082108120001","agama":"Islam","alamat":"Wilis","rt":"34","rw":"16","dusun":"","kelurahan":"Sudimoroharjo","kecamatan":"Kec. Wilangan","kode_pos":"64462","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085871006068","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Nursalim","tahun_lahir":"1982","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":""},"ibu":{"nama":"Supini","tahun_lahir":"1986","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":""},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"1","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"0","bujur":"0","no_kk":"","berat_badan_kg":"40","tinggi_badan_cm":"155","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"7"},{"no":6,"nama":"DIAN MUHIMMATUZZAHIRA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0144487368","tempat_lahir":"JEPARA","tanggal_lahir":"2014-04-29","nik":"3320036904140006","agama":"Islam","alamat":"JL.A.YANI","rt":"3","rw":"2","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081258329207","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"SOLIKUL HADI","tahun_lahir":"1976","pendidikan":"SMP / sederajat","pekerjaan":"Pedagang Kecil","penghasilan":"< Rp1.000.000","nik":"3320031010760003"},"ibu":{"nama":"NUR AZIZAH","tahun_lahir":"1984","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"3320034711840007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"3320-LT-31102014-0043","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"3","lintang":"0","bujur":"0","no_kk":"3321101307180001","berat_badan_kg":"27","tinggi_badan_cm":"131","lingkar_kepala_cm":"0","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":7,"nama":"Diyah Vita Lestari","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0136232873","tempat_lahir":"Kota Bangun","tanggal_lahir":"2013-07-04","nik":"6402014407130001","agama":"Islam","alamat":"Kota Bangun II","rt":"16","rw":"0","dusun":"Fjar Asri","kelurahan":"Kota Bangun Ii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082250528009","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Sariadi","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"3306090805860002"},"ibu":{"nama":"Umi Hamdiyah","tahun_lahir":"1991","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402016907910001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402-LU-22072013-0157","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 017 KOTA BANGUN","anak_ke":"1","lintang":"-0.377394808279","bujur":"116.54631614685","no_kk":"3306091408180001","berat_badan_kg":"21","tinggi_badan_cm":"123","lingkar_kepala_cm":"50","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":8,"nama":"Farel Putra Pratama","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3121747436","tempat_lahir":"Kota Bangun II","tanggal_lahir":"2012-01-24","nik":"6402082406120003","agama":"Islam","alamat":"KH. Ahmad Dahlan","rt":"6","rw":"0","dusun":"Jambu rejo","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"081258714698","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Sugiono","tahun_lahir":"1987","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081409870001"},"ibu":{"nama":"Sri Astuti","tahun_lahir":"1991","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402086105910003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0311176","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.40305758871","bujur":"116.53485238552","no_kk":"6402080507110001","berat_badan_kg":"51","tinggi_badan_cm":"160","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":9,"nama":"Fariz Anggit Wicaksono","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0121241130","tempat_lahir":"Tenggarong","tanggal_lahir":"2012-06-15","nik":"6402081506120001","agama":"Islam","alamat":"Jend.Sudirman","rt":"4","rw":"0","dusun":"Jamburejo","kelurahan":"Kota bangu.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081356918717","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Rahmat Dwi Hartoyo","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Buruh","penghasilan":"< Rp1.000.000","nik":"6402082008880001"},"ibu":{"nama":"Ita maulina","tahun_lahir":"1993","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085604930002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"0","bujur":"0","no_kk":"6402080104150005","berat_badan_kg":"40","tinggi_badan_cm":"158","lingkar_kepala_cm":"52","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":10,"nama":"FAYRUZ ALFARIZQI","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3134384901","tempat_lahir":"SAMARINDA","tanggal_lahir":"2013-12-09","nik":"6402080912130001","agama":"Islam","alamat":"DESA KOTA BANGUN III","rt":"20","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082351880138","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"BOBY HARSONO","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082511920003"},"ibu":{"nama":"MASLEKAH PRATAMA PUTRI","tahun_lahir":"1992","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085906920005"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0189185","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"1","lintang":"-0.418012605021","bujur":"116.54820590978","no_kk":"6402082706120002","berat_badan_kg":"53","tinggi_badan_cm":"159","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":11,"nama":"Guritno Indah lestari","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137486922","tempat_lahir":"Kutai Kartanegara","tanggal_lahir":"2013-10-18","nik":"6402085810130002","agama":"Islam","alamat":"kota Bangu n III","rt":"17","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"082154982698","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Gatut Yuwono","tahun_lahir":"1984","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402081001841002"},"ibu":{"nama":"Lestari","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402061805860002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0175435","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.255688772298","bujur":"116.63146018982","no_kk":"6402081306090040","berat_badan_kg":"65","tinggi_badan_cm":"152","lingkar_kepala_cm":"52","jml_saudara_kandung":"1","jarak_sekolah_km":"3"},{"no":12,"nama":"GWEN LUKITA HENDRAWANTO","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137452372","tempat_lahir":"SAMARINDA","tanggal_lahir":"2013-12-19","nik":"6402085912130002","agama":"Islam","alamat":"Desa Kota Bangun III","rt":"10","rw":"0","dusun":"Bukit Makmur","kelurahan":"Kota Bangun III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75560","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil pribadi","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"","tahun_lahir":"1980","pendidikan":"SMA / sederajat","pekerjaan":"Lainnya","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"ibu":{"nama":"RAWIN","tahun_lahir":"1979","pendidikan":"Tidak sekolah","pekerjaan":"Lainnya","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.64020859121330002","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"3","lintang":"-0.4007","bujur":"116.5384","no_kk":"6402082304090008","berat_badan_kg":"33","tinggi_badan_cm":"138","lingkar_kepala_cm":"0","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":13,"nama":"HUSNAH AFIFA ZIA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3126487291","tempat_lahir":"SAMARINDA","tanggal_lahir":"2012-01-14","nik":"6402085401120001","agama":"Islam","alamat":"KOTA BANGUN III","rt":"15","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081347773738","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"PONIMAN","tahun_lahir":"1970","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082706700001"},"ibu":{"nama":"SUKINEM","tahun_lahir":"1971","pendidikan":"S1","pekerjaan":"PNS/TNI/Polri","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402084508710001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"64.02.AL.45/IND/UMUM/II/2012","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.40709153025","bujur":"116.53962135315","no_kk":"6402081411073800","berat_badan_kg":"80","tinggi_badan_cm":"157","lingkar_kepala_cm":"57","jml_saudara_kandung":"3","jarak_sekolah_km":"0"},{"no":14,"nama":"Indra","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3106276179","tempat_lahir":"Lebak cilong","tanggal_lahir":"2010-11-23","nik":"6402182311100003","agama":"Islam","alamat":"Jalan Poros","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"085392069750","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Supriyadi","tahun_lahir":"0","pendidikan":"Tidak sekolah","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"ibu":{"nama":"Miyar","tahun_lahir":"1987","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402184309870003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0262455","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.268064355402","bujur":"116.59483194351","no_kk":"6402180312180004","berat_badan_kg":"52","tinggi_badan_cm":"162","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"0"},{"no":15,"nama":"Khiar Akmal Jasir","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3112675890","tempat_lahir":"Kota bangun","tanggal_lahir":"2011-11-02","nik":"6402080211110003","agama":"Islam","alamat":"KH. Ahmad dahlan","rt":"6","rw":"0","dusun":"Jambu Rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085246750309","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Rubiyanto","tahun_lahir":"1978","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080306780002"},"ibu":{"nama":"Daryati","tahun_lahir":"1979","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085805790001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153436","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.403143417274","bujur":"116.5332698822","no_kk":"6402081411074086","berat_badan_kg":"42","tinggi_badan_cm":"154","lingkar_kepala_cm":"52","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":16,"nama":"Khoirul Amri","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0136861825","tempat_lahir":"Kota Bangun","tanggal_lahir":"2013-06-11","nik":"6402081106130004","agama":"Islam","alamat":"JL. KH Ahmad Dahlan","rt":"6","rw":"0","dusun":"Jambu Rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085349614493","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Ibnu Muntoha","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402082011880001"},"ibu":{"nama":"Khudayah","tahun_lahir":"1995","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402084908950001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0189469","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402080605130002","berat_badan_kg":"43","tinggi_badan_cm":"156","lingkar_kepala_cm":"52","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":17,"nama":"M NIZAM FADILA","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0147010920","tempat_lahir":"OKU TIMUR","tanggal_lahir":"2014-03-13","nik":"1608101303140003","agama":"Islam","alamat":"NUSA TENGGARA","rt":"2","rw":"1","dusun":"NUSA TENGGARA","kelurahan":"NUSA TENGGARA","kecamatan":"Kec. Belitang III","kode_pos":"32382","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"HARSONO","tahun_lahir":"1983","pendidikan":"SMA / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"1608101805830002"},"ibu":{"nama":"DWI RISTYAWATI","tahun_lahir":"1987","pendidikan":"SMP / sederajat","pekerjaan":"Lainnya","penghasilan":"< Rp1.000.000","nik":"1608106804870001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"1608-LT-07112017-0080","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"1608100703090012","berat_badan_kg":"30","tinggi_badan_cm":"135","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"10"},{"no":18,"nama":"Maulidatul hasanah","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3129372016","tempat_lahir":"Kota bangun III","tanggal_lahir":"2012-02-05","nik":"6402084502120002","agama":"Islam","alamat":"KH. ahmad dahlan","rt":"6","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082258850900","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Imam rofik wahyudi","tahun_lahir":"1984","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080903840001"},"ibu":{"nama":"Suciani","tahun_lahir":"1990","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085910890003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0062223","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.400482731361","bujur":"116.53129577637","no_kk":"","berat_badan_kg":"38","tinggi_badan_cm":"150","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":19,"nama":"MAYANG SARI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0124488974","tempat_lahir":"LEBAK CILONG","tanggal_lahir":"2012-06-20","nik":"6402186006120001","agama":"Islam","alamat":"Lebak Cilong","rt":"10","rw":"0","dusun":"","kelurahan":"LEBAK CILONG","kecamatan":"Kec. Muara Wis","kode_pos":"75559","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Lainnya","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Musjairin","tahun_lahir":"1980","pendidikan":"SD / sederajat","pekerjaan":"Petani","penghasilan":"< Rp1.000.000","nik":"6402180710800001"},"ibu":{"nama":"TURSINA","tahun_lahir":"1985","pendidikan":"SD / sederajat","pekerjaan":"Lainnya","penghasilan":"Tidak Berpenghasilan","nik":"6402184503580001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL 9390311176","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"","bujur":"","no_kk":"6402181411071821","berat_badan_kg":"34","tinggi_badan_cm":"143","lingkar_kepala_cm":"55","jml_saudara_kandung":"25","jarak_sekolah_km":"0"},{"no":20,"nama":"Miftahul Jannah","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3129648431","tempat_lahir":"Kota Bangun III","tanggal_lahir":"2012-05-16","nik":"6402085605120003","agama":"Islam","alamat":"jl.kh.ahmad dahlan","rt":"6","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081347434136","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Bahmid Yusuf","tahun_lahir":"1966","pendidikan":"D3","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080101660002"},"ibu":{"nama":"HALIMATUSSA' DIYAH","tahun_lahir":"1977","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086908770001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153465","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"-0.403400902961","bujur":"116.53481483459","no_kk":"","berat_badan_kg":"67","tinggi_badan_cm":"147","lingkar_kepala_cm":"54","jml_saudara_kandung":"6","jarak_sekolah_km":"1"},{"no":21,"nama":"Muhammad Al-Faliq","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3117156372","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2011-07-07","nik":"6402180707110001","agama":"Islam","alamat":"Desa Lebak cilong","rt":"6","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"085392069750","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Suleman","tahun_lahir":"1958","pendidikan":"SD / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402182511580001"},"ibu":{"nama":"Suri","tahun_lahir":"1960","pendidikan":"SD / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402185309600001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153260","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"4","lintang":"-6.18450215484","bujur":"106.79577827454","no_kk":"","berat_badan_kg":"43","tinggi_badan_cm":"151","lingkar_kepala_cm":"51","jml_saudara_kandung":"0","jarak_sekolah_km":"0"},{"no":22,"nama":"Muhammad Beliansyah","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3119685447","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2011-09-02","nik":"6402180209110001","agama":"Islam","alamat":"jl.poros","rt":"5","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"082250144440","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Juanda Putra","tahun_lahir":"1986","pendidikan":"SMP / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402181601860001"},"ibu":{"nama":"Hani","tahun_lahir":"1989","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402185103890001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0120421","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.454640385806","bujur":"116.51902198791","no_kk":"","berat_badan_kg":"93","tinggi_badan_cm":"163","lingkar_kepala_cm":"55","jml_saudara_kandung":"1","jarak_sekolah_km":"0"},{"no":23,"nama":"Muhammad Putra","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3126920980","tempat_lahir":"Samarinda","tanggal_lahir":"2012-04-30","nik":"6402083004120002","agama":"Islam","alamat":"kh.ahmad Dahlan","rt":"5","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75581","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085252220073","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Imam Muntoha","tahun_lahir":"1983","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402182009830001"},"ibu":{"nama":"Siti Nuryatin","tahun_lahir":"1977","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085507770001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0140990","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"-0.403357988681","bujur":"116.5355014801","no_kk":"","berat_badan_kg":"41","tinggi_badan_cm":"145","lingkar_kepala_cm":"53","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":24,"nama":"Nur Azwa","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137729494","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2013-05-09","nik":"6402184905130001","agama":"Islam","alamat":"Lebak Cilong","rt":"10","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"081250096954","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"doni","tahun_lahir":"1996","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402082010960001"},"ibu":{"nama":"Jerni Marselina","tahun_lahir":"1993","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402186708930002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0111584","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402182012180002","berat_badan_kg":"33","tinggi_badan_cm":"149","lingkar_kepala_cm":"51","jml_saudara_kandung":"2","jarak_sekolah_km":"6"},{"no":25,"nama":"Purna Rika Ayunda Putri","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3114669218","tempat_lahir":"Kota bangun","tanggal_lahir":"2011-12-24","nik":"6402086412110004","agama":"Islam","alamat":"jl. kh. ahmad Dahlan","rt":"6","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082255774560","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Karyadi","tahun_lahir":"1987","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081105871002"},"ibu":{"nama":"Sri kanti","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085104920002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0152564","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.401941817292","bujur":"116.53490066528","no_kk":"","berat_badan_kg":"35","tinggi_badan_cm":"141","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"0"},{"no":26,"nama":"RIO SURYA SAPUTRA","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0136999190","tempat_lahir":"KOTA BANGUN","tanggal_lahir":"2013-05-16","nik":"6402081605130001","agama":"Islam","alamat":"KOTA BANGUN III","rt":"17","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085250020195","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"SURYANTO","tahun_lahir":"1960","pendidikan":"SMP / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081302000001"},"ibu":{"nama":"SRI WAHYUNI","tahun_lahir":"1973","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086077300001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"64.02.AL.199","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"2","lintang":"-0.416145353915","bujur":"116.5386516786","no_kk":"6402081411073836","berat_badan_kg":"25","tinggi_badan_cm":"135","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":27,"nama":"SELLA ALIVIA DESVITARANI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0106766362","tempat_lahir":"KLATEN","tanggal_lahir":"2010-12-18","nik":"3310015812100003","agama":"Islam","alamat":"JL.A.YANI","rt":"10","rw":"0","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081250359680","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"ANGGUN","tahun_lahir":"0","pendidikan":"SMA / sederajat","pekerjaan":"Peternak","penghasilan":"< Rp1.000.000","nik":""},"ibu":{"nama":"LINA NUR HIDAYATI","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"3310014302880001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"40/2011","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402081306190005","berat_badan_kg":"37","tinggi_badan_cm":"150","lingkar_kepala_cm":"55","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":28,"nama":"SUCI RAMA WATI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0125282961","tempat_lahir":"TRENGGALEK","tanggal_lahir":"2012-09-05","nik":"3503124509120001","agama":"Islam","alamat":"JL. POROS TRANS KALIMANTAN","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Muara Wis","kecamatan":"Kec. Muara Wis","kode_pos":"75559","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"MUSTA'IN","tahun_lahir":"1961","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402050105610001"},"ibu":{"nama":"WINARSIH","tahun_lahir":"1977","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402064607770007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL 7180127140","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Yatim Piatu/Panti Asuhan/Panti Sosial","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.403572560082","bujur":"116.56734466553","no_kk":"6402182803220001","berat_badan_kg":"42","tinggi_badan_cm":"151","lingkar_kepala_cm":"51","jml_saudara_kandung":"2","jarak_sekolah_km":"0"},{"no":29,"nama":"Wahyu Sabrani Akbar","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0125243269","tempat_lahir":"Muara Muntai","tanggal_lahir":"2012-01-28","nik":"6402182801120001","agama":"Islam","alamat":"JL. surodiponggo","rt":"4","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"08115802733","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Abdul Japarudin.M","tahun_lahir":"1973","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402181808730001"},"ibu":{"nama":"Irawati","tahun_lahir":"1980","pendidikan":"D1","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402185703800003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0086913","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402183101111000","berat_badan_kg":"55","tinggi_badan_cm":"165","lingkar_kepala_cm":"53","jml_saudara_kandung":"3","jarak_sekolah_km":"0"},{"no":30,"nama":"Yanuar Dwiska Putra Ditya","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0121182581","tempat_lahir":"Kota Bangun","tanggal_lahir":"2012-01-28","nik":"6402082801120001","agama":"Islam","alamat":"Jend.sudirman","rt":"8","rw":"0","dusun":"Jamburejo","kelurahan":"Kota bangun.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085348759695","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Jemadi","tahun_lahir":"1979","pendidikan":"SMP / sederajat","pekerjaan":"Buruh","penghasilan":"< Rp1.000.000","nik":"6402080801790004"},"ibu":{"nama":"Miyati","tahun_lahir":"1980","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085002800003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402082802120005","berat_badan_kg":"38","tinggi_badan_cm":"157","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"0"}];
+
+    // State Variables
+    let currentMode = 'masuk'; // 'masuk' | 'pulang' | 'kegiatan'
+    let activeTabelFilter = 'all';
+    let html5QrScanner = null;
+    let cameraRunning = false;
+    let selectedDate = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+
+    // Audio Context Synthesizer (Zero-Asset Offline Audio Beeps)
+    let audioCtx = null;
+    function playBeep(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === 'success') {
+          // Pleasant high double chime
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(880, now); // A5
+          osc.frequency.setValueAtTime(1320, now + 0.08); // E6
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'warning') {
+          // Warning double buzz
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.setValueAtTime(330, now + 0.1);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.26);
+        } else if (type === 'error') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, now);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.36);
+        }
+      } catch (e) {
+        console.warn('Audio not allowed yet or error:', e);
+      }
+    }
+
+    // 2. STORAGE CONTROLLER
+    function getStorageKey(date) {
+      return 'SMPM1_PRESENSI_SISWA_' + date;
+    }
+
+    function loadPresensiData(date) {
+      const saved = localStorage.getItem(getStorageKey(date));
+      if (saved) {
+        try {
+          return JSON.parse(saved);
+        } catch (e) {
+          console.error('Error parse localStorage:', e);
+        }
+      }
+      // Initialize default empty state for 30 students
+      const initial = {};
+      MASTER_SISWA.forEach(s => {
+        initial[s.nisn] = {
+          nisn: s.nisn,
+          nama: s.nama,
+          rombel: s.rombel,
+          jam_masuk: null,
+          jam_pulang: null,
+          status: 'Belum Hadir', // 'Hadir' | 'Terlambat' | 'Izin' | 'Sakit' | 'Alpa' | 'Belum Hadir'
+          keterangan: '',
+          updated_at: null
+        };
+      });
+      return initial;
+    }
+
+    function savePresensiData(date, data) {
+      localStorage.setItem(getStorageKey(date), JSON.stringify(data));
+      updateDashboardKPI();
+      renderTabelPresensi();
+    }
+
+    let presensiStore = loadPresensiData(selectedDate);
+
+    // 3. DIGITAL CLOCK & HIJRIYAH CONTROLLER
+    function updateClock() {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+      document.getElementById('digitalClock').textContent = timeStr;
+
+      const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+      const masehiStr = now.toLocaleDateString('id-ID', options);
+      const masehiEl = document.getElementById('masehiDate');
+      if (masehiEl) masehiEl.textContent = masehiStr;
+
+      const printSub = document.getElementById('printSubtitle');
+      if (printSub) {
+        printSub.textContent = 'Hari/Tanggal: ' + masehiStr + ' • Sesi: ' + (currentMode === 'masuk' ? 'Presensi Masuk Pagi' : (currentMode === 'pulang' ? 'Presensi Kepulangan' : 'Kegiatan'));
+      }
+      const printTtd = document.getElementById('printTanggalTtd');
+      if (printTtd) {
+        printTtd.textContent = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 4. MODE CONTROLLER (MASUK / PULANG / KEGIATAN)
+    function setPresensiMode(mode, btn) {
+      currentMode = mode;
+      document.querySelectorAll('.btn-mode-toggle').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const badge = document.getElementById('activeModeBadge');
+      const title = document.getElementById('modeHeaderTitle');
+
+      if (mode === 'masuk') {
+        badge.className = 'session-mode-badge mode-masuk';
+        badge.textContent = '🟢 PRESENSI MASUK';
+        title.textContent = 'Sesi Masuk Pagi (Target Tepat Waktu: Sebelum 07:15 WIB)';
+      } else if (mode === 'pulang') {
+        badge.className = 'session-mode-badge mode-pulang';
+        badge.textContent = '🔵 PRESENSI PULANG';
+        title.textContent = 'Sesi Kepulangan Siswa (Batas Pulang Sekolah: 14:30 WIB)';
+      } else {
+        badge.className = 'session-mode-badge mode-kegiatan';
+        badge.textContent = '🟡 SHOLAT / HIZBUL WATHAN';
+        title.textContent = 'Sesi Pembiasaan Karakter, Sholat Berjamaah & Ekstrakurikuler HW';
+      }
+    }
+
+    // 5. SCANNER PROCESSOR (PARSER QR CODE SISWA)
+    function processScannedPayload(payload) {
+      if (!payload || !payload.trim()) return;
+      const clean = payload.trim();
+      let matchedStudent = null;
+
+      // Pattern 1: Official Card QR: SMPM1KOBDAR:SISWA|NISN:3135608929|NIK:640208...
+      if (clean.includes('SMPM1KOBDAR:SISWA') || clean.includes('NISN:')) {
+        const nisnMatch = clean.match(/NISN:([0-9]{10})/i);
+        if (nisnMatch && nisnMatch[1]) {
+          matchedStudent = MASTER_SISWA.find(s => s.nisn === nisnMatch[1]);
+        }
+      }
+
+      // Pattern 2: Raw 10 digit NISN
+      if (!matchedStudent && /^[0-9]{10}$/.test(clean)) {
+        matchedStudent = MASTER_SISWA.find(s => s.nisn === clean);
+      }
+
+      // Pattern 3: 16 digit NIK
+      if (!matchedStudent && /^[0-9]{16}$/.test(clean)) {
+        matchedStudent = MASTER_SISWA.find(s => s.nik === clean);
+      }
+
+      // Pattern 4: Search by name substring if typed
+      if (!matchedStudent) {
+        matchedStudent = MASTER_SISWA.find(s => s.nama.toLowerCase().includes(clean.toLowerCase()));
+      }
+
+      if (!matchedStudent) {
+        playBeep('error');
+        alert('Barcode / QR Code tidak dikenali sebagai data peserta didik resmi SMP Muhammadiyah 1 Kota Bangun Darat:\n' + clean);
+        return;
+      }
+
+      // Process Attendance
+      recordAttendance(matchedStudent);
+    }
+
+    function recordAttendance(student) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+      const parts = timeStr.split(':').map(Number);
+      const hour = parts[0];
+      const minute = parts[1];
+
+      const record = presensiStore[student.nisn] || {
+        nisn: student.nisn,
+        nama: student.nama,
+        rombel: student.rombel,
+        jam_masuk: null,
+        jam_pulang: null,
+        status: 'Belum Hadir',
+        keterangan: '',
+        updated_at: null
+      };
+
+      let statusAlertMsg = '';
+      let alertClass = 'status-alert-success';
+
+      if (currentMode === 'masuk') {
+        if (record.jam_masuk) {
+          playBeep('warning');
+          statusAlertMsg = '⚠️ Ananda sudah tercatat masuk hari ini pada pukul ' + record.jam_masuk;
+          alertClass = 'status-alert-warning';
+        } else {
+          // Late condition: > 07:15
+          if (hour > 7 || (hour === 7 && minute > 15)) {
+            record.status = 'Terlambat';
+            statusAlertMsg = '⚠️ Presensi Masuk: Terlambat (' + timeStr + ')';
+            alertClass = 'status-alert-warning';
+          } else {
+            record.status = 'Hadir';
+            statusAlertMsg = '✅ Presensi Masuk: Tepat Waktu (' + timeStr + ')';
+            alertClass = 'status-alert-success';
+          }
+          record.jam_masuk = timeStr;
+          record.updated_at = now.toISOString();
+          playBeep('success');
+        }
+      } else if (currentMode === 'pulang') {
+        record.jam_pulang = timeStr;
+        record.updated_at = now.toISOString();
+        if (record.status === 'Belum Hadir') record.status = 'Hadir';
+        statusAlertMsg = '🔵 Presensi Kepulangan Tercatat (' + timeStr + ')';
+        alertClass = 'status-alert-success';
+        playBeep('success');
+      } else {
+        // Mode Kegiatan
+        if (record.status === 'Belum Hadir') record.status = 'Hadir';
+        record.keterangan = 'Hadir Sholat/HW ' + timeStr;
+        statusAlertMsg = '🟡 Terverifikasi Ikut Kegiatan HW / Sholat (' + timeStr + ')';
+        alertClass = 'status-alert-success';
+        playBeep('success');
+      }
+
+      presensiStore[student.nisn] = record;
+      savePresensiData(selectedDate, presensiStore);
+      syncAttendanceToCloud(student, record);
+
+      // Display Hero Result Box
+      displayScanResult(student, record, statusAlertMsg, alertClass, timeStr);
+
+      // Clear input
+      const hwInput = document.getElementById('hardwareBarcodeInput');
+      if (hwInput) {
+        hwInput.value = '';
+        hwInput.focus();
+      }
+    }
+
+    function displayScanResult(student, record, statusMsg, alertClass, timeStr) {
+      const card = document.getElementById('scanResultCard');
+      const resAvatar = document.getElementById('resAvatar');
+      const resNama = document.getElementById('resNama');
+      const resRombel = document.getElementById('resRombel');
+      const resNisn = document.getElementById('resNisn');
+      const resWaktu = document.getElementById('resWaktu');
+      const resAlert = document.getElementById('resStatusAlert');
+      const resText = document.getElementById('resStatusText');
+      const resStamp = document.getElementById('resStatusStamp');
+
+      const initials = student.nama.split(' ').map(n => n[0]).slice(0, 2).join('');
+      resAvatar.textContent = initials;
+      resNama.textContent = student.nama;
+      resRombel.textContent = student.rombel;
+      resRombel.className = 'badge-pill badge-rombel-' + (student.rombel === 'Kelas 7' ? '7' : (student.rombel === 'Kelas 8' ? '8' : '9'));
+      resNisn.textContent = 'NISN: ' + student.nisn;
+      resWaktu.textContent = 'Waktu Scan: ' + timeStr + ' WIB';
+
+      resAlert.className = 'scan-status-alert ' + alertClass;
+      resText.textContent = statusMsg;
+      resStamp.textContent = timeStr.slice(0, 5);
+
+      card.classList.add('show');
+    }
+
+    // 6. HARDWARE SCANNER LISTENER (ENTER KEY ON ANYWHERE OR INPUT)
+    const hwInput = document.getElementById('hardwareBarcodeInput');
+    if (hwInput) {
+      hwInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          processScannedPayload(this.value);
+        }
+      });
+    }
+
+    // Global barcode listener for USB Handheld Guns
+    let globalBarcodeBuffer = '';
+    let lastKeyTime = Date.now();
+    window.addEventListener('keydown', function(e) {
+      // Don't intercept if user is typing in regular search input
+      if (document.activeElement && document.activeElement.id === 'inputCariTabel') return;
+
+      const currentTime = Date.now();
+      if (currentTime - lastKeyTime > 120) {
+        globalBarcodeBuffer = '';
+      }
+      lastKeyTime = currentTime;
+
+      if (e.key === 'Enter') {
+        if (globalBarcodeBuffer.length >= 8) {
+          processScannedPayload(globalBarcodeBuffer);
+          globalBarcodeBuffer = '';
+          e.preventDefault();
+        }
+      } else if (e.key.length === 1) {
+        globalBarcodeBuffer += e.key;
+      }
+    });
+
+    // 7. HTML5 CAMERA QR SCANNER CONTROLLER
+    function toggleCameraScanner() {
+      const btn = document.getElementById('btnToggleCamera');
+      const statusPill = document.getElementById('cameraStatusPill');
+
+      if (!cameraRunning) {
+        // Start scanner
+        if (typeof Html5Qrcode === 'undefined') {
+          alert('Library HTML5 QR Code sedang dimuat dari CDN. Pastikan terhubung internet untuk kamera live, atau gunakan input Barcode Gun USB.');
+          return;
+        }
+
+        html5QrScanner = new Html5Qrcode('reader');
+        const config = { fps: 15, qrbox: { width: 220, height: 220 } };
+
+        html5QrScanner.start(
+          { facingMode: 'environment' },
+          config,
+          (decodedText, decodedResult) => {
+            console.log('Decoded QR Text:', decodedText);
+            processScannedPayload(decodedText);
+          },
+          (errorMessage) => {
+            // silent scan frame error
+          }
+        ).then(() => {
+          cameraRunning = true;
+          btn.className = 'btn-scanner-action btn-stop-camera';
+          btn.innerHTML = '🛑 Hentikan Kamera';
+          statusPill.textContent = 'Kamera Aktif';
+          statusPill.style.color = '#34D399';
+          statusPill.style.background = 'rgba(16, 185, 129, 0.15)';
+          statusPill.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+        }).catch(err => {
+          console.error('Camera start error:', err);
+          alert('Tidak dapat mengakses kamera. Pastikan browser diberikan izin akses kamera (Webcam/Kamera HP).\nDetail: ' + err);
+        });
+
+      } else {
+        // Stop scanner
+        if (html5QrScanner) {
+          html5QrScanner.stop().then(() => {
+            cameraRunning = false;
+            btn.className = 'btn-scanner-action btn-start-camera';
+            btn.innerHTML = '📷 Aktifkan Kamera Pemindai';
+            statusPill.textContent = 'Siap Scan';
+            statusPill.style.color = '#F59E0B';
+            statusPill.style.background = 'rgba(245, 158, 11, 0.15)';
+            statusPill.style.borderColor = 'rgba(245, 158, 11, 0.3)';
+          }).catch(err => console.error(err));
+        }
+      }
+    }
+
+    // 8. SIMULATOR QUICK ACTIONS
+    function populateSimulatorSelect() {
+      const sel = document.getElementById('simStudentSelect');
+      if (!sel) return;
+      sel.innerHTML = '';
+      MASTER_SISWA.forEach((s, idx) => {
+        const opt = document.createElement('option');
+        opt.value = s.nisn;
+        opt.textContent = (idx + 1) + '. [' + s.rombel + '] ' + s.nama;
+        sel.appendChild(opt);
+      });
+    }
+    populateSimulatorSelect();
+
+    function simulasikanScan() {
+      const sel = document.getElementById('simStudentSelect');
+      if (!sel || !sel.value) return;
+      const nisn = sel.value;
+      processScannedPayload(nisn);
+    }
+
+    // 9. DASHBOARD KPI UPDATE
+    function updateDashboardKPI() {
+      const values = Object.values(presensiStore);
+      const total = values.length; // 30
+      let hadirCount = 0;
+      let tepatCount = 0;
+      let terlambatCount = 0;
+      let izinCount = 0;
+      let belumCount = 0;
+
+      let kls7Hadir = 0;
+      let kls8Hadir = 0;
+      let kls9Hadir = 0;
+
+      values.forEach(v => {
+        if (v.status === 'Hadir') {
+          hadirCount++;
+          tepatCount++;
+        } else if (v.status === 'Terlambat') {
+          hadirCount++;
+          terlambatCount++;
+        } else if (v.status === 'Izin' || v.status === 'Sakit' || v.status === 'Alpa') {
+          izinCount++;
+        } else {
+          belumCount++;
+        }
+
+        if (v.status === 'Hadir' || v.status === 'Terlambat') {
+          if (v.rombel === 'Kelas 7') kls7Hadir++;
+          else if (v.rombel === 'Kelas 8') kls8Hadir++;
+          else if (v.rombel === 'Kelas 9') kls9Hadir++;
+        }
+      });
+
+      document.getElementById('kpiHadir').textContent = hadirCount;
+      document.getElementById('kpiTepat').textContent = tepatCount;
+      document.getElementById('kpiTerlambat').textContent = terlambatCount;
+      document.getElementById('kpiIzin').textContent = izinCount;
+      document.getElementById('kpiBelum').textContent = belumCount;
+
+      const pct = Math.round((hadirCount / total) * 100);
+      document.getElementById('progressText').textContent = pct + '% (' + hadirCount + ' / 30 Siswa)';
+      document.getElementById('progressBarFill').style.width = pct + '%';
+
+      // Rombel stats
+      document.getElementById('rekapKls7').textContent = kls7Hadir + ' / 13 Hadir';
+      document.getElementById('persenKls7').textContent = Math.round((kls7Hadir / 13) * 100) + '%';
+
+      document.getElementById('rekapKls8').textContent = kls8Hadir + ' / 3 Hadir';
+      document.getElementById('persenKls8').textContent = Math.round((kls8Hadir / 3) * 100) + '%';
+
+      document.getElementById('rekapKls9').textContent = kls9Hadir + ' / 14 Hadir';
+      document.getElementById('persenKls9').textContent = Math.round((kls9Hadir / 14) * 100) + '%';
+    }
+
+    // 10. TABEL RENDER & FILTER
+    function setTabelFilter(filter, btn) {
+      activeTabelFilter = filter;
+      document.querySelectorAll('.btn-tab-filter').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderTabelPresensi();
+    }
+
+    function renderTabelPresensi() {
+      const tbody = document.getElementById('tbodyPresensi');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const query = (document.getElementById('inputCariTabel')?.value || '').toLowerCase().trim();
+
+      const filtered = MASTER_SISWA.filter(s => {
+        const rec = presensiStore[s.nisn] || {};
+
+        if (activeTabelFilter === 'Kelas 7' && s.rombel !== 'Kelas 7') return false;
+        if (activeTabelFilter === 'Kelas 8' && s.rombel !== 'Kelas 8') return false;
+        if (activeTabelFilter === 'Kelas 9' && s.rombel !== 'Kelas 9') return false;
+        if (activeTabelFilter === 'hadir' && rec.status !== 'Hadir' && rec.status !== 'Terlambat') return false;
+        if (activeTabelFilter === 'belum' && rec.status !== 'Belum Hadir') return false;
+        if (activeTabelFilter === 'terlambat' && rec.status !== 'Terlambat') return false;
+        if (activeTabelFilter === 'izin' && (rec.status !== 'Izin' && rec.status !== 'Sakit' && rec.status !== 'Alpa')) return false;
+
+        if (query) {
+          const match = s.nama.toLowerCase().includes(query) ||
+                        s.nisn.includes(query) ||
+                        s.nik.includes(query) ||
+                        s.rombel.toLowerCase().includes(query);
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 24px; color: #64748B;">Tidak ada siswa yang sesuai kriteria pencarian/filter.</td></tr>';
+        return;
+      }
+
+      filtered.forEach((s, idx) => {
+        const rec = presensiStore[s.nisn] || {
+          nisn: s.nisn,
+          nama: s.nama,
+          rombel: s.rombel,
+          jam_masuk: null,
+          jam_pulang: null,
+          status: 'Belum Hadir'
+        };
+
+        const tr = document.createElement('tr');
+
+        // Status Badge
+        let statusBadge = '';
+        if (rec.status === 'Hadir') {
+          statusBadge = '<span class="status-badge st-hadir">✅ Hadir</span>';
+        } else if (rec.status === 'Terlambat') {
+          statusBadge = '<span class="status-badge st-terlambat">⚠️ Terlambat</span>';
+        } else if (rec.status === 'Izin') {
+          statusBadge = '<span class="status-badge st-izin">ℹ️ Izin</span>';
+        } else if (rec.status === 'Sakit') {
+          statusBadge = '<span class="status-badge st-sakit">🏥 Sakit</span>';
+        } else if (rec.status === 'Alpa') {
+          statusBadge = '<span class="status-badge st-alpa">❌ Alpa</span>';
+        } else {
+          statusBadge = '<span class="status-badge st-belum">⏳ Belum Hadir</span>';
+        }
+
+        // WhatsApp notification link
+        let hpOrtu = s.hp || '';
+        if (hpOrtu.startsWith('0')) hpOrtu = '62' + hpOrtu.slice(1);
+        else if (hpOrtu.startsWith('8')) hpOrtu = '62' + hpOrtu;
+
+        const waText = encodeURIComponent(
+          "Assalamu'alaikum Warahmatullahi Wabarakatuh.\n\n" +
+          "Yth. Orang Tua / Wali dari ananda *" + s.nama + "* (Rombel: " + s.rombel + ").\n\n" +
+          "Berikut kami informasikan catatan presensi ananda hari ini di SMP Muhammadiyah 1 Kota Bangun Darat:\n" +
+          "• Tanggal: " + new Date().toLocaleDateString('id-ID', { dateStyle: 'full' }) + "\n" +
+          "• Jam Masuk: " + (rec.jam_masuk || '-') + "\n" +
+          "• Jam Pulang: " + (rec.jam_pulang || '-') + "\n" +
+          "• Status Kehadiran: *" + rec.status + "*\n\n" +
+          "Terima kasih atas kerja samanya dalam mendampingi putra-putri kita menjadi generasi Qur'ani berkemajuan.\n" +
+          "_Wassalamu'alaikum Warahmatullahi Wabarakatuh._"
+        );
+
+        const waBtn = hpOrtu
+          ? '<a href="https://wa.me/' + hpOrtu + '?text=' + waText + '" target="_blank" rel="noopener noreferrer" class="btn-wa-notify" title="Kirim Konfirmasi WA ke Ortu: ' + s.hp + '"><span>📲 Kirim WA</span></a>'
+          : '<span style="color: #94A3B8; font-size: 0.7rem;">(No HP Kosong)</span>';
+
+        const jkBadge = s.jk === 'L'
+          ? '<span style="background: #EFF6FF; color: #1D4ED8; padding: 2px 5px; border-radius: 4px; font-weight: 700; font-size: 0.7rem;">L</span>'
+          : '<span style="background: #FDF2F8; color: #DB2777; padding: 2px 5px; border-radius: 4px; font-weight: 700; font-size: 0.7rem;">P</span>';
+
+        const rombelBadge = s.rombel === 'Kelas 7'
+          ? '<span style="background: #ECFDF5; color: #047857; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem;">Kls 7</span>'
+          : (s.rombel === 'Kelas 8'
+              ? '<span style="background: #EFF6FF; color: #1D4ED8; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem;">Kls 8</span>'
+              : '<span style="background: #FEFCE8; color: #854D0E; padding: 2px 6px; border-radius: 4px; font-weight: 700; font-size: 0.72rem;">Kls 9</span>');
+
+        tr.innerHTML = `
+          <td style="text-align: center; color: #64748B; font-weight: 600;">${idx + 1}</td>
+          <td>
+            <strong style="color: #0F172A; font-size: 0.84rem;">${s.nama}</strong>
+            <div style="font-size: 0.7rem; color: #64748B; font-family: var(--font-mono);">NIK: ${s.nik}</div>
+          </td>
+          <td style="text-align: center;">${jkBadge}</td>
+          <td style="text-align: center;">${rombelBadge}</td>
+          <td style="font-family: var(--font-mono); font-weight: 700; color: #1E40AF;">${s.nisn}</td>
+          <td style="text-align: center; font-family: var(--font-mono); font-weight: 600;">${rec.jam_masuk || '—'}</td>
+          <td style="text-align: center; font-family: var(--font-mono); font-weight: 600;">${rec.jam_pulang || '—'}</td>
+          <td style="text-align: center;">${statusBadge}</td>
+          <td class="no-print" style="text-align: center;">
+            <div class="action-btn-group" style="justify-content: center;">
+              <button type="button" class="btn-act btn-act-h" onclick="manualSetStatus('${s.nisn}', 'Hadir')" title="Set Hadir">H</button>
+              <button type="button" class="btn-act btn-act-i" onclick="manualSetStatus('${s.nisn}', 'Izin')" title="Set Izin">I</button>
+              <button type="button" class="btn-act btn-act-s" onclick="manualSetStatus('${s.nisn}', 'Sakit')" title="Set Sakit">S</button>
+              <button type="button" class="btn-act btn-act-a" onclick="manualSetStatus('${s.nisn}', 'Alpa')" title="Set Alpa">A</button>
+            </div>
+          </td>
+          <td class="no-print" style="text-align: center;">
+            ${waBtn}
+          </td>
+        `;
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    // 11. MANUAL ACTIONS
+    function manualSetStatus(nisn, newStatus) {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+      const rec = presensiStore[nisn] || { nisn: nisn, nama: '', rombel: '' };
+
+      rec.status = newStatus;
+      if (newStatus === 'Hadir' && !rec.jam_masuk) {
+        rec.jam_masuk = timeStr;
+      }
+      rec.updated_at = now.toISOString();
+
+      presensiStore[nisn] = rec;
+      savePresensiData(selectedDate, presensiStore);
+      playBeep('success');
+    }
+
+    function tandaiSemuaHadir() {
+      if (!confirm('Tandai semua 30 siswa hadir tepat waktu hari ini?')) return;
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('id-ID', { hour12: false });
+
+      MASTER_SISWA.forEach(s => {
+        const rec = presensiStore[s.nisn] || { nisn: s.nisn, nama: s.nama, rombel: s.rombel };
+        if (rec.status === 'Belum Hadir') {
+          rec.status = 'Hadir';
+          rec.jam_masuk = timeStr;
+          rec.updated_at = now.toISOString();
+          presensiStore[s.nisn] = rec;
+        }
+      });
+
+      savePresensiData(selectedDate, presensiStore);
+      playBeep('success');
+    }
+
+    function resetPresensiHariIni() {
+      if (!confirm('Apakah Anda yakin ingin me-reset seluruh catatan presensi tanggal ' + selectedDate + '?')) return;
+      localStorage.removeItem(getStorageKey(selectedDate));
+      presensiStore = loadPresensiData(selectedDate);
+      updateDashboardKPI();
+      renderTabelPresensi();
+      const card = document.getElementById('scanResultCard');
+      if (card) card.classList.remove('show');
+      alert('Data presensi berhasil di-reset.');
+    }
+
+    function gantiTanggalPresensi(newDate) {
+      if (!newDate) return;
+      selectedDate = newDate;
+      presensiStore = loadPresensiData(selectedDate);
+      updateDashboardKPI();
+      renderTabelPresensi();
+    }
+
+    // Set initial datepicker value
+    document.getElementById('datePickerPresensi').value = selectedDate;
+
+    // 12. PRINT & EXPORT
+    function bukaRekapCetak() {
+      window.print();
+    }
+
+    function unduhPresensiCSV() {
+      let csv = "No,Nama Peserta Didik,JK,Rombel,NISN,NIK,Jam Masuk,Jam Pulang,Status Kehadiran,Keterangan,Tanggal Presensi\r\n";
+      MASTER_SISWA.forEach((s, idx) => {
+        const rec = presensiStore[s.nisn] || {};
+        csv += '"' + (idx + 1) + '","' + s.nama + '","' + s.jk + '","' + s.rombel + '","' + "'" + s.nisn + "'" + '","' + "'" + s.nik + "'" + '","' + (rec.jam_masuk || '-') + '","' + (rec.jam_pulang || '-') + '","' + (rec.status || 'Belum Hadir') + '","' + (rec.keterangan || '-') + '","' + selectedDate + '"\r\n';
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'Rekap_Presensi_Siswa_SMPM1Kobdar_' + selectedDate + '.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Initialize View
+    updateDashboardKPI();
+    renderTabelPresensi();
+
+    // Focus hardware scanner on start
+    window.addEventListener('load', () => {
+      const hw = document.getElementById('hardwareBarcodeInput');
+      if (hw) hw.focus();
+    });
+  </script>
+</body>
+</html>

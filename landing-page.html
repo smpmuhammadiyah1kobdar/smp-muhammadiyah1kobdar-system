@@ -1049,7 +1049,7 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
     }
 
@@ -2234,6 +2234,10 @@
     <section class="stats-ribbon">
       <div class="container">
         <div class="stats-grid">
+          <div class="glass-panel stat-card">
+            <div class="stat-number gradient-text-green">30</div>
+            <div class="stat-label">Peserta Didik Aktif (13 Kls VII &bull; 17 Kls VIII Dapodik)</div>
+          </div>
           
           <div class="glass-panel stat-card">
             <div class="stat-number gradient-text-gold">10+</div>

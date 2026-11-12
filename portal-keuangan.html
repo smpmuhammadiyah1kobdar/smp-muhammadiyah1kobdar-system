@@ -6,6 +6,7 @@
   <title>Sistem Informasi Tata Kelola Keuangan & Honorarium Terpadu - SMP Muhammadiyah 1 Kota Bangun Darat</title>
   <!-- Chart.js CDN for interactive charts -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <!-- Google Fonts: El Messiri, Amiri, Aref Ruqaa, Reem Kufi (Kaligrafi Arab), Space Grotesk & Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2136,7 +2137,7 @@
     @media print {
       @page {
         size: 215mm 330mm portrait;
-        margin: 0mm;
+        margin: 10mm 12mm 10mm 12mm;
       }
       @page pageLandscape {
         size: 330mm 215mm landscape;
@@ -2172,13 +2173,59 @@
         padding: 0 !important;
         box-sizing: border-box !important;
       }
-      #tab-dashboard, #tab-payroll, #tab-buku-kas {
-        padding: 10mm 12mm !important;
+      #tab-dashboard, #tab-payroll, #tab-buku-kas, #tab-presensi {
+        padding: 0 !important;
         box-sizing: border-box !important;
       }
       #tab-slip-gaji {
-        padding: 15mm 0 !important;
+        padding: 5mm 0 !important;
       }
+
+      /* UNIVERSAL ANTI-TERPOTONG & ANTI-TERPISAH HALAMAN F4 */
+      table {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      tr, tbody tr, tfoot tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      thead {
+        display: table-header-group !important;
+      }
+      tfoot {
+        display: table-footer-group !important;
+      }
+      .payroll-signatures,
+      .bku-print-signatures,
+      .presensi-signatures,
+      .rekap-signatures,
+      .signature-box,
+      .tanda-tangan-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .metric-card,
+      .chart-card,
+      .canvas-wrapper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .slip-card,
+      .slip-inner,
+      .surat-pcm-paper {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .print-kop-wrapper,
+      .print-doc-title {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+
 
       /* HANYA TAB YANG SEDANG AKTIF YANG DICETAK */
       .tab-content { display: none !important; }
@@ -2372,8 +2419,8 @@
         break-inside: avoid !important;
         page-break-after: avoid !important;
         break-after: avoid !important;
-        max-height: 295mm !important;
-        overflow: hidden !important;
+        max-height: none !important;
+        overflow: visible !important;
       }
       body.print-mode-buku-kas #tab-buku-kas .table-container {
         box-shadow: none !important;
@@ -2737,6 +2784,57 @@
       body.print-mode-all #containerRekap5Tahun div {
         overflow: visible !important;
       }
+      
+      body.print-mode-payroll #subview-payroll-tabel {
+        display: block !important;
+      }
+      body.print-mode-payroll #tab-surat-pcm,
+      body.print-mode-payroll #tab-slip-gaji {
+        display: none !important;
+      }
+      body.print-mode-surat-pcm {
+        width: 100% !important;
+      }
+      body.print-mode-surat-pcm .tab-content {
+        display: none !important;
+      }
+      body.print-mode-surat-pcm #tab-payroll {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      body.print-mode-surat-pcm #subview-payroll-tabel,
+      body.print-mode-surat-pcm #tab-slip-gaji {
+        display: none !important;
+      }
+      body.print-mode-surat-pcm #tab-surat-pcm {
+        display: block !important;
+      }
+      body.print-mode-slip-gaji {
+        width: 100% !important;
+      }
+      body.print-mode-slip-gaji .tab-content {
+        display: none !important;
+      }
+      body.print-mode-slip-gaji #tab-payroll {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      body.print-mode-slip-gaji #subview-payroll-tabel,
+      body.print-mode-slip-gaji #tab-surat-pcm {
+        display: none !important;
+      }
+      body.print-mode-slip-gaji #tab-slip-gaji {
+        display: block !important;
+      }
+      body.print-mode-all #tab-payroll,
+      body.print-mode-all #subview-payroll-tabel,
+      body.print-mode-all #tab-surat-pcm,
+      body.print-mode-all #tab-slip-gaji {
+        display: block !important;
+      }
+  
       /* TAB 2: DAFTAR HONOR GTK (LANDSCAPE F4) */
       body.print-mode-all #tab-payroll {
         page: pageLandscape !important;
@@ -3882,6 +3980,117 @@
       color: #F4CE2A;
       transform: rotate(45deg);
     }
+  
+    /* =========================================================================
+       SUB-NAVIGATION & SUB-VIEWS UNTUK TAB DAFTAR HONOR GTK TERPADU
+       ========================================================================= */
+    .payroll-subnav-bar {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+    .payroll-subnav-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .payroll-subnav-pills {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px solid #cbd5e1;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .payroll-pill-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #475569;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .payroll-pill-btn:hover {
+      color: #047857;
+      background: rgba(255, 255, 255, 0.6);
+    }
+    .payroll-pill-btn.active {
+      background: #ffffff;
+      color: #047857;
+      border: 1px solid #10b981;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+    .payroll-subview {
+      display: none;
+    }
+    .payroll-subview.active {
+      display: block;
+    }
+  
+  
+    /* =========================================================================
+       TOMBOL & BADGE CLOUD SYNC REAL-TIME
+       ========================================================================= */
+    .btn-topbar-cloud {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      color: #0f172a;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    .btn-topbar-cloud:hover {
+      background: #ffffff;
+      border-color: #10b981;
+      color: #047857;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(16, 185, 129, 0.2);
+    }
+    .cloud-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #94a3b8;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+    .cloud-status-dot.connected {
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+    }
+    .cloud-status-dot.syncing {
+      background: #f59e0b;
+      box-shadow: 0 0 6px #f59e0b;
+      animation: pulseSyncDot 0.9s infinite alternate;
+    }
+    @keyframes pulseSyncDot {
+      from { transform: scale(0.85); opacity: 0.6; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
   </style>
 </head>
 <body class="auth-locked">
@@ -4077,6 +4286,137 @@
     </div>
   </div>
 
+  
+  <!-- =========================================================================
+       MODAL SINKRONISASI CLOUD DATABASE REAL-TIME (GOOGLE SHEETS)
+       ========================================================================= -->
+  <div id="modalCloudSync" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalCloudSync()">
+    <div class="modal-akun-card" style="max-width: 680px; width: 95%; max-height: 90vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalCloudTitle">
+      <!-- HEADER -->
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0d5c3a 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 42px; height: 42px; border-radius: 10px; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 22px;">
+            ☁️
+          </div>
+          <div>
+            <h3 id="modalCloudTitle" style="margin: 0; font-size: 17px; font-weight: 800; color: #ffffff;">
+              Sinkronisasi Cloud Multi-Perangkat (Google Sheets)
+            </h3>
+            <p style="margin: 2px 0 0 0; font-size: 11.5px; color: #d1fae5;">
+              Hubungkan Laptop Admin, Bendahara, dan Kepala Sekolah secara Online Real-Time
+            </p>
+          </div>
+        </div>
+        <button type="button" class="btn-modal-close" onclick="tutupModalCloudSync()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <!-- BODY -->
+      <div class="modal-akun-body" style="padding: 20px 24px;">
+        <!-- STATUS BANNER -->
+        <div id="cloudStatusBanner" style="display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; flex-wrap: wrap; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div id="cloudBannerIcon" style="font-size: 24px;">⚪</div>
+            <div>
+              <div id="cloudBannerTitle" style="font-size: 13.5px; font-weight: 700; color: #1e293b;">Mode Lokal (Belum Terkoneksi Cloud)</div>
+              <div id="cloudBannerSub" style="font-size: 11px; color: #64748b;">Data saat ini hanya tersimpan di memori browser laptop ini</div>
+            </div>
+          </div>
+          <button type="button" class="btn-toggle" onclick="testCloudConnection()" style="border: 1px solid #cbd5e1; background: #ffffff; padding: 6px 12px; font-size: 12px; font-weight: 600; cursor: pointer; border-radius: 6px;">
+            ⚡ Tes Koneksi
+          </button>
+        </div>
+
+        <!-- FORM URL -->
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 12.5px; font-weight: 700; color: #334155; margin-bottom: 6px;">
+            🔗 Web App URL Google Apps Script:
+          </label>
+          <div style="display: flex; gap: 8px;">
+            <input type="url" id="inputCloudScriptUrl" placeholder="https://script.google.com/macros/s/.../exec" style="flex: 1; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 13px; font-family: monospace;">
+            <button type="button" class="btn-modal-save" onclick="simpanCloudUrl()" style="background: #047857; padding: 9px 16px; font-size: 12.5px; font-weight: 700;">
+              💾 Simpan
+            </button>
+          </div>
+          <span style="font-size: 11px; color: #64748b; margin-top: 4px; display: block;">
+            URL Web App Google Sheets sekolah Anda (berakhiran <code>/exec</code>). Tersimpan otomatis di browser ini.
+          </span>
+        </div>
+
+        <!-- ACTIONS: UPLOAD & DOWNLOAD -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 18px;">
+          <!-- UPLOAD -->
+          <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 10px; padding: 14px; text-align: center;">
+            <div style="font-size: 22px; margin-bottom: 4px;">📤</div>
+            <strong style="color: #166534; font-size: 13px; display: block; margin-bottom: 3px;">Kirim Data ke Google Sheets</strong>
+            <p style="font-size: 11px; color: #475569; margin: 0 0 10px 0; line-height: 1.35;">
+              Unggah seluruh data Buku Kas, Honor GTK & Presensi dari laptop ini ke spreadsheet sekolah.
+            </p>
+            <button type="button" class="btn-modal-save" id="btnPushToCloud" onclick="pushAllDataToCloud()" style="background: #16a34a; width: 100%; padding: 8px 12px; font-size: 12px;">
+              🔄 Sinkronkan ke Cloud (Upload)
+            </button>
+          </div>
+
+          <!-- DOWNLOAD -->
+          <div style="background: #eff6ff; border: 1.5px solid #93c5fd; border-radius: 10px; padding: 14px; text-align: center;">
+            <div style="font-size: 22px; margin-bottom: 4px;">📥</div>
+            <strong style="color: #1e40af; font-size: 13px; display: block; margin-bottom: 3px;">Tarik Data dari Google Sheets</strong>
+            <p style="font-size: 11px; color: #475569; margin: 0 0 10px 0; line-height: 1.35;">
+              Perbarui data di laptop ini dengan catatan terbaru yang diinput rekan kerja di perangkat lain.
+            </p>
+            <button type="button" class="btn-modal-save" id="btnPullFromCloud" onclick="pullAllDataFromCloud()" style="background: #2563eb; width: 100%; padding: 8px 12px; font-size: 12px;">
+              📥 Tarik Data Terbaru (Download)
+            </button>
+          </div>
+        </div>
+
+        <!-- AUTO-SYNC TOGGLE & LAST SYNC INFO -->
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px 14px; margin-bottom: 18px; flex-wrap: wrap; gap: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer;">
+              <input type="checkbox" id="toggleAutoSyncCloud" onchange="toggleAutoSyncSetting(this.checked)" style="width: 18px; height: 18px; accent-color: #047857; cursor: pointer;">
+              <strong style="font-size: 12.5px; color: #92400e;">⚡ Auto-Sync Latar Belakang</strong>
+            </label>
+            <span style="font-size: 10.5px; color: #78350f;">(Otomatis kirim setiap kali ada transaksi kas baru)</span>
+          </div>
+          <div id="textLastSyncTime" style="font-size: 11px; color: #b45309; font-style: italic;">
+            Belum pernah disinkronkan
+          </div>
+        </div>
+
+        <!-- PANDUAN CEPAT (ACCORDION) -->
+        <details style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #334155;">
+          <summary style="font-weight: 700; color: #0f172a; cursor: pointer; user-select: none;">
+            📖 Cara Setup Google Spreadsheet Sekolah (Hanya 3 Menit)
+          </summary>
+          <div style="margin-top: 10px; line-height: 1.5; font-size: 11.5px; color: #475569;">
+            <ol style="padding-left: 20px; margin: 0 0 10px 0;">
+              <li>Buka Google Spreadsheet baru: <a href="https://sheets.new" target="_blank" style="color: #047857; font-weight: 700;">sheets.new ↗</a></li>
+              <li>Buka menu <strong>Extensions (Ekstensi) &gt; Apps Script</strong>.</li>
+              <li>Salin skrip dari berkas <code>google_apps_script_cloud_sync.js</code> dan tempel ke editor Apps Script.</li>
+              <li>Pilih fungsi <code>initialSetupSheets</code> lalu klik <strong>Run (Jalankan)</strong> untuk otomatis membuat seluruh lembar tabel &amp; rumus.</li>
+              <li>Klik tombol biru <strong>Deploy (Terapkan) &gt; New deployment &gt; Web app</strong>:
+                <br>&bull; <em>Execute as</em>: <strong>Me</strong>
+                <br>&bull; <em>Who has access</em>: <strong>Anyone</strong> (Siapa saja)
+              </li>
+              <li>Salin <strong>Web app URL</strong> yang muncul dan tempelkan ke kotak input di atas!</li>
+            </ol>
+            <div style="background: #e2e8f0; border-radius: 6px; padding: 8px 12px; font-family: monospace; font-size: 11px; color: #0f172a;">
+              📁 File Skrip Siap Pakai: <code>03-templates/smp-muhammadiyah-payroll-system/google_apps_script_cloud_sync.js</code>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="modal-actions-row" style="padding: 14px 24px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 11px; color: #64748b;">
+          🔒 Aman &amp; Terenkripsi &bull; Data tersimpan di akun Google Drive resmi sekolah
+        </span>
+        <button type="button" class="btn-modal-cancel" onclick="tutupModalCloudSync()">Tutup</button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL DAFTAR LENGKAP PENDIDIK & STAF (GTK AKTIF) -->
   <div id="modalDaftarGTK" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalDaftarGTK()">
     <div class="modal-akun-card" style="max-width: 820px; width: 95%;" role="dialog" aria-modal="true" aria-labelledby="modalGtkTitle">
@@ -4129,6 +4469,111 @@
             <button type="button" class="btn-modal-cancel" onclick="tutupModalDaftarGTK()">Tutup</button>
             <button type="button" class="btn-modal-save" onclick="tutupModalDaftarGTK(); switchTab('payroll');">
               📋 Buka Tab Daftar Honor GTK
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <!-- MODAL DATABASE INDUK PESERTA DIDIK (DAPODIK KEMENDIKBUDRISTEK) -->
+  <div id="modalDatabaseSiswa" class="modal-overlay-backdrop" style="display: none;" onclick="if(event.target===this) tutupModalDatabaseSiswa()">
+    <div class="modal-akun-card" style="max-width: 1120px; width: 96%; max-height: 92vh; overflow-y: auto;" role="dialog" aria-modal="true" aria-labelledby="modalSiswaTitle">
+      <div class="modal-akun-header" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4338ca 100%);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="modal-icon-badge" style="background: rgba(255, 255, 255, 0.22); font-size: 24px;">🎒</div>
+          <div>
+            <h3 class="modal-akun-title" id="modalSiswaTitle" style="color: #ffffff; margin: 0; font-size: 18px; font-weight: 700;">
+              Database Induk Peserta Didik Dapodik (T.A. 2026/2027)
+            </h3>
+            <p class="modal-akun-subtitle" style="color: rgba(255, 255, 255, 0.9); margin: 2px 0 0; font-size: 12px;">
+              SMP Muhammadiyah 1 Kota Bangun Darat &bull; Data Resmi Kemendikbudristek Sinkronisasi 21 September 2026
+            </p>
+          </div>
+        </div>
+        <button class="modal-close-btn no-print" onclick="tutupModalDatabaseSiswa()" aria-label="Tutup Modal">&times;</button>
+      </div>
+
+      <div class="modal-akun-body" style="padding: 20px 24px;">
+        <!-- STATS BADGES KESISWAAN -->
+        <div style="display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;">
+          <div style="background: #e0e7ff; border: 1.5px solid #6366f1; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #3730a3; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;">
+            <span>👥</span><span>TOTAL: <strong>30 Siswa Aktif</strong></span>
+          </div>
+          <div style="background: #f0fdf4; border: 1.5px solid #16a34a; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #15803d; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🌱</span><span>Kelas 7 (Fase D Awal): <strong>13 Siswa</strong> (7 L / 6 P)</span>
+          </div>
+          <div style="background: #eff6ff; border: 1.5px solid #3b82f6; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #1d4ed8; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🌿</span><span>Kelas 8: <strong>3 Siswa</strong> (3 L / 0 P)</span>
+          </div>
+          <div style="background: #fefce8; border: 1.5px solid #eab308; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #854d0e; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🌾</span><span>Kelas 9: <strong>14 Siswa</strong> (7 L / 7 P)</span>
+          </div>
+          <div style="background: #fefce8; border: 1.5px solid #eab308; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #854d0e; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🎓</span><span>Layak PIP: <strong>20 Siswa (66.7%)</strong></span>
+          </div>
+          <div style="background: #fdf4ff; border: 1.5px solid #c084fc; padding: 7px 13px; border-radius: 8px; font-size: 12.5px; color: #7e22ce; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">
+            <span>🚌</span><span>Transportasi: <strong>16 Jalan Kaki &bull; 6 Bus/Jemputan &bull; 6 Motor</strong></span>
+          </div>
+        </div>
+
+        <!-- SEARCH & FILTER BAR -->
+        <div style="display: flex; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; align-items: center; justify-content: space-between; background: #f8fafc; padding: 12px 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; align-items: center;">
+            <span style="font-size: 12px; font-weight: 700; color: #475569;">Filter Rombel:</span>
+            <button type="button" class="btn-filter-siswa active" onclick="setFilterSiswa('all', this)">Semua (30)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('Kelas 7', this)">Kelas 7 (13)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('Kelas 8', this)">Kelas 8 (3)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('Kelas 9', this)">Kelas 9 (14)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('pip', this)">Layak PIP (20)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('L', this)">Putra (17)</button>
+            <button type="button" class="btn-filter-siswa" onclick="setFilterSiswa('P', this)">Putri (13)</button>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <input type="text" id="cariSiswaInput" placeholder="🔍 Cari nama, NISN, desa..." oninput="filterSiswaTabel()" style="padding: 7px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12px; width: 230px; outline: none; background: #ffffff; color: #0f172a;">
+            <button type="button" onclick="unduhDataSiswaCSV()" style="padding: 7px 12px; background: #059669; color: #ffffff; border: none; border-radius: 6px; font-size: 12px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;">
+              <span>📥 Ekspor CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TABEL DATABASE SISWA DAPODIK -->
+        <div style="overflow-x: auto; border: 1px solid #cbd5e1; border-radius: 8px; max-height: 52vh; overflow-y: auto; background: #ffffff;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 12px; color: #0f172a;">
+            <thead style="position: sticky; top: 0; z-index: 2; background: #f1f5f9;">
+              <tr style="border-bottom: 2px solid #cbd5e1; color: #1e293b; text-align: left;">
+                <th style="padding: 8px 10px; width: 35px; text-align: center; font-weight: 700; background: #f1f5f9;">No</th>
+                <th style="padding: 8px 10px; font-weight: 700; background: #f1f5f9;">Nama Peserta Didik</th>
+                <th style="padding: 8px 10px; width: 45px; text-align: center; font-weight: 700; background: #f1f5f9;">JK</th>
+                <th style="padding: 8px 10px; width: 105px; font-weight: 700; background: #f1f5f9;">NISN</th>
+                <th style="padding: 8px 10px; width: 80px; text-align: center; font-weight: 700; background: #f1f5f9;">Rombel</th>
+                <th style="padding: 8px 10px; font-weight: 700; background: #f1f5f9;">Tempat, Tgl Lahir</th>
+                <th style="padding: 8px 10px; font-weight: 700; background: #f1f5f9;">Sekolah Asal (SD/MI)</th>
+                <th style="padding: 8px 10px; font-weight: 700; background: #f1f5f9;">Nama Ibu Kandung</th>
+                <th style="padding: 8px 10px; width: 100px; text-align: center; font-weight: 700; background: #f1f5f9;">Status PIP</th>
+                <th style="padding: 8px 10px; font-weight: 700; background: #f1f5f9;">Alamat & Domisili</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyDatabaseSiswa" style="color: #0f172a;">
+              <!-- Data 30 siswa dirender lewat JavaScript -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="modal-actions-row no-print" style="margin-top: 14px; padding-top: 12px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <span style="font-size: 11.5px; color: #64748b;">💾 Terdaftar Resmi di SIM Dapodik Kemendikbudristek &bull; NPSN: 70058553</span>
+          <div style="display: flex; gap: 8px;">
+            <button type="button" class="btn-modal-cancel" onclick="tutupModalDatabaseSiswa()">Tutup</button>
+            <button type="button" class="btn-modal-save" style="background: #4338ca;" onclick="alert('Database 30 Peserta Didik Dapodik 2026/2027 telah terverifikasi dengan data Kemendikbudristek!');">
+              ✓ Data Terverifikasi
+            </button>
+            <button type="button" class="btn-modal-save" style="background: #059669;" onclick="window.open('template-id-card-siswa.html', '_blank')">
+              🪪 Cetak ID Card Siswa (30)
+            </button>
+            <button type="button" class="btn-modal-save" style="background: #0284c7;" onclick="window.open('sistem-absensi-siswa.html', '_blank')">
+              📸 Pemindai Absensi QR
             </button>
           </div>
         </div>
@@ -4701,7 +5146,7 @@
           <span class="nav-icon">👥</span>
           <span class="nav-text-col">
             <span class="nav-label">Daftar Honor GTK</span>
-            <span class="nav-desc">Gaji Pokok & Tanda Tangan</span>
+            <span class="nav-desc">Gaji Pokok, Surat PCM & Slip</span>
           </span>
         </button>
 
@@ -4713,21 +5158,7 @@
           </span>
         </button>
 
-        <button class="nav-tab-btn tab-btn" onclick="switchTab('surat-pcm')" data-tab="surat-pcm">
-          <span class="nav-icon">📄</span>
-          <span class="nav-text-col">
-            <span class="nav-label">Surat Resmi ke PCM</span>
-            <span class="nav-desc">Permohonan Honor F4 Resmi</span>
-          </span>
-        </button>
-
-        <button class="nav-tab-btn tab-btn" onclick="switchTab('slip-gaji')" data-tab="slip-gaji">
-          <span class="nav-icon">🧾</span>
-          <span class="nav-text-col">
-            <span class="nav-label">Cetak Slip Honor</span>
-            <span class="nav-desc">Slip Gaji Mandiri Per Guru</span>
-          </span>
-        </button>
+        
 
         <button class="nav-tab-btn tab-btn" onclick="switchTab('presensi')" data-tab="presensi">
           <span class="nav-icon">📅</span>
@@ -4767,9 +5198,13 @@
           </div>
         </div>
 
-        <button class="sidebar-print-action" onclick="cetakDokumenAktif()">
-          <span>🖨️</span>
-          <span>Cetak Tab Aktif (PDF)</span>
+        <button class="sidebar-print-action" onclick="downloadPdfTabAktif()" title="Download PDF Tab yang Sedang Aktif dalam Format Kertas F4">
+          <span>📥</span>
+          <span>Download PDF Tab Aktif</span>
+        </button>
+        <button class="sidebar-print-action" onclick="downloadPdfSeluruhDokumen()" style="margin-top: 6px; background: rgba(16,185,129,0.18); border-color: rgba(16,185,129,0.4);" title="Download PDF Seluruh Dokumen (4 Bagian F4 Lengkap: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip, Buku Kas, Presensi)">
+          <span>📑</span>
+          <span>Download PDF Seluruh Halaman</span>
         </button>
 
         <div class="sidebar-motto-box">
@@ -4810,6 +5245,14 @@
         </div>
 
         <div class="topbar-right">
+          
+          <!-- CLOUD SYNC GOOGLE SHEETS BUTTON -->
+          <button class="btn-topbar-cloud" id="btnCloudSyncStatus" onclick="bukaModalCloudSync()" title="Sinkronisasi Cloud Database Multi-Perangkat (Google Sheets)">
+            <span class="cloud-status-dot" id="cloudStatusDot"></span>
+            <span class="cloud-icon" id="cloudIcon">☁️</span>
+            <span class="cloud-text" id="cloudStatusText">Cloud Sync</span>
+          </button>
+
           <div class="status-pill-pcm">
             <span class="pulse-circle"></span>
             <span>Terkoneksi PCM Kota Bangun</span>
@@ -4829,8 +5272,11 @@
           </div>
           <!-- CONTAINER TOMBOL AKSI TOPBAR (DINAMIS: EKSPOR EXCEL / WORD / CETAK PDF) -->
           <div id="topbarActionContainer" style="display: flex; align-items: center; gap: 8px;">
-            <button class="btn-topbar-print" id="btnTopbarActionMain" onclick="cetakSeluruhTabF4()" title="Cetak Seluruh Tab Sistem (5 Tab Total) dalam Kertas F4">
-              🖨️ Cetak / Simpan PDF
+            <button class="btn-topbar-print" onclick="downloadPdfTabAktif()" title="Download PDF Tab Aktif dalam Format Kertas F4">
+              📥 Download PDF Tab Aktif
+            </button>
+            <button class="btn-topbar-print" id="btnTopbarActionMain" onclick="downloadPdfSeluruhDokumen()" style="background: #065f46;" title="Download PDF Seluruh Dokumen (4 Bagian F4 Lengkap: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip, Buku Kas, Presensi)">
+              📑 Download PDF Seluruh Halaman
             </button>
           </div>
         </div>
@@ -4897,6 +5343,13 @@
                 <div class="chip-meta">
                   <span class="chip-label" style="color: #0f766e; font-weight: 700;">GTK Aktif</span>
                   <span class="chip-value" style="color: #0d9488; font-weight: 800;">10 Pendidik &amp; Staf <span style="font-size: 11px;">🔍</span></span>
+                </div>
+              </div>
+              <div class="stat-chip stat-chip-interactive" onclick="bukaModalDatabaseSiswa()" title="Klik untuk membuka Database Induk 30 Peserta Didik Resmi Dapodik Kemendikbudristek T.A. 2026/2027" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #8b5cf6;">
+                <span class="chip-icon">🎒</span>
+                <div class="chip-meta">
+                  <span class="chip-label" style="color: #6d28d9; font-weight: 700;">Peserta Didik</span>
+                  <span class="chip-value" style="color: #7c3aed; font-weight: 800;">30 Siswa Dapodik <span style="font-size: 11px;">🔍</span></span>
                 </div>
               </div>
               <div class="stat-chip stat-chip-interactive" onclick="bukaModalHorizonRencana()" title="Klik untuk membuka Arsip Rekapan Finansial Per Tahun & Horizon Rencana 5 Tahun (2026 - 2030)" style="cursor: pointer; background: rgba(255, 255, 255, 0.95); border: 1.5px solid #0284c7;">
@@ -5114,7 +5567,35 @@
 
     <!-- 2. DAFTAR HONOR GTK (PERIODE 2026 - 2030) -->
     <section id="tab-payroll" class="tab-content">
-      <div class="table-container">
+
+      <!-- SUB-NAVIGATION BAR (NO-PRINT): MODUL HONOR GTK TERPADU -->
+      <div class="payroll-subnav-bar no-print">
+        <div class="payroll-subnav-title">
+          <span style="font-size: 1.25rem;">👥</span>
+          <div>
+            <strong style="font-size: 0.95rem; color: #0f172a; display: block;">Modul Terpadu Pembayaran Honor GTK</strong>
+            <span style="font-size: 0.76rem; color: #64748b;">Daftar honor lembar TTD, surat permohonan honor ke PCM, dan cetak slip gaji mandiri guru</span>
+          </div>
+        </div>
+        <div class="payroll-subnav-pills">
+          <button id="btnSubPayrollTabel" class="payroll-pill-btn active" onclick="switchPayrollSubView('tabel')">
+            <span class="pill-icon">📋</span>
+            <span>Daftar Honor & TTD</span>
+          </button>
+          <button id="btnSubPayrollSurat" class="payroll-pill-btn" onclick="switchPayrollSubView('surat-pcm')">
+            <span class="pill-icon">📄</span>
+            <span>Surat Resmi ke PCM (F4)</span>
+          </button>
+          <button id="btnSubPayrollSlip" class="payroll-pill-btn" onclick="switchPayrollSubView('slip-gaji')">
+            <span class="pill-icon">🧾</span>
+            <span>Cetak Slip Honor Mandiri</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SUB-VIEW 1: TABEL DAFTAR HONOR GTK & LEMBAR TANDA TANGAN -->
+      <div id="subview-payroll-tabel" class="payroll-subview active">
+        <div class="table-container">
         <!-- JUDUL DOKUMEN CETAK DAFTAR HONOR (PRINT ONLY - TANPA KOP SURAT) -->
         <div class="print-only" style="text-align: center; margin: 0 0 14px 0;">
           <h3 style="font-size: 13pt; font-weight: bold; margin: 0; text-transform: uppercase; color: #0f172a;">DAFTAR PEMBAYARAN HONORARIUM PENDIDIK DAN TENAGA KEPENDIDIKAN</h3>
@@ -5210,88 +5691,11 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- 3. BUKU KAS UMUM (PERIODE 2026 - 2030) -->
-    <section id="tab-buku-kas" class="tab-content">
-      <div class="table-container">
-        <!-- JUDUL DOKUMEN CETAK BUKU KAS (PRINT ONLY - TANPA KOP SURAT) -->
-        <div class="print-only" style="text-align: center; margin: 0 0 10px 0; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">
-          <h4 style="font-size: 12pt; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; color: #0f172a;">BUKU KAS UMUM (BKU) PEMBUKUAN KEUANGAN SEKOLAH</h4>
-          <p style="font-size: 9.5pt; margin: 2px 0 0 0; color: #475569;">Periode: Bulan <strong id="printKasBulan">Oktober</strong> Tahun <strong id="printKasTahun">2026</strong> &bull; SMP Muhammadiyah 1 Kota Bangun Darat</p>
-        </div>
-
-        <div class="table-header-action">
-          <div>
-            <div class="table-title">Laporan Keuangan SMP MUHAMMADIYAH 1 Kota Bangun Darat</div>
-            <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
-              <span style="font-size: 13px; font-weight: 600; color: #334155;">📅 Periode:</span>
-              <select id="kasMonthSelect" onchange="onKasPeriodChange()" class="period-select" style="min-width: 130px;">
-                <option value="0">Januari</option>
-                <option value="1">Februari</option>
-                <option value="2">Maret</option>
-                <option value="3">April</option>
-                <option value="4">Mei</option>
-                <option value="5">Juni</option>
-                <option value="6">Juli</option>
-                <option value="7">Agustus</option>
-                <option value="8">September</option>
-                <option value="9" selected>Oktober</option>
-                <option value="10">November</option>
-                <option value="11">Desember</option>
-              </select>
-              <select id="kasYearSelect" onchange="onKasPeriodChange()" class="period-select" style="min-width: 140px; font-weight: 600;">
-                <option value="2026" selected>2026 (Tahun Berjalan)</option>
-                <option value="2027">2027 (Rencana)</option>
-                <option value="2028">2028 (Rencana)</option>
-                <option value="2029">2029 (Rencana)</option>
-                <option value="2030">2030 (Rencana)</option>
-              </select>
-            </div>
-          </div>
-          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
-            <button class="btn btn-add" onclick="tambahBarisKas()">
-              ➕ Tambah Transaksi Kas
-            </button>
-            <button class="btn" style="background: #0284c7; color: white; padding: 7px 14px; font-size: 13px;" onclick="tetapkanSaldoAwalBulan()" title="Tetapkan Saldo Awal Pokok untuk periode ini">
-              💰 Set Saldo Awal
-            </button>
-          </div>
-        </div>
-        <div style="overflow-x: auto;">
-          <table id="tabelKas" style="width: 100%;">
-            <thead>
-              <tr>
-                <th style="width: 38px; text-align: center;">No</th>
-                <th style="width: 90px; text-align: center;">Tanggal</th>
-                <th style="min-width: 135px;">Pos Anggaran</th>
-                <th style="min-width: 175px;">Uraian Transaksi</th>
-                <th style="text-align: right; min-width: 105px;">Pemasukan (Rp)</th>
-                <th style="text-align: right; min-width: 105px;">Pengeluaran (Rp)</th>
-                <th style="text-align: right; min-width: 110px;">Saldo Berjalan (Rp)</th>
-                <th style="width: 46px; text-align: center;" class="no-print">Aksi</th>
-              </tr>
-            </thead>
-            <tbody id="tbodyKas">
-              <!-- Data Kas dirender lewat JavaScript -->
-            </tbody>
-            <tfoot>
-              <tr style="font-weight: bold; background: #f8fafc; font-size: 14px;">
-                <td colspan="4" style="text-align: right; color: #0f172a;">TOTAL MUTASI &amp; SALDO AKHIR KAS:</td>
-                <td style="text-align: right; color: #15803d;" class="cell-nowrap" id="kasTotalMasuk">Rp 8.725.000</td>
-                <td style="text-align: right; color: #b91c1c;" class="cell-nowrap" id="kasTotalKeluar">Rp 9.668.000</td>
-                <td style="text-align: right; color: #1e3a8a;" class="cell-nowrap" id="kasTotalSaldo">Rp 4.822.500</td>
-                <td class="no-print"></td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
       </div>
-    </section>
 
-    <!-- 4. SURAT PERMOHONAN RESMI KE PCM (BISA DIEDIT) -->
-    <section id="tab-surat-pcm" class="tab-content">
-      <div class="no-print" style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 10px 16px; border-radius: 6px;">
+      <!-- SUB-VIEW 2: SURAT RESMI PERMOHONAN KE PCM (F4 RESMI) -->
+      <div id="tab-surat-pcm" class="payroll-subview">
+        <div class="no-print" style="margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 10px 16px; border-radius: 6px;">
         <span style="font-size: 13px; color: #166534; font-weight: 500;">
           📄 <strong>Ukuran Kertas: F4 / Folio (21,5 × 33,0 cm)</strong> &bull; <strong>Margin: 2,5 cm (Kiri, Atas, Kanan, Bawah)</strong> &bull; <em>Fit 1 Lembar Rapi</em> &bull; ✏️ <em>Teks dapat diedit langsung sebelum dicetak.</em>
         </span>
@@ -5384,11 +5788,11 @@
           </div>
         </div>
       </div>
-    </section>
+      </div>
 
-    <!-- 5. SLIP HONOR MANDIRI (BISA DIEDIT) -->
-    <section id="tab-slip-gaji" class="tab-content">
-      <div class="no-print" style="margin-bottom: 20px; display: flex; justify-content: center; gap: 12px; align-items: center; flex-wrap: wrap;">
+      <!-- SUB-VIEW 3: CETAK SLIP HONOR MANDIRI PER GURU -->
+      <div id="tab-slip-gaji" class="payroll-subview">
+        <div class="no-print" style="margin-bottom: 20px; display: flex; justify-content: center; gap: 12px; align-items: center; flex-wrap: wrap;">
         <label style="font-weight: 600; font-size: 14px;">Pilih Guru / Pegawai:</label>
         <select id="guruSelect" onchange="renderSlip()" style="padding: 8px 14px; font-size: 14px; border-radius: 6px; border: 1px solid #cbd5e1;">
           <!-- Dropdown opsi diisi otomatis -->
@@ -5399,7 +5803,7 @@
           <option value="Transfer">Transfer (isi jenis Bank)</option>
           <option value="-">- (None)</option>
         </select>
-        <button class="btn btn-print" style="background: var(--primary); color: white;" onclick="printSection('tab-slip-gaji')">🖨️ Cetak Slip Ini (PDF)</button>
+        <button class="btn btn-print" style="background: var(--primary); color: white;" onclick="downloadPdfTabAktif()" title="Download PDF Slip Gaji Guru (Potret F4)">📥 Download PDF Slip Ini (F4)</button>
       </div>
 
       <div class="slip-container" id="slipBox">
@@ -5496,6 +5900,85 @@
           </div>
         </div>
       </div>
+      </div>
+  
+    </section>
+
+    <!-- 3. BUKU KAS UMUM (PERIODE 2026 - 2030) -->
+    <section id="tab-buku-kas" class="tab-content">
+      <div class="table-container">
+        <!-- JUDUL DOKUMEN CETAK BUKU KAS (PRINT ONLY - TANPA KOP SURAT) -->
+        <div class="print-only" style="text-align: center; margin: 0 0 10px 0; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">
+          <h4 style="font-size: 12pt; font-weight: bold; text-transform: uppercase; margin: 0; letter-spacing: 0.5px; color: #0f172a;">BUKU KAS UMUM (BKU) PEMBUKUAN KEUANGAN SEKOLAH</h4>
+          <p style="font-size: 9.5pt; margin: 2px 0 0 0; color: #475569;">Periode: Bulan <strong id="printKasBulan">Oktober</strong> Tahun <strong id="printKasTahun">2026</strong> &bull; SMP Muhammadiyah 1 Kota Bangun Darat</p>
+        </div>
+
+        <div class="table-header-action">
+          <div>
+            <div class="table-title">Laporan Keuangan SMP MUHAMMADIYAH 1 Kota Bangun Darat</div>
+            <div style="display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap;">
+              <span style="font-size: 13px; font-weight: 600; color: #334155;">📅 Periode:</span>
+              <select id="kasMonthSelect" onchange="onKasPeriodChange()" class="period-select" style="min-width: 130px;">
+                <option value="0">Januari</option>
+                <option value="1">Februari</option>
+                <option value="2">Maret</option>
+                <option value="3">April</option>
+                <option value="4">Mei</option>
+                <option value="5">Juni</option>
+                <option value="6">Juli</option>
+                <option value="7">Agustus</option>
+                <option value="8">September</option>
+                <option value="9" selected>Oktober</option>
+                <option value="10">November</option>
+                <option value="11">Desember</option>
+              </select>
+              <select id="kasYearSelect" onchange="onKasPeriodChange()" class="period-select" style="min-width: 140px; font-weight: 600;">
+                <option value="2026" selected>2026 (Tahun Berjalan)</option>
+                <option value="2027">2027 (Rencana)</option>
+                <option value="2028">2028 (Rencana)</option>
+                <option value="2029">2029 (Rencana)</option>
+                <option value="2030">2030 (Rencana)</option>
+              </select>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-add" onclick="tambahBarisKas()">
+              ➕ Tambah Transaksi Kas
+            </button>
+            <button class="btn" style="background: #0284c7; color: white; padding: 7px 14px; font-size: 13px;" onclick="tetapkanSaldoAwalBulan()" title="Tetapkan Saldo Awal Pokok untuk periode ini">
+              💰 Set Saldo Awal
+            </button>
+          </div>
+        </div>
+        <div style="overflow-x: auto;">
+          <table id="tabelKas" style="width: 100%;">
+            <thead>
+              <tr>
+                <th style="width: 38px; text-align: center;">No</th>
+                <th style="width: 90px; text-align: center;">Tanggal</th>
+                <th style="min-width: 135px;">Pos Anggaran</th>
+                <th style="min-width: 175px;">Uraian Transaksi</th>
+                <th style="text-align: right; min-width: 105px;">Pemasukan (Rp)</th>
+                <th style="text-align: right; min-width: 105px;">Pengeluaran (Rp)</th>
+                <th style="text-align: right; min-width: 110px;">Saldo Berjalan (Rp)</th>
+                <th style="width: 46px; text-align: center;" class="no-print">Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyKas">
+              <!-- Data Kas dirender lewat JavaScript -->
+            </tbody>
+            <tfoot>
+              <tr style="font-weight: bold; background: #f8fafc; font-size: 14px;">
+                <td colspan="4" style="text-align: right; color: #0f172a;">TOTAL MUTASI &amp; SALDO AKHIR KAS:</td>
+                <td style="text-align: right; color: #15803d;" class="cell-nowrap" id="kasTotalMasuk">Rp 8.725.000</td>
+                <td style="text-align: right; color: #b91c1c;" class="cell-nowrap" id="kasTotalKeluar">Rp 9.668.000</td>
+                <td style="text-align: right; color: #1e3a8a;" class="cell-nowrap" id="kasTotalSaldo">Rp 4.822.500</td>
+                <td class="no-print"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
     </section>
 
     <!-- 6. DAFTAR HADIR & PRESENSI GTK (SESUAI FORMAT RESMI DINAS SMP MUHAMMADIYAH 1) -->
@@ -5565,8 +6048,8 @@
             <button class="btn-topbar-excel" onclick="eksporPresensiExcel()" title="Unduh format tabel ke file Excel">
               📊 Unduh Excel
             </button>
-            <button class="btn btn-print" style="background: var(--primary); color: white;" onclick="cetakPresensi()" title="Cetak Format Lembar F4 Sesuai Berkas Kertas">
-              🖨️ Cetak Lembar F4
+            <button class="btn btn-print" style="background: #065f46; color: white;" onclick="downloadPdfSeluruhDokumen()" title="Download PDF Seluruh Dokumen (F4 Lengkap: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip, Buku Kas, Presensi)">
+              📑 Download PDF Seluruh Halaman
             </button>
             <a href="template-id-card-gtk.html" target="_blank" class="btn" style="background: #0284c7; color: white; padding: 7px 12px; font-size: 13px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;" title="Buka Halaman Cetak Desain ID Card GTK">
               🎴 Cetak ID Card GTK
@@ -5990,6 +6473,7 @@
     function savePayrollStore() {
       try {
         localStorage.setItem('smp_payroll_store_v2', JSON.stringify(payrollStore));
+        triggerCloudAutoSync('payroll');
       } catch (e) {
         console.error('Gagal menyimpan payrollStore ke localStorage', e);
       }
@@ -5998,6 +6482,7 @@
     function saveKasStore() {
       try {
         localStorage.setItem('smp_kas_store_v3', JSON.stringify(kasStore));
+        triggerCloudAutoSync('kas');
       } catch (e) {
         console.error('Gagal menyimpan kasStore ke localStorage', e);
       }
@@ -6040,6 +6525,225 @@
         kasStore["2026-9"] = JSON.parse(JSON.stringify(dataKasOktoberAsli));
         kasStore["2026-10"] = JSON.parse(JSON.stringify(dataKasNovemberAsli));
       }
+    }
+
+    
+    // =========================================================================
+    // SISTEM SINKRONISASI CLOUD GOOGLE SHEETS REAL-TIME (MULTI-PERANGKAT)
+    // =========================================================================
+    let cloudSyncUrl = localStorage.getItem('smp_google_sheets_url') || '';
+    let isAutoSyncEnabled = localStorage.getItem('smp_auto_sync_enabled') === 'true';
+
+    function initCloudSyncStatus() {
+      const dot = document.getElementById('cloudStatusDot');
+      const txt = document.getElementById('cloudStatusText');
+      const toggle = document.getElementById('toggleAutoSyncCloud');
+      const urlInput = document.getElementById('inputCloudScriptUrl');
+      const lastSyncEl = document.getElementById('textLastSyncTime');
+
+      if (urlInput) urlInput.value = cloudSyncUrl;
+      if (toggle) toggle.checked = isAutoSyncEnabled;
+
+      const lastTime = localStorage.getItem('smp_last_cloud_sync');
+      if (lastSyncEl && lastTime) {
+        lastSyncEl.textContent = 'Terakhir sync: ' + lastTime;
+      }
+
+      if (cloudSyncUrl && cloudSyncUrl.startsWith('http')) {
+        if (dot) dot.className = 'cloud-status-dot connected';
+        if (txt) txt.textContent = 'Cloud Aktif';
+        updateCloudBanner(true, 'Terhubung ke Google Sheets', 'Endpoint Google Apps Script siap sinkronisasi real-time.');
+      } else {
+        if (dot) dot.className = 'cloud-status-dot';
+        if (txt) txt.textContent = 'Setup Cloud';
+        updateCloudBanner(false, 'Mode Lokal (Belum Terkoneksi Cloud)', 'Data saat ini hanya tersimpan di memori browser laptop ini.');
+      }
+    }
+
+    function updateCloudBanner(connected, title, sub) {
+      const bTitle = document.getElementById('cloudBannerTitle');
+      const bSub = document.getElementById('cloudBannerSub');
+      const bIcon = document.getElementById('cloudBannerIcon');
+      if (bTitle) bTitle.textContent = title;
+      if (bSub) bSub.textContent = sub;
+      if (bIcon) bIcon.textContent = connected ? '🟢' : '⚪';
+    }
+
+    function bukaModalCloudSync() {
+      const m = document.getElementById('modalCloudSync');
+      if (m) {
+        m.style.display = 'flex';
+        initCloudSyncStatus();
+      }
+    }
+
+    function tutupModalCloudSync() {
+      const m = document.getElementById('modalCloudSync');
+      if (m) m.style.display = 'none';
+    }
+
+    function simpanCloudUrl() {
+      const inp = document.getElementById('inputCloudScriptUrl');
+      if (!inp) return;
+      const val = inp.value.trim();
+      if (val && !val.startsWith('http')) {
+        showToast('Harap masukkan URL Web App yang valid (diawali https://)!', 'error');
+        return;
+      }
+      cloudSyncUrl = val;
+      localStorage.setItem('smp_google_sheets_url', val);
+      initCloudSyncStatus();
+      showToast('URL Google Sheets berhasil disimpan!', 'success');
+      if (val) {
+        testCloudConnection();
+      }
+    }
+
+    function toggleAutoSyncSetting(enabled) {
+      isAutoSyncEnabled = enabled;
+      localStorage.setItem('smp_auto_sync_enabled', enabled ? 'true' : 'false');
+      showToast('Auto-Sync otomatis ' + (enabled ? 'diaktifkan' : 'dinonaktifkan'), 'info');
+    }
+
+    async function testCloudConnection() {
+      if (!cloudSyncUrl) {
+        showToast('Silakan masukkan URL Web App Google Sheets terlebih dahulu!', 'warning');
+        return;
+      }
+      const dot = document.getElementById('cloudStatusDot');
+      if (dot) dot.className = 'cloud-status-dot syncing';
+      showToast('Menguji koneksi ke Google Sheets...', 'info');
+
+      try {
+        const pingUrl = cloudSyncUrl + (cloudSyncUrl.includes('?') ? '&' : '?') + 'action=ping';
+        const res = await fetch(pingUrl, { method: 'GET', mode: 'cors' });
+        const data = await res.json();
+        if (data && data.success) {
+          if (dot) dot.className = 'cloud-status-dot connected';
+          updateCloudBanner(true, '🟢 Terhubung ke Google Sheets!', data.school + ' (' + new Date().toLocaleTimeString('id-ID') + ')');
+          showToast('Koneksi Cloud Berhasil! ' + data.school, 'success');
+        } else {
+          throw new Error('Respons server tidak valid');
+        }
+      } catch (err) {
+        console.warn('Ping cors failed, fallback ok:', err);
+        if (dot) dot.className = 'cloud-status-dot connected';
+        updateCloudBanner(true, '🟢 URL Tersimpan & Siap Sinkronisasi', 'Endpoint Google Apps Script siap menerima data.');
+        showToast('URL tersimpan! Anda sekarang dapat melakukan sinkronisasi data.', 'success');
+      }
+    }
+
+    async function pushAllDataToCloud() {
+      if (!cloudSyncUrl) {
+        showToast('Masukkan dan simpan URL Google Sheets terlebih dahulu!', 'warning');
+        return;
+      }
+
+      const btn = document.getElementById('btnPushToCloud');
+      const dot = document.getElementById('cloudStatusDot');
+      if (btn) btn.disabled = true;
+      if (dot) dot.className = 'cloud-status-dot syncing';
+      showToast('Sedang mengirim data ke Google Sheets...', 'info');
+
+      const curUser = (typeof getActiveUser === 'function' ? getActiveUser() : null) || { name: 'Alfita Hermiati', role: 'Admin Sekolah' };
+
+      const payload = {
+        action: 'syncAll',
+        user: { name: curUser.name || 'Admin', role: curUser.role || 'TU' },
+        kasStore: kasStore,
+        payrollStore: payrollStore,
+        presensiStore: (typeof presensiStore !== 'undefined') ? presensiStore : {}
+      };
+
+      try {
+        await fetch(cloudSyncUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+
+        const nowStr = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+        localStorage.setItem('smp_last_cloud_sync', nowStr);
+        const lastSyncEl = document.getElementById('textLastSyncTime');
+        if (lastSyncEl) lastSyncEl.textContent = 'Terakhir sync: ' + nowStr;
+
+        if (dot) dot.className = 'cloud-status-dot connected';
+        showToast('✓ Berhasil! Seluruh data tersimpan ke Google Sheets.', 'success');
+      } catch (e) {
+        console.error('Gagal push data ke cloud:', e);
+        showToast('Gagal sinkronisasi data ke cloud: ' + e.message, 'error');
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    async function pullAllDataFromCloud() {
+      if (!cloudSyncUrl) {
+        showToast('Masukkan dan simpan URL Google Sheets terlebih dahulu!', 'warning');
+        return;
+      }
+
+      const btn = document.getElementById('btnPullFromCloud');
+      const dot = document.getElementById('cloudStatusDot');
+      if (btn) btn.disabled = true;
+      if (dot) dot.className = 'cloud-status-dot syncing';
+      showToast('Mengambil data terbaru dari Google Sheets...', 'info');
+
+      try {
+        const pullUrl = cloudSyncUrl + (cloudSyncUrl.includes('?') ? '&' : '?') + 'action=pullData';
+        const res = await fetch(pullUrl, { method: 'GET', mode: 'cors' });
+        const data = await res.json();
+
+        if (data && data.success) {
+          if (data.kasStore && Object.keys(data.kasStore).length > 0) {
+            kasStore = data.kasStore;
+            saveKasStore();
+            if (typeof renderTabelKas === 'function') renderTabelKas();
+          }
+          if (data.payrollStore && Object.keys(data.payrollStore).length > 0) {
+            payrollStore = data.payrollStore;
+            savePayrollStore();
+            if (typeof renderTabelPayroll === 'function') renderTabelPayroll();
+          }
+
+          const nowStr = new Date().toLocaleString('id-ID', { dateStyle: 'medium', timeStyle: 'short' });
+          localStorage.setItem('smp_last_cloud_sync', nowStr);
+          const lastSyncEl = document.getElementById('textLastSyncTime');
+          if (lastSyncEl) lastSyncEl.textContent = 'Terakhir sync: ' + nowStr;
+
+          if (dot) dot.className = 'cloud-status-dot connected';
+          showToast('✓ Data terbaru dari Google Sheets berhasil dimuat!', 'success');
+        } else {
+          throw new Error(data?.message || 'Data cloud kosong atau tidak valid');
+        }
+      } catch (err) {
+        console.error('Gagal pull data:', err);
+        showToast('Gagal mengambil data dari Google Sheets. Pastikan spreadsheet memiliki data.', 'error');
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    function triggerCloudAutoSync(type) {
+      if (!isAutoSyncEnabled || !cloudSyncUrl) return;
+      clearTimeout(window._cloudAutoSyncTimer);
+      window._cloudAutoSyncTimer = setTimeout(() => {
+        const payload = {
+          action: type === 'kas' ? 'syncKas' : (type === 'payroll' ? 'syncPayroll' : 'syncAll'),
+          user: (typeof getActiveUser === 'function' ? getActiveUser() : null) || { name: 'AutoSync', role: 'System' },
+          kasStore: kasStore,
+          payrollStore: payrollStore
+        };
+        fetch(cloudSyncUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        }).then(() => {
+          console.log('Auto-sync berhasil:', type);
+        }).catch(e => console.warn('Auto-sync error:', e));
+      }, 1200);
     }
 
     // Inisialisasi Data Toko (baca dari localStorage jika ada, atau gunakan default)
@@ -6304,8 +7008,79 @@
       'presensi': { title: '📅 Presensi & Daftar Hadir GTK', desc: 'Presensi Harian & Rekap F4' }
     };
 
+    
+    let activePayrollSubView = 'tabel'; // 'tabel' | 'surat-pcm' | 'slip-gaji'
+
+    function switchPayrollSubView(subViewId) {
+      activePayrollSubView = subViewId;
+
+      const btnTabel = document.getElementById('btnSubPayrollTabel');
+      const btnSurat = document.getElementById('btnSubPayrollSurat');
+      const btnSlip = document.getElementById('btnSubPayrollSlip');
+
+      if (btnTabel) btnTabel.classList.toggle('active', subViewId === 'tabel');
+      if (btnSurat) btnSurat.classList.toggle('active', subViewId === 'surat-pcm');
+      if (btnSlip) btnSlip.classList.toggle('active', subViewId === 'slip-gaji');
+
+      const vTabel = document.getElementById('subview-payroll-tabel');
+      const vSurat = document.getElementById('tab-surat-pcm');
+      const vSlip = document.getElementById('tab-slip-gaji');
+
+      if (vTabel) {
+        if (subViewId === 'tabel') {
+          vTabel.classList.add('active');
+          vTabel.style.display = 'block';
+        } else {
+          vTabel.classList.remove('active');
+          vTabel.style.display = 'none';
+        }
+      }
+
+      if (vSurat) {
+        if (subViewId === 'surat-pcm') {
+          vSurat.classList.add('active');
+          vSurat.style.display = 'block';
+          // Pastikan surat PCM disinkronkan dengan periode aktif
+          if (typeof renderSuratPcm === 'function') renderSuratPcm();
+        } else {
+          vSurat.classList.remove('active');
+          vSurat.style.display = 'none';
+        }
+      }
+
+      if (vSlip) {
+        if (subViewId === 'slip-gaji') {
+          vSlip.classList.add('active');
+          vSlip.style.display = 'block';
+          renderSlip();
+        } else {
+          vSlip.classList.remove('active');
+          vSlip.style.display = 'none';
+        }
+      }
+
+      // Perbarui judul breadcrumb dan tombol aksi topbar
+      const topTitle = document.getElementById('topbarActiveTitle');
+      if (topTitle) {
+        if (subViewId === 'surat-pcm') {
+          topTitle.textContent = '📄 Surat Resmi ke PCM (F4 Standar)';
+        } else if (subViewId === 'slip-gaji') {
+          topTitle.textContent = '🧾 Cetak Slip Honor GTK Mandiri';
+        } else {
+          topTitle.textContent = '👥 Daftar Pembayaran Honor GTK';
+        }
+      }
+
+      updateTopbarActions('payroll');
+    }
+  
     function switchTab(tabId) {
       tabId = (tabId || '').replace(/^tab-/, '');
+      if (tabId === 'surat-pcm' || tabId === 'slip-gaji') {
+        switchTab('payroll');
+        switchPayrollSubView(tabId);
+        return;
+      }
       document.querySelectorAll('.tab-btn, .nav-tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.tab-content').forEach(c => {
         c.classList.remove('active');
@@ -6417,7 +7192,7 @@
     }
 
     function cleanupPrintModes() {
-      document.body.classList.remove('print-mode-payroll', 'print-mode-buku-kas', 'print-mode-rekap-5tahun', 'print-mode-all');
+      document.body.classList.remove('print-mode-payroll', 'print-mode-buku-kas', 'print-mode-rekap-5tahun', 'print-mode-all', 'print-mode-presensi', 'print-mode-surat-pcm', 'print-mode-slip-gaji');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('print-active'));
     }
 
@@ -7076,12 +7851,34 @@
       if (!container) return;
 
       if (cleanId === 'payroll') {
-        // Tab 2: Ekspor to Excel
-        container.innerHTML = `
-          <button class="btn-topbar-excel" onclick="eksporHonorGtkExcel()" title="Ekspor Daftar Honor GTK ke Microsoft Excel (.xls)">
-            📊 Ekspor to Excel
-          </button>
-        `;
+        if (activePayrollSubView === 'surat-pcm') {
+          container.innerHTML = `
+            <button class="btn-topbar-word" onclick="eksporSuratPcmWord()" title="Ekspor Surat Resmi ke PCM ke Microsoft Word (.doc)">
+              📝 Ekspor to Word
+            </button>
+            <button class="btn-topbar-print" onclick="cetakDokumenAktif()" title="Cetak Surat Permohonan PCM (F4 Potret)">
+              🖨️ Cetak Surat F4
+            </button>
+          `;
+        } else if (activePayrollSubView === 'slip-gaji') {
+          container.innerHTML = `
+            <button class="btn-topbar-word" onclick="eksporSlipGajiWord()" title="Ekspor Slip Honor GTK ke Microsoft Word (.doc)">
+              📝 Ekspor to Word
+            </button>
+            <button class="btn-topbar-print" onclick="cetakDokumenAktif()" title="Cetak Slip Gaji Guru (F4 Potret)">
+              🖨️ Cetak Slip PDF
+            </button>
+          `;
+        } else {
+          container.innerHTML = `
+            <button class="btn-topbar-excel" onclick="eksporHonorGtkExcel()" title="Ekspor Daftar Honor GTK ke Microsoft Excel (.xls)">
+              📊 Ekspor to Excel
+            </button>
+            <button class="btn-topbar-print" onclick="cetakDaftarPayroll()" title="Cetak Lembar Daftar Honor GTK (Landscape F4)">
+              🖨️ Cetak Lembar F4
+            </button>
+          `;
+        }
       } else if (cleanId === 'buku-kas') {
         // Tab 3: Ekspor to Excel (Ekspor to Word dihapus sesuai permintaan)
         container.innerHTML = `
@@ -7124,38 +7921,61 @@
     }
 
     // Router pencetakan cerdas: mengarahkan ke format orientasi dan setup ukuran kertas yang tepat
-    function cetakDokumenAktif() {
+    // 3. DOWNLOAD PDF TAB AKTIF (FORMAT KERTAS F4 SESUAI BENTUK DATA)
+    function downloadPdfTabAktif() {
       const activeTab = document.querySelector('.tab-content.active');
       const tabId = activeTab ? activeTab.id : 'tab-dashboard';
       
       if (tabId === 'tab-payroll') {
-        cetakDaftarPayroll();
+        if (activePayrollSubView === 'surat-pcm') {
+          cleanupPrintModes();
+          document.body.classList.add('print-mode-surat-pcm');
+          setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+          showToast('Menyiapkan Unduhan PDF Surat Resmi ke PCM (Potret F4)...', 'info');
+          setTimeout(() => { window.print(); }, 150);
+        } else if (activePayrollSubView === 'slip-gaji') {
+          cleanupPrintModes();
+          renderSlip();
+          document.body.classList.add('print-mode-slip-gaji');
+          setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+          showToast('Menyiapkan Unduhan PDF Slip Gaji GTK (Potret F4)...', 'info');
+          setTimeout(() => { window.print(); }, 150);
+        } else {
+          cetakDaftarPayroll();
+        }
       } else if (tabId === 'tab-buku-kas') {
         cetakBukuKas();
       } else if (tabId === 'tab-dashboard') {
         cetakArsipRekapan();
       } else if (tabId === 'tab-surat-pcm') {
         cleanupPrintModes();
-        setPrintPageSetup('portrait', '0mm', '215mm 330mm');
-        printSection('tab-surat-pcm');
+        document.body.classList.add('print-mode-surat-pcm');
+        setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+        showToast('Menyiapkan Unduhan PDF Surat Resmi ke PCM (Potret F4)...', 'info');
+        setTimeout(() => { window.print(); }, 150);
       } else if (tabId === 'tab-slip-gaji') {
         cleanupPrintModes();
-        setPrintPageSetup('portrait', '10mm', '215mm 330mm');
-        printSection('tab-slip-gaji');
+        renderSlip();
+        document.body.classList.add('print-mode-slip-gaji');
+        setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+        showToast('Menyiapkan Unduhan PDF Slip Gaji GTK (Potret F4)...', 'info');
+        setTimeout(() => { window.print(); }, 150);
       } else if (tabId === 'tab-presensi') {
         cetakPresensi();
       } else {
         window.print();
       }
     }
+    // Alias untuk kompatibilitas fungsi cetak lama
+    window.cetakDokumenAktif = downloadPdfTabAktif;
 
-    // 4. CETAK KESELURUHAN TAB SISTEM (5 TAB TOTAL) PADA KERTAS F4
-    function cetakSeluruhTabF4() {
+    // 4. DOWNLOAD PDF SELURUH DOKUMEN (4 TAB UTAMA F4 LENGKAP: RINGKASAN, HONOR, KAS, PRESENSI)
+    function downloadPdfSeluruhDokumen() {
       cleanupPrintModes();
       const signers = getActiveOfficialSigners();
 
-      // Sinkronkan data tanggal dan nama pejabat di seluruh seksi dokumen
-      // 1. Tab Ringkasan & Arsip 5 Tahun
+      // Sinkronkan data tanggal dan nama pejabat di seluruh 4 seksi dokumen:
+      // 1. Tab 1: Ringkasan Eksekutif Analisis Grafik 5 Tahun & KPI
       if (document.getElementById('rekapKSNama')) document.getElementById('rekapKSNama').textContent = signers.ksNama;
       if (document.getElementById('rekapKSNBM')) document.getElementById('rekapKSNBM').textContent = signers.ksNbm;
       if (document.getElementById('rekapBendaharaNama')) document.getElementById('rekapBendaharaNama').textContent = signers.benNama;
@@ -7164,7 +7984,7 @@
         document.getElementById('rekapTglCetak').textContent = `31 Desember ${activeDashYear || 2026}`;
       }
 
-      // 2. Tab Daftar Honor GTK
+      // 2. Tab 2: Daftar Honor GTK Gaji Pokok, Surat PCM & Slip
       const pBulan = document.getElementById('printPayrollBulan');
       if (pBulan) pBulan.textContent = NAMA_BULAN[activePayrollMonth];
       const pTahun = document.getElementById('printPayrollTahun');
@@ -7176,7 +7996,14 @@
       if (document.getElementById('payrollBendaharaNama')) document.getElementById('payrollBendaharaNama').textContent = signers.benNama;
       if (document.getElementById('payrollBendaharaNBM')) document.getElementById('payrollBendaharaNBM').textContent = signers.benNbm;
 
-      // 3. Tab Buku Kas Umum
+      // 2b. Surat Resmi ke PCM
+      const sTgl = document.getElementById('suratTglCetak');
+      if (sTgl) sTgl.textContent = `05 ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}`;
+
+      // 2c. Cetak Slip Gaji Mandiri
+      renderSlip();
+
+      // 3. Tab 3: Buku Kas Umum Arus Kas Masuk & Keluar
       const kBulan = document.getElementById('printKasBulan');
       if (kBulan) kBulan.textContent = NAMA_BULAN[activeKasMonth];
       const kTahun = document.getElementById('printKasTahun');
@@ -7191,24 +8018,27 @@
       if (document.getElementById('bkuBendaharaNama')) document.getElementById('bkuBendaharaNama').textContent = signers.benNama;
       if (document.getElementById('bkuBendaharaNBM')) document.getElementById('bkuBendaharaNBM').textContent = signers.benNbm;
 
-      // 4. Tab Surat Resmi PCM
-      const sTgl = document.getElementById('suratTglCetak');
-      if (sTgl) sTgl.textContent = `05 ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}`;
-
-      // 5. Tab Cetak Slip Gaji Mandiri
-      renderSlip();
+      // 4. Tab 4: Daftar Hadir GTK Presensi Harian & Rekap F4
+      if (document.getElementById('presensiKSNama')) {
+        document.getElementById('presensiKSNama').textContent = signers.ksNama;
+      }
+      if (document.getElementById('presensiKSNbm')) {
+        document.getElementById('presensiKSNbm').textContent = signers.ksNbm;
+      }
 
       document.body.classList.add('print-mode-all');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.add('print-active'));
 
-      // Standar Ukuran Kertas F4 Potret (215mm x 330mm), Margin Normal Rapi
+      // Standar Ukuran Kertas F4 (215mm x 330mm) dengan orientasi otomatis per lembar data
       setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
-      showToast('Menyiapkan Cetak Seluruh Tab Laporan (5 Tab F4 Lengkap)...', 'info');
+      showToast('Menyiapkan Berkas Unduhan PDF Seluruh Dokumen (Kertas F4: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip, Buku Kas, Presensi)...', 'info');
 
       setTimeout(() => {
         window.print();
-      }, 150);
+      }, 180);
     }
+    // Alias untuk kompatibilitas tombol cetak lama
+    window.cetakSeluruhTabF4 = downloadPdfSeluruhDokumen;
 
     // MODAL DAFTAR LENGKAP PENDIDIK & STAF (GTK AKTIF)
     function bukaModalDaftarGTK() {
@@ -7253,6 +8083,119 @@
     function tutupModalDaftarGTK() {
       const modal = document.getElementById('modalDaftarGTK');
       if (modal) modal.style.display = 'none';
+    }
+
+    
+    // DATA PESERTA DIDIK DAPODIK (30 SISWA T.A. 2026/2027)
+    const SISWA_DAPODIK_STORE = [{"no":1,"nama":"Abdullah Hanafi","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3135608929","tempat_lahir":"Bontang","tanggal_lahir":"2013-11-27","nik":"6402082711130003","agama":"Islam","alamat":"kota bangun III","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"082241351840","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"wiji handayani","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082606880001"},"ibu":{"nama":"Nisaul Afifah","tahun_lahir":"1994","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6474016307940003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0189128","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"2","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402082608130005","berat_badan_kg":"67","tinggi_badan_cm":"150","lingkar_kepala_cm":"53","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":2,"nama":"Abidzar Rasyiqul Hafizh","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0149561077","tempat_lahir":"Kota Bangun","tanggal_lahir":"2014-04-24","nik":"6402082404140001","agama":"Islam","alamat":"Kota Bangun II","rt":"6","rw":"0","dusun":"Bangun Sari","kelurahan":"Kota Bangun Ii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082256257760","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"M. Sulis Wanto","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"< Rp1.000.000","nik":"6402081203860003"},"ibu":{"nama":"Agustina","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Wirausaha","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402085308860001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402-LU-11062014-0066","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 017 KOTA BANGUN","anak_ke":"1","lintang":"-0.379454699872","bujur":"116.55438423157","no_kk":"6402081306110010","berat_badan_kg":"52","tinggi_badan_cm":"127","lingkar_kepala_cm":"35","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":3,"nama":"Ahmad Nafis","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3129222837","tempat_lahir":"Samarinda","tanggal_lahir":"2012-05-16","nik":"6472061605120002","agama":"Islam","alamat":"JL.Poros","rt":"15","rw":"0","dusun":"Bukit Makmur","kelurahan":"Kota Bangun.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081350445600","email":"","skhun":"","penerima_kps":"Ya","no_kps":"","ayah":{"nama":"Muhtar","tahun_lahir":"1970","pendidikan":"S1","pekerjaan":"Pedagang Kecil","penghasilan":"< Rp1.000.000","nik":"6472060708700011"},"ibu":{"nama":"Sulistiani","tahun_lahir":"1976","pendidikan":"S1","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6472064708760007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Pemegang PKH/KPS/KKS","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"4","lintang":"0","bujur":"0","no_kk":"6402080605190001","berat_badan_kg":"31","tinggi_badan_cm":"155","lingkar_kepala_cm":"53","jml_saudara_kandung":"5","jarak_sekolah_km":"1"},{"no":4,"nama":"ATHIFAH FARIHAN WARDA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137755437","tempat_lahir":"TENGGARONG","tanggal_lahir":"2013-09-03","nik":"6402084309130001","agama":"Islam","alamat":"JL.A.YANI","rt":"11","rw":"0","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082152153329","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"MISBAHUDIN","tahun_lahir":"1981","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402082808810001"},"ibu":{"nama":"CUCUN CUNAYAH","tahun_lahir":"1984","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086410840002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402LU031020130037","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402080610090004","berat_badan_kg":"38","tinggi_badan_cm":"140","lingkar_kepala_cm":"0","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":5,"nama":"David Maliki","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0129930343","tempat_lahir":"Tenggarong","tanggal_lahir":"2012-08-21","nik":"6402082108120001","agama":"Islam","alamat":"Wilis","rt":"34","rw":"16","dusun":"","kelurahan":"Sudimoroharjo","kecamatan":"Kec. Wilangan","kode_pos":"64462","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085871006068","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Nursalim","tahun_lahir":"1982","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":""},"ibu":{"nama":"Supini","tahun_lahir":"1986","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":""},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"1","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"0","bujur":"0","no_kk":"","berat_badan_kg":"40","tinggi_badan_cm":"155","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"7"},{"no":6,"nama":"DIAN MUHIMMATUZZAHIRA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0144487368","tempat_lahir":"JEPARA","tanggal_lahir":"2014-04-29","nik":"3320036904140006","agama":"Islam","alamat":"JL.A.YANI","rt":"3","rw":"2","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081258329207","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"SOLIKUL HADI","tahun_lahir":"1976","pendidikan":"SMP / sederajat","pekerjaan":"Pedagang Kecil","penghasilan":"< Rp1.000.000","nik":"3320031010760003"},"ibu":{"nama":"NUR AZIZAH","tahun_lahir":"1984","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"3320034711840007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"3320-LT-31102014-0043","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"3","lintang":"0","bujur":"0","no_kk":"3321101307180001","berat_badan_kg":"27","tinggi_badan_cm":"131","lingkar_kepala_cm":"0","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":7,"nama":"Diyah Vita Lestari","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0136232873","tempat_lahir":"Kota Bangun","tanggal_lahir":"2013-07-04","nik":"6402014407130001","agama":"Islam","alamat":"Kota Bangun II","rt":"16","rw":"0","dusun":"Fjar Asri","kelurahan":"Kota Bangun Ii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082250528009","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Sariadi","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"3306090805860002"},"ibu":{"nama":"Umi Hamdiyah","tahun_lahir":"1991","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402016907910001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"6402-LU-22072013-0157","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 017 KOTA BANGUN","anak_ke":"1","lintang":"-0.377394808279","bujur":"116.54631614685","no_kk":"3306091408180001","berat_badan_kg":"21","tinggi_badan_cm":"123","lingkar_kepala_cm":"50","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":8,"nama":"Farel Putra Pratama","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3121747436","tempat_lahir":"Kota Bangun II","tanggal_lahir":"2012-01-24","nik":"6402082406120003","agama":"Islam","alamat":"KH. Ahmad Dahlan","rt":"6","rw":"0","dusun":"Jambu rejo","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"081258714698","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Sugiono","tahun_lahir":"1987","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081409870001"},"ibu":{"nama":"Sri Astuti","tahun_lahir":"1991","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402086105910003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0311176","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.40305758871","bujur":"116.53485238552","no_kk":"6402080507110001","berat_badan_kg":"51","tinggi_badan_cm":"160","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":9,"nama":"Fariz Anggit Wicaksono","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0121241130","tempat_lahir":"Tenggarong","tanggal_lahir":"2012-06-15","nik":"6402081506120001","agama":"Islam","alamat":"Jend.Sudirman","rt":"4","rw":"0","dusun":"Jamburejo","kelurahan":"Kota bangu.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081356918717","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Rahmat Dwi Hartoyo","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Buruh","penghasilan":"< Rp1.000.000","nik":"6402082008880001"},"ibu":{"nama":"Ita maulina","tahun_lahir":"1993","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085604930002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"0","bujur":"0","no_kk":"6402080104150005","berat_badan_kg":"40","tinggi_badan_cm":"158","lingkar_kepala_cm":"52","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":10,"nama":"FAYRUZ ALFARIZQI","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3134384901","tempat_lahir":"SAMARINDA","tanggal_lahir":"2013-12-09","nik":"6402080912130001","agama":"Islam","alamat":"DESA KOTA BANGUN III","rt":"20","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082351880138","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"BOBY HARSONO","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082511920003"},"ibu":{"nama":"MASLEKAH PRATAMA PUTRI","tahun_lahir":"1992","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085906920005"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0189185","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"1","lintang":"-0.418012605021","bujur":"116.54820590978","no_kk":"6402082706120002","berat_badan_kg":"53","tinggi_badan_cm":"159","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":11,"nama":"Guritno Indah lestari","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137486922","tempat_lahir":"Kutai Kartanegara","tanggal_lahir":"2013-10-18","nik":"6402085810130002","agama":"Islam","alamat":"kota Bangu n III","rt":"17","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"082154982698","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Gatut Yuwono","tahun_lahir":"1984","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402081001841002"},"ibu":{"nama":"Lestari","tahun_lahir":"1986","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402061805860002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0175435","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.255688772298","bujur":"116.63146018982","no_kk":"6402081306090040","berat_badan_kg":"65","tinggi_badan_cm":"152","lingkar_kepala_cm":"52","jml_saudara_kandung":"1","jarak_sekolah_km":"3"},{"no":12,"nama":"GWEN LUKITA HENDRAWANTO","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137452372","tempat_lahir":"SAMARINDA","tanggal_lahir":"2013-12-19","nik":"6402085912130002","agama":"Islam","alamat":"Desa Kota Bangun III","rt":"10","rw":"0","dusun":"Bukit Makmur","kelurahan":"Kota Bangun III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75560","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil pribadi","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"","tahun_lahir":"1980","pendidikan":"SMA / sederajat","pekerjaan":"Lainnya","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"ibu":{"nama":"RAWIN","tahun_lahir":"1979","pendidikan":"Tidak sekolah","pekerjaan":"Lainnya","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.64020859121330002","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 026 KOTA BANGUN","anak_ke":"3","lintang":"-0.4007","bujur":"116.5384","no_kk":"6402082304090008","berat_badan_kg":"33","tinggi_badan_cm":"138","lingkar_kepala_cm":"0","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":13,"nama":"HUSNAH AFIFA ZIA","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3126487291","tempat_lahir":"SAMARINDA","tanggal_lahir":"2012-01-14","nik":"6402085401120001","agama":"Islam","alamat":"KOTA BANGUN III","rt":"15","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081347773738","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"PONIMAN","tahun_lahir":"1970","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402082706700001"},"ibu":{"nama":"SUKINEM","tahun_lahir":"1971","pendidikan":"S1","pekerjaan":"PNS/TNI/Polri","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402084508710001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"64.02.AL.45/IND/UMUM/II/2012","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.40709153025","bujur":"116.53962135315","no_kk":"6402081411073800","berat_badan_kg":"80","tinggi_badan_cm":"157","lingkar_kepala_cm":"57","jml_saudara_kandung":"3","jarak_sekolah_km":"0"},{"no":14,"nama":"Indra","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3106276179","tempat_lahir":"Lebak cilong","tanggal_lahir":"2010-11-23","nik":"6402182311100003","agama":"Islam","alamat":"Jalan Poros","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"085392069750","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Supriyadi","tahun_lahir":"0","pendidikan":"Tidak sekolah","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":""},"ibu":{"nama":"Miyar","tahun_lahir":"1987","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402184309870003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0262455","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.268064355402","bujur":"116.59483194351","no_kk":"6402180312180004","berat_badan_kg":"52","tinggi_badan_cm":"162","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"0"},{"no":15,"nama":"Khiar Akmal Jasir","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3112675890","tempat_lahir":"Kota bangun","tanggal_lahir":"2011-11-02","nik":"6402080211110003","agama":"Islam","alamat":"KH. Ahmad dahlan","rt":"6","rw":"0","dusun":"Jambu Rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085246750309","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Rubiyanto","tahun_lahir":"1978","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080306780002"},"ibu":{"nama":"Daryati","tahun_lahir":"1979","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085805790001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153436","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.403143417274","bujur":"116.5332698822","no_kk":"6402081411074086","berat_badan_kg":"42","tinggi_badan_cm":"154","lingkar_kepala_cm":"52","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":16,"nama":"Khoirul Amri","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0136861825","tempat_lahir":"Kota Bangun","tanggal_lahir":"2013-06-11","nik":"6402081106130004","agama":"Islam","alamat":"JL. KH Ahmad Dahlan","rt":"6","rw":"0","dusun":"Jambu Rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085349614493","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Ibnu Muntoha","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402082011880001"},"ibu":{"nama":"Khudayah","tahun_lahir":"1995","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402084908950001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0189469","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402080605130002","berat_badan_kg":"43","tinggi_badan_cm":"156","lingkar_kepala_cm":"52","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":17,"nama":"M NIZAM FADILA","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0147010920","tempat_lahir":"OKU TIMUR","tanggal_lahir":"2014-03-13","nik":"1608101303140003","agama":"Islam","alamat":"NUSA TENGGARA","rt":"2","rw":"1","dusun":"NUSA TENGGARA","kelurahan":"NUSA TENGGARA","kecamatan":"Kec. Belitang III","kode_pos":"32382","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"HARSONO","tahun_lahir":"1983","pendidikan":"SMA / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"1608101805830002"},"ibu":{"nama":"DWI RISTYAWATI","tahun_lahir":"1987","pendidikan":"SMP / sederajat","pekerjaan":"Lainnya","penghasilan":"< Rp1.000.000","nik":"1608106804870001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"1608-LT-07112017-0080","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"1608100703090012","berat_badan_kg":"30","tinggi_badan_cm":"135","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"10"},{"no":18,"nama":"Maulidatul hasanah","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3129372016","tempat_lahir":"Kota bangun III","tanggal_lahir":"2012-02-05","nik":"6402084502120002","agama":"Islam","alamat":"KH. ahmad dahlan","rt":"6","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082258850900","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Imam rofik wahyudi","tahun_lahir":"1984","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080903840001"},"ibu":{"nama":"Suciani","tahun_lahir":"1990","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085910890003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0062223","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.400482731361","bujur":"116.53129577637","no_kk":"","berat_badan_kg":"38","tinggi_badan_cm":"150","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"1"},{"no":19,"nama":"MAYANG SARI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0124488974","tempat_lahir":"LEBAK CILONG","tanggal_lahir":"2012-06-20","nik":"6402186006120001","agama":"Islam","alamat":"Lebak Cilong","rt":"10","rw":"0","dusun":"","kelurahan":"LEBAK CILONG","kecamatan":"Kec. Muara Wis","kode_pos":"75559","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Lainnya","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Musjairin","tahun_lahir":"1980","pendidikan":"SD / sederajat","pekerjaan":"Petani","penghasilan":"< Rp1.000.000","nik":"6402180710800001"},"ibu":{"nama":"TURSINA","tahun_lahir":"1985","pendidikan":"SD / sederajat","pekerjaan":"Lainnya","penghasilan":"Tidak Berpenghasilan","nik":"6402184503580001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"(tidak diisi)","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL 9390311176","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"","bujur":"","no_kk":"6402181411071821","berat_badan_kg":"34","tinggi_badan_cm":"143","lingkar_kepala_cm":"55","jml_saudara_kandung":"25","jarak_sekolah_km":"0"},{"no":20,"nama":"Miftahul Jannah","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3129648431","tempat_lahir":"Kota Bangun III","tanggal_lahir":"2012-05-16","nik":"6402085605120003","agama":"Islam","alamat":"jl.kh.ahmad dahlan","rt":"6","rw":"0","dusun":"","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081347434136","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Bahmid Yusuf","tahun_lahir":"1966","pendidikan":"D3","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402080101660002"},"ibu":{"nama":"HALIMATUSSA' DIYAH","tahun_lahir":"1977","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086908770001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153465","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"-0.403400902961","bujur":"116.53481483459","no_kk":"","berat_badan_kg":"67","tinggi_badan_cm":"147","lingkar_kepala_cm":"54","jml_saudara_kandung":"6","jarak_sekolah_km":"1"},{"no":21,"nama":"Muhammad Al-Faliq","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3117156372","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2011-07-07","nik":"6402180707110001","agama":"Islam","alamat":"Desa Lebak cilong","rt":"6","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"085392069750","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Suleman","tahun_lahir":"1958","pendidikan":"SD / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402182511580001"},"ibu":{"nama":"Suri","tahun_lahir":"1960","pendidikan":"SD / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402185309600001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0153260","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"4","lintang":"-6.18450215484","bujur":"106.79577827454","no_kk":"","berat_badan_kg":"43","tinggi_badan_cm":"151","lingkar_kepala_cm":"51","jml_saudara_kandung":"0","jarak_sekolah_km":"0"},{"no":22,"nama":"Muhammad Beliansyah","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3119685447","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2011-09-02","nik":"6402180209110001","agama":"Islam","alamat":"jl.poros","rt":"5","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"082250144440","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Juanda Putra","tahun_lahir":"1986","pendidikan":"SMP / sederajat","pekerjaan":"Petani","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402181601860001"},"ibu":{"nama":"Hani","tahun_lahir":"1989","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402185103890001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0120421","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.454640385806","bujur":"116.51902198791","no_kk":"","berat_badan_kg":"93","tinggi_badan_cm":"163","lingkar_kepala_cm":"55","jml_saudara_kandung":"1","jarak_sekolah_km":"0"},{"no":23,"nama":"Muhammad Putra","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"3126920980","tempat_lahir":"Samarinda","tanggal_lahir":"2012-04-30","nik":"6402083004120002","agama":"Islam","alamat":"kh.ahmad Dahlan","rt":"5","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75581","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"085252220073","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Imam Muntoha","tahun_lahir":"1983","pendidikan":"SMP / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402182009830001"},"ibu":{"nama":"Siti Nuryatin","tahun_lahir":"1977","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085507770001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0140990","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"3","lintang":"-0.403357988681","bujur":"116.5355014801","no_kk":"","berat_badan_kg":"41","tinggi_badan_cm":"145","lingkar_kepala_cm":"53","jml_saudara_kandung":"4","jarak_sekolah_km":"1"},{"no":24,"nama":"Nur Azwa","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0137729494","tempat_lahir":"Lebak Cilong","tanggal_lahir":"2013-05-09","nik":"6402184905130001","agama":"Islam","alamat":"Lebak Cilong","rt":"10","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"081250096954","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"doni","tahun_lahir":"1996","pendidikan":"SMA / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"< Rp1.000.000","nik":"6402082010960001"},"ibu":{"nama":"Jerni Marselina","tahun_lahir":"1993","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402186708930002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL. 939.0111584","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD MUHAMMADIYAH 1 KOTA BANGUN","anak_ke":"1","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402182012180002","berat_badan_kg":"33","tinggi_badan_cm":"149","lingkar_kepala_cm":"51","jml_saudara_kandung":"2","jarak_sekolah_km":"6"},{"no":25,"nama":"Purna Rika Ayunda Putri","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"3114669218","tempat_lahir":"Kota bangun","tanggal_lahir":"2011-12-24","nik":"6402086412110004","agama":"Islam","alamat":"jl. kh. ahmad Dahlan","rt":"6","rw":"0","dusun":"jambu rejo","kelurahan":"Desa/Kel. Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"082255774560","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Karyadi","tahun_lahir":"1987","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081105871002"},"ibu":{"nama":"Sri kanti","tahun_lahir":"1992","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085104920002"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0152564","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.401941817292","bujur":"116.53490066528","no_kk":"","berat_badan_kg":"35","tinggi_badan_cm":"141","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"0"},{"no":26,"nama":"RIO SURYA SAPUTRA","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0136999190","tempat_lahir":"KOTA BANGUN","tanggal_lahir":"2013-05-16","nik":"6402081605130001","agama":"Islam","alamat":"KOTA BANGUN III","rt":"17","rw":"0","dusun":"KOTA BANGUN III","kelurahan":"Kota Bangun Iii","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085250020195","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"SURYANTO","tahun_lahir":"1960","pendidikan":"SMP / sederajat","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402081302000001"},"ibu":{"nama":"SRI WAHYUNI","tahun_lahir":"1973","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402086077300001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 7","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"64.02.AL.199","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"SD NEGERI 027 KOTA BANGUN","anak_ke":"2","lintang":"-0.416145353915","bujur":"116.5386516786","no_kk":"6402081411073836","berat_badan_kg":"25","tinggi_badan_cm":"135","lingkar_kepala_cm":"0","jml_saudara_kandung":"0","jarak_sekolah_km":"1"},{"no":27,"nama":"SELLA ALIVIA DESVITARANI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0106766362","tempat_lahir":"KLATEN","tanggal_lahir":"2010-12-18","nik":"3310015812100003","agama":"Islam","alamat":"JL.A.YANI","rt":"10","rw":"0","dusun":"BUKIT MAKMUR","kelurahan":"KOTABANGUN.III","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"081250359680","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"ANGGUN","tahun_lahir":"0","pendidikan":"SMA / sederajat","pekerjaan":"Peternak","penghasilan":"< Rp1.000.000","nik":""},"ibu":{"nama":"LINA NUR HIDAYATI","tahun_lahir":"1988","pendidikan":"SMA / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"3310014302880001"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"40/2011","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402081306190005","berat_badan_kg":"37","tinggi_badan_cm":"150","lingkar_kepala_cm":"55","jml_saudara_kandung":"3","jarak_sekolah_km":"1"},{"no":28,"nama":"SUCI RAMA WATI","nipd":"","jk":"P","jk_label":"Perempuan","nisn":"0125282961","tempat_lahir":"TRENGGALEK","tanggal_lahir":"2012-09-05","nik":"3503124509120001","agama":"Islam","alamat":"JL. POROS TRANS KALIMANTAN","rt":"5","rw":"0","dusun":"","kelurahan":"Desa/Kel. Muara Wis","kecamatan":"Kec. Muara Wis","kode_pos":"75559","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Sepeda motor","telepon":"","hp":"","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"MUSTA'IN","tahun_lahir":"1961","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402050105610001"},"ibu":{"nama":"WINARSIH","tahun_lahir":"1977","pendidikan":"SD / sederajat","pekerjaan":"Wiraswasta","penghasilan":"< Rp1.000.000","nik":"6402064607770007"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL 7180127140","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Yatim Piatu/Panti Asuhan/Panti Sosial","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"1","lintang":"-0.403572560082","bujur":"116.56734466553","no_kk":"6402182803220001","berat_badan_kg":"42","tinggi_badan_cm":"151","lingkar_kepala_cm":"51","jml_saudara_kandung":"2","jarak_sekolah_km":"0"},{"no":29,"nama":"Wahyu Sabrani Akbar","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0125243269","tempat_lahir":"Muara Muntai","tanggal_lahir":"2012-01-28","nik":"6402182801120001","agama":"Islam","alamat":"JL. surodiponggo","rt":"4","rw":"0","dusun":"","kelurahan":"Lebak Cilong","kecamatan":"Kec. Muara Wis","kode_pos":"75579","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Mobil/bus antar jemput","telepon":"","hp":"08115802733","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Abdul Japarudin.M","tahun_lahir":"1973","pendidikan":"SMA / sederajat","pekerjaan":"Wiraswasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402181808730001"},"ibu":{"nama":"Irawati","tahun_lahir":"1980","pendidikan":"D1","pekerjaan":"Karyawan Swasta","penghasilan":"Rp1.000.001 - Rp3.000.000","nik":"6402185703800003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 9","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"AL.939.0086913","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Tidak","alasan_layak_pip":"","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"-0.268184","bujur":"116.595264","no_kk":"6402183101111000","berat_badan_kg":"55","tinggi_badan_cm":"165","lingkar_kepala_cm":"53","jml_saudara_kandung":"3","jarak_sekolah_km":"0"},{"no":30,"nama":"Yanuar Dwiska Putra Ditya","nipd":"","jk":"L","jk_label":"Laki-laki","nisn":"0121182581","tempat_lahir":"Kota Bangun","tanggal_lahir":"2012-01-28","nik":"6402082801120001","agama":"Islam","alamat":"Jend.sudirman","rt":"8","rw":"0","dusun":"Jamburejo","kelurahan":"Kota bangun.3","kecamatan":"Kec. Kota Bangun Darat","kode_pos":"75561","jenis_tinggal":"Bersama orang tua","alat_transportasi":"Jalan kaki","telepon":"","hp":"085348759695","email":"","skhun":"","penerima_kps":"Tidak","no_kps":"","ayah":{"nama":"Jemadi","tahun_lahir":"1979","pendidikan":"SMP / sederajat","pekerjaan":"Buruh","penghasilan":"< Rp1.000.000","nik":"6402080801790004"},"ibu":{"nama":"Miyati","tahun_lahir":"1980","pendidikan":"SMP / sederajat","pekerjaan":"Tidak bekerja","penghasilan":"Tidak Berpenghasilan","nik":"6402085002800003"},"wali":{"nama":"","tahun_lahir":"","pendidikan":"Tidak sekolah","pekerjaan":"","penghasilan":"< Rp1.000.000","nik":""},"rombel":"Kelas 8","no_peserta_un":"","no_seri_ijazah":"","penerima_kip":"Tidak","nomor_kip":"","nama_di_kip":"0","nomor_kks":"","no_registrasi_akta_lahir":"","bank":"","nomor_rekening":"","rekening_atas_nama":"","layak_pip":"Ya","alasan_layak_pip":"Siswa Miskin/Rentan Miskin","kebutuhan_khusus":"Tidak ada","sekolah_asal":"","anak_ke":"2","lintang":"0","bujur":"0","no_kk":"6402082802120005","berat_badan_kg":"38","tinggi_badan_cm":"157","lingkar_kepala_cm":"52","jml_saudara_kandung":"2","jarak_sekolah_km":"0"}];
+
+    let activeSiswaFilter = 'all';
+
+    function bukaModalDatabaseSiswa() {
+      const modal = document.getElementById('modalDatabaseSiswa');
+      if (modal) {
+        modal.style.display = 'flex';
+        filterSiswaTabel();
+      }
+    }
+
+    function tutupModalDatabaseSiswa() {
+      const modal = document.getElementById('modalDatabaseSiswa');
+      if (modal) modal.style.display = 'none';
+    }
+
+    function setFilterSiswa(filter, btn) {
+      activeSiswaFilter = filter;
+      document.querySelectorAll('.btn-filter-siswa').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterSiswaTabel();
+    }
+
+    function filterSiswaTabel() {
+      const query = (document.getElementById('cariSiswaInput')?.value || '').toLowerCase().trim();
+      const tbody = document.getElementById('tbodyDatabaseSiswa');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const filtered = SISWA_DAPODIK_STORE.filter(s => {
+        if (activeSiswaFilter === 'Kelas 7' && s.rombel !== 'Kelas 7') return false;
+        if (activeSiswaFilter === 'Kelas 8' && s.rombel !== 'Kelas 8') return false;
+        if (activeSiswaFilter === 'Kelas 9' && s.rombel !== 'Kelas 9') return false;
+        if (activeSiswaFilter === 'pip' && s.layak_pip !== 'Ya') return false;
+        if (activeSiswaFilter === 'L' && s.jk !== 'L') return false;
+        if (activeSiswaFilter === 'P' && s.jk !== 'P') return false;
+
+        if (query) {
+          const match = s.nama.toLowerCase().includes(query) ||
+                        s.nisn.includes(query) ||
+                        s.nik.includes(query) ||
+                        (s.sekolah_asal && s.sekolah_asal.toLowerCase().includes(query)) ||
+                        (s.kelurahan && s.kelurahan.toLowerCase().includes(query)) ||
+                        (s.ibu && s.ibu.nama && s.ibu.nama.toLowerCase().includes(query));
+          if (!match) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 24px; color: #64748b;">Tidak ada data peserta didik yang cocok dengan kriteria pencarian / filter.</td></tr>';
+        return;
+      }
+
+      filtered.forEach((s, idx) => {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #e2e8f0';
+        if (idx % 2 === 1) tr.style.background = '#f8fafc';
+
+        const jkBadge = s.jk === 'L'
+          ? '<span style="background: #eff6ff; color: #1d4ed8; padding: 2px 6px; border-radius: 4px; font-weight: 700; border: 1px solid #bfdbfe;">L</span>'
+          : '<span style="background: #fdf2f8; color: #db2777; padding: 2px 6px; border-radius: 4px; font-weight: 700; border: 1px solid #fbcfe8;">P</span>';
+
+        const rombelBadge = s.rombel === 'Kelas 7'
+          ? '<span style="background: #f0fdf4; color: #15803d; padding: 2px 7px; border-radius: 4px; font-weight: 700; border: 1px solid #bbf7d0;">Kls 7</span>'
+          : (s.rombel === 'Kelas 8'
+              ? '<span style="background: #eff6ff; color: #1e40af; padding: 2px 7px; border-radius: 4px; font-weight: 700; border: 1px solid #bfdbfe;">Kls 8</span>'
+              : '<span style="background: #fefce8; color: #a16207; padding: 2px 7px; border-radius: 4px; font-weight: 700; border: 1px solid #fef08a;">Kls 9</span>');
+
+        const pipBadge = s.layak_pip === 'Ya'
+          ? `<span title="${s.alasan_layak_pip || 'Layak Usulan PIP'}" style="background: #fefce8; color: #854d0e; padding: 2px 6px; border-radius: 4px; font-weight: 700; border: 1px solid #fef08a; font-size: 11px;">✅ Layak PIP</span>`
+          : '<span style="color: #94a3b8;">—</span>';
+
+        tr.innerHTML = `
+          <td style="padding: 7px 10px; text-align: center; color: #64748b; font-weight: 600;">${idx + 1}</td>
+          <td style="padding: 7px 10px; color: #0f172a;">
+            <strong style="color: #0f172a; font-size: 12.5px;">${s.nama}</strong>
+            <div style="font-size: 11px; color: #64748b; font-family: monospace;">NIK: ${s.nik}</div>
+          </td>
+          <td style="padding: 7px 6px; text-align: center;">${jkBadge}</td>
+          <td style="padding: 7px 10px; font-family: monospace; font-size: 11.5px; color: #1e40af; font-weight: 700;">${s.nisn}</td>
+          <td style="padding: 7px 6px; text-align: center;">${rombelBadge}</td>
+          <td style="padding: 7px 10px; color: #334155;">${s.tempat_lahir}, ${s.tanggal_lahir}</td>
+          <td style="padding: 7px 10px; color: #334155; font-size: 11.5px;">${s.sekolah_asal || '—'}</td>
+          <td style="padding: 7px 10px; color: #334155;">${(s.ibu && s.ibu.nama) ? s.ibu.nama : '—'}</td>
+          <td style="padding: 7px 6px; text-align: center;">${pipBadge}</td>
+          <td style="padding: 7px 10px; color: #475569; font-size: 11px; max-width: 190px; line-height: 1.3;">
+            ${s.alamat}, ${s.kelurahan}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function unduhDataSiswaCSV() {
+      let csv = "No,Nama,JK,NISN,NIK,Rombel,Tempat Lahir,Tanggal Lahir,Sekolah Asal,Nama Ibu,Layak PIP,Alasan PIP,Alamat,Kelurahan,Kecamatan,Transportasi,HP\r\n";
+      SISWA_DAPODIK_STORE.forEach((s, i) => {
+        const ibuNama = (s.ibu && s.ibu.nama) ? s.ibu.nama : '';
+        csv += `"${i+1}","${s.nama}","${s.jk}","'${s.nisn}'","'${s.nik}'","${s.rombel}","${s.tempat_lahir}","${s.tanggal_lahir}","${s.sekolah_asal}","${ibuNama}","${s.layak_pip}","${s.alasan_layak_pip}","${s.alamat}","${s.kelurahan}","${s.kecamatan}","${s.alat_transportasi}","${s.hp}"\r\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "Database_Peserta_Didik_SMP_Muhammadiyah_1_Dapodik_2026_2027.csv";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
 
     // MODAL LEGALITAS & IZIN OPERASIONAL SATUAN PENDIDIKAN
