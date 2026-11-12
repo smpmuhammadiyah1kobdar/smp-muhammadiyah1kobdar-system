@@ -2156,6 +2156,21 @@
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+      /* ZERO-SCROLLBAR TOTAL & CONTAINER RE-FLOW UNTUK KERTAS RESMI */
+      * {
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+      }
+      *::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+      }
+      div, .table-container, .table-responsive, [style*="overflow"] {
+        overflow: visible !important;
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+      }
       .app-sidebar, .app-topbar, .toast-container, .dash-hero-banner, .sidebar-backdrop, .topbar, .tabs-bar, .no-print, .period-toolbar, .table-header-action, .btn-delete, .btn-add { display: none !important; }
       
       .app-shell, .main-viewport {
@@ -2534,8 +2549,10 @@
         padding-top: 5mm !important;
       }
       /* LEMBAR 3: KHUSUS ARSIP REKAPAN FINANSIAL 5 TAHUN (ORIENTASI KERTAS LANDSCAPE F4) */
-      body.print-mode-rekap-5tahun #modalHorizonRencana,
       body.print-mode-all #modalHorizonRencana {
+        display: none !important;
+      }
+      body.print-mode-rekap-5tahun #modalHorizonRencana {
         display: block !important;
         position: static !important;
         inset: auto !important;
@@ -2547,8 +2564,7 @@
         width: 100% !important;
         max-width: 100% !important;
       }
-      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-akun-card,
-      body.print-mode-all #modalHorizonRencana .modal-akun-card {
+      body.print-mode-rekap-5tahun #modalHorizonRencana .modal-akun-card {
         display: block !important;
         max-width: 100% !important;
         width: 100% !important;
@@ -2611,21 +2627,41 @@
       }
       body.print-mode-rekap-5tahun .charts-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        margin-bottom: 16px !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        margin-bottom: 14px !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        width: 100% !important;
       }
       body.print-mode-rekap-5tahun .chart-card {
-        padding: 8px !important;
+        padding: 8px 12px !important;
         border: 1px solid #cbd5e1 !important;
         box-shadow: none !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
       }
-      body.print-mode-rekap-5tahun .canvas-wrapper {
-        height: 185px !important;
+      body.print-mode-rekap-5tahun .dash-print-page-1 .canvas-wrapper {
+        height: 215px !important;
+        width: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      body.print-mode-rekap-5tahun .dash-print-page-2 .canvas-wrapper {
+        height: 240px !important;
+        width: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      body.print-mode-rekap-5tahun canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        display: block !important;
       }
       /* TABEL REKAP 5 TAHUN PADA LEMBAR 3 (LANDSCAPE F4: 330mm x 215mm) */
       body.print-mode-rekap-5tahun #tabelRekap5Tahun {
@@ -2734,21 +2770,41 @@
       }
       body.print-mode-all .charts-grid {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-        margin-bottom: 16px !important;
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        margin-bottom: 14px !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        width: 100% !important;
       }
       body.print-mode-all .chart-card {
-        padding: 8px !important;
+        padding: 8px 12px !important;
         border: 1px solid #cbd5e1 !important;
         box-shadow: none !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
       }
-      body.print-mode-all .canvas-wrapper {
-        height: 180px !important;
+      body.print-mode-all .dash-print-page-1 .canvas-wrapper {
+        height: 215px !important;
+        width: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      body.print-mode-all .dash-print-page-2 .canvas-wrapper {
+        height: 240px !important;
+        width: 100% !important;
+        position: relative !important;
+        overflow: hidden !important;
+      }
+      body.print-mode-all canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 100% !important;
+        display: block !important;
       }
       /* TAB 1 LEMBAR 1: POTRET */
       body.print-mode-all .dash-print-page-1 {
@@ -2768,21 +2824,20 @@
         margin-top: 0 !important;
         padding-top: 5mm !important;
       }
-      /* TAB 1 LEMBAR 3: ARSIP REKAP 5 TAHUN (LANDSCAPE F4) */
-      body.print-mode-all #containerRekap5Tahun,
+      /* TAB 1 LEMBAR 3: ARSIP REKAP 5 TAHUN (PRINT LEMBAR 3 DI DALAM TAB DASHBOARD) */
       body.print-mode-all .dash-print-page-3 {
-        page: pageLandscape !important;
+        page: pagePortrait !important;
         display: block !important;
         page-break-before: always !important;
         break-before: page !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         margin-top: 0 !important;
-        padding-top: 5mm !important;
+        padding-top: 4mm !important;
         overflow: visible !important;
       }
-      body.print-mode-all #containerRekap5Tahun div {
-        overflow: visible !important;
+      body.print-mode-all #containerRekap5Tahun {
+        display: none !important;
       }
       
       body.print-mode-payroll #subview-payroll-tabel {
@@ -2859,13 +2914,86 @@
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
-      /* TAB 5: CETAK SLIP GAJI MANDIRI (POTRET F4) */
+      /* TAB 5: CETAK SLIP GAJI MANDIRI & BATCH MULTI-SLIP (POTRET F4) */
       body.print-mode-all #tab-slip-gaji {
         page: pagePortrait !important;
         page-break-before: always !important;
         break-before: page !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+      }
+      /* BATCH MULTI-SLIP RULES */
+      .slip-batch-print-container {
+        display: none;
+      }
+      body.print-mode-slip-gaji #slipBox {
+        display: block !important;
+      }
+      body.print-mode-slip-gaji #slipBatchPrintContainer {
+        display: none !important;
+      }
+      body.print-mode-all #slipBox,
+      body.print-mode-slip-gaji-all #slipBox {
+        display: none !important;
+      }
+      body.print-mode-all #slipBatchPrintContainer,
+      body.print-mode-slip-gaji-all #slipBatchPrintContainer {
+        display: block !important;
+        width: 100% !important;
+      }
+      body.print-mode-slip-gaji-all #tab-payroll,
+      body.print-mode-slip-gaji-all #tab-slip-gaji {
+        display: block !important;
+      }
+      body.print-mode-slip-gaji-all #subview-payroll-tabel,
+      body.print-mode-slip-gaji-all #tab-surat-pcm {
+        display: none !important;
+      }
+      .slip-print-quad,
+      .slip-print-pair {
+        page-break-before: always !important;
+        break-before: page !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+        padding: 1mm 0 !important;
+      }
+      .slip-print-quad:first-child,
+      .slip-print-pair:first-child {
+        page-break-before: avoid !important;
+        break-before: avoid !important;
+      }
+      .slip-item-card {
+        border: 1.2px solid #475569 !important;
+        border-radius: 6px !important;
+        padding: 5px 12px !important;
+        margin-bottom: 2mm !important;
+        box-sizing: border-box !important;
+        background: #ffffff !important;
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+      .slip-item-card:last-child {
+        margin-bottom: 0 !important;
+      }
+      .slip-cut-divider {
+        text-align: center !important;
+        margin: 2.5mm 0 !important;
+        border-top: 1.2px dashed #94a3b8 !important;
+        position: relative !important;
+        line-height: 1 !important;
+      }
+      .slip-cut-divider span {
+        position: relative !important;
+        top: -7px !important;
+        background: #ffffff !important;
+        padding: 0 8px !important;
+        font-size: 6.8pt !important;
+        color: #64748b !important;
+        font-weight: 600 !important;
       }
 
       /* =========================================================================
@@ -2939,14 +3067,75 @@
         padding: 0 16px !important;
         font-size: 9pt !important;
       }
-      /* TAB 6 DALAM CETAK SELURUH TAB */
+      /* TAB 6 DALAM CETAK SELURUH TAB (FIT 100% SENIN - SABTU & ANTI-BLANK PAGE) */
       body.print-mode-all #tab-presensi {
         page: pageLandscape !important;
         page-break-before: always !important;
         break-before: page !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+        margin-bottom: 0 !important;
+        padding-bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: visible !important;
       }
+      body.print-mode-all .presensi-kiosk-panel,
+      body.print-mode-all .presensi-control-bar,
+      body.print-mode-all .no-print {
+        display: none !important;
+      }
+      body.print-mode-all .presensi-print-header {
+        display: block !important;
+        margin-bottom: 6px !important;
+      }
+      body.print-mode-all .presensi-signatures {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-top: 8px !important;
+        display: flex !important;
+        justify-content: flex-end !important;
+        padding: 0 16px !important;
+        font-size: 8.5pt !important;
+      }
+      /* UNIVERSAL FIX PRESENSI CETAK (FIT 100% 27 KOLOM SENIN - SABTU) */
+      body.print-mode-all .tabel-presensi-dinas,
+      body.print-mode-presensi .tabel-presensi-dinas {
+        width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed !important;
+        border-collapse: collapse !important;
+        font-size: 6.2pt !important;
+        line-height: 1.1 !important;
+      }
+      body.print-mode-all .tabel-presensi-dinas th,
+      body.print-mode-all .tabel-presensi-dinas td,
+      body.print-mode-presensi .tabel-presensi-dinas th,
+      body.print-mode-presensi .tabel-presensi-dinas td {
+        min-width: 0 !important;
+        padding: 1.5px 0.5px !important;
+        border: 1px solid #000000 !important;
+        text-align: center !important;
+        font-size: 6.2pt !important;
+        box-sizing: border-box !important;
+      }
+      body.print-mode-all .tabel-presensi-dinas td.nama-col,
+      body.print-mode-presensi .tabel-presensi-dinas td.nama-col {
+        text-align: left !important;
+        padding-left: 2px !important;
+        font-size: 6.5pt !important;
+        font-weight: 600 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+      body.print-mode-all .tabel-presensi-dinas th:nth-child(1),
+      body.print-mode-presensi .tabel-presensi-dinas th:nth-child(1) { width: 3% !important; }
+      body.print-mode-all .tabel-presensi-dinas th:nth-child(2),
+      body.print-mode-presensi .tabel-presensi-dinas th:nth-child(2) { width: 17% !important; }
       /* TABEL REKAP 5 TAHUN DI MODE ALL (LANDSCAPE F4) */
       body.print-mode-all #tabelRekap5Tahun {
         width: 100% !important;
@@ -2996,12 +3185,20 @@
       body.print-mode-all #tabelRekap5Tahun th:nth-child(9),
       body.print-mode-all #tabelRekap5Tahun td:nth-child(9) { width: 11.5% !important; text-align: center !important; }
 
-      /* Tabel Payroll di Mode All (Fit Portrait F4) */
+      /* Tabel Payroll di Mode All (Fit Portrait F4 100% Anti-Terpotong) */
       body.print-mode-all #tabelPayroll {
         width: 100% !important;
+        min-width: 100% !important;
+        max-width: 100% !important;
         border-collapse: collapse !important;
-        font-size: 8pt !important;
+        font-size: 7.2pt !important;
         table-layout: fixed !important;
+      }
+      body.print-mode-all #tabelPayroll th,
+      body.print-mode-all #tabelPayroll td {
+        min-width: 0 !important;
+        max-width: none !important;
+        box-sizing: border-box !important;
       }
       body.print-mode-all #tabelPayroll th {
         background: #f1f5f9 !important;
@@ -3009,36 +3206,51 @@
         border: 1px solid #334155 !important;
         padding: 3px 2px !important;
         font-weight: bold !important;
-        font-size: 8pt !important;
+        font-size: 7.4pt !important;
         text-align: center !important;
       }
       body.print-mode-all #tabelPayroll td {
         border: 1px solid #94a3b8 !important;
-        padding: 2.5px 3px !important;
-        font-size: 7.8pt !important;
+        padding: 2.5px 2px !important;
+        font-size: 7.2pt !important;
         line-height: 1.15 !important;
         vertical-align: middle !important;
       }
       body.print-mode-all #tabelPayroll tfoot td {
         font-weight: bold !important;
         border-top: 1.5px solid #0f172a !important;
-        padding: 3px 3px !important;
-        font-size: 8pt !important;
+        padding: 3px 2px !important;
+        font-size: 7.4pt !important;
       }
       body.print-mode-all #tabelPayroll th:nth-child(1),
-      body.print-mode-all #tabelPayroll td:nth-child(1) { width: 5% !important; text-align: center !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(1) { width: 4.5% !important; text-align: center !important; }
       body.print-mode-all #tabelPayroll th:nth-child(2),
-      body.print-mode-all #tabelPayroll td:nth-child(2) { width: 25% !important; word-break: break-word !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(2) { width: 23% !important; word-break: break-word !important; }
       body.print-mode-all #tabelPayroll th:nth-child(3),
-      body.print-mode-all #tabelPayroll td:nth-child(3) { width: 20% !important; word-break: break-word !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(3) { width: 19% !important; word-break: break-word !important; }
       body.print-mode-all #tabelPayroll th:nth-child(4),
-      body.print-mode-all #tabelPayroll td:nth-child(4) { width: 13% !important; text-align: center !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(4) { width: 12% !important; text-align: center !important; }
       body.print-mode-all #tabelPayroll th:nth-child(5),
-      body.print-mode-all #tabelPayroll td:nth-child(5) { width: 13% !important; text-align: right !important; white-space: nowrap !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(5) { width: 13.5% !important; text-align: right !important; white-space: nowrap !important; }
       body.print-mode-all #tabelPayroll th:nth-child(6),
-      body.print-mode-all #tabelPayroll td:nth-child(6) { width: 12% !important; text-align: center !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(6) { width: 14% !important; text-align: center !important; }
       body.print-mode-all #tabelPayroll th:nth-child(7),
-      body.print-mode-all #tabelPayroll td:nth-child(7) { width: 12% !important; text-align: center !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(7) { width: 14% !important; text-align: center !important; }
+      body.print-mode-all #tabelPayroll td:nth-child(7) div {
+        height: auto !important;
+        justify-content: center !important;
+      }
+      body.print-mode-all #tabelPayroll td:nth-child(7) span {
+        font-size: 7pt !important;
+        color: #0f172a !important;
+        font-family: inherit !important;
+      }
+      body.print-mode-all #tabelPayroll .badge-status {
+        padding: 1px 3px !important;
+        font-size: 6.8pt !important;
+        white-space: nowrap !important;
+        display: inline-block !important;
+      }
 
       /* Tabel Buku Kas di Mode All (Fit Portrait F4) */
       body.print-mode-all #tabelKas {
@@ -3088,22 +3300,22 @@
         break-inside: avoid !important;
         page-break-after: avoid !important;
         break-after: avoid !important;
-        width: 215mm !important;
-        max-width: 215mm !important;
+        width: 100% !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
         padding: 0 !important;
-        overflow: hidden !important;
+        overflow: visible !important;
       }
       #tab-surat-pcm .paper {
         box-shadow: none !important;
         border: none !important;
-        padding: 2.5cm !important; /* Margin persis 2.5cm kiri, atas, kanan, bawah */
+        padding: 4mm 6mm !important; /* Proporsional menyatu dengan @page margin */
         margin: 0 auto !important;
-        width: 215mm !important;
-        max-width: 215mm !important;
+        width: 100% !important;
+        max-width: 100% !important;
         box-sizing: border-box !important;
-        font-size: 12px !important;
-        line-height: 1.45 !important;
+        font-size: 11.5pt !important;
+        line-height: 1.55 !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
       }
@@ -3111,19 +3323,20 @@
       #tab-surat-pcm .paper,
       #tab-surat-pcm .paper * {
         font-family: 'Times New Roman', Times, serif !important;
+        color: #000000 !important;
       }
       #tab-surat-pcm .kop-surat {
         display: flex !important;
         align-items: center !important;
         justify-content: space-between !important;
         width: 100% !important;
-        padding-bottom: 4px !important;
-        margin-bottom: 8px !important;
-        border-bottom: 2.5px double #000 !important;
+        padding-bottom: 6px !important;
+        margin-bottom: 12px !important;
+        border-bottom: 3px double #000000 !important;
       }
       #tab-surat-pcm .kop-logo-col {
-        width: 78px !important;
-        min-width: 78px !important;
+        width: 82px !important;
+        min-width: 82px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
@@ -3133,82 +3346,93 @@
         position: static !important;
         transform: none !important;
         display: block !important;
-        width: 76px !important;
-        height: 76px !important;
+        width: 80px !important;
+        height: 80px !important;
         object-fit: contain !important;
         margin: 0 !important;
       }
       #tab-surat-pcm .kop-text {
         flex: 1 !important;
         text-align: center !important;
-        padding: 0 6px !important;
+        padding: 0 8px !important;
       }
       #tab-surat-pcm .kop-spacer-col {
-        width: 78px !important;
-        min-width: 78px !important;
+        width: 82px !important;
+        min-width: 82px !important;
         flex-shrink: 0 !important;
         display: block !important;
       }
       #tab-surat-pcm .kop-surat h3 {
-        font-size: 15px !important;
+        font-size: 13pt !important;
+        font-weight: bold !important;
         margin-bottom: 2px !important;
         line-height: 1.25 !important;
       }
       #tab-surat-pcm .kop-surat h2 {
-        font-size: 17.5px !important;
-        margin-bottom: 2px !important;
+        font-size: 16pt !important;
+        font-weight: bold !important;
+        margin-bottom: 3px !important;
         line-height: 1.2 !important;
+        color: #0b5b33 !important;
       }
       #tab-surat-pcm .kop-surat .kop-npsn {
-        font-size: 11.5px !important;
+        font-size: 10.5pt !important;
+        font-weight: 600 !important;
         line-height: 1.25 !important;
+        margin-bottom: 2px !important;
       }
       #tab-surat-pcm .kop-surat .kop-alamat {
-        font-size: 9.5px !important;
-        line-height: 1.25 !important;
+        font-size: 9pt !important;
+        font-style: italic !important;
+        line-height: 1.3 !important;
       }
       #tab-surat-pcm .surat-meta {
-        margin-bottom: 8px !important;
-        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm .surat-meta td {
-        padding: 1.5px 0 !important;
+        padding: 2px 0 !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm div[contenteditable="true"] {
-        margin-bottom: 10px !important;
+        margin-bottom: 12px !important;
+        font-size: 11.5pt !important;
+        line-height: 1.55 !important;
       }
       #tab-surat-pcm p {
-        margin-bottom: 8px !important;
-        line-height: 1.45 !important;
-        font-size: 12px !important;
+        margin-bottom: 12px !important;
+        line-height: 1.55 !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm table {
-        margin-bottom: 8px !important;
+        margin-bottom: 12px !important;
       }
       #tab-surat-pcm table td {
-        padding: 1.5px 0 !important;
-        font-size: 12px !important;
+        padding: 2.5px 0 !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm .nominal-box {
-        margin: 12px 0 !important;
-        padding: 7px 12px !important;
-        font-size: 14.5px !important;
+        margin: 16px 0 !important;
+        padding: 10px 18px !important;
+        font-size: 16pt !important;
+        border: 1.5px solid #000000 !important;
+        background: #f8fafc !important;
       }
       #tab-surat-pcm .ttd-box {
-        margin-top: 20px !important;
+        margin-top: 25px !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
-        font-size: 14px !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm .ttd-col {
-        font-size: 14px !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm .ttd-box strong,
       #tab-surat-pcm .ttd-box span {
-        font-size: 14px !important;
+        font-size: 11.5pt !important;
       }
       #tab-surat-pcm .ttd-space {
-        height: 50px !important;
+        height: 55px !important;
       }
 
       /* FALLBACK JIKA PENCETAKAN DIJALANKAN TANPA CLASS PRINT MODE */
@@ -5168,7 +5392,7 @@
           </span>
         </button>
 
-        <a href="index.html" class="nav-tab-btn" style="text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background: rgba(4, 165, 79, 0.15);" target="_blank" title="Buka Halaman Depan Web Resmi Sekolah">
+        <a href="../../landing-page/index.html" class="nav-tab-btn" style="text-decoration: none; border-color: rgba(52, 211, 153, 0.4); background: rgba(4, 165, 79, 0.15);" target="_blank" title="Buka Halaman Depan Web Resmi Sekolah">
           <span class="nav-icon">🌐</span>
           <span class="nav-text-col">
             <span class="nav-label" style="color: #34d399; font-weight: 700;">Landing Page Sekolah</span>
@@ -5543,6 +5767,65 @@
         </div>
       </div>
 
+      <!-- LEMBAR 3: ARSIP REKAPAN FINANSIAL PER TAHUN & DATA KUMULATIF (PRINT ONLY LEMBAR 3) -->
+      <div class="dash-print-page dash-print-page-3 print-only" style="margin-top: 0; padding-top: 4mm;">
+        <div style="text-align: center; margin: 0 0 10px 0; border-bottom: 2px solid #0f172a; padding-bottom: 4px;">
+          <h3 style="font-size: 12pt; font-weight: bold; margin: 0; text-transform: uppercase; color: #0f172a; letter-spacing: 0.5px;">ARSIP REKAPAN FINANSIAL PER TAHUN &amp; DATA KUMULATIF PERKEMBANGAN MANAJEMEN</h3>
+          <p style="font-size: 8.8pt; color: #475569; margin: 2px 0 0 0;">SMP Muhammadiyah 1 Kota Bangun Darat &bull; Lembar 3: Rencana Strategis &amp; Realisasi Arus Kas (2026 - 2030)</p>
+        </div>
+
+        <table id="tabelRekap5TahunPrint" style="width: 100%; border-collapse: collapse; color: #0f172a; background: #ffffff; font-size: 7.8pt; table-layout: fixed;">
+          <thead>
+            <tr style="border-bottom: 2px solid #cbd5e1;">
+              <th style="width: 7%; text-align: center; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Tahun</th>
+              <th style="width: 11.5%; text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Pemasukan (Rp)</th>
+              <th style="width: 11.5%; text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Pengeluaran (Rp)</th>
+              <th style="width: 11.5%; text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Realisasi GTK (Rp)</th>
+              <th style="width: 11.5%; text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Surplus / (Defisit)</th>
+              <th style="width: 11.5%; text-align: right; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Saldo Akhir (Rp)</th>
+              <th style="width: 12%; text-align: right; background: #dcfce7; color: #15803d; font-weight: 800; padding: 4px 2px; border: 1px solid #334155;">Pemasukan Kum.</th>
+              <th style="width: 12%; text-align: right; background: #eff6ff; color: #1d4ed8; font-weight: 800; padding: 4px 2px; border: 1px solid #334155;">Honor GTK Kum.</th>
+              <th style="width: 11.5%; text-align: center; background: #f1f5f9; color: #1e293b; font-weight: 700; padding: 4px 2px; border: 1px solid #334155;">Catatan Periode</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyRekap5TahunPrint"></tbody>
+          <tfoot>
+            <tr style="font-weight: bold; background: #f8fafc; font-size: 7.8pt; border-top: 2px solid #cbd5e1;">
+              <td style="text-align: center; font-weight: 800; color: #0f172a; padding: 4px 2px; border: 1px solid #475569;">TOTAL:</td>
+              <td style="text-align: right; color: #15803d; font-weight: 800; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnMasukPrint">Rp 0</td>
+              <td style="text-align: right; color: #dc2626; font-weight: 800; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnKeluarPrint">Rp 0</td>
+              <td style="text-align: right; color: #1d4ed8; font-weight: 800; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnHonorPrint">Rp 0</td>
+              <td style="text-align: right; font-weight: 800; color: #0f172a; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnSurplusPrint">Rp 0</td>
+              <td style="text-align: right; font-weight: 800; color: #0f172a; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnSaldoAkhirPrint">Rp 0</td>
+              <td style="text-align: right; color: #15803d; background: #dcfce7; font-weight: 800; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnKumMasukPrint">Rp 0</td>
+              <td style="text-align: right; color: #1d4ed8; background: #eff6ff; font-weight: 800; padding: 4px 2px; border: 1px solid #475569;" id="rekap5ThnKumHonorPrint">Rp 0</td>
+              <td style="font-size: 7pt; color: #475569; text-align: center; font-weight: 600; padding: 4px 2px; border: 1px solid #475569;">Akumulasi Nyata 2026 - 2030</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <!-- TANDA TANGAN PEJABAT RESMI LEMBAR 3 -->
+        <div style="margin-top: 18px; page-break-inside: avoid; break-inside: avoid; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 40px; color: #000000 !important;">
+          <div style="text-align: center; width: 240px; color: #000000 !important;">
+            <p style="font-size: 10pt; color: #000000 !important; margin: 0; font-weight: 600;">Mengetahui,</p>
+            <p style="font-size: 10.5pt; color: #000000 !important; font-weight: 800; margin: 2px 0 0;">Kepala Sekolah</p>
+            <div style="height: 48px; display: flex; align-items: center; justify-content: center; margin: 3px 0;">
+              <img src="assets/tanda-tangan-pak-susanto.png" alt="TTD Kepala Sekolah" style="max-height: 46px; max-width: 120px; object-fit: contain;">
+            </div>
+            <p style="font-size: 10.5pt; color: #000000 !important; font-weight: 800; text-decoration: underline; margin: 0;" id="rekapKSNamaPrint">SUSANTO, S.Sos</p>
+            <p style="font-size: 9pt; color: #000000 !important; font-weight: 600; margin: 2px 0 0;">NBM: <span id="rekapKSNBMPrint" style="color: #000000 !important; font-weight: 700;">2006 7615 1221959</span></p>
+          </div>
+
+          <div style="text-align: center; width: 240px; color: #000000 !important;">
+            <p style="font-size: 10pt; color: #000000 !important; margin: 0; font-weight: 600;">Kota Bangun Darat, <span id="rekapTglCetakPrint" style="color: #000000 !important; font-weight: 600;">31 Desember 2026</span></p>
+            <p style="font-size: 10.5pt; color: #000000 !important; font-weight: 800; margin: 2px 0 0;">Bendahara Sekolah</p>
+            <div style="height: 48px; margin: 3px 0;"></div>
+            <p style="font-size: 10.5pt; color: #000000 !important; font-weight: 800; text-decoration: underline; margin: 0;" id="rekapBendaharaNamaPrint">Arum Susilowati, M.Pd</p>
+            <p style="font-size: 9pt; color: #000000 !important; font-weight: 600; margin: 2px 0 0;">NBM: <span id="rekapBendaharaNBMPrint" style="color: #000000 !important; font-weight: 700;">2006 9821 1397891</span></p>
+          </div>
+        </div>
+      </div>
+
       <!-- SHORTCUT ARSIP REKAPAN FINANSIAL 5 TAHUN (TERINTEGRASI DI DALAM MODAL HORIZON RENCANA) -->
       <div class="no-print" style="margin-top: 24px; background: rgba(255, 255, 255, 0.90); backdrop-filter: blur(16px) saturate(180%); -webkit-backdrop-filter: blur(16px) saturate(180%); border: 1.5px dashed #0284c7; border-radius: 16px; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.06);">
         <div style="display: flex; align-items: center; gap: 14px;">
@@ -5804,6 +6087,7 @@
           <option value="-">- (None)</option>
         </select>
         <button class="btn btn-print" style="background: var(--primary); color: white;" onclick="downloadPdfTabAktif()" title="Download PDF Slip Gaji Guru (Potret F4)">📥 Download PDF Slip Ini (F4)</button>
+        <button class="btn btn-print" style="background: #0284c7; color: white;" onclick="cetakSemuaSlip()" title="Cetak Seluruh Slip GTK (10 Guru, 2 Slip per Lembar F4)">🖨️ Cetak Seluruh 10 Slip GTK (F4)</button>
       </div>
 
       <div class="slip-container" id="slipBox">
@@ -5900,6 +6184,9 @@
           </div>
         </div>
       </div>
+
+      <!-- CONTAINER BATCH MULTI-SLIP KHUSUS CETAK SELURUH GTK (2 SLIP PER LEMBAR F4) -->
+      <div id="slipBatchPrintContainer" class="slip-batch-print-container"></div>
       </div>
   
     </section>
@@ -7192,7 +7479,7 @@
     }
 
     function cleanupPrintModes() {
-      document.body.classList.remove('print-mode-payroll', 'print-mode-buku-kas', 'print-mode-rekap-5tahun', 'print-mode-all', 'print-mode-presensi', 'print-mode-surat-pcm', 'print-mode-slip-gaji');
+      document.body.classList.remove('print-mode-payroll', 'print-mode-buku-kas', 'print-mode-rekap-5tahun', 'print-mode-all', 'print-mode-presensi', 'print-mode-surat-pcm', 'print-mode-slip-gaji', 'print-mode-slip-gaji-all');
       document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('print-active'));
     }
 
@@ -7301,17 +7588,45 @@
         document.getElementById('rekapTglCetak').textContent = `31 Desember ${activeDashYear || 2026}`;
       }
 
+      renderTabelRekap5Tahun();
+      if (document.getElementById('rekapKSNamaPrint')) document.getElementById('rekapKSNamaPrint').textContent = signers.ksNama;
+      if (document.getElementById('rekapKSNBMPrint')) document.getElementById('rekapKSNBMPrint').textContent = signers.ksNbm;
+      if (document.getElementById('rekapBendaharaNamaPrint')) document.getElementById('rekapBendaharaNamaPrint').textContent = signers.benNama;
+      if (document.getElementById('rekapBendaharaNBMPrint')) document.getElementById('rekapBendaharaNBMPrint').textContent = signers.benNbm;
+      if (document.getElementById('rekapTglCetakPrint')) {
+        document.getElementById('rekapTglCetakPrint').textContent = `31 Desember ${activeDashYear || 2026}`;
+      }
+
       document.body.classList.add('print-mode-rekap-5tahun');
       const tabDash = document.getElementById('tab-dashboard');
       if (tabDash) tabDash.classList.add('print-active');
 
       // Standar Kertas F4: Lembar 1-2 Potret (215mm x 330mm), Lembar 3 Arsip Rekap Landscape (330mm x 215mm)
       setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+
+      // Resize & Update Chart.js agar pas dengan kontainer cetak F4 Potret tanpa animasi
+      if (typeof chartArusKasInst !== 'undefined' && chartArusKasInst) {
+        chartArusKasInst.resize();
+        chartArusKasInst.update('none');
+      }
+      if (typeof chartPemasukanInst !== 'undefined' && chartPemasukanInst) {
+        chartPemasukanInst.resize();
+        chartPemasukanInst.update('none');
+      }
+      if (typeof chartSaldoHarianInst !== 'undefined' && chartSaldoHarianInst) {
+        chartSaldoHarianInst.resize();
+        chartSaldoHarianInst.update('none');
+      }
+      if (typeof chartKlasterHonorInst !== 'undefined' && chartKlasterHonorInst) {
+        chartKlasterHonorInst.resize();
+        chartKlasterHonorInst.update('none');
+      }
+
       showToast('Menyiapkan Laporan Dashboard (Lembar 1-2 Potret, Lembar 3 Arsip Rekap Landscape F4)...', 'info');
 
       setTimeout(() => {
         window.print();
-      }, 100);
+      }, 300);
     }
 
     // =========================================================================
@@ -8000,8 +8315,16 @@
       const sTgl = document.getElementById('suratTglCetak');
       if (sTgl) sTgl.textContent = `05 ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}`;
 
-      // 2c. Cetak Slip Gaji Mandiri
-      renderSlip();
+      // 2c. Cetak Seluruh 10 Slip Gaji GTK (Batch Multi-Slip)
+      renderAllSlipsForPrint();
+      renderTabelRekap5Tahun();
+      if (document.getElementById('rekapKSNamaPrint')) document.getElementById('rekapKSNamaPrint').textContent = signers.ksNama;
+      if (document.getElementById('rekapKSNBMPrint')) document.getElementById('rekapKSNBMPrint').textContent = signers.ksNbm;
+      if (document.getElementById('rekapBendaharaNamaPrint')) document.getElementById('rekapBendaharaNamaPrint').textContent = signers.benNama;
+      if (document.getElementById('rekapBendaharaNBMPrint')) document.getElementById('rekapBendaharaNBMPrint').textContent = signers.benNbm;
+      if (document.getElementById('rekapTglCetakPrint')) {
+        document.getElementById('rekapTglCetakPrint').textContent = `31 Desember ${activeDashYear || 2026}`;
+      }
 
       // 3. Tab 3: Buku Kas Umum Arus Kas Masuk & Keluar
       const kBulan = document.getElementById('printKasBulan');
@@ -8031,11 +8354,30 @@
 
       // Standar Ukuran Kertas F4 (215mm x 330mm) dengan orientasi otomatis per lembar data
       setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
-      showToast('Menyiapkan Berkas Unduhan PDF Seluruh Dokumen (Kertas F4: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip, Buku Kas, Presensi)...', 'info');
+      
+      // Resize & Update Chart.js agar pas dengan lebar kontainer cetak F4 Potret tanpa animasi
+      if (typeof chartArusKasInst !== 'undefined' && chartArusKasInst) {
+        chartArusKasInst.resize();
+        chartArusKasInst.update('none');
+      }
+      if (typeof chartPemasukanInst !== 'undefined' && chartPemasukanInst) {
+        chartPemasukanInst.resize();
+        chartPemasukanInst.update('none');
+      }
+      if (typeof chartSaldoHarianInst !== 'undefined' && chartSaldoHarianInst) {
+        chartSaldoHarianInst.resize();
+        chartSaldoHarianInst.update('none');
+      }
+      if (typeof chartKlasterHonorInst !== 'undefined' && chartKlasterHonorInst) {
+        chartKlasterHonorInst.resize();
+        chartKlasterHonorInst.update('none');
+      }
+
+      showToast('Menyiapkan Berkas Unduhan PDF Seluruh Dokumen (Kertas F4: Ringkasan 5 Tahun, Honor GTK, Surat PCM, Slip 4-Susun, Buku Kas, Presensi)...', 'info');
 
       setTimeout(() => {
         window.print();
-      }, 180);
+      }, 350);
     }
     // Alias untuk kompatibilitas tombol cetak lama
     window.cetakSeluruhTabF4 = downloadPdfSeluruhDokumen;
@@ -8075,6 +8417,8 @@
           <td style="padding: 8px 10px; text-align: center;">${getKlasterBadge(g.klaster, g.id)}</td>
         `;
         tbody.appendChild(tr);
+
+        if (tbodyPrint) tbodyPrint.appendChild(tr.cloneNode(true));
       });
 
       modal.style.display = 'flex';
@@ -8179,6 +8523,7 @@
           </td>
         `;
         tbody.appendChild(tr);
+
       });
     }
 
@@ -8616,8 +8961,9 @@
     // Render Tabel Rekapan Per Tahun & Data Kumulatif 5 Tahun (2026 - 2030)
     function renderTabelRekap5Tahun() {
       const tbody = document.getElementById('tbodyRekap5Tahun');
-      if (!tbody) return;
-      tbody.innerHTML = '';
+      const tbodyPrint = document.getElementById('tbodyRekap5TahunPrint');
+      if (tbody) tbody.innerHTML = '';
+      if (tbodyPrint) tbodyPrint.innerHTML = '';
 
       let kumMasuk = 0;
       let kumHonor = 0;
@@ -8673,9 +9019,42 @@
           <td style="text-align: center; white-space: nowrap;">${statusText}</td>
         `;
         tbody.appendChild(tr);
+
+        if (tbodyPrint) {
+          const trPrint = document.createElement('tr');
+          trPrint.style.borderBottom = '1px solid #cbd5e1';
+          if (yr === 2026) trPrint.style.background = '#fefce8';
+          let printStatusBadge = '';
+          if (yr === 2026) {
+            printStatusBadge = '<span style="background: #dcfce7; color: #166534; border: 1px solid #16a34a; padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 6.8pt; display: inline-block;">Tahun Berjalan</span>';
+          } else if (row.hasData) {
+            printStatusBadge = '<span style="background: #dbeafe; color: #1e40af; border: 1px solid #2563eb; padding: 1px 4px; border-radius: 3px; font-weight: 700; font-size: 6.8pt; display: inline-block;">Tercatat Transaksi</span>';
+          } else {
+            printStatusBadge = '<span style="color: #64748b; font-size: 6.8pt; font-weight: 600;">(Belum ada data)</span>';
+          }
+          trPrint.innerHTML = `
+            <td style="text-align: center; font-weight: 800; color: #0f172a; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.4pt;">${yr}</td>
+            <td style="text-align: right; color: ${row.masuk > 0 ? '#15803d' : '#64748b'}; font-weight: 700; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">Rp ${row.masuk.toLocaleString('id-ID')}</td>
+            <td style="text-align: right; color: ${row.keluar > 0 ? '#dc2626' : '#64748b'}; font-weight: 700; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">Rp ${row.keluar.toLocaleString('id-ID')}</td>
+            <td style="text-align: right; color: ${row.honor > 0 ? '#1d4ed8' : '#64748b'}; font-weight: 700; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">Rp ${row.honor.toLocaleString('id-ID')}</td>
+            <td style="text-align: right; font-weight: 800; color: ${surplusColor}; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">${surplusText}</td>
+            <td style="text-align: right; font-weight: 800; color: ${saldoColor}; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">${saldoText}</td>
+            <td style="text-align: right; font-weight: 800; color: #15803d; background: #dcfce7; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">Rp ${kumMasuk.toLocaleString('id-ID')}</td>
+            <td style="text-align: right; font-weight: 800; color: #1d4ed8; background: #eff6ff; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 7.2pt;" class="cell-nowrap">Rp ${kumHonor.toLocaleString('id-ID')}</td>
+            <td style="text-align: center; padding: 3px 2px; border: 1px solid #94a3b8; font-size: 6.8pt;">${printStatusBadge}</td>
+          `;
+          tbodyPrint.appendChild(trPrint);
+        }
       });
 
       document.getElementById('rekap5ThnMasuk').textContent = 'Rp ' + totMasuk.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnMasukPrint')) document.getElementById('rekap5ThnMasukPrint').textContent = 'Rp ' + totMasuk.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnKeluarPrint')) document.getElementById('rekap5ThnKeluarPrint').textContent = 'Rp ' + totKeluar.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnHonorPrint')) document.getElementById('rekap5ThnHonorPrint').textContent = 'Rp ' + totHonor.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnSurplusPrint')) document.getElementById('rekap5ThnSurplusPrint').textContent = (totSurplus >= 0 ? '+Rp ' : '-Rp ') + Math.abs(totSurplus).toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnSaldoAkhirPrint')) document.getElementById('rekap5ThnSaldoAkhirPrint').textContent = 'Rp ' + lastSaldo.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnKumMasukPrint')) document.getElementById('rekap5ThnKumMasukPrint').textContent = 'Rp ' + kumMasuk.toLocaleString('id-ID');
+      if (document.getElementById('rekap5ThnKumHonorPrint')) document.getElementById('rekap5ThnKumHonorPrint').textContent = 'Rp ' + kumHonor.toLocaleString('id-ID');
       document.getElementById('rekap5ThnKeluar').textContent = 'Rp ' + totKeluar.toLocaleString('id-ID');
       document.getElementById('rekap5ThnHonor').textContent = 'Rp ' + totHonor.toLocaleString('id-ID');
       document.getElementById('rekap5ThnSurplus').textContent = (totSurplus >= 0 ? '+Rp ' : '-Rp ') + Math.abs(totSurplus).toLocaleString('id-ID');
@@ -8734,7 +9113,7 @@
             plugins: {
               legend: {
                 position: 'bottom',
-                labels: { boxWidth: 12, color: '#0f172a', font: { size: 12, weight: '600', family: 'Plus Jakarta Sans' } }
+                labels: { boxWidth: 10, padding: 6, color: '#0f172a', font: { size: 10, weight: '600', family: 'Plus Jakarta Sans' } }
               }
             },
             scales: {
@@ -9265,6 +9644,7 @@
         `;
         tbody.appendChild(tr);
 
+
         document.getElementById('totalHonorCell').textContent = 'Rp 0';
         const matchEl = document.getElementById('payrollStatusMatch');
         if (matchEl) {
@@ -9330,6 +9710,7 @@
           </td>
         `;
         tbody.appendChild(tr);
+
       });
 
       document.getElementById('totalHonorCell').textContent = 'Rp ' + totalHonor.toLocaleString('id-ID');
@@ -9514,6 +9895,7 @@
         `;
         tbody.appendChild(tr);
 
+
         document.getElementById('kasTotalMasuk').textContent = 'Rp 0';
         document.getElementById('kasTotalKeluar').textContent = 'Rp 0';
         document.getElementById('kasTotalSaldo').textContent = 'Rp 0';
@@ -9553,6 +9935,7 @@
           </td>
         `;
         tbody.appendChild(tr);
+
       });
 
       document.getElementById('kasTotalMasuk').textContent = 'Rp ' + totalMasuk.toLocaleString('id-ID');
@@ -9698,6 +10081,127 @@
         renderTabelKas();
         showToast('Transaksi kas berhasil dihapus.', 'warning');
       }
+    }
+
+    // =========================================================================
+    // GENERATOR BATCH MULTI-SLIP SELURUH GTK (4 SLIP PER LEMBAR F4)
+    // =========================================================================
+    function generateSingleSlipHtml(g, bulanText, tglCetakText, signers) {
+      const pokok = Number(g.pokok) || 0;
+      const tunjangan = Number(g.tunjangan) || 0;
+      const totalNetto = pokok + tunjangan;
+      const isTunai = (g.status || '').toLowerCase().includes('tunai');
+      const statusColor = isTunai ? '#166534' : '#1e40af';
+      const statusBg = isTunai ? '#dcfce7' : '#dbeafe';
+
+      return `
+        <div class="slip-item-card" style="border: 1.2px solid #475569; border-radius: 6px; padding: 5px 12px; margin-bottom: 2mm; background: #ffffff; box-sizing: border-box;">
+          <div class="slip-header" style="border-bottom: 1.5px solid #1e3a8a; padding-bottom: 3px; margin-bottom: 4px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+              <img src="logo-smp-muhammadiyah.png" alt="Logo" style="width: 32px; height: 32px; object-fit: contain; flex-shrink: 0;">
+              <div style="text-align: center; flex: 1;">
+                <h3 style="font-size: 10.5pt; font-weight: 800; color: #1e3a8a; margin: 0; letter-spacing: 0.3px; line-height: 1.2;">SMP MUHAMMADIYAH 1 KOTA BANGUN DARAT</h3>
+                <p style="font-size: 7.8pt; font-weight: 700; color: #334155; margin: 1px 0 0; text-transform: uppercase;">BUKTI PENERIMAAN HONORARIUM GTK &bull; BULAN: ${bulanText}</p>
+              </div>
+              <div style="width: 32px; flex-shrink: 0;"></div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1.3fr 1.1fr 1fr; gap: 1.5px 10px; font-size: 7.6pt; margin-bottom: 3px; color: #0f172a;">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">Nama:</span>
+              <strong style="color: #0f172a;">${g.nama}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">NBM:</span>
+              <span>${g.nbm || '-'}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">Honor Pokok:</span>
+              <strong style="color: #0f172a;">Rp ${pokok > 0 ? pokok.toLocaleString('id-ID') : '0'}</strong>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">Jabatan:</span>
+              <span>${g.jabatan}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">Klaster:</span>
+              <span>${g.klaster}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px dotted #cbd5e1; padding: 1px 0;">
+              <span style="color: #475569;">Status:</span>
+              <span style="background: ${statusBg}; color: ${statusColor}; padding: 0.5px 5px; border-radius: 3px; font-weight: 700; font-size: 7.2pt;">${g.status || '-'}</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 4px; padding: 2px 8px; margin-bottom: 3px;">
+            <span style="font-weight: 800; font-size: 7.8pt; color: #0f172a;">TOTAL DITERIMA (NETTO):</span>
+            <span style="font-weight: 800; font-size: 9.8pt; color: #1e3a8a;">Rp ${totalNetto > 0 ? totalNetto.toLocaleString('id-ID') : '0'}</span>
+          </div>
+
+          <div style="display: flex; justify-content: flex-end; margin-bottom: 2px; font-size: 7.2pt; color: #475569;">
+            Kota Bangun Darat, ${tglCetakText}
+          </div>
+
+          <div style="display: flex; justify-content: space-between; gap: 6px; text-align: center; font-size: 7.4pt; color: #0f172a;">
+            <div style="flex: 1;">
+              <div><strong>Penerima Honor,</strong></div>
+              <div style="height: 22px;"></div>
+              <div><u><strong>${g.nama}</strong></u></div>
+              <div style="font-size: 6.8pt; color: #475569;">NBM: ${g.nbm || '-'}</div>
+            </div>
+            <div style="flex: 1;">
+              <div><strong>Bendahara Sekolah,</strong></div>
+              <div style="height: 22px;"></div>
+              <div><u><strong>${signers.benNama}</strong></u></div>
+              <div style="font-size: 6.8pt; color: #475569;">NBM: ${signers.benNbm}</div>
+            </div>
+            <div style="flex: 1;">
+              <div><span>Menyetujui,</span><br><strong>Kepala Sekolah</strong></div>
+              <div style="height: 22px; display: flex; align-items: center; justify-content: center;">
+                <img src="assets/tanda-tangan-pak-susanto.png" alt="TTD" style="max-height: 20px; max-width: 60px; object-fit: contain;">
+              </div>
+              <div><u><strong>${signers.ksNama}</strong></u></div>
+              <div style="font-size: 6.8pt; color: #475569;">NBM: ${signers.ksNbm}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderAllSlipsForPrint() {
+      const container = document.getElementById('slipBatchPrintContainer');
+      if (!container) return;
+      const key = `${activePayrollYear}-${activePayrollMonth}`;
+      const list = (payrollStore[key] && payrollStore[key].length > 0) ? payrollStore[key] : getBaseGTK();
+      const signers = getActiveOfficialSigners();
+      const bulanText = `${NAMA_BULAN[activePayrollMonth].toUpperCase()} ${activePayrollYear}`;
+      const tglCetakText = `05 ${NAMA_BULAN[activePayrollMonth]} ${activePayrollYear}`;
+
+      let html = '';
+      for (let i = 0; i < list.length; i += 4) {
+        html += `<div class="slip-print-quad">`;
+        for (let j = 0; j < 4 && (i + j) < list.length; j++) {
+          const g = list[i + j];
+          if (j > 0) {
+            html += `<div class="slip-cut-divider"><span>✂ - - - - - - - - - - - - - - - - - POTONG DI SINI (SLIP PEGAWAI / ARSIP) - - - - - - - - - - - - - - - - - ✂</span></div>`;
+          }
+          html += generateSingleSlipHtml(g, bulanText, tglCetakText, signers);
+        }
+        html += `</div>`;
+      }
+      container.innerHTML = html;
+    }
+
+    function cetakSemuaSlip() {
+      cleanupPrintModes();
+      renderAllSlipsForPrint();
+      document.body.classList.add('print-mode-slip-gaji-all');
+      const tabPayroll = document.getElementById('tab-payroll');
+      if (tabPayroll) tabPayroll.classList.add('print-active');
+      setPrintPageSetup('portrait', '8mm 10mm 8mm 10mm', '215mm 330mm');
+      showToast('Menyiapkan Cetak Seluruh Slip Gaji 10 GTK (Potret F4: 4 Slip per Lembar)...', 'info');
+      setTimeout(() => { window.print(); }, 200);
     }
 
     // =========================================================================
@@ -9892,10 +10396,16 @@
         } else if (tabId === 'tab-dashboard') {
           document.body.classList.add('print-mode-rekap-5tahun');
           setPrintPageSetup('portrait', '10mm 12mm 10mm 12mm', '215mm 330mm');
+          renderTabelRekap5Tahun();
+          if (typeof chartArusKasInst !== 'undefined' && chartArusKasInst) { chartArusKasInst.resize(); chartArusKasInst.update('none'); }
+          if (typeof chartPemasukanInst !== 'undefined' && chartPemasukanInst) { chartPemasukanInst.resize(); chartPemasukanInst.update('none'); }
+          if (typeof chartSaldoHarianInst !== 'undefined' && chartSaldoHarianInst) { chartSaldoHarianInst.resize(); chartSaldoHarianInst.update('none'); }
+          if (typeof chartKlasterHonorInst !== 'undefined' && chartKlasterHonorInst) { chartKlasterHonorInst.resize(); chartKlasterHonorInst.update('none'); }
         } else if (tabId === 'tab-surat-pcm') {
           setPrintPageSetup('portrait', '0mm', '215mm 330mm');
         } else if (tabId === 'tab-slip-gaji') {
-          setPrintPageSetup('portrait', '10mm', '215mm 330mm');
+          renderAllSlipsForPrint();
+          setPrintPageSetup('portrait', '8mm 10mm 8mm 10mm', '215mm 330mm');
         }
       }
     });
@@ -10610,6 +11120,7 @@
 
         tr.innerHTML = cellsHtml;
         tbody.appendChild(tr);
+
       });
 
       // Update Kiosk if kiosk is active
@@ -11043,6 +11554,7 @@
     }
 
 
+    window.addEventListener('afterprint', cleanupPrintModes);
     window.addEventListener('DOMContentLoaded', () => {
       // Set Chart.js Crisp White Glass Theme Defaults
       if (typeof Chart !== 'undefined') {
