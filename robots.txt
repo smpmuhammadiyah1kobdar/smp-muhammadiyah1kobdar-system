@@ -11,4 +11,4 @@ Disallow: /sistem-absensi-siswa.html
 Disallow: /template-id-card-gtk.html
 Disallow: /template-id-card-siswa.html
 
-Sitemap: https://smpmuhammadiyah1kobdar.github.io/smp-muhammadiyah1kobdar-system/sitemap.xml
+Sitemap: https://smpmuhammadiyah1kobdar.sch.id/sitemap.xml
